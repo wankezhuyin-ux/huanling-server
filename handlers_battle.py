@@ -280,7 +280,7 @@ def spawn_wild_monsters(map_id: str) -> list[combat.Fighter]:
         lv_max = int(beast.get("levelMax") or beast.get("level") or lv_min)
         level = random.randint(min(lv_min, lv_max), max(lv_min, lv_max))
         pet_id = str(beast.get("pet_id", "monster"))
-        # 五行只认宠物图鉴：怪物池是抓包复原的，琳琳/珍珍/盈盈被标成火、金系鸟被标成木，
+        # 五行只认宠物图鉴：怪物池是抓包复原的，赤翅蛾/珍珍/盈盈被标成火、金系鸟被标成木，
         # 会让「金打水」这种根本不存在的克制关系出现。图鉴查不到才回落到池里的值。
         catalog_el = str((PET_CATALOG.get(pet_id) or {}).get("element", "") or "").strip()
         if catalog_el == "普通":

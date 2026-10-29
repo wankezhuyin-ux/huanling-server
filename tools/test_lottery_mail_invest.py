@@ -68,11 +68,11 @@ def base_seed() -> dict:
                        "yuanbao_currency": 1_000_000},
         "petsData": {
             "active_pet_id": "linlin_111",
-            "pets": [{"id": "linlin_111", "pet_id": "linlin", "name": "琳琳",
+            "pets": [{"id": "linlin_111", "pet_id": "linlin", "name": "赤翅蛾",
                       "level": 1, "total_growth": 6.0, "mutation_count": 0},
                      {"id": "nawahuo_222", "pet_id": "nawahuo", "name": "纳瓦霍",
                       "level": 1, "total_growth": 3.8, "mutation_count": 0}],
-            "pet_bag": [{"id": "linlin_333", "pet_id": "linlin", "name": "琳琳",
+            "pet_bag": [{"id": "linlin_333", "pet_id": "linlin", "name": "赤翅蛾",
                          "level": 1, "total_growth": 6.0, "mutation_count": 0}],
         },
         "petCollectionData": {"progress": {"linlin": 12}, "mutation_progress": {}},

@@ -105,6 +105,32 @@ def migrate_item_name(name: str) -> str:
     return item_rename_map().get(hashlib.md5(text.encode("utf-8")).hexdigest()[:8], text)
 
 
+_PET_RENAME: dict | None = None
+
+
+def pet_rename_map() -> dict:
+    """宠物图鉴改名表：旧名 md5 前 8 位 → 现用名。
+
+    和道具表分开存：宠物名是玩家看得见的个体名，以后单独再改不会牵动道具白名单；
+    键同样是哈希，磁盘和日志里都不留历史名字。
+    """
+    table = _PET_RENAME
+    if table is None:
+        raw = load_json(DATA / "pet-rename.json", {}) or {}
+        table = raw.get("map") if isinstance(raw, dict) else None
+        table = table if isinstance(table, dict) else {}
+        globals()["_PET_RENAME"] = table
+    return table
+
+
+def migrate_pet_name(name: str) -> str:
+    """单个宠物名的归一化；没命中就原样返回。"""
+    text = str(name or "")
+    if not text:
+        return text
+    return pet_rename_map().get(hashlib.md5(text.encode("utf-8")).hexdigest()[:8], text)
+
+
 _MAP_RENAME: dict | None = None
 
 
@@ -680,6 +706,8 @@ class State:
             changed = True
         if self._migrate_item_names():
             changed = True
+        if self._migrate_pet_names():
+            changed = True
         if self._migrate_map_names():
             changed = True
         if self.fresh or changed:
@@ -741,6 +769,42 @@ class State:
                     walk(value)
 
         walk(self.save.get("inventoryData") or {})
+        walk(self.meta.get("mails") or [])
+        return changed
+
+    def _migrate_pet_names(self) -> bool:
+        """宠物改名：老存档里的旧宠物名换成图鉴现用名。
+
+        宠物存档里 name 是显示名，客户端缺 pet_id 时还要靠它反查图鉴键；
+        服务端自己也按名字在邮件里发宠、在榜单上展示。只改客户端会出现
+        「宠物栏看到新名、邮件里还是旧名」。这里扫宠物栏、宠物袋与邮件。
+
+        改名表在 data/pet-rename.json，键是旧名的 md5 前 8 位。
+        """
+        table = pet_rename_map()
+        if not table:
+            return False
+        changed = False
+
+        def walk(node) -> None:
+            nonlocal changed
+            if isinstance(node, list):
+                for x in node:
+                    walk(x)
+                return
+            if not isinstance(node, dict):
+                return
+            name = node.get("name")
+            if isinstance(name, str) and name:
+                new = table.get(hashlib.md5(name.encode("utf-8")).hexdigest()[:8])
+                if new and new != name:
+                    node["name"] = new
+                    changed = True
+            for value in node.values():
+                if isinstance(value, (dict, list)):
+                    walk(value)
+
+        walk(self.save.get("petsData") or {})
         walk(self.meta.get("mails") or [])
         return changed
 
@@ -1711,7 +1775,7 @@ class State:
         base = pet.get("base_stats") if isinstance(pet.get("base_stats"), dict) else {}
         growth = pet.get("growth_rates") if isinstance(pet.get("growth_rates"), dict) else {}
         if not growth:
-            # 成长数据缺失（礼包直接发的琳琳一类没有 growth_rates）：
+            # 成长数据缺失（礼包直接发的赤翅蛾一类没有 growth_rates）：
             # 没有基准就无从重算，保持原样，别把数值按 0 成长压回 1 级白值。
             return
         diff = max(0, int(pet.get("level", 1) or 1) - 1)

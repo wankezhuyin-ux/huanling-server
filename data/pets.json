@@ -4008,7 +4008,7 @@
       "max_level": 1500
     },
     "duxing": {
-      "name": "独行",
+      "name": "铁嘴鸦",
       "type": "敏攻型",
       "element": "金",
       "attack": 5.3,
@@ -4734,7 +4734,7 @@
       "max_level": 1200
     },
     "linlin": {
-      "name": "琳琳",
+      "name": "赤翅蛾",
       "type": "平均型",
       "element": "水",
       "attack": 4.8,
@@ -4954,7 +4954,7 @@
       "max_level": 1500
     },
     "lèngtóuqīng": {
-      "name": "愣头青",
+      "name": "苔背兽",
       "type": "敏防型",
       "element": "水",
       "attack": 4.0,
@@ -5680,7 +5680,7 @@
       "max_level": 1500
     },
     "yùlíntù": {
-      "name": "御林兔",
+      "name": "沙耳兔",
       "type": "敏攻型",
       "element": "土",
       "attack": 5.3,
@@ -5746,7 +5746,7 @@
       "max_level": 1500
     },
     "xiǎodīngdōng": {
-      "name": "小叮咚",
+      "name": "滴水蛙",
       "type": "平均型",
       "element": "土",
       "attack": 5.4,

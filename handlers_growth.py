@@ -3529,7 +3529,7 @@ def synthesize_seal_stone(ctx: Ctx) -> dict:
 
 @route("POST", "/gift/frontier/use")
 def gift_frontier_use(ctx: Ctx) -> dict:
-    """开荒锦囊：5 亿金币 + 7 只成长 6.0 的琳琳 + 一套单属性 +400 装备。
+    """开荒锦囊：5 亿金币 + 7 只成长 6.0 的赤翅蛾 + 一套单属性 +400 装备。
 
     原实现是往背包塞一个「边境礼包」的占位桩：客户端开了礼包只拿到一个查不到
     图鉴的道具，金币/宠物/装备全没有，开荒锦囊本身也不扣（「使用成功但礼包还在」）。
@@ -3596,7 +3596,7 @@ def gift_frontier_use(ctx: Ctx) -> dict:
 # （inventory_manager.gd `_request_server_auth_pet_reward_open("gift", name)`），
 # **不是** `/equipment/grant`。原来 open-pet 只认宠物礼包 / 掉率表 / 天关锦囊，
 # 这两个名字一律落进「该礼包暂不支持开启」—— 玩家拿到礼包点了完全没反应。
-# desc：1 亿金币 + 1 只成长 6.0 琳琳 + 一套单属性 +100 人物装备。
+# desc：1 亿金币 + 1 只成长 6.0 赤翅蛾 + 一套单属性 +100 人物装备。
 GIFT_EQUIP_PACKS = {
     "先锋锦囊": {"gold": 100000000, "pets": 1, "pet_id": "linlin", "growth": 6.0},
     "新人扶持锦囊": {"gold": 100000000, "pets": 1, "pet_id": "linlin", "growth": 6.0},
@@ -4180,7 +4180,7 @@ def _open_pet_reward(ctx: Ctx, default_kind: str = "gift") -> dict:
                 bag["items"].append({"name": picked_name, "count": 1})
                 bag["lines"].append("获得【%s】" % picked_name)
         handled = True
-    # ---- 内测先锋 / 新人扶持：1 亿金币 + 1 只成长 6.0 琳琳 + 一套单属性 +100 装备
+    # ---- 内测先锋 / 新人扶持：1 亿金币 + 1 只成长 6.0 赤翅蛾 + 一套单属性 +100 装备
     elif item_name in GIFT_EQUIP_PACKS:
         cfg_pack = GIFT_EQUIP_PACKS[item_name]
         equip_cfg = EQUIP_GRANT_SETS.get(item_name) or {"value": 100, "prefix": item_name, "rarity": "legendary"}
