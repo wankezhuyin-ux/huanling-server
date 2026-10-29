@@ -1,0 +1,139 @@
+{
+ "_source": "原版客户端数据逐条抄录，勿手改。塔1~5礼包/生死塔参与礼包 ← scripts/game_data.gd ALL_ITEMS desc；兄弟天关礼包 ← data/runtime-config.json brotherTower.giftDesc；冠军/亚军/季军/十强礼包 ← scripts/arena/arena_config.gd FALLBACK_GIFT_PACKS（原版是「固定金币+固定道具」打包发放，不是随机二选一）；世界boss礼包 ← runtime-config worldBoss.lootTable（原版未给权重，按等概率；名称与 giftLootDisplay 一一对应）。技能书 item 名与 skill_key 均已按 runtime-config gameplay.skillDefinitions 与 game_data.gd ALL_ITEMS 逐一核对。",
+ "gold_unit": {
+  "1亿金币": 100000000,
+  "2亿金币": 200000000,
+  "3亿金币": 300000000,
+  "4亿金币": 400000000,
+  "5亿金币": 500000000,
+  "10亿金币": 1000000000,
+  "30亿金币": 3000000000,
+  "50亿金币": 5000000000
+ },
+ "gifts": {
+  "塔1礼包": [
+   {"name": "1亿金币", "type": "gold", "weight": 77},
+   {"name": "五行变异宠物蛋", "type": "pool", "pool": "element_mutant_egg", "weight": 5},
+   {"name": "悟道仙丹", "type": "item", "count": 1, "weight": 5},
+   {"name": "6+可进化宠礼包", "type": "item", "count": 1, "weight": 5},
+   {"name": "6+不可进化宠礼包", "type": "item", "count": 1, "weight": 5},
+   {"name": "宠物升级丹", "type": "item", "count": 1, "weight": 1},
+   {"name": "人物升级丹", "type": "item", "count": 1, "weight": 1},
+   {"name": "法宝洗练石", "type": "item", "count": 1, "weight": 1}
+  ],
+  "塔2礼包": [
+   {"name": "2亿金币", "type": "gold", "weight": 77},
+   {"name": "五行变异宠物蛋", "type": "pool", "pool": "element_mutant_egg", "weight": 5},
+   {"name": "悟道仙丹", "type": "item", "count": 1, "weight": 5},
+   {"name": "7+可进化宠礼包", "type": "item", "count": 1, "weight": 5},
+   {"name": "7+不可进化宠礼包", "type": "item", "count": 1, "weight": 5},
+   {"name": "宠物升级丹", "type": "item", "count": 1, "weight": 1},
+   {"name": "人物升级丹", "type": "item", "count": 1, "weight": 1},
+   {"name": "法宝洗练石", "type": "item", "count": 1, "weight": 1}
+  ],
+  "塔3礼包": [
+   {"name": "3亿金币", "type": "gold", "weight": 77},
+   {"name": "五行变异宠物蛋", "type": "pool", "pool": "element_mutant_egg", "weight": 5},
+   {"name": "悟道仙丹", "type": "item", "count": 1, "weight": 5},
+   {"name": "8+可进化宠礼包", "type": "item", "count": 1, "weight": 5},
+   {"name": "8+不可进化宠礼包", "type": "item", "count": 1, "weight": 5},
+   {"name": "宠物升级丹", "type": "item", "count": 1, "weight": 1},
+   {"name": "人物升级丹", "type": "item", "count": 1, "weight": 1},
+   {"name": "法宝洗练石", "type": "item", "count": 1, "weight": 1}
+  ],
+  "塔4礼包": [
+   {"name": "4亿金币", "type": "gold", "weight": 76},
+   {"name": "五行变异宠物蛋", "type": "pool", "pool": "element_mutant_egg", "weight": 5},
+   {"name": "悟道仙丹", "type": "item", "count": 1, "weight": 5},
+   {"name": "9+可进化宠礼包", "type": "item", "count": 1, "weight": 5},
+   {"name": "9+不可进化宠礼包", "type": "item", "count": 1, "weight": 5},
+   {"name": "宠物升级丹", "type": "item", "count": 1, "weight": 1},
+   {"name": "人物升级丹", "type": "item", "count": 1, "weight": 1},
+   {"name": "法宝洗练石", "type": "item", "count": 1, "weight": 1},
+   {"name": "套装强化石", "type": "item", "count": 1, "weight": 1}
+  ],
+  "塔5礼包": [
+   {"name": "5亿金币", "type": "gold", "weight": 75},
+   {"name": "五行变异宠物蛋", "type": "pool", "pool": "element_mutant_egg", "weight": 5},
+   {"name": "悟道仙丹", "type": "item", "count": 1, "weight": 5},
+   {"name": "10+可进化宠礼包", "type": "item", "count": 1, "weight": 5},
+   {"name": "10+不可进化宠礼包", "type": "item", "count": 1, "weight": 5},
+   {"name": "宠物升级丹", "type": "item", "count": 1, "weight": 1},
+   {"name": "人物升级丹", "type": "item", "count": 1, "weight": 1},
+   {"name": "法宝洗练石", "type": "item", "count": 1, "weight": 1},
+   {"name": "法宝重置石", "type": "item", "count": 1, "weight": 1},
+   {"name": "套装强化石", "type": "item", "count": 1, "weight": 1}
+  ],
+  "生死塔参与礼包": [
+   {"name": "1亿金币", "type": "gold", "weight": 98.5},
+   {"name": "五行变异宠物蛋", "type": "pool", "pool": "element_mutant_egg", "weight": 1},
+   {"name": "法宝洗练石", "type": "item", "count": 1, "weight": 0.5}
+  ],
+  "兄弟天关礼包": [
+   {"name": "1亿金币", "type": "gold", "weight": 60.54},
+   {"name": "5亿金币", "type": "gold", "weight": 5},
+   {"name": "一箭三雕", "type": "martial", "weight": 5},
+   {"name": "以战养战", "type": "martial", "weight": 1},
+   {"name": "套装强化石", "type": "item", "count": 1, "weight": 2},
+   {"name": "极限装备之一", "type": "pool", "pool": "limit_equip", "weight": 5},
+   {"name": "10亿金币", "type": "gold", "weight": 2},
+   {"name": "5+宠物蛋", "type": "item", "count": 1, "weight": 18},
+   {"name": "溅射lv1技能书", "type": "pet_skill_book", "skill_key": "splash_lv1", "weight": 0.01},
+   {"name": "连射lv1技能书", "type": "pet_skill_book", "skill_key": "double_shot_lv1", "weight": 0.01},
+   {"name": "反击lv1技能书", "type": "pet_skill_book", "skill_key": "counter_attack_lv1", "weight": 0.01},
+   {"name": "神佑lv1技能书", "type": "pet_skill_book", "skill_key": "divine_protect_lv1", "weight": 0.01},
+   {"name": "坚固lv1技能书", "type": "pet_skill_book", "skill_key": "fortify_lv1", "weight": 0.01},
+   {"name": "吸血lv1技能书", "type": "pet_skill_book", "skill_key": "life_steal_lv1", "weight": 0.01},
+   {"name": "破甲lv1技能书", "type": "pet_skill_book", "skill_key": "armor_pierce_lv1", "weight": 0.01},
+   {"name": "格挡lv1技能书", "type": "pet_skill_book", "skill_key": "guard_lv1", "weight": 0.01},
+   {"name": "必杀lv1技能书", "type": "pet_skill_book", "skill_key": "fatal_lv1", "weight": 0.01},
+   {"name": "嘲讽lv1技能书", "type": "pet_skill_book", "skill_key": "taunt_lv1", "weight": 0.01},
+   {"name": "自愈lv1技能书", "type": "pet_skill_book", "skill_key": "self_heal_lv1", "weight": 0.05},
+   {"name": "迅捷lv1技能书", "type": "pet_skill_book", "skill_key": "swift_lv1", "weight": 0.05},
+   {"name": "长寿lv1技能书", "type": "pet_skill_book", "skill_key": "longevity_lv1", "weight": 0.05},
+   {"name": "强壮lv1技能书", "type": "pet_skill_book", "skill_key": "mighty_lv1", "weight": 0.05},
+   {"name": "凶猛lv1技能书", "type": "pet_skill_book", "skill_key": "fierce_lv1", "weight": 0.05},
+   {"name": "追击lv1技能书", "type": "pet_skill_book", "skill_key": "chase_lv1", "weight": 0.05},
+   {"name": "忠心lv1技能书", "type": "pet_skill_book", "skill_key": "loyal_lv1", "weight": 0.05},
+   {"name": "法宝洗练石", "type": "item", "count": 1, "weight": 1},
+   {"name": "法宝重置石", "type": "item", "count": 1, "weight": 0.01}
+  ],
+  "世界boss礼包": [
+   {"name": "1亿金币", "type": "gold", "weight": 1},
+   {"name": "5亿金币", "type": "gold", "weight": 1},
+   {"name": "10亿金币", "type": "gold", "weight": 1},
+   {"name": "30亿金币", "type": "gold", "weight": 1},
+   {"name": "50亿金币", "type": "gold", "weight": 1},
+   {"name": "极限装备之一", "type": "pool", "pool": "limit_equip", "weight": 1},
+   {"name": "套装强化石", "type": "item", "count": 1, "weight": 1},
+   {"name": "lv1宠物技能书之一", "type": "pool", "pool": "pet_skill_book_lv1", "weight": 1},
+   {"name": "五只世界boss宠之一", "type": "pool", "pool": "world_boss_pet", "weight": 1},
+   {"name": "法宝洗练石", "type": "item", "count": 1, "weight": 1}
+  ]
+ },
+ "fixed_gifts": {
+  "_note": "arena/arena_config.gd FALLBACK_GIFT_PACKS：金币与道具是「同时发放」，不是二选一。",
+  "冠军礼包": {"gold": 5000000000, "rewards": [{"name": "极限装备礼包", "type": "item", "count": 3}]},
+  "亚军礼包": {"gold": 3000000000, "rewards": [{"name": "极限装备礼包", "type": "item", "count": 2}]},
+  "季军礼包": {"gold": 1000000000, "rewards": [{"name": "极限装备礼包", "type": "item", "count": 1}]},
+  "十强礼包": {"gold": 500000000, "rewards": [{"name": "极限装备之一", "type": "pool", "pool": "limit_equip", "count": 1}]}
+ },
+ "pet_gifts": {
+  "仙魔灵兽礼包": {"growth": [5.0, 6.0], "pool": "any", "mutation": 0},
+  "仙魔神兽礼包": {"growth": [6.2, 6.8], "pool": "any", "mutation": 0},
+  "仙魔变异礼包": {"growth": [6.0, 6.5], "pool": "any", "mutation": 1},
+  "仙魔野生礼包": {"growth": [4.5, 5.5], "pool": "any", "mutation": 0},
+  "7-9水晶儿礼包": {"growth": [7.0, 9.9], "pool": "fixed", "pet_id": "shuijinger", "mutation": 0},
+  "7-9梦晶儿礼包": {"growth": [7.0, 9.9], "pool": "fixed", "pet_id": "mengjinger", "mutation": 0},
+  "7-9阿弟达斯礼包": {"growth": [7.0, 9.9], "pool": "fixed", "pet_id": "a_di_da_si", "mutation": 0},
+  "10-13变异可进化宠礼包": {"growth": [10.0, 13.9], "pool": "evolution", "mutation": 1},
+  "10-13变异不可进化宠礼包": {"growth": [10.0, 13.9], "pool": "non_evolution", "mutation": 1}
+ },
+ "extra_pet_gift_rules": {
+  "note": "N+不可进化宠礼包(可能变异)：成长 N.0~N.5，约 10% 变异 1（game_data.gd desc）",
+  "possible_mutation_rate": 0.1
+ },
+ "limit_equip_pool": ["极限武器", "极限衣服", "极限鞋子", "极限血佩", "极限内带"],
+ "element_mutant_egg_pool": ["金变异宠物蛋", "木变异宠物蛋", "水变异宠物蛋", "火变异宠物蛋", "土变异宠物蛋"],
+ "world_boss_pet_pool": ["huozhiyizhi", "jinzhizhuzai", "muzhiguize", "tuzhixianjie", "shuizhizhangkong"]
+}

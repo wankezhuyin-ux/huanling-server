@@ -1,0 +1,23 @@
+{
+ "success": true,
+ "items": [
+  {
+   "id": "limit_equip_gift",
+   "itemName": "极限装备礼包",
+   "cost": 1500
+  },
+  {
+   "id": "custom_法宝洗练石_1789711869465",
+   "itemName": "法宝洗练石",
+   "cost": 150
+  },
+  {
+   "id": "custom_法宝重置石_1791809144648",
+   "itemName": "法宝重置石",
+   "cost": 10000
+  }
+ ],
+ "weeklyArenaPoints": 0,
+ "balanceArenaPoints": 0,
+ "spendableArenaPoints": 0
+}

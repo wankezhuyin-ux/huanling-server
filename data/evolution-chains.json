@@ -1,0 +1,402 @@
+{
+ "yingying": {
+  "name": "盈盈",
+  "normal": [
+   "yingying",
+   "yu_yi",
+   "fen_yi_xian_zi",
+   "huan_yun_shou"
+  ],
+  "mutant": [
+   "yingying",
+   "ling_shan",
+   "bai_yi_xian_zi",
+   "ao_xue_shou"
+  ]
+ },
+ "linlin": {
+  "name": "琳琳",
+  "normal": [
+   "linlin",
+   "ni_chang",
+   "lv_yi_xian_zi",
+   "di_cang_shou"
+  ],
+  "mutant": [
+   "linlin",
+   "yu_yi",
+   "fen_yi_xian_zi",
+   "huan_yun_shou"
+  ]
+ },
+ "zhenzhen": {
+  "name": "珍珍",
+  "normal": [
+   "zhenzhen",
+   "ling_shan",
+   "bai_yi_xian_zi",
+   "ao_xue_shou"
+  ],
+  "mutant": [
+   "zhenzhen",
+   "ni_chang",
+   "lv_yi_xian_zi",
+   "di_cang_shou"
+  ]
+ },
+ "dan_dan_yu": {
+  "name": "蛋蛋鱼",
+  "normal": [
+   "dan_dan_yu",
+   "yu_wa_wa",
+   "ling_bo_xian_zi",
+   "cang_ming_shen_nv"
+  ],
+  "mutant": [
+   "dan_dan_yu",
+   "yu_mei_mei",
+   "zhu_lang_xian_zi",
+   "han_hai_xian_ji"
+  ]
+ },
+ "wan_zi_yu": {
+  "name": "丸子鱼",
+  "normal": [
+   "wan_zi_yu",
+   "yu_niu_niu",
+   "xi_shui_xian_zi",
+   "yao_shui_ling_zun"
+  ],
+  "mutant": [
+   "wan_zi_yu",
+   "yu_wa_wa",
+   "ling_bo_xian_zi",
+   "cang_ming_shen_nv"
+  ]
+ },
+ "ping_pang_yu": {
+  "name": "乒乓鱼",
+  "normal": [
+   "ping_pang_yu",
+   "yu_mei_mei",
+   "zhu_lang_xian_zi",
+   "han_hai_xian_ji"
+  ],
+  "mutant": [
+   "ping_pang_yu",
+   "yu_niu_niu",
+   "xi_shui_xian_zi",
+   "yao_shui_ling_zun"
+  ]
+ },
+ "cong_cong": {
+  "name": "匆匆",
+  "normal": [
+   "cong_cong",
+   "aoririquan",
+   "duoluotianlang",
+   "huo_yao_jing"
+  ],
+  "mutant": [
+   "cong_cong",
+   "niefengquan",
+   "huanbiantianlang",
+   "zi_yi"
+  ]
+ },
+ "xi_pi": {
+  "name": "西皮",
+  "normal": [
+   "xi_pi",
+   "zhuiyingquan",
+   "qibiantianlang",
+   "lv_yao"
+  ],
+  "mutant": [
+   "xi_pi",
+   "aoririquan",
+   "duoluotianlang",
+   "huo_yao_jing"
+  ]
+ },
+ "wang_wang": {
+  "name": "旺旺",
+  "normal": [
+   "wang_wang",
+   "niefengquan",
+   "huanbiantianlang",
+   "zi_yi"
+  ],
+  "mutant": [
+   "wang_wang",
+   "zhuiyingquan",
+   "qibiantianlang",
+   "lv_yao"
+  ]
+ },
+ "a_di_da_si": {
+  "name": "阿弟达斯",
+  "normal": [
+   "a_di_da_si",
+   "a_ge_liu_si",
+   "a_nu_bi_si",
+   "chao_ji_a_nu"
+  ],
+  "mutant": []
+ },
+ "baiguzhanshi": {
+  "name": "白骨战士",
+  "normal": [
+   "baiguzhanshi",
+   "wanglingwushi",
+   "zhaohunshizhe",
+   "xiaowushi"
+  ],
+  "mutant": [
+   "baiguzhanshi",
+   "silingwushi",
+   "gouhunshizhe",
+   "xiaomoshi"
+  ]
+ },
+ "kulouzhanshi": {
+  "name": "骷髅战士",
+  "normal": [
+   "kulouzhanshi",
+   "silingwushi",
+   "gouhunshizhe",
+   "xiaomoshi"
+  ],
+  "mutant": [
+   "kulouzhanshi",
+   "zhonglingwushi",
+   "shehunshizhe",
+   "xiaofashi"
+  ]
+ },
+ "chongshengzhanshi": {
+  "name": "重生战士",
+  "normal": [
+   "chongshengzhanshi",
+   "zhonglingwushi",
+   "shehunshizhe",
+   "xiaofashi"
+  ],
+  "mutant": [
+   "chongshengzhanshi",
+   "wanglingwushi",
+   "zhaohunshizhe",
+   "xiaowushi"
+  ]
+ },
+ "luluniao": {
+  "name": "露露鸟",
+  "normal": [
+   "luluniao",
+   "fuyejiu",
+   "xuefenghuang",
+   "chilong"
+  ],
+  "mutant": [
+   "luluniao",
+   "yulujiu",
+   "huofenghuang",
+   "jinxielong"
+  ]
+ },
+ "nununiao": {
+  "name": "努努鸟",
+  "normal": [
+   "nununiao",
+   "yulujiu",
+   "huofenghuang",
+   "jinxielong"
+  ],
+  "mutant": [
+   "nununiao",
+   "miwuju",
+   "lanfenghuang",
+   "lanmiaolong"
+  ]
+ },
+ "duduniao": {
+  "name": "嘟嘟鸟",
+  "normal": [
+   "duduniao",
+   "miwuju",
+   "lanfenghuang",
+   "lanmiaolong"
+  ],
+  "mutant": [
+   "duduniao",
+   "fuyejiu",
+   "xuefenghuang",
+   "chilong"
+  ]
+ },
+ "shuijinger": {
+  "name": "水晶儿",
+  "normal": [
+   "shuijinger",
+   "jingtianshi",
+   "mengjingling",
+   "huanjinggang"
+  ],
+  "mutant": [
+   "shuijinger",
+   "mengtianshi",
+   "mengjinggang",
+   "liuyitianshi"
+  ]
+ },
+ "mengjinger": {
+  "name": "梦晶儿",
+  "normal": [
+   "mengjinger",
+   "mengtianshi",
+   "mengjinggang",
+   "liuyitianshi"
+  ],
+  "mutant": [
+   "mengjinger",
+   "jingtianshi",
+   "mengjingling",
+   "huanjinggang"
+  ]
+ },
+ "lu_lu": {
+  "name": "鲁鲁",
+  "normal": [
+   "lu_lu",
+   "gang_lei_fei",
+   "zhong_yue_shen_yuan",
+   "zhi_zun_bao"
+  ],
+  "mutant": [
+   "lu_lu",
+   "ben_lei_fei",
+   "dong_yue_shen_yuan",
+   "zhi_zun_lin"
+  ]
+ },
+ "tao_tao": {
+  "name": "淘淘",
+  "normal": [
+   "tao_tao",
+   "hou_lei_fei",
+   "xi_yue_shen_yuan",
+   "zhi_zun_cao"
+  ],
+  "mutant": [
+   "tao_tao",
+   "gang_lei_fei",
+   "zhong_yue_shen_yuan",
+   "zhi_zun_bao"
+  ]
+ },
+ "meng_meng": {
+  "name": "蒙蒙",
+  "normal": [
+   "meng_meng",
+   "ben_lei_fei",
+   "dong_yue_shen_yuan",
+   "zhi_zun_lin"
+  ],
+  "mutant": [
+   "meng_meng",
+   "hou_lei_fei",
+   "xi_yue_shen_yuan",
+   "zhi_zun_cao"
+  ]
+ },
+ "fu_di_long": {
+  "name": "伏地龙",
+  "normal": [
+   "fu_di_long",
+   "wu_qi_long",
+   "hei_long_shi",
+   "hong_fa_yao_ji"
+  ],
+  "mutant": [
+   "fu_di_long",
+   "bao_lan_long",
+   "qing_long_shi",
+   "lan_fa_mo_ji"
+  ]
+ },
+ "wen_di_long": {
+  "name": "纹地龙",
+  "normal": [
+   "wen_di_long",
+   "huang_jin_long",
+   "huang_long_shi",
+   "bai_fa_she_ji"
+  ],
+  "mutant": [
+   "wen_di_long",
+   "wu_qi_long",
+   "hei_long_shi",
+   "hong_fa_yao_ji"
+  ]
+ },
+ "shun_di_long": {
+  "name": "瞬地龙",
+  "normal": [
+   "shun_di_long",
+   "bao_lan_long",
+   "qing_long_shi",
+   "lan_fa_mo_ji"
+  ],
+  "mutant": [
+   "shun_di_long",
+   "huang_jin_long",
+   "huang_long_shi",
+   "bai_fa_she_ji"
+  ]
+ },
+ "xiaozhubite": {
+  "name": "小猪比特",
+  "normal": [
+   "xiaozhubite",
+   "zhongshanzhu",
+   "nanbatian",
+   "bajie"
+  ],
+  "mutant": [
+   "xiaozhubite",
+   "nangongzhu",
+   "xiaobawang",
+   "bujie"
+  ]
+ },
+ "xiaozhuanante": {
+  "name": "小猪安特",
+  "normal": [
+   "xiaozhuanante",
+   "ximenzhu",
+   "beibatian",
+   "yijie"
+  ],
+  "mutant": [
+   "xiaozhuanante",
+   "zhongshanzhu",
+   "nanbatian",
+   "bajie"
+  ]
+ },
+ "xiaozhufente": {
+  "name": "小猪芬特",
+  "normal": [
+   "xiaozhufente",
+   "nangongzhu",
+   "xiaobawang",
+   "bujie"
+  ],
+  "mutant": [
+   "xiaozhufente",
+   "ximenzhu",
+   "beibatian",
+   "yijie"
+  ]
+ }
+}

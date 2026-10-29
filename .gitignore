@@ -1,0 +1,15 @@
+# 运行时状态：玩家存档、日志、锁文件，不进版本库
+state/
+__pycache__/
+*.pyc
+*.log
+app.log*
+server.pid
+
+# 备份与临时件
+*.bak
+*.bak-*
+run.command.bak
+
+# 本地覆盖配置
+local_server_override.json

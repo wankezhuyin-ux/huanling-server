@@ -1,0 +1,73 @@
+{
+ "success": true,
+ "events": {
+  "mayday_2026": {
+   "gift_name": "五一活动礼包",
+   "created_by_admin": false,
+   "shop_sale": {
+    "banner_text": "五一限时：元宝商店全场8折",
+    "start_unix": 1777564800,
+    "end_unix": 1777996800,
+    "discount_rate": 0.8
+   },
+   "wild_spawn": {
+    "pet_id": "bianyianu",
+    "min_map_level": 500,
+    "spawn_rate": 0.0006,
+    "event_tag": "event_mayday_2026_bianyianu"
+   },
+   "battle_gift_drop_rate": 1
+  },
+  "duanwu_2026": {
+   "gift_name": "端午节礼包",
+   "created_by_admin": false,
+   "shop_sale": {
+    "banner_text": "端午限时：元宝商店全场8折",
+    "start_unix": 1781798400,
+    "end_unix": 1782057600,
+    "discount_rate": 0.8
+   },
+   "wild_spawn": {
+    "pet_id": "feicuilong",
+    "min_map_level": 500,
+    "spawn_rate": 0.000666667,
+    "event_tag": "event_duanwu_2026_feicuilong"
+   },
+   "battle_gift_drop_rate": 1
+  },
+  "qixi_2026": {
+   "gift_name": "七夕节礼包",
+   "created_by_admin": false,
+   "shop_sale": {
+    "banner_text": "七夕限时：元宝商店全场8折",
+    "start_unix": 1787068800,
+    "end_unix": 1787328000,
+    "discount_rate": 0.8
+   },
+   "wild_spawn": {
+    "pet_id": "qixitu",
+    "min_map_level": 500,
+    "spawn_rate": 0.0006,
+    "event_tag": "event_qixi_2026_qixitu"
+   },
+   "battle_gift_drop_rate": 1
+  },
+  "fest_zhongqiujinhu_20260912": {
+   "gift_name": "中秋节礼包",
+   "created_by_admin": true,
+   "shop_sale": {
+    "banner_text": "中秋限时：元宝商店全场8折",
+    "start_unix": 1790265660,
+    "end_unix": 1791388740,
+    "discount_rate": 0.8
+   },
+   "wild_spawn": {
+    "pet_id": "zhongqiujinhu",
+    "min_map_level": 500,
+    "spawn_rate": 0.0006,
+    "event_tag": "event_fest_zhongqiujinhu_20260912_zhongqiujinhu"
+   },
+   "battle_gift_drop_rate": 1
+  }
+ }
+}

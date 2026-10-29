@@ -1,0 +1,4073 @@
+{
+ "schema_version": 2,
+ "playerData": {
+  "hp": 3680,
+  "mp": 3496,
+  "gold": 15893209050,
+  "name": "言者",
+  "level": 717,
+  "magic": 10,
+  "realm": "凡人",
+  "is_vip": false,
+  "max_hp": 3680,
+  "max_mp": 100,
+  "points": 0,
+  "titles": [],
+  "element": "普通",
+  "vitality": 10,
+  "talent_hp": 0,
+  "timestamp": 1792691260,
+  "vip_level": 0,
+  "experience": 202500,
+  "attack_base": 10,
+  "cultivation": 446917,
+  "recent_maps": [
+   "盈露台看守区（0,0）",
+   "石笋洞窟（0,0）",
+   "华山瀑布（5,14）",
+   "传说中的英雄冢（0,0）",
+   "盘龙洞窟（46,65）",
+   "华山瀑布（0,0）",
+   "紫苔洞窟2（32,38）",
+   "焰浆地狱（0,0）",
+   "华山腰道（50,26）",
+   "华山腰道（18,49）",
+   "古铜洞窟2（30,47）",
+   "青铜洞窟（51,44）",
+   "古铜洞窟2（49,38）",
+   "华山腰道（0,0）",
+   "碧水洞窟（29,14）",
+   "铡头地狱（0,0）"
+  ],
+  "tower_floor": 602,
+  "agility_base": 1905,
+  "defense_base": 1905,
+  "final_attack": 6344,
+  "final_max_hp": 22718,
+  "final_max_mp": 3496,
+  "final_agility": 6149,
+  "final_defense": 7416,
+  "reincarnation": 65,
+  "talent_attack": 0,
+  "tower_highest": 601,
+  "talent_agility": 0,
+  "talent_defense": 0,
+  "active_title_id": "",
+  "double_exp_until": 1782360524,
+  "permanent_points": 1625,
+  "yuanbao_currency": 100,
+  "battle_stance_pet": "attack",
+  "friendship_points": 2,
+  "tower_sweep_count": 0,
+  "fe_yuanbao_attempts": 0,
+  "pending_auto_points": 3,
+  "player_character_id": 0,
+  "suit_dungeon_sweeps": 2,
+  "vip_expire_time_str": "",
+  "auto_allocation_plan": {
+   "magic": 0,
+   "attack": 0,
+   "agility": 5,
+   "defense": 5,
+   "vitality": 0
+  },
+  "battle_stance_player": "attack",
+  "suit_dungeon_progress": 9,
+  "cultivation_pills_used": 0,
+  "auto_allocation_enabled": true,
+  "fe_yuanbao_attempts_date": "2026-10-23",
+  "use_fabao_player_element": true,
+  "lottery_yuanbao_pity_count": 19,
+  "double_exp_auto_realm_enabled": false,
+  "five_elements_dungeon_attempts": 0
+ },
+ "petsData": {
+  "pets": [
+   {
+    "hp": 90673.55,
+    "id": "kvq0txqa",
+    "form": "不可进化",
+    "name": "变异阿努",
+    "type": "平均型",
+    "level": 1500,
+    "attack": 29912.55,
+    "locked": true,
+    "max_hp": 90673.55,
+    "pet_id": "bianyianu",
+    "agility": 30810.45,
+    "defense": 29912.55,
+    "element": "火",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1500,
+    "base_stats": {
+     "hp": 65,
+     "attack": 9,
+     "agility": 9,
+     "defense": 9
+    },
+    "experience": 3848998,
+    "generation": 3,
+    "stat_ratio": {
+     "attack": 33,
+     "agility": 34,
+     "defense": 33
+    },
+    "capture_map": "mayday_event",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 1,
+      "skill_id": "splash",
+      "skill_key": "splash_lv1",
+      "skill_name": "溅射"
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 32903.805,
+    "final_max_hp": 90673.55,
+    "growth_rates": {
+     "hp": 60.446,
+     "attack": 19.949,
+     "agility": 20.548,
+     "defense": 19.949
+    },
+    "medal_counts": {
+     "bold": 5,
+     "calm": 5,
+     "brave": 5
+    },
+    "total_growth": 60.446,
+    "final_agility": 33891.495,
+    "final_defense": 32903.805,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "",
+    "is_evolution_pet": false,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 5.871,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 77957.53,
+    "id": "feicuilong_1781877095674_92881153",
+    "exp": 2421079798,
+    "form": "不可进化",
+    "name": "翡翠龙",
+    "type": "平均型",
+    "level": 1500,
+    "attack": 27273.31,
+    "locked": false,
+    "max_hp": 77957.53,
+    "pet_id": "feicuilong",
+    "agility": 27273.31,
+    "defense": 23382.91,
+    "element": "水",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1500,
+    "base_stats": {
+     "hp": 50,
+     "attack": 8,
+     "agility": 8,
+     "defense": 6
+    },
+    "experience": 2421079798,
+    "generation": 3,
+    "stat_ratio": {
+     "attack": 35,
+     "agility": 35,
+     "defense": 30
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 1,
+      "skill_id": "splash",
+      "skill_key": "splash_lv1",
+      "skill_name": "溅射"
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 30000.641,
+    "final_max_hp": 77957.53,
+    "growth_rates": {
+     "hp": 51.973,
+     "attack": 18.189,
+     "agility": 18.189,
+     "defense": 15.595
+    },
+    "medal_counts": {
+     "bold": 5,
+     "calm": 5,
+     "brave": 5
+    },
+    "total_growth": 51.973,
+    "final_agility": 30000.641,
+    "final_defense": 25721.201,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "",
+    "is_evolution_pet": false,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 5.311,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 62,
+    "id": "táiquándào_1783265557123_79577279",
+    "exp": 0,
+    "form": "不可进化",
+    "name": "跆拳道",
+    "type": "平均型",
+    "level": 1,
+    "attack": 10.5,
+    "locked": false,
+    "max_hp": 62,
+    "pet_id": "táiquándào",
+    "agility": 11.2,
+    "defense": 9.3,
+    "element": "木",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1500,
+    "base_stats": {
+     "hp": 62,
+     "attack": 10.5,
+     "agility": 11.2,
+     "defense": 9.3
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 34,
+     "agility": 36,
+     "defense": 30
+    },
+    "capture_map": "refine",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 10.5,
+    "final_max_hp": 62,
+    "growth_rates": {
+     "hp": 3.607,
+     "attack": 1.226,
+     "agility": 1.299,
+     "defense": 1.082
+    },
+    "medal_counts": {},
+    "total_growth": 3.607,
+    "final_agility": 11.2,
+    "final_defense": 9.3,
+    "mutation_count": 0,
+    "evolution_stage": -1,
+    "evolution_origin": "",
+    "is_evolution_pet": false,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 3.607,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 3.607,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 19,
+    "id": "tao_tao_1783265591113_29580051",
+    "exp": 0,
+    "form": "幼年",
+    "name": "淘淘",
+    "type": "敏捷型",
+    "level": 1,
+    "attack": 4.2,
+    "locked": false,
+    "max_hp": 19,
+    "pet_id": "tao_tao",
+    "agility": 7,
+    "defense": 2.8,
+    "element": "木",
+    "is_elite": false,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 19,
+     "attack": 4.2,
+     "agility": 7,
+     "defense": 2.8
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 30,
+     "agility": 50,
+     "defense": 20
+    },
+    "capture_map": "九曲回廊（42,29）",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 4.2,
+    "final_max_hp": 19,
+    "growth_rates": {
+     "hp": 3.526,
+     "attack": 1.058,
+     "agility": 1.763,
+     "defense": 0.705
+    },
+    "medal_counts": {},
+    "total_growth": 3.526,
+    "final_agility": 7,
+    "final_defense": 2.8,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "tao_tao",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 3.526,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 3.526,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 19,
+    "id": "tao_tao_1783265601476_75054979",
+    "exp": 0,
+    "form": "幼年",
+    "name": "淘淘",
+    "type": "敏捷型",
+    "level": 1,
+    "attack": 4.2,
+    "locked": false,
+    "max_hp": 19,
+    "pet_id": "tao_tao",
+    "agility": 7,
+    "defense": 2.8,
+    "element": "木",
+    "is_elite": false,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 19,
+     "attack": 4.2,
+     "agility": 7,
+     "defense": 2.8
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 30,
+     "agility": 50,
+     "defense": 20
+    },
+    "capture_map": "九曲回廊（42,29）",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 4.2,
+    "final_max_hp": 19,
+    "growth_rates": {
+     "hp": 3.867,
+     "attack": 1.16,
+     "agility": 1.934,
+     "defense": 0.773
+    },
+    "medal_counts": {},
+    "total_growth": 3.867,
+    "final_agility": 7,
+    "final_defense": 2.8,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "tao_tao",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 3.867,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 3.867,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 19,
+    "id": "tao_tao_1783265675379_16732482",
+    "exp": 0,
+    "form": "幼年",
+    "name": "淘淘",
+    "type": "敏捷型",
+    "level": 1,
+    "attack": 4.2,
+    "locked": false,
+    "max_hp": 19,
+    "pet_id": "tao_tao",
+    "agility": 7,
+    "defense": 2.8,
+    "element": "木",
+    "is_elite": false,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 19,
+     "attack": 4.2,
+     "agility": 7,
+     "defense": 2.8
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 30,
+     "agility": 50,
+     "defense": 20
+    },
+    "capture_map": "九曲回廊（42,29）",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 4.2,
+    "final_max_hp": 19,
+    "growth_rates": {
+     "hp": 3.688,
+     "attack": 1.106,
+     "agility": 1.844,
+     "defense": 0.738
+    },
+    "medal_counts": {},
+    "total_growth": 3.688,
+    "final_agility": 7,
+    "final_defense": 2.8,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "tao_tao",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 3.688,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 3.688,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 19,
+    "id": "tao_tao_1783265853881_25837559",
+    "exp": 0,
+    "form": "幼年",
+    "name": "淘淘",
+    "type": "敏捷型",
+    "level": 1,
+    "attack": 4.2,
+    "locked": false,
+    "max_hp": 19,
+    "pet_id": "tao_tao",
+    "agility": 7,
+    "defense": 2.8,
+    "element": "木",
+    "is_elite": false,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 19,
+     "attack": 4.2,
+     "agility": 7,
+     "defense": 2.8
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 30,
+     "agility": 50,
+     "defense": 20
+    },
+    "capture_map": "九曲回廊（42,29）",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 4.2,
+    "final_max_hp": 19,
+    "growth_rates": {
+     "hp": 3.948,
+     "attack": 1.184,
+     "agility": 1.974,
+     "defense": 0.79
+    },
+    "medal_counts": {},
+    "total_growth": 3.948,
+    "final_agility": 7,
+    "final_defense": 2.8,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "tao_tao",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 3.948,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 3.948,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 19,
+    "id": "tao_tao_1783265904982_64950802",
+    "exp": 0,
+    "form": "幼年",
+    "name": "淘淘",
+    "type": "敏捷型",
+    "level": 1,
+    "attack": 4.2,
+    "locked": false,
+    "max_hp": 19,
+    "pet_id": "tao_tao",
+    "agility": 7,
+    "defense": 2.8,
+    "element": "木",
+    "is_elite": false,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 19,
+     "attack": 4.2,
+     "agility": 7,
+     "defense": 2.8
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 30,
+     "agility": 50,
+     "defense": 20
+    },
+    "capture_map": "九曲回廊（42,29）",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 4.2,
+    "final_max_hp": 19,
+    "growth_rates": {
+     "hp": 3.669,
+     "attack": 1.101,
+     "agility": 1.834,
+     "defense": 0.734
+    },
+    "medal_counts": {},
+    "total_growth": 3.669,
+    "final_agility": 7,
+    "final_defense": 2.8,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "tao_tao",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 3.669,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 3.669,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 6837.3,
+    "id": "wen_di_long_1783256741889_77954077",
+    "exp": 202500,
+    "form": "幼年",
+    "name": "纹地龙",
+    "type": "攻血型",
+    "level": 717,
+    "attack": 3409.43,
+    "locked": false,
+    "max_hp": 6837.3,
+    "pet_id": "wen_di_long",
+    "agility": 1567.66,
+    "defense": 1843.2,
+    "element": "土",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 31,
+     "attack": 7,
+     "agility": 3.2,
+     "defense": 3.8
+    },
+    "experience": 202500,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 50,
+     "agility": 23,
+     "defense": 27
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 6851.400016,
+    "final_max_hp": 12911.070826,
+    "growth_rates": {
+     "hp": 9.506,
+     "attack": 4.752,
+     "agility": 2.185,
+     "defense": 2.569
+    },
+    "medal_counts": {},
+    "total_growth": 9.506,
+    "final_agility": 3765.700052,
+    "final_defense": 4402.714895,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "wen_di_long",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 8.265,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 8.265,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 25,
+    "id": "linlin_1792681286767_55105519",
+    "exp": 0,
+    "form": "幼年",
+    "name": "琳琳",
+    "type": "平均型",
+    "level": 1,
+    "attack": 4.8,
+    "locked": false,
+    "max_hp": 25,
+    "pet_id": "linlin",
+    "agility": 4.3,
+    "defense": 4.9,
+    "element": "水",
+    "is_elite": false,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 25,
+     "attack": 4.8,
+     "agility": 4.3,
+     "defense": 4.9
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 34,
+     "agility": 31,
+     "defense": 35
+    },
+    "capture_map": "浮影水城外郊（0,0）",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 4.8,
+    "final_max_hp": 25,
+    "growth_rates": {
+     "hp": 3.745,
+     "attack": 1.273,
+     "agility": 1.161,
+     "defense": 1.311
+    },
+    "medal_counts": {
+     "bold": 0,
+     "calm": 0,
+     "brave": 0
+    },
+    "total_growth": 3.745,
+    "final_agility": 4.3,
+    "final_defense": 4.9,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "linlin",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 3.745,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 3.745,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   }
+  ],
+  "pet_bag": [
+   {
+    "hp": 29,
+    "id": "a_di_da_si_1778791952183_36104080",
+    "form": "幼年",
+    "name": "阿弟达斯",
+    "type": "防敏型",
+    "level": 1,
+    "attack": 4.8,
+    "locked": false,
+    "max_hp": 29,
+    "pet_id": "a_di_da_si",
+    "agility": 4.8,
+    "defense": 6.4,
+    "element": "火",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 29,
+     "attack": 4.8,
+     "agility": 4.8,
+     "defense": 6.4
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 30,
+     "agility": 30,
+     "defense": 40
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 4.8,
+    "final_max_hp": 29,
+    "growth_rates": {
+     "hp": 5.756,
+     "attack": 1.727,
+     "agility": 1.727,
+     "defense": 2.302
+    },
+    "medal_counts": {
+     "bold": 0,
+     "calm": 0,
+     "brave": 0
+    },
+    "total_growth": 5.756,
+    "final_agility": 4.8,
+    "final_defense": 6.4,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "a_di_da_si",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 5.756,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 87985.68,
+    "id": "0494yf7s",
+    "form": "终极",
+    "name": "六翼天使",
+    "type": "攻击型",
+    "level": 1200,
+    "attack": 39574.81,
+    "locked": true,
+    "max_hp": 87985.68,
+    "pet_id": "liuyitianshi",
+    "agility": 13191.6,
+    "defense": 35171.27,
+    "element": "金",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 75,
+     "attack": 15,
+     "agility": 5,
+     "defense": 7
+    },
+    "experience": 2448000,
+    "generation": 3,
+    "stat_ratio": {
+     "attack": 45,
+     "agility": 15,
+     "defense": 40
+    },
+    "capture_map": "tower",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 43532.291,
+    "final_max_hp": 87985.68,
+    "growth_rates": {
+     "hp": 73.32,
+     "attack": 32.994,
+     "agility": 10.998,
+     "defense": 29.328
+    },
+    "medal_counts": {
+     "bold": 5,
+     "calm": 5,
+     "brave": 5
+    },
+    "total_growth": 73.32,
+    "final_agility": 14510.76,
+    "final_defense": 38688.397,
+    "mutation_count": 0,
+    "evolution_stage": 3,
+    "evolution_origin": "mengjinger",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 5.23681578040123,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 21,
+    "id": "ping_pang_yu_1780630670858_12577759",
+    "exp": 0,
+    "form": "幼年",
+    "name": "乒乓鱼",
+    "type": "敏捷型",
+    "level": 1,
+    "attack": 4.5,
+    "locked": false,
+    "max_hp": 21,
+    "pet_id": "ping_pang_yu",
+    "agility": 8.3,
+    "defense": 2.3,
+    "element": "水",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 21,
+     "attack": 4.5,
+     "agility": 8.3,
+     "defense": 2.3
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 30,
+     "agility": 55,
+     "defense": 15
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 4.5,
+    "final_max_hp": 21,
+    "growth_rates": {
+     "hp": 5.27,
+     "attack": 1.581,
+     "agility": 2.899,
+     "defense": 0.791
+    },
+    "medal_counts": {
+     "bold": 0,
+     "calm": 0,
+     "brave": 0
+    },
+    "total_growth": 5.27,
+    "final_agility": 8.3,
+    "final_defense": 2.3,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "ping_pang_yu",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 5.27,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 5.27,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 31,
+    "id": "chongshengzhanshi_1780630881941_71963221",
+    "exp": 0,
+    "form": "幼年",
+    "name": "重生战士",
+    "type": "攻血型",
+    "level": 1,
+    "attack": 7,
+    "locked": false,
+    "max_hp": 31,
+    "pet_id": "chongshengzhanshi",
+    "agility": 3.92,
+    "defense": 3.08,
+    "element": "火",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 31,
+     "attack": 7,
+     "agility": 3.92,
+     "defense": 3.08
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 50,
+     "agility": 28,
+     "defense": 22
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 7,
+    "final_max_hp": 31,
+    "growth_rates": {
+     "hp": 6.837,
+     "attack": 3.419,
+     "agility": 1.914,
+     "defense": 1.504
+    },
+    "medal_counts": {
+     "bold": 0,
+     "calm": 0,
+     "brave": 0
+    },
+    "total_growth": 6.837,
+    "final_agility": 3.92,
+    "final_defense": 3.08,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "chongshengzhanshi",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 6.837,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 6.837,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 48,
+    "id": "mengjinger_1781068181527_75233408",
+    "exp": 0,
+    "form": "幼年",
+    "name": "梦晶儿",
+    "type": "攻击型",
+    "level": 1,
+    "attack": 9,
+    "locked": false,
+    "max_hp": 48,
+    "pet_id": "mengjinger",
+    "agility": 4,
+    "defense": 4,
+    "element": "金",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 48,
+     "attack": 9,
+     "agility": 4,
+     "defense": 4
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 52,
+     "agility": 24,
+     "defense": 24
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 9,
+    "final_max_hp": 48,
+    "growth_rates": {
+     "hp": 5.571,
+     "attack": 2.897,
+     "agility": 1.337,
+     "defense": 1.337
+    },
+    "medal_counts": {
+     "bold": 0,
+     "calm": 0,
+     "brave": 0
+    },
+    "total_growth": 5.571,
+    "final_agility": 4,
+    "final_defense": 4,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "mengjinger",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 5.571,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 5.571,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 31,
+    "id": "wen_di_long_1781793875004_72417513",
+    "exp": 0,
+    "form": "幼年",
+    "name": "纹地龙",
+    "type": "攻血型",
+    "level": 1,
+    "attack": 7,
+    "locked": false,
+    "max_hp": 31,
+    "pet_id": "wen_di_long",
+    "agility": 3.2,
+    "defense": 3.8,
+    "element": "土",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 31,
+     "attack": 7,
+     "agility": 3.2,
+     "defense": 3.8
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 50,
+     "agility": 23,
+     "defense": 27
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 7,
+    "final_max_hp": 31,
+    "growth_rates": {
+     "hp": 8.15,
+     "attack": 4.075,
+     "agility": 1.875,
+     "defense": 2.201
+    },
+    "medal_counts": {
+     "bold": 0,
+     "calm": 0,
+     "brave": 0
+    },
+    "total_growth": 8.15,
+    "final_agility": 3.2,
+    "final_defense": 3.8,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "wen_di_long",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 8.15,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 8.15,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 32,
+    "id": "z2v56jfq",
+    "form": "不可进化",
+    "name": "黑蹄先生",
+    "type": "攻防型",
+    "level": 1,
+    "attack": 7.2,
+    "locked": false,
+    "max_hp": 32,
+    "pet_id": "hēitíxiānshēng",
+    "agility": 3.5,
+    "defense": 5.3,
+    "element": "木",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1500,
+    "base_stats": {
+     "hp": 32,
+     "attack": 7.2,
+     "agility": 3.5,
+     "defense": 5.3
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 45,
+     "agility": 22,
+     "defense": 33
+    },
+    "capture_map": "refine",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 7.2,
+    "final_max_hp": 32,
+    "growth_rates": {
+     "hp": 7.647,
+     "attack": 3.441,
+     "agility": 1.682,
+     "defense": 2.524
+    },
+    "medal_counts": {
+     "bold": 0,
+     "calm": 0,
+     "brave": 0
+    },
+    "total_growth": 7.647,
+    "final_agility": 3.5,
+    "final_defense": 5.3,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "",
+    "is_evolution_pet": false,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 7.642,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 91089.89,
+    "id": "wen_di_long_1778141567083_90317353",
+    "form": "终极",
+    "name": "白发蛇姬",
+    "type": "攻血型",
+    "level": 1200,
+    "attack": 50074.75,
+    "locked": true,
+    "max_hp": 91089.89,
+    "pet_id": "bai_fa_she_ji",
+    "agility": 20940.24,
+    "defense": 20029.9,
+    "element": "土",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 75,
+     "attack": 16.5,
+     "agility": 6.9,
+     "defense": 6.6
+    },
+    "experience": 2448000,
+    "generation": 3,
+    "stat_ratio": {
+     "attack": 55,
+     "agility": 23,
+     "defense": 22
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 55082.225,
+    "final_max_hp": 91089.89,
+    "growth_rates": {
+     "hp": 75.909,
+     "attack": 41.75,
+     "agility": 17.459,
+     "defense": 16.7
+    },
+    "medal_counts": {
+     "bold": 5,
+     "calm": 5,
+     "brave": 5
+    },
+    "total_growth": 75.909,
+    "final_agility": 23034.264,
+    "final_defense": 22032.89,
+    "mutation_count": 0,
+    "evolution_stage": 3,
+    "evolution_origin": "wen_di_long",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 7.985,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 25,
+    "id": "linlin_1781907792034_31869978",
+    "exp": 0,
+    "form": "幼年",
+    "name": "琳琳",
+    "type": "平均型",
+    "level": 1,
+    "attack": 4.8,
+    "locked": false,
+    "max_hp": 25,
+    "pet_id": "linlin",
+    "agility": 4.3,
+    "defense": 4.9,
+    "element": "水",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 25,
+     "attack": 4.8,
+     "agility": 4.3,
+     "defense": 4.9
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 34,
+     "agility": 31,
+     "defense": 35
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 4.8,
+    "final_max_hp": 25,
+    "growth_rates": {
+     "hp": 7.486,
+     "attack": 2.545,
+     "agility": 2.321,
+     "defense": 2.62
+    },
+    "medal_counts": {
+     "bold": 0,
+     "calm": 0,
+     "brave": 0
+    },
+    "total_growth": 7.486,
+    "final_agility": 4.3,
+    "final_defense": 4.9,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "linlin",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 7.486,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 7.486,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 32,
+    "id": "tianwenfeng_1781907914855_20509711",
+    "exp": 0,
+    "form": "不可进化",
+    "name": "天纹蜂",
+    "type": "敏攻型",
+    "level": 1,
+    "attack": 6.08,
+    "locked": false,
+    "max_hp": 32,
+    "pet_id": "tianwenfeng",
+    "agility": 7.2,
+    "defense": 2.72,
+    "element": "木",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1500,
+    "base_stats": {
+     "hp": 32,
+     "attack": 6.08,
+     "agility": 7.2,
+     "defense": 2.72
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 38,
+     "agility": 45,
+     "defense": 17
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 6.08,
+    "final_max_hp": 32,
+    "growth_rates": {
+     "hp": 5.237,
+     "attack": 1.99,
+     "agility": 2.357,
+     "defense": 0.89
+    },
+    "medal_counts": {
+     "bold": 0,
+     "calm": 0,
+     "brave": 0
+    },
+    "total_growth": 5.237,
+    "final_agility": 7.2,
+    "final_defense": 2.72,
+    "mutation_count": 0,
+    "evolution_stage": -1,
+    "evolution_origin": "",
+    "is_evolution_pet": false,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 5.237,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 5.237,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 25,
+    "id": "linlin_1782002677027_48126473",
+    "exp": 0,
+    "form": "幼年",
+    "name": "琳琳",
+    "type": "平均型",
+    "level": 1,
+    "attack": 4.8,
+    "locked": false,
+    "max_hp": 25,
+    "pet_id": "linlin",
+    "agility": 4.3,
+    "defense": 4.9,
+    "element": "水",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 25,
+     "attack": 4.8,
+     "agility": 4.3,
+     "defense": 4.9
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 34,
+     "agility": 31,
+     "defense": 35
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 4.8,
+    "final_max_hp": 25,
+    "growth_rates": {
+     "hp": 7.897,
+     "attack": 2.685,
+     "agility": 2.448,
+     "defense": 2.764
+    },
+    "medal_counts": {
+     "bold": 0,
+     "calm": 0,
+     "brave": 0
+    },
+    "total_growth": 7.897,
+    "final_agility": 4.3,
+    "final_defense": 4.9,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "linlin",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 7.897,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 7.897,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 50,
+    "id": "feicuilong_1782097036780_65651596",
+    "exp": 0,
+    "form": "不可进化",
+    "name": "翡翠龙",
+    "type": "平均型",
+    "level": 1,
+    "attack": 8,
+    "locked": false,
+    "max_hp": 50,
+    "pet_id": "feicuilong",
+    "agility": 8,
+    "defense": 6,
+    "element": "水",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1500,
+    "base_stats": {
+     "hp": 50,
+     "attack": 8,
+     "agility": 8,
+     "defense": 6
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 35,
+     "agility": 35,
+     "defense": 30
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 1,
+      "skill_id": "splash",
+      "skill_key": "splash_lv1",
+      "skill_name": "溅射"
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 8,
+    "final_max_hp": 50,
+    "growth_rates": {
+     "hp": 5.308,
+     "attack": 1.858,
+     "agility": 1.858,
+     "defense": 1.592
+    },
+    "medal_counts": {
+     "bold": 0,
+     "calm": 0,
+     "brave": 0
+    },
+    "total_growth": 5.308,
+    "final_agility": 8,
+    "final_defense": 6,
+    "mutation_count": 0,
+    "evolution_stage": -1,
+    "evolution_origin": "",
+    "is_evolution_pet": false,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 5.308,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 5.308,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 21,
+    "id": "wan_zi_yu_1782149147907_6888006",
+    "exp": 0,
+    "form": "幼年",
+    "name": "丸子鱼",
+    "type": "敏捷型",
+    "level": 1,
+    "attack": 4.5,
+    "locked": false,
+    "max_hp": 21,
+    "pet_id": "wan_zi_yu",
+    "agility": 7.5,
+    "defense": 3,
+    "element": "水",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 21,
+     "attack": 4.5,
+     "agility": 7.5,
+     "defense": 3
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 30,
+     "agility": 50,
+     "defense": 20
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 4.5,
+    "final_max_hp": 21,
+    "growth_rates": {
+     "hp": 6.19,
+     "attack": 1.857,
+     "agility": 3.095,
+     "defense": 1.238
+    },
+    "medal_counts": {
+     "bold": 0,
+     "calm": 0,
+     "brave": 0
+    },
+    "total_growth": 6.19,
+    "final_agility": 7.5,
+    "final_defense": 3,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "wan_zi_yu",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 6.19,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 6.19,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 31,
+    "id": "wen_di_long_1782195513168_56912930",
+    "exp": 0,
+    "form": "幼年",
+    "name": "纹地龙",
+    "type": "攻血型",
+    "level": 1,
+    "attack": 7,
+    "locked": false,
+    "max_hp": 31,
+    "pet_id": "wen_di_long",
+    "agility": 3.2,
+    "defense": 3.8,
+    "element": "土",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 31,
+     "attack": 7,
+     "agility": 3.2,
+     "defense": 3.8
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 50,
+     "agility": 23,
+     "defense": 27
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 7,
+    "final_max_hp": 31,
+    "growth_rates": {
+     "hp": 8.092,
+     "attack": 4.046,
+     "agility": 1.861,
+     "defense": 2.185
+    },
+    "medal_counts": {
+     "bold": 0,
+     "calm": 0,
+     "brave": 0
+    },
+    "total_growth": 8.092,
+    "final_agility": 3.2,
+    "final_defense": 3.8,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "wen_di_long",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 8.092,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 8.092,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 25,
+    "id": "xiaozhubite_1782617149842_53111329",
+    "exp": 0,
+    "form": "幼年",
+    "name": "小猪比特",
+    "type": "平均型",
+    "level": 1,
+    "attack": 5.46,
+    "locked": false,
+    "max_hp": 25,
+    "pet_id": "xiaozhubite",
+    "agility": 4.34,
+    "defense": 4.2,
+    "element": "土",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 25,
+     "attack": 5.46,
+     "agility": 4.34,
+     "defense": 4.2
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 39,
+     "agility": 31,
+     "defense": 30
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 5.46,
+    "final_max_hp": 25,
+    "growth_rates": {
+     "hp": 6,
+     "attack": 2.34,
+     "agility": 1.86,
+     "defense": 1.8
+    },
+    "medal_counts": {},
+    "total_growth": 6,
+    "final_agility": 4.34,
+    "final_defense": 4.2,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "xiaozhubite",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 6,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 6,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 21,
+    "id": "xiaojingwei_1782784232936_67361037",
+    "exp": 0,
+    "form": "不可进化",
+    "name": "小精卫",
+    "type": "敏攻型",
+    "level": 1,
+    "attack": 5.25,
+    "locked": false,
+    "max_hp": 21,
+    "pet_id": "xiaojingwei",
+    "agility": 7.5,
+    "defense": 2.25,
+    "element": "金",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1500,
+    "base_stats": {
+     "hp": 21,
+     "attack": 5.25,
+     "agility": 7.5,
+     "defense": 2.25
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 35,
+     "agility": 50,
+     "defense": 15
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 5.25,
+    "final_max_hp": 21,
+    "growth_rates": {
+     "hp": 5.868,
+     "attack": 2.054,
+     "agility": 2.934,
+     "defense": 0.88
+    },
+    "medal_counts": {},
+    "total_growth": 5.868,
+    "final_agility": 7.5,
+    "final_defense": 2.25,
+    "mutation_count": 0,
+    "evolution_stage": -1,
+    "evolution_origin": "",
+    "is_evolution_pet": false,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 5.868,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 5.868,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   },
+   {
+    "hp": 31,
+    "id": "wen_di_long_1782847794063_720597",
+    "exp": 0,
+    "form": "幼年",
+    "name": "纹地龙",
+    "type": "攻血型",
+    "level": 1,
+    "attack": 7,
+    "locked": false,
+    "max_hp": 31,
+    "pet_id": "wen_di_long",
+    "agility": 3.2,
+    "defense": 3.8,
+    "element": "土",
+    "is_elite": true,
+    "is_mutant": false,
+    "max_level": 1200,
+    "base_stats": {
+     "hp": 31,
+     "attack": 7,
+     "agility": 3.2,
+     "defense": 3.8
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 50,
+     "agility": 23,
+     "defense": 27
+    },
+    "capture_map": "",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 7,
+    "final_max_hp": 31,
+    "growth_rates": {
+     "hp": 7.505,
+     "attack": 3.753,
+     "agility": 1.726,
+     "defense": 2.026
+    },
+    "medal_counts": {},
+    "total_growth": 7.505,
+    "final_agility": 3.2,
+    "final_defense": 3.8,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "wen_di_long",
+    "is_evolution_pet": true,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 7.505,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "initial_total_growth": 7.505,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   }
+  ],
+  "version": 2,
+  "assist_pets": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "active_pet_id": "wen_di_long_1783256741889_77954077",
+  "pet_bag_slots": {}
+ },
+ "inventoryData": {
+  "items": [
+   {
+    "id": "ijxglwv4",
+    "name": "天山雪莲",
+    "count": 999,
+    "item_type": "material",
+    "custom_data": {}
+   },
+   {
+    "id": "t6kut8kb",
+    "name": "天山雪莲",
+    "count": 33,
+    "item_type": "material",
+    "custom_data": {}
+   },
+   {
+    "id": "4tbaqrnt",
+    "name": "九转还魂草",
+    "count": 380,
+    "item_type": "material",
+    "custom_data": {}
+   },
+   {
+    "id": "23vj7cqr",
+    "name": "聚灵丹",
+    "count": 33,
+    "item_type": "cultivation_pill",
+    "custom_data": {}
+   },
+   {
+    "id": "l4xkjvcf",
+    "name": "凝神丹",
+    "count": 79,
+    "item_type": "cultivation_pill",
+    "custom_data": {}
+   },
+   {
+    "id": "bwl91p6u",
+    "name": "高级解封石",
+    "count": 9,
+    "item_type": "material",
+    "custom_data": {}
+   },
+   {
+    "id": "nmjlydj0",
+    "name": "极限内带",
+    "count": 3,
+    "item_type": "material",
+    "custom_data": {
+     "attr": "mp",
+     "slot": "accessory",
+     "is_limit_equip": true
+    }
+   },
+   {
+    "id": "btizz61w",
+    "name": "灵芝",
+    "count": 999,
+    "item_type": "material",
+    "custom_data": {}
+   },
+   {
+    "id": "tldi9h7x",
+    "name": "灵芝",
+    "count": 129,
+    "item_type": "material",
+    "custom_data": {}
+   },
+   {
+    "id": "5zo0omic",
+    "name": "灵草",
+    "count": 999,
+    "item_type": "material",
+    "custom_data": {}
+   },
+   {
+    "id": "hxecdcvt",
+    "name": "灵草",
+    "count": 999,
+    "item_type": "material",
+    "custom_data": {}
+   },
+   {
+    "id": "1gx34jjf",
+    "name": "灵草",
+    "count": 225,
+    "item_type": "material",
+    "custom_data": {}
+   },
+   {
+    "id": "v8z51o8d",
+    "name": "普通解封石",
+    "count": 39,
+    "item_type": "material",
+    "custom_data": {}
+   },
+   {
+    "id": "1780934611053_35825182",
+    "name": "极限鞋子",
+    "count": 1,
+    "item_type": "material",
+    "custom_data": {
+     "attr": "agility",
+     "slot": "boots",
+     "is_limit_equip": true
+    }
+   },
+   {
+    "id": "1781193718296_32519879",
+    "name": "兄弟天关令牌",
+    "count": 45,
+    "item_type": "material",
+    "custom_data": {
+     "id": "兄弟天关令牌",
+     "name": "兄弟天关令牌",
+     "count": 1
+    }
+   },
+   {
+    "id": "ci0m0txj",
+    "name": "龙涎草",
+    "count": 14,
+    "item_type": "material",
+    "custom_data": {}
+   },
+   {
+    "id": "1781877095673_45798130",
+    "name": "极限武器",
+    "count": 2,
+    "item_type": "material",
+    "custom_data": {
+     "attr": "attack",
+     "slot": "weapon",
+     "is_limit_equip": true
+    }
+   },
+   {
+    "id": "1782432952802_96645330",
+    "name": "宠装强化石",
+    "count": 4,
+    "item_type": "material",
+    "custom_data": {}
+   },
+   {
+    "id": "1782616994915_1297265",
+    "name": "宠装碎片",
+    "count": 1,
+    "item_type": "material",
+    "custom_data": {}
+   },
+   {
+    "id": "1782617055595_61689237",
+    "name": "悟道仙丹",
+    "count": 37,
+    "item_type": "cultivation_pill",
+    "custom_data": {
+     "id": "悟道仙丹",
+     "name": "悟道仙丹",
+     "count": 1
+    }
+   },
+   {
+    "id": "mail_sealed_suit_1782784186499_48333390",
+    "name": "sealed_suit",
+    "count": 1,
+    "item_type": "sealed_suit",
+    "custom_data": {
+     "name": "混沌套装武器（封印）",
+     "slot": "weapon",
+     "element": "火",
+     "is_sealed": true,
+     "base_stats": {
+      "hp": 0,
+      "mp": 0,
+      "attack": 5635,
+      "agility": 0,
+      "defense": 0
+     },
+     "suit_level": 9,
+     "_inv_inst_id": "mail_sealed_suit_1782784186499_48333390"
+    }
+   },
+   {
+    "id": "offline_pet_gift_1792680870114",
+    "name": "离线宠物礼包",
+    "count": 2,
+    "item_type": "gift",
+    "custom_data": {}
+   },
+   {
+    "id": "1792680870127_90234191",
+    "name": "普通法宝碎片",
+    "count": 1,
+    "item_type": "material",
+    "custom_data": {}
+   }
+  ],
+  "xianmo_chests": {
+   "gold": 0,
+   "bronze": 0,
+   "silver": 0
+  },
+  "warehouse_items": [
+   {
+    "id": "z17uvrm0",
+    "name": "灵草",
+    "count": 999,
+    "item_type": "material",
+    "custom_data": {}
+   },
+   {
+    "id": "99kbqboo",
+    "name": "灵芝",
+    "count": 999,
+    "item_type": "material",
+    "custom_data": {}
+   }
+  ],
+  "equipment_warehouse": [],
+  "pet_equipment_items": [],
+  "pet_equipment_warehouse": []
+ },
+ "equipmentData": {
+  "equipped": {
+   "armor": {
+    "hp": 0,
+    "id": "suit_1781633312364_89617216",
+    "mp": 0,
+    "name": "至尊套装衣服",
+    "slot": "armor",
+    "attack": 0,
+    "locked": false,
+    "rarity": "suit",
+    "agility": 0,
+    "defense": 2385,
+    "is_suit": true,
+    "suit_id": 8,
+    "equipped": true,
+    "is_sealed": false,
+    "suit_slot": "armor",
+    "forge_count": 0,
+    "sealed_data": {
+     "name": "至尊套装衣服（封印）",
+     "slot": "armor",
+     "element": "水",
+     "is_sealed": true,
+     "base_stats": {
+      "hp": 0,
+      "mp": 0,
+      "attack": 0,
+      "agility": 0,
+      "defense": 2485
+     },
+     "suit_level": 8,
+     "_inv_inst_id": "mail_sealed_suit_1781633279202_31285094"
+    },
+    "pet_chest_tier": "",
+    "cultivation_req": 0,
+    "pet_loot_source": "",
+    "is_pet_equipment": false,
+    "forge_attr_counts": {},
+    "pet_enhance_level": 0,
+    "suit_enhance_level": 0,
+    "suit_enhance_rolls": [],
+    "base_cultivation_req": 0
+   },
+   "boots": {
+    "hp": 0,
+    "id": "suit_1781793847086_61108397",
+    "mp": 0,
+    "name": "至尊套装鞋子",
+    "slot": "boots",
+    "attack": 0,
+    "locked": false,
+    "rarity": "suit",
+    "agility": 1727,
+    "defense": 0,
+    "is_suit": true,
+    "suit_id": 8,
+    "equipped": true,
+    "is_sealed": false,
+    "suit_slot": "boots",
+    "forge_count": 0,
+    "sealed_data": {
+     "name": "至尊套装鞋子（封印）",
+     "slot": "boots",
+     "element": "水",
+     "is_sealed": true,
+     "base_stats": {
+      "hp": 0,
+      "mp": 0,
+      "attack": 0,
+      "agility": 1680,
+      "defense": 0
+     },
+     "suit_level": 8,
+     "_inv_inst_id": "mail_sealed_suit_1781793601036_67387902"
+    },
+    "pet_chest_tier": "",
+    "cultivation_req": 0,
+    "pet_loot_source": "",
+    "is_pet_equipment": false,
+    "forge_attr_counts": {},
+    "pet_enhance_level": 0,
+    "suit_enhance_level": 0,
+    "suit_enhance_rolls": [],
+    "base_cultivation_req": 0
+   },
+   "helmet": {
+    "hp": 14575,
+    "id": "suit_1781793822392_28305876",
+    "mp": 0,
+    "name": "至尊套装头盔",
+    "slot": "helmet",
+    "attack": 0,
+    "locked": false,
+    "rarity": "suit",
+    "agility": 0,
+    "defense": 0,
+    "is_suit": true,
+    "suit_id": 8,
+    "equipped": true,
+    "is_sealed": false,
+    "suit_slot": "helmet",
+    "forge_count": 0,
+    "sealed_data": {
+     "name": "至尊套装头盔（封印）",
+     "slot": "helmet",
+     "element": "水",
+     "is_sealed": true,
+     "base_stats": {
+      "hp": 13335,
+      "mp": 0,
+      "attack": 0,
+      "agility": 0,
+      "defense": 0
+     },
+     "suit_level": 8,
+     "_inv_inst_id": "mail_sealed_suit_1781793601035_52511654"
+    },
+    "pet_chest_tier": "",
+    "cultivation_req": 0,
+    "pet_loot_source": "",
+    "is_pet_equipment": false,
+    "forge_attr_counts": {},
+    "pet_enhance_level": 0,
+    "suit_enhance_level": 0,
+    "suit_enhance_rolls": [],
+    "base_cultivation_req": 0
+   },
+   "weapon": {
+    "hp": 0,
+    "id": "suit_1781580934792_93859621",
+    "mp": 0,
+    "name": "至尊套装武器",
+    "slot": "weapon",
+    "attack": 4121,
+    "locked": false,
+    "rarity": "suit",
+    "agility": 0,
+    "defense": 0,
+    "is_suit": true,
+    "suit_id": 8,
+    "equipped": true,
+    "is_sealed": false,
+    "suit_slot": "weapon",
+    "forge_count": 0,
+    "sealed_data": {
+     "name": "至尊套装武器（封印）",
+     "slot": "weapon",
+     "element": "水",
+     "is_sealed": true,
+     "base_stats": {
+      "hp": 0,
+      "mp": 0,
+      "attack": 4445,
+      "agility": 0,
+      "defense": 0
+     },
+     "suit_level": 8,
+     "_inv_inst_id": "mail_sealed_suit_1781580776926_2873695"
+    },
+    "pet_chest_tier": "",
+    "cultivation_req": 0,
+    "pet_loot_source": "",
+    "is_pet_equipment": false,
+    "forge_attr_counts": {},
+    "pet_enhance_level": 0,
+    "suit_enhance_level": 0,
+    "suit_enhance_rolls": [],
+    "base_cultivation_req": 0
+   },
+   "accessory": {
+    "hp": 0,
+    "id": "suit_1781833896565_88793338",
+    "mp": 2535,
+    "name": "至尊套装饰品",
+    "slot": "accessory",
+    "attack": 0,
+    "locked": false,
+    "rarity": "suit",
+    "agility": 0,
+    "defense": 0,
+    "is_suit": true,
+    "suit_id": 8,
+    "equipped": true,
+    "is_sealed": false,
+    "suit_slot": "accessory",
+    "forge_count": 0,
+    "sealed_data": {
+     "name": "至尊套装饰品（封印）",
+     "slot": "accessory",
+     "element": "水",
+     "is_sealed": true,
+     "base_stats": {
+      "hp": 0,
+      "mp": 2485,
+      "attack": 0,
+      "agility": 0,
+      "defense": 0
+     },
+     "suit_level": 8,
+     "_inv_inst_id": "mail_sealed_suit_1781833879743_18155439"
+    },
+    "pet_chest_tier": "",
+    "cultivation_req": 0,
+    "pet_loot_source": "",
+    "is_pet_equipment": false,
+    "forge_attr_counts": {},
+    "pet_enhance_level": 0,
+    "suit_enhance_level": 0,
+    "suit_enhance_rolls": [],
+    "base_cultivation_req": 0
+   }
+  },
+  "inventory": [
+   {
+    "hp": 0,
+    "id": "suit_1782398766265_32867076",
+    "mp": 0,
+    "name": "混沌套装衣服",
+    "slot": "armor",
+    "attack": 0,
+    "locked": false,
+    "rarity": "suit",
+    "agility": 0,
+    "defense": 2851,
+    "is_suit": true,
+    "suit_id": 9,
+    "equipped": false,
+    "is_sealed": false,
+    "suit_slot": "armor",
+    "forge_count": 0,
+    "sealed_data": {
+     "name": "混沌套装衣服（封印）",
+     "slot": "armor",
+     "element": "火",
+     "is_sealed": true,
+     "base_stats": {
+      "hp": 0,
+      "mp": 0,
+      "attack": 0,
+      "agility": 0,
+      "defense": 3080
+     },
+     "suit_level": 9,
+     "_inv_inst_id": "mail_sealed_suit_1782346933596_13963709"
+    },
+    "pet_chest_tier": "",
+    "cultivation_req": 0,
+    "pet_loot_source": "",
+    "is_pet_equipment": false,
+    "forge_attr_counts": {},
+    "pet_enhance_level": 0,
+    "suit_enhance_level": 0,
+    "suit_enhance_rolls": [],
+    "base_cultivation_req": 0
+   },
+   {
+    "hp": 0,
+    "id": "suit_1782435510833_21991488",
+    "mp": 3286,
+    "name": "混沌套装饰品",
+    "slot": "accessory",
+    "attack": 0,
+    "locked": false,
+    "rarity": "suit",
+    "agility": 0,
+    "defense": 0,
+    "is_suit": true,
+    "suit_id": 9,
+    "equipped": false,
+    "is_sealed": false,
+    "suit_slot": "accessory",
+    "forge_count": 0,
+    "sealed_data": {
+     "name": "混沌套装饰品（封印）",
+     "slot": "accessory",
+     "element": "火",
+     "is_sealed": true,
+     "base_stats": {
+      "hp": 0,
+      "mp": 3080,
+      "attack": 0,
+      "agility": 0,
+      "defense": 0
+     },
+     "suit_level": 9,
+     "_inv_inst_id": "mail_sealed_suit_1782274087143_74526244"
+    },
+    "pet_chest_tier": "",
+    "cultivation_req": 0,
+    "pet_loot_source": "",
+    "is_pet_equipment": false,
+    "forge_attr_counts": {},
+    "pet_enhance_level": 0,
+    "suit_enhance_level": 0,
+    "suit_enhance_rolls": [],
+    "base_cultivation_req": 0
+   }
+  ]
+ },
+ "martialArtsData": {
+  "equipped_ids": [
+   "ewmz4jwt",
+   "ni3x0gmj",
+   "0ksdk2yz",
+   "53pchj15"
+  ],
+  "martial_arts": [
+   {
+    "id": "ewmz4jwt",
+    "desc": "极大提升全属性",
+    "name": "天地同寿",
+    "layer": 9,
+    "realm": "幻灵天神",
+    "equipped": true,
+    "base_value": 15,
+    "effect_type": "all_stats"
+   },
+   {
+    "id": "ni3x0gmj",
+    "desc": "终极防御提升",
+    "name": "绝对防御",
+    "layer": 9,
+    "realm": "幻灵天神",
+    "equipped": true,
+    "base_value": 25,
+    "effect_type": "defense"
+   },
+   {
+    "id": "0ksdk2yz",
+    "desc": "命中后有概率让目标两回合无法行动（成功后清空内力）",
+    "name": "葵花点穴",
+    "layer": 8,
+    "realm": "幻灵天神",
+    "equipped": true,
+    "base_value": 25,
+    "effect_type": "acupoint_seal"
+   },
+   {
+    "id": "poymnnqr",
+    "desc": "终极内力上限提升",
+    "name": "造化玄罡",
+    "layer": 8,
+    "realm": "幻灵天神",
+    "equipped": false,
+    "base_value": 25,
+    "effect_type": "mp_max"
+   },
+   {
+    "id": "274fdix8",
+    "desc": "终极攻击提升",
+    "name": "毁灭之力",
+    "layer": 9,
+    "realm": "幻灵天神",
+    "equipped": false,
+    "base_value": 25,
+    "effect_type": "attack"
+   },
+   {
+    "id": "53pchj15",
+    "desc": "终极敏捷提升",
+    "name": "超越时空",
+    "layer": 9,
+    "realm": "幻灵天神",
+    "equipped": true,
+    "base_value": 25,
+    "effect_type": "agility"
+   },
+   {
+    "id": "fi1a85uj",
+    "desc": "终极生命提升",
+    "name": "无限生命",
+    "layer": 9,
+    "realm": "幻灵天神",
+    "equipped": false,
+    "base_value": 25,
+    "effect_type": "hp"
+   }
+  ],
+  "daily_create_count": 0
+ },
+ "craftingData": {},
+ "gameSettings": {
+  "bgm_volume": 0.4,
+  "bgm_enabled": false,
+  "current_map": "浮影水城外郊（0,0）",
+  "operationId": "1792691203.37272_4143342972",
+  "compact_mode": true,
+  "previous_map": "石笋洞窟（0,0）",
+  "save_revision": 58769,
+  "upload_reason": "compact_upload",
+  "schema_version": 2,
+  "is_tower_battle": false,
+  "is_tower_settling": false,
+  "last_broadcast_id": 257932,
+  "auto_capture_enabled": true,
+  "min_growth_threshold": 0.5,
+  "current_map_difficulty": "normal",
+  "is_suit_dungeon_battle": false,
+  "restricted_authority_fields": [
+   "equipmentData",
+   "suitData",
+   "petEquipmentData",
+   "inventoryData.equipment_warehouse",
+   "inventoryData.pet_equipment_items",
+   "inventoryData.pet_equipment_warehouse"
+  ]
+ },
+ "petCollectionData": {
+  "bonuses": {
+   "hp": 0.5393000000000002,
+   "attack": 0.5696000000000001,
+   "agility": 0.7194000000000002,
+   "defense": 0.7323000000000004
+  },
+  "progress": {
+   "fadi": 3,
+   "haha": 2,
+   "keke": 4,
+   "modi": 6,
+   "ouou": 50,
+   "wudi": 8,
+   "bajie": 2,
+   "bujie": 4,
+   "ciluo": 9,
+   "fudie": 6,
+   "lu_lu": 50,
+   "mojia": 7,
+   "tufei": 50,
+   "wushi": 7,
+   "xi_pi": 50,
+   "yijie": 7,
+   "yu_yi": 3,
+   "yuehu": 8,
+   "yunhu": 50,
+   "zi_yi": 1,
+   "ādá": 50,
+   "abuluo": 10,
+   "bǔbǔ": 3,
+   "caicai": 7,
+   "cilang": 4,
+   "doudou": 12,
+   "duxing": 50,
+   "fengwu": 50,
+   "guguai": 6,
+   "hailuo": 11,
+   "huahua": 50,
+   "kuiluo": 50,
+   "lijian": 7,
+   "linghu": 8,
+   "linlin": 50,
+   "lv_yao": 3,
+   "miwuju": 5,
+   "shenqi": 6,
+   "shundi": 50,
+   "shuyao": 10,
+   "zhimei": 9,
+   "ādǒu": 49,
+   "ātài": 50,
+   "biaoshi": 5,
+   "boluomi": 4,
+   "chilong": 3,
+   "dàdāo": 50,
+   "feijian": 4,
+   "fuyejiu": 50,
+   "fuyishu": 4,
+   "guoxuee": 4,
+   "kucitou": 50,
+   "kukutun": 2,
+   "lányá": 50,
+   "micaiyu": 7,
+   "moguiyu": 12,
+   "munaibi": 5,
+   "míhuò": 50,
+   "nawahuo": 50,
+   "quanshi": 3,
+   "sanlang": 13,
+   "shanzei": 5,
+   "shenjia": 7,
+   "shoumei": 8,
+   "shuguai": 8,
+   "shujing": 6,
+   "tailang": 4,
+   "tao_tao": 50,
+   "tianbao": 6,
+   "tongbao": 50,
+   "wudidan": 50,
+   "wuyenzi": 8,
+   "youling": 50,
+   "yuanbao": 9,
+   "yulujiu": 5,
+   "yáoyé": 50,
+   "baidazui": 48,
+   "bajiaozi": 6,
+   "banbanhu": 8,
+   "changmei": 4,
+   "chushane": 46,
+   "daicitou": 50,
+   "diandian": 15,
+   "diwenzhu": 10,
+   "doudouyu": 6,
+   "duduniao": 50,
+   "dàidāo": 50,
+   "fandouyu": 7,
+   "huopozai": 6,
+   "jifengju": 6,
+   "jingling": 9,
+   "jiájiá": 50,
+   "landazui": 50,
+   "luluniao": 50,
+   "lv̀jiǎ": 50,
+   "modoubao": 4,
+   "mímáng": 50,
+   "ni_chang": 5,
+   "nununiao": 50,
+   "pilihuhu": 6,
+   "qiangdao": 12,
+   "qiuzhang": 11,
+   "shanling": 8,
+   "shunfeng": 8,
+   "shuntian": 11,
+   "xiaopili": 5,
+   "ximenzhu": 5,
+   "xiudouyu": 3,
+   "xunleiju": 7,
+   "yingying": 50,
+   "yu_wa_wa": 11,
+   "zhenzhen": 50,
+   "beibatian": 3,
+   "bunixiong": 5,
+   "chi_ji_yi": 12,
+   "cong_cong": 50,
+   "dàzǔiè": 50,
+   "guihuojun": 47,
+   "hongdazui": 50,
+   "hòupíè": 50,
+   "hóngdāo": 50,
+   "kaixinzai": 4,
+   "kubixiang": 50,
+   "lieyanjun": 6,
+   "ling_shan": 4,
+   "meng_meng": 50,
+   "minixiang": 50,
+   "nanbatian": 3,
+   "paopaotun": 12,
+   "qingyishu": 7,
+   "tiaopizai": 7,
+   "wan_zi_yu": 9,
+   "wang_wang": 50,
+   "xiaochong": 8,
+   "xiaofashi": 8,
+   "xiaomoshi": 6,
+   "xiaowushi": 5,
+   "xiǎoyāo": 50,
+   "yaogundan": 7,
+   "yaolinjun": 6,
+   "yezixiong": 7,
+   "zhaicitou": 50,
+   "zhongjian": 2,
+   "a_di_da_si": 5,
+   "a_nu_bi_si": 5,
+   "aoririquan": 50,
+   "daizixiong": 6,
+   "dan_dan_yu": 3,
+   "dumangfeng": 4,
+   "feitianshu": 9,
+   "fengyilong": 6,
+   "fu_di_long": 13,
+   "guaiguaihu": 8,
+   "huo_lin_yi": 5,
+   "jin_jia_yi": 5,
+   "jinxielong": 8,
+   "kaolaxiong": 4,
+   "lingyilong": 9,
+   "mengjinger": 4,
+   "nangongzhu": 3,
+   "pilibaobao": 6,
+   "qingyilong": 13,
+   "shenxianyu": 8,
+   "shouhuxing": 4,
+   "shuaishuai": 5,
+   "shuijinger": 2,
+   "tianshidan": 7,
+   "wu_qi_long": 5,
+   "wūlītóu": 6,
+   "xiaobawang": 2,
+   "xuanweizhu": 9,
+   "yu_mei_mei": 6,
+   "yu_niu_niu": 2,
+   "yìnggǔè": 50,
+   "yùlíntù": 50,
+   "zhuidianju": 8,
+   "zhōngdāo": 50,
+   "a_ge_liu_si": 5,
+   "ao_xue_shou": 6,
+   "ben_lei_fei": 50,
+   "bianzixiong": 6,
+   "chongbaobao": 10,
+   "chongbeibei": 13,
+   "chuandishou": 5,
+   "fengjingzhu": 7,
+   "fushuiqilin": 7,
+   "hou_lei_fei": 2,
+   "jingtianshi": 11,
+   "jixiangxing": 7,
+   "kǒudàiyā": 3,
+   "lanmengmeng": 50,
+   "lanmiaolong": 4,
+   "mengtianshi": 8,
+   "niefengquan": 50,
+   "qíshìgūi": 50,
+   "silingwushi": 4,
+   "tianwenfeng": 8,
+   "tiaotiaogui": 13,
+   "wen_di_long": 50,
+   "xiaojingwei": 4,
+   "xiaoleigong": 4,
+   "xiaoleishen": 5,
+   "xiaozhubite": 7,
+   "xingyunxing": 50,
+   "xuanxuantun": 9,
+   "zhi_zun_bao": 2,
+   "zhi_zun_cao": 6,
+   "zhi_zun_lin": 4,
+   "baiguzhanshi": 8,
+   "bao_lan_long": 3,
+   "chao_ji_a_nu": 6,
+   "chuanlinshou": 7,
+   "cǎomǎngtù": 50,
+   "di_cang_shou": 3,
+   "gang_lei_fei": 50,
+   "gouhunshizhe": 6,
+   "hei_long_shi": 2,
+   "hongfenxiang": 5,
+   "huanjinggang": 5,
+   "huo_yao_jing": 4,
+   "huofenghuang": 4,
+   "jinshuiqilin": 9,
+   "kulouzhanshi": 4,
+   "kǔxínggūi": 6,
+   "lan_fa_mo_ji": 5,
+   "lanfenghuang": 3,
+   "liuyitianshi": 7,
+   "lv̀jǐnbǎo": 50,
+   "lèlèxióng": 50,
+   "mengjinggang": 6,
+   "mengjingling": 10,
+   "mìmìxióng": 50,
+   "ping_pang_yu": 12,
+   "shehunshizhe": 3,
+   "shun_di_long": 10,
+   "tiějiǎgūi": 50,
+   "xiaojiangshi": 2,
+   "xiaolanxiong": 9,
+   "xiaozhufente": 12,
+   "xuefenghuang": 50,
+   "zhongshanzhu": 14,
+   "zhuiyingquan": 50,
+   "bai_fa_she_ji": 4,
+   "chuanshanshou": 9,
+   "dianqiubaobao": 5,
+   "gōngbīngyǐ": 13,
+   "huan_yun_shou": 3,
+   "hóngjǐnbǎo": 50,
+   "hóngxīngtù": 6,
+   "jiéquándào": 50,
+   "lv_yi_xian_zi": 50,
+   "qing_long_shi": 5,
+   "shuaidaixiang": 50,
+   "táiquándào": 3,
+   "wanglingwushi": 8,
+   "xiaozhuanante": 8,
+   "xiàngpíshǔ": 48,
+   "zhaohunshizhe": 5,
+   "zhenshuiqilin": 6,
+   "bai_yi_xian_zi": 10,
+   "báimáoxiàng": 50,
+   "duoluotianlang": 50,
+   "dànhuángshǔ": 7,
+   "fen_yi_xian_zi": 3,
+   "hong_fa_yao_ji": 2,
+   "huang_jin_long": 4,
+   "huang_long_shi": 5,
+   "huángjǐnbǎo": 50,
+   "kōngshǒudào": 50,
+   "lèngtóuqīng": 50,
+   "lǎnlǎnxiàng": 50,
+   "qibiantianlang": 6,
+   "qiāoqiāoshǔ": 50,
+   "shandianbaobao": 10,
+   "taiguhuangshou": 7,
+   "zhonglingwushi": 2,
+   "han_hai_xian_ji": 4,
+   "ling_bo_xian_zi": 5,
+   "xi_shui_xian_zi": 2,
+   "xiǎodīngdāng": 50,
+   "xiǎodīngdōng": 50,
+   "xiǎolìngdāng": 8,
+   "yuanguhuangshou": 10,
+   "huanbiantianlang": 48,
+   "huānhuānxióng": 3,
+   "shangguhuangshou": 4,
+   "xi_yue_shen_yuan": 5,
+   "zhu_lang_xian_zi": 3,
+   "cang_ming_shen_nv": 2,
+   "chongshengzhanshi": 9,
+   "jīnmáoshīwáng": 1,
+   "yao_shui_ling_zun": 4,
+   "zǐtíxiānshēng": 50,
+   "dong_yue_shen_yuan": 4,
+   "hēitíxiānshēng": 50,
+   "lántíxiānshēng": 3,
+   "zhong_yue_shen_yuan": 6
+  },
+  "pet_soul_data": {
+   "element_points": {
+    "土": 103,
+    "木": 2,
+    "水": 114,
+    "火": 40,
+    "金": 2
+   }
+  },
+  "mutation_progress": {}
+ },
+ "petEquipmentData": {
+  "equipped": {
+   "armor": {
+    "hp": 0,
+    "id": "gold_armor_1776835085690_7663",
+    "mp": 0,
+    "name": "金鳞甲（宠）",
+    "slot": "armor",
+    "attack": 0,
+    "locked": false,
+    "rarity": "gold",
+    "agility": 0,
+    "defense": 1130,
+    "is_suit": false,
+    "suit_id": 0,
+    "equipped": true,
+    "is_sealed": false,
+    "suit_slot": "",
+    "forge_count": 0,
+    "sealed_data": {},
+    "pet_chest_tier": "gold",
+    "cultivation_req": 0,
+    "pet_loot_source": "bsg_chest",
+    "is_pet_equipment": true,
+    "forge_attr_counts": {},
+    "pet_enhance_level": 2,
+    "base_cultivation_req": 0
+   },
+   "boots": {
+    "hp": 0,
+    "id": "gold_boots_1781046293751_4901",
+    "name": "金鳞靴（宠）",
+    "slot": "boots",
+    "attack": 0,
+    "rarity": "gold",
+    "agility": 1079,
+    "defense": 0,
+    "quality": "gold",
+    "equip_id": "gold_boots_1781046293751_4901",
+    "equipped": true,
+    "equip_name": "金鳞靴（宠）",
+    "pet_chest_tier": "gold",
+    "equipped_pet_id": "",
+    "pet_loot_source": "bsg_chest",
+    "is_pet_equipment": true,
+    "pet_enhance_level": 0
+   },
+   "helmet": {
+    "hp": 1189,
+    "id": "gold_helmet_1778942700280_7049",
+    "name": "金鳞盔（宠）",
+    "slot": "helmet",
+    "attack": 0,
+    "rarity": "gold",
+    "agility": 0,
+    "defense": 0,
+    "quality": "gold",
+    "equip_id": "gold_helmet_1778942700280_7049",
+    "equipped": true,
+    "equip_name": "金鳞盔（宠）",
+    "pet_chest_tier": "gold",
+    "equipped_pet_id": "",
+    "pet_loot_source": "bsg_chest",
+    "is_pet_equipment": true,
+    "pet_enhance_level": 0
+   },
+   "weapon": {
+    "hp": 0,
+    "id": "gold_weapon_1776549522610_5018",
+    "mp": 0,
+    "name": "金鳞爪（宠）",
+    "slot": "weapon",
+    "attack": 1140,
+    "locked": false,
+    "rarity": "gold",
+    "agility": 0,
+    "defense": 0,
+    "is_suit": false,
+    "suit_id": 0,
+    "equipped": true,
+    "is_sealed": false,
+    "suit_slot": "",
+    "forge_count": 0,
+    "sealed_data": {},
+    "pet_chest_tier": "",
+    "cultivation_req": 0,
+    "pet_loot_source": "",
+    "is_pet_equipment": true,
+    "forge_attr_counts": {},
+    "pet_enhance_level": 5,
+    "base_cultivation_req": 0
+   },
+   "accessory": {
+    "hp": 1185,
+    "id": "gold_accessory_1781580866196_6141",
+    "name": "金鳞坠（宠）",
+    "slot": "accessory",
+    "attack": 0,
+    "rarity": "gold",
+    "agility": 0,
+    "defense": 0,
+    "quality": "gold",
+    "equip_id": "gold_accessory_1781580866196_6141",
+    "equipped": true,
+    "equip_name": "金鳞坠（宠）",
+    "pet_chest_tier": "gold",
+    "equipped_pet_id": "",
+    "pet_loot_source": "bsg_chest",
+    "is_pet_equipment": true,
+    "pet_enhance_level": 0
+   }
+  }
+ },
+ "suitData": {
+  "equipped_suits": {
+   "8": {
+    "armor": {
+     "name": "至尊套装衣服",
+     "slot": "armor",
+     "suit_id": 8,
+     "suit_slot": "armor"
+    },
+    "boots": {
+     "name": "至尊套装鞋子",
+     "slot": "boots",
+     "suit_id": 8,
+     "suit_slot": "boots"
+    },
+    "helmet": {
+     "name": "至尊套装头盔",
+     "slot": "helmet",
+     "suit_id": 8,
+     "suit_slot": "helmet"
+    },
+    "weapon": {
+     "name": "至尊套装武器",
+     "slot": "weapon",
+     "suit_id": 8,
+     "suit_slot": "weapon"
+    },
+    "accessory": {
+     "name": "至尊套装饰品",
+     "slot": "accessory",
+     "suit_id": 8,
+     "suit_slot": "accessory"
+    }
+   }
+  },
+  "dungeon_progress": {}
+ },
+ "questData": {
+  "quests": {
+   "pet_001": {
+    "status": 2,
+    "progress": {
+     "evolve_pet": 0
+    },
+    "completed_time": 0
+   },
+   "pet_002": {
+    "status": 0,
+    "progress": {},
+    "completed_time": 0
+   },
+   "fire_001": {
+    "status": 5,
+    "progress": {
+     "kill_type_火": 20
+    },
+    "completed_time": 1776631401
+   },
+   "fire_002": {
+    "status": 5,
+    "progress": {
+     "has_pet_火": 1
+    },
+    "completed_time": 1776631428
+   },
+   "fire_003": {
+    "status": 5,
+    "progress": {
+     "capture_pet": 1
+    },
+    "completed_time": 1777163634
+   },
+   "fire_004": {
+    "status": 5,
+    "progress": {
+     "reach_pet_level_火": 500
+    },
+    "completed_time": 1776776994
+   },
+   "suit_001": {
+    "status": 5,
+    "progress": {
+     "complete_suit_dungeon": 1
+    },
+    "completed_time": 1777504661
+   },
+   "suit_002": {
+    "status": 5,
+    "progress": {
+     "complete_suit_dungeon": 2
+    },
+    "completed_time": 1777772518
+   },
+   "suit_003": {
+    "status": 5,
+    "progress": {
+     "complete_suit_dungeon": 3
+    },
+    "completed_time": 1777715441
+   },
+   "suit_004": {
+    "status": 5,
+    "progress": {
+     "complete_suit_dungeon": 4
+    },
+    "completed_time": 1778295068
+   },
+   "suit_005": {
+    "status": 5,
+    "progress": {
+     "complete_suit_dungeon": 5
+    },
+    "completed_time": 1778942910
+   },
+   "suit_006": {
+    "status": 5,
+    "progress": {
+     "complete_suit_dungeon": 6
+    },
+    "completed_time": 1780933271
+   },
+   "suit_007": {
+    "status": 5,
+    "progress": {
+     "complete_suit_dungeon": 7
+    },
+    "completed_time": 1781454211
+   },
+   "suit_008": {
+    "status": 4,
+    "progress": {
+     "complete_suit_dungeon": 8
+    },
+    "completed_time": 0
+   },
+   "suit_009": {
+    "status": 4,
+    "progress": {
+     "complete_suit_dungeon": 9
+    },
+    "completed_time": 0
+   },
+   "suit_010": {
+    "status": 2,
+    "progress": {
+     "complete_suit_dungeon": 9
+    },
+    "completed_time": 0
+   },
+   "suit_011": {
+    "status": 0,
+    "progress": {},
+    "completed_time": 0
+   },
+   "suit_012": {
+    "status": 0,
+    "progress": {},
+    "completed_time": 0
+   },
+   "suit_013": {
+    "status": 0,
+    "progress": {},
+    "completed_time": 0
+   },
+   "suit_014": {
+    "status": 0,
+    "progress": {},
+    "completed_time": 0
+   },
+   "suit_015": {
+    "status": 0,
+    "progress": {},
+    "completed_time": 0
+   },
+   "suit_016": {
+    "status": 0,
+    "progress": {},
+    "completed_time": 0
+   },
+   "suit_017": {
+    "status": 0,
+    "progress": {},
+    "completed_time": 0
+   },
+   "suit_018": {
+    "status": 0,
+    "progress": {},
+    "completed_time": 0
+   },
+   "suit_019": {
+    "status": 0,
+    "progress": {},
+    "completed_time": 0
+   },
+   "suit_020": {
+    "status": 0,
+    "progress": {},
+    "completed_time": 0
+   },
+   "suit_021": {
+    "status": 0,
+    "progress": {},
+    "completed_time": 0
+   },
+   "wood_001": {
+    "status": 5,
+    "progress": {
+     "kill_type_木": 20
+    },
+    "completed_time": 1777504733
+   },
+   "wood_002": {
+    "status": 5,
+    "progress": {
+     "has_pet_木": 1
+    },
+    "completed_time": 1777504579
+   },
+   "wood_003": {
+    "status": 5,
+    "progress": {
+     "capture_pet": 1
+    },
+    "completed_time": 1777504687
+   },
+   "wood_004": {
+    "status": 5,
+    "progress": {
+     "reach_pet_level_木": 500
+    },
+    "completed_time": 1777087747
+   },
+   "daily_001": {
+    "status": 4,
+    "progress": {
+     "battle_count": 10
+    },
+    "completed_time": 0
+   },
+   "daily_002": {
+    "status": 2,
+    "progress": {
+     "complete_tower": 0
+    },
+    "completed_time": 0
+   },
+   "daily_003": {
+    "status": 4,
+    "progress": {
+     "battle_count": 5
+    },
+    "completed_time": 0
+   },
+   "daily_004": {
+    "status": 2,
+    "progress": {
+     "complete_suit_dungeon": 0
+    },
+    "completed_time": 0
+   },
+   "earth_001": {
+    "status": 5,
+    "progress": {
+     "kill_type_土": 20
+    },
+    "completed_time": 1777819372
+   },
+   "earth_002": {
+    "status": 5,
+    "progress": {
+     "has_pet_土": 1
+    },
+    "completed_time": 1777819383
+   },
+   "earth_003": {
+    "status": 5,
+    "progress": {
+     "capture_pet": 1
+    },
+    "completed_time": 1777163647
+   },
+   "earth_004": {
+    "status": 5,
+    "progress": {
+     "reach_pet_level_土": 500
+    },
+    "completed_time": 1776776992
+   },
+   "metal_001": {
+    "status": 5,
+    "progress": {
+     "kill_type_金": 20
+    },
+    "completed_time": 1777504549
+   },
+   "metal_002": {
+    "status": 5,
+    "progress": {
+     "has_pet_金": 1
+    },
+    "completed_time": 1777504676
+   },
+   "metal_003": {
+    "status": 5,
+    "progress": {
+     "capture_pet": 1
+    },
+    "completed_time": 1777504610
+   },
+   "metal_004": {
+    "status": 5,
+    "progress": {
+     "reach_pet_level_金": 500
+    },
+    "completed_time": 1777586539
+   },
+   "quest_001": {
+    "status": 5,
+    "progress": {
+     "kill_map_浮影水城外郊（0,0）": 3
+    },
+    "completed_time": 1777819343
+   },
+   "quest_002": {
+    "status": 5,
+    "progress": {
+     "capture_pet": 1
+    },
+    "completed_time": 1777819347
+   },
+   "quest_003": {
+    "status": 5,
+    "progress": {
+     "reach_level": 10
+    },
+    "completed_time": 1777819364
+   },
+   "quest_004": {
+    "status": 5,
+    "progress": {
+     "kill_map_徘徊林（0,0）": 5
+    },
+    "completed_time": 1776603816
+   },
+   "quest_005": {
+    "status": 5,
+    "progress": {
+     "equip_any": 1
+    },
+    "completed_time": 1776603818
+   },
+   "quest_006": {
+    "status": 5,
+    "progress": {
+     "unlock_pet_collection": 1
+    },
+    "completed_time": 1776603820
+   },
+   "quest_007": {
+    "status": 5,
+    "progress": {
+     "reach_pet_level_any": 500
+    },
+    "completed_time": 1776603822
+   },
+   "quest_008": {
+    "status": 5,
+    "progress": {
+     "complete_tower": 5
+    },
+    "completed_time": 1776603824
+   },
+   "quest_009": {
+    "status": 5,
+    "progress": {
+     "complete_suit_dungeon": 1
+    },
+    "completed_time": 1776719593
+   },
+   "quest_010": {
+    "status": 5,
+    "progress": {
+     "join_xianmo_battle": 1
+    },
+    "completed_time": 1776692139
+   },
+   "quest_011": {
+    "status": 5,
+    "progress": {
+     "reach_level": 800
+    },
+    "completed_time": 1776675735
+   },
+   "realm_001": {
+    "status": 5,
+    "progress": {
+     "reach_realm": 1
+    },
+    "completed_time": 1777819389
+   },
+   "realm_002": {
+    "status": 5,
+    "progress": {
+     "reach_realm": 1
+    },
+    "completed_time": 1777819394
+   },
+   "realm_003": {
+    "status": 5,
+    "progress": {
+     "reach_realm": 1
+    },
+    "completed_time": 1777772617
+   },
+   "realm_004": {
+    "status": 5,
+    "progress": {
+     "reach_realm": 1
+    },
+    "completed_time": 1776675743
+   },
+   "realm_005": {
+    "status": 5,
+    "progress": {
+     "reach_realm": 1
+    },
+    "completed_time": 1777282102
+   },
+   "tower_001": {
+    "status": 5,
+    "progress": {
+     "complete_tower": 10
+    },
+    "completed_time": 1777772494
+   },
+   "tower_002": {
+    "status": 5,
+    "progress": {
+     "complete_tower": 50
+    },
+    "completed_time": 1777504491
+   },
+   "tower_003": {
+    "status": 5,
+    "progress": {
+     "complete_tower": 100
+    },
+    "completed_time": 1777504499
+   },
+   "tower_004": {
+    "status": 5,
+    "progress": {
+     "complete_tower": 150
+    },
+    "completed_time": 1777504498
+   },
+   "tower_005": {
+    "status": 5,
+    "progress": {
+     "complete_tower": 200
+    },
+    "completed_time": 1777715456
+   },
+   "tower_006": {
+    "status": 5,
+    "progress": {
+     "complete_tower": 250
+    },
+    "completed_time": 1777504751
+   },
+   "tower_007": {
+    "status": 5,
+    "progress": {
+     "complete_tower": 300
+    },
+    "completed_time": 1777715434
+   },
+   "tower_008": {
+    "status": 5,
+    "progress": {
+     "complete_tower": 350
+    },
+    "completed_time": 1778141761
+   },
+   "tower_009": {
+    "status": 5,
+    "progress": {
+     "complete_tower": 400
+    },
+    "completed_time": 1778141763
+   },
+   "tower_010": {
+    "status": 5,
+    "progress": {
+     "complete_tower": 450
+    },
+    "completed_time": 1778942901
+   },
+   "tower_011": {
+    "status": 5,
+    "progress": {
+     "complete_tower": 500
+    },
+    "completed_time": 1778942905
+   },
+   "tower_012": {
+    "status": 5,
+    "progress": {
+     "complete_tower": 550
+    },
+    "completed_time": 1781454220
+   },
+   "tower_013": {
+    "status": 5,
+    "progress": {
+     "complete_tower": 600
+    },
+    "completed_time": 1781454216
+   },
+   "tower_014": {
+    "status": 2,
+    "progress": {
+     "complete_tower": 601
+    },
+    "completed_time": 0
+   },
+   "tower_015": {
+    "status": 0,
+    "progress": {
+     "complete_tower": 601
+    },
+    "completed_time": 0
+   },
+   "tower_016": {
+    "status": 0,
+    "progress": {
+     "complete_tower": 601
+    },
+    "completed_time": 0
+   },
+   "tower_017": {
+    "status": 0,
+    "progress": {
+     "complete_tower": 601
+    },
+    "completed_time": 0
+   },
+   "tower_018": {
+    "status": 0,
+    "progress": {
+     "complete_tower": 601
+    },
+    "completed_time": 0
+   },
+   "tower_019": {
+    "status": 0,
+    "progress": {
+     "complete_tower": 601
+    },
+    "completed_time": 0
+   },
+   "tower_020": {
+    "status": 0,
+    "progress": {
+     "complete_tower": 601
+    },
+    "completed_time": 0
+   },
+   "tower_021": {
+    "status": 0,
+    "progress": {
+     "complete_tower": 601
+    },
+    "completed_time": 0
+   },
+   "water_001": {
+    "status": 5,
+    "progress": {
+     "kill_type_水": 20
+    },
+    "completed_time": 1777504564
+   },
+   "water_002": {
+    "status": 5,
+    "progress": {
+     "has_pet_水": 1
+    },
+    "completed_time": 1777504610
+   },
+   "water_003": {
+    "status": 5,
+    "progress": {
+     "capture_pet": 1
+    },
+    "completed_time": 1777504619
+   },
+   "water_004": {
+    "status": 5,
+    "progress": {
+     "reach_pet_level_水": 500
+    },
+    "completed_time": 1776699864
+   },
+   "achievement_001": {
+    "status": 5,
+    "progress": {
+     "battle_count": 100
+    },
+    "completed_time": 1777715278
+   },
+   "achievement_002": {
+    "status": 5,
+    "progress": {
+     "capture_pet": 50
+    },
+    "completed_time": 1777715302
+   },
+   "achievement_003": {
+    "status": 5,
+    "progress": {
+     "complete_tower": 100
+    },
+    "completed_time": 1777715312
+   },
+   "achievement_005": {
+    "status": 5,
+    "progress": {
+     "reach_level": 1000
+    },
+    "completed_time": 1777820586
+   }
+  },
+  "daily_reset_time": 20260705046400
+ },
+ "updatedAt": "2026-10-22T17:47:40.000Z",
+ "saveRevision": 58769
+}

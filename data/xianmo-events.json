@@ -1,0 +1,317 @@
+{
+ "events": {
+  "spirit_beast": {
+   "type": "pet",
+   "name": "灵兽现身",
+   "weight": 3,
+   "score": 1,
+   "capture_rate": 0.5,
+   "growth_range": [
+    "5.0",
+    "6.0"
+   ],
+   "broadcast": false
+  },
+  "spirit_beast_cub": {
+   "type": "pet",
+   "name": "灵兽幼崽",
+   "weight": 3,
+   "score": 1,
+   "capture_rate": 0.7,
+   "growth_range": [
+    "5.0",
+    "5.5"
+   ],
+   "broadcast": false
+  },
+  "divine_beast_trace": {
+   "type": "pet",
+   "name": "神兽踪迹",
+   "weight": 2,
+   "score": 2,
+   "capture_rate": 0.1,
+   "growth_range": [
+    "6.2",
+    "6.8"
+   ],
+   "broadcast": true
+  },
+  "mutant_beast": {
+   "type": "pet",
+   "name": "变异灵兽",
+   "weight": 2,
+   "score": 2,
+   "capture_rate": 0.2,
+   "growth_range": [
+    "6.0",
+    "6.5"
+   ],
+   "broadcast": true
+  },
+  "spirit_beast_guardian": {
+   "type": "pet",
+   "name": "灵兽守护者",
+   "weight": 3,
+   "score": 2,
+   "capture_rate": 1.0,
+   "growth_range": [
+    "5.5",
+    "6.5"
+   ],
+   "broadcast": false,
+   "requires_battle": true
+  },
+  "spirit_beast_market": {
+   "type": "fortune",
+   "name": "建设材料",
+   "weight": 2,
+   "score": 1,
+   "broadcast": true,
+   "item_reward": "{\"name\": \"建设材料\", \"count\": 1}"
+  },
+  "ancient_cave": {
+   "type": "treasure",
+   "name": "远古洞窟",
+   "weight": 4,
+   "score": 1,
+   "chest_type": "bronze",
+   "broadcast": true
+  },
+  "immortal_relic": {
+   "type": "treasure",
+   "name": "仙府遗迹",
+   "weight": 2,
+   "score": 2,
+   "chest_type": "silver",
+   "broadcast": true
+  },
+  "heavenly_palace": {
+   "type": "treasure",
+   "name": "天宫遗址",
+   "weight": 1,
+   "score": 3,
+   "chest_type": "gold",
+   "broadcast": true
+  },
+  "medicine_garden": {
+   "type": "treasure",
+   "name": "药园秘境",
+   "weight": 5,
+   "score": 1,
+   "broadcast": false,
+   "items": [
+    "聚灵丹"
+   ]
+  },
+  "spirit_mine": {
+   "type": "treasure",
+   "name": "灵矿脉",
+   "weight": 4,
+   "score": 1,
+   "broadcast": false,
+   "gold_range": [
+    "100000",
+    "500000"
+   ]
+  },
+  "scattered_relics": {
+   "type": "treasure",
+   "name": "散修遗物",
+   "weight": 2,
+   "score": 1,
+   "broadcast": false,
+   "random_item": true
+  },
+  "xianmo_battlefield": {
+   "type": "treasure",
+   "name": "仙魔战场",
+   "weight": 2,
+   "score": 2,
+   "broadcast": false,
+   "chest_type": "random"
+  },
+  "treasure_fragment": {
+   "type": "treasure",
+   "name": "藏宝图残片",
+   "weight": 1,
+   "score": 2,
+   "broadcast": false,
+   "fragment": true
+  },
+  "faction_confrontation": {
+   "type": "battle",
+   "name": "阵营对峙",
+   "weight": 14,
+   "score_win": 4,
+   "score_lose": 1,
+   "broadcast": false,
+   "mirror_battle": true
+  },
+  "demon_attack": {
+   "type": "battle",
+   "name": "魔修来袭",
+   "weight": 6,
+   "score_win": 3,
+   "score_lose": 0,
+   "broadcast": false,
+   "difficulty": "hard"
+  },
+  "immortal_guidance": {
+   "type": "fortune",
+   "name": "仙人指路",
+   "weight": 2,
+   "score": 3,
+   "broadcast": false,
+   "action_points_bonus": 3
+  },
+  "enlightenment": {
+   "type": "fortune",
+   "name": "悟道机缘",
+   "weight": 2,
+   "score": 2,
+   "broadcast": false,
+   "cultivation_bonus": 100
+  },
+  "technique_inheritance": {
+   "type": "fortune",
+   "name": "功法传承",
+   "weight": 2,
+   "score": 2,
+   "broadcast": false,
+   "exp_bonus": 10000
+  },
+  "immortal_fate": {
+   "type": "fortune",
+   "name": "仙缘际会",
+   "weight": 2,
+   "score": 4,
+   "broadcast": false,
+   "direct_score": true
+  },
+  "heavenly_blessing": {
+   "type": "fortune",
+   "name": "天降祥瑞",
+   "weight": 2,
+   "score": 2,
+   "broadcast": false,
+   "rare_item": true
+  },
+  "formation_treasure": {
+   "type": "fortune",
+   "name": "破阵得宝",
+   "weight": 2,
+   "score": 2,
+   "broadcast": false,
+   "chest_type": "random"
+  },
+  "pet_recognition": {
+   "type": "fortune",
+   "name": "灵兽认主",
+   "weight": 1,
+   "score": 3,
+   "capture_rate": 1.0,
+   "growth_range": [
+    "5.5",
+    "6.5"
+   ],
+   "broadcast": true,
+   "no_capture_roll": true
+  },
+  "inheritance_memory": {
+   "type": "fortune",
+   "name": "兄弟天关遗址",
+   "weight": 2,
+   "score": 2,
+   "broadcast": true,
+   "item_reward": "{\"name\": \"兄弟天关令牌\", \"count\": 1}"
+  },
+  "spirit_vein_training": {
+   "type": "training",
+   "name": "灵脉修炼",
+   "weight": 3,
+   "score": 1,
+   "broadcast": false,
+   "cultivation_bonus": 30
+  },
+  "enlightenment_stone": {
+   "type": "training",
+   "name": "悟道石",
+   "weight": 2,
+   "score": 2,
+   "broadcast": false,
+   "cultivation_bonus": 50
+  },
+  "abundant_spirit_energy": {
+   "type": "training",
+   "name": "灵气充沛",
+   "weight": 3,
+   "score": 1,
+   "broadcast": false,
+   "cultivation_bonus": 10
+  },
+  "meditation": {
+   "type": "training",
+   "name": "打坐冥想",
+   "weight": 2,
+   "score": 1,
+   "broadcast": false,
+   "exp_bonus": 500
+  },
+  "illusion_trap": {
+   "type": "trap",
+   "name": "幻阵困局",
+   "weight": 3,
+   "score": 0,
+   "broadcast": false,
+   "action_points_cost": 1
+  },
+  "beast_attack": {
+   "type": "trap",
+   "name": "灵兽袭击",
+   "weight": 2,
+   "score": 0,
+   "broadcast": false,
+   "requires_battle": true,
+   "no_score_on_lose": true
+  },
+  "mist_forest": {
+   "type": "trap",
+   "name": "迷雾森林",
+   "weight": 2,
+   "score": 0,
+   "broadcast": false,
+   "no_reward": true
+  },
+  "trap_mechanism": {
+   "type": "trap",
+   "name": "陷阱机关",
+   "weight": 2,
+   "score": 0,
+   "broadcast": false,
+   "action_points_loss": 1
+  },
+  "demon_erosion": {
+   "type": "trap",
+   "name": "魔气侵蚀",
+   "weight": 1,
+   "score": -1,
+   "broadcast": false,
+   "score_loss": true
+  },
+  "nothing_happened": {
+   "type": "empty",
+   "name": "无事发生",
+   "weight": 5,
+   "score": 0,
+   "broadcast": false
+  },
+  "mysterious_fragment": {
+   "type": "fragment",
+   "name": "神秘残片",
+   "weight": 4,
+   "score": 2,
+   "broadcast": false,
+   "fragment_count": 1
+  }
+ }
+}

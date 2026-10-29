@@ -1,0 +1,172 @@
+{
+ "success": true,
+ "gangs": [
+  {
+   "id": 17,
+   "name": "墨池",
+   "level": 10,
+   "emblemId": 32,
+   "notice": "日常捐献、副本组队，欢迎同好。",
+   "autoJoin": false,
+   "memberCount": 10,
+   "leaderName": "墨尘"
+  },
+  {
+   "id": 18,
+   "name": "松风阁",
+   "level": 9,
+   "emblemId": 14,
+   "notice": "日常捐献、副本组队，欢迎同好。",
+   "autoJoin": false,
+   "memberCount": 10,
+   "leaderName": "砚石"
+  },
+  {
+   "id": 31,
+   "name": "残碑社",
+   "level": 8,
+   "emblemId": 3,
+   "notice": "日常捐献、副本组队，欢迎同好。",
+   "autoJoin": false,
+   "memberCount": 10,
+   "leaderName": "松灯"
+  },
+  {
+   "id": 28,
+   "name": "听雪庐",
+   "level": 7,
+   "emblemId": 1,
+   "notice": "日常捐献、副本组队，欢迎同好。",
+   "autoJoin": false,
+   "memberCount": 9,
+   "leaderName": "竹渡"
+  },
+  {
+   "id": 19,
+   "name": "拾叶堂",
+   "level": 6,
+   "emblemId": 12,
+   "notice": "日常捐献、副本组队，欢迎同好。",
+   "autoJoin": false,
+   "memberCount": 8,
+   "leaderName": "云照"
+  },
+  {
+   "id": 29,
+   "name": "砚山会",
+   "level": 5,
+   "emblemId": 28,
+   "notice": "日常捐献、副本组队，欢迎同好。",
+   "autoJoin": true,
+   "memberCount": 10,
+   "leaderName": "雪鹤"
+  },
+  {
+   "id": 33,
+   "name": "寒渡",
+   "level": 5,
+   "emblemId": 2,
+   "notice": "日常捐献、副本组队，欢迎同好。",
+   "autoJoin": true,
+   "memberCount": 10,
+   "leaderName": "江苔"
+  },
+  {
+   "id": 34,
+   "name": "竹外居",
+   "level": 5,
+   "emblemId": 18,
+   "notice": "日常捐献、副本组队，欢迎同好。",
+   "autoJoin": true,
+   "memberCount": 10,
+   "leaderName": "山溪"
+  },
+  {
+   "id": 39,
+   "name": "石鼓门",
+   "level": 5,
+   "emblemId": 16,
+   "notice": "日常捐献、副本组队，欢迎同好。",
+   "autoJoin": false,
+   "memberCount": 10,
+   "leaderName": "石澜"
+  },
+  {
+   "id": 36,
+   "name": "云深处",
+   "level": 5,
+   "emblemId": 9,
+   "notice": "日常捐献、副本组队，欢迎同好。",
+   "autoJoin": true,
+   "memberCount": 9,
+   "leaderName": "林书"
+  },
+  {
+   "id": 43,
+   "name": "淡墨斋",
+   "level": 5,
+   "emblemId": 31,
+   "notice": "日常捐献、副本组队，欢迎同好。",
+   "autoJoin": false,
+   "memberCount": 9,
+   "leaderName": "野阙"
+  },
+  {
+   "id": 45,
+   "name": "孤峰台",
+   "level": 5,
+   "emblemId": 6,
+   "notice": "日常捐献、副本组队，欢迎同好。",
+   "autoJoin": true,
+   "memberCount": 9,
+   "leaderName": "寒渠"
+  },
+  {
+   "id": 48,
+   "name": "临渊阁",
+   "level": 3,
+   "emblemId": 30,
+   "notice": "日常捐献、副本组队，欢迎同好。",
+   "autoJoin": false,
+   "memberCount": 9,
+   "leaderName": "青舟"
+  },
+  {
+   "id": 32,
+   "name": "照野庄",
+   "level": 3,
+   "emblemId": 15,
+   "notice": "日常捐献、副本组队，欢迎同好。",
+   "autoJoin": false,
+   "memberCount": 1,
+   "leaderName": "白篁"
+  },
+  {
+   "id": 49,
+   "name": "拂石居",
+   "level": 2,
+   "emblemId": 10,
+   "notice": "日常捐献、副本组队，欢迎同好。",
+   "autoJoin": false,
+   "memberCount": 3,
+   "leaderName": "玄渊"
+  }
+ ],
+ "usedEmblemIds": [
+  32,
+  14,
+  12,
+  1,
+  28,
+  3,
+  15,
+  2,
+  18,
+  9,
+  16,
+  31,
+  6,
+  30,
+  10
+ ]
+}

@@ -1,0 +1,217 @@
+{
+ "schema_version": 2,
+ "playerData": {
+  "hp": 100,
+  "mp": 100,
+  "gold": 1000,
+  "name": "新人",
+  "level": 1,
+  "magic": 10,
+  "realm": "凡人",
+  "is_vip": false,
+  "max_hp": 100,
+  "max_mp": 100,
+  "points": 20,
+  "titles": [],
+  "element": "普通",
+  "vitality": 10,
+  "talent_hp": 0,
+  "timestamp": 0,
+  "vip_level": 0,
+  "experience": 0,
+  "attack_base": 10,
+  "cultivation": 0,
+  "recent_maps": [],
+  "tower_floor": 1,
+  "agility_base": 10,
+  "defense_base": 10,
+  "final_attack": 10,
+  "final_max_hp": 100,
+  "final_max_mp": 100,
+  "final_agility": 10,
+  "final_defense": 10,
+  "reincarnation": 0,
+  "talent_attack": 0,
+  "tower_highest": 0,
+  "talent_agility": 0,
+  "talent_defense": 0,
+  "active_title_id": 0,
+  "double_exp_until": 0,
+  "permanent_points": 0,
+  "yuanbao_currency": 0,
+  "battle_stance_pet": "attack",
+  "friendship_points": 0,
+  "tower_sweep_count": 0,
+  "fe_yuanbao_attempts": 0,
+  "pending_auto_points": 0,
+  "player_character_id": 0,
+  "suit_dungeon_sweeps": 0,
+  "vip_expire_time_str": "",
+  "auto_allocation_plan": {},
+  "battle_stance_player": "attack",
+  "suit_dungeon_progress": {},
+  "cultivation_pills_used": 0,
+  "auto_allocation_enabled": false,
+  "fe_yuanbao_attempts_date": "",
+  "use_fabao_player_element": "",
+  "lottery_yuanbao_pity_count": 0,
+  "double_exp_auto_realm_enabled": false,
+  "five_elements_dungeon_attempts": 0
+ },
+ "petsData": {
+  "pets": [
+   {
+    "hp": 65.0,
+    "id": "kvq0txqa",
+    "form": "幼年",
+    "name": "变异阿努",
+    "type": "平均型",
+    "level": 1,
+    "attack": 9.0,
+    "locked": false,
+    "max_hp": 65.0,
+    "pet_id": "bianyianu",
+    "agility": 9.0,
+    "defense": 9.0,
+    "element": "火",
+    "is_elite": false,
+    "is_mutant": false,
+    "max_level": 1500,
+    "base_stats": {
+     "hp": 65,
+     "attack": 9,
+     "agility": 9,
+     "defense": 9
+    },
+    "experience": 0,
+    "generation": 0,
+    "stat_ratio": {
+     "attack": 33,
+     "agility": 34,
+     "defense": 33
+    },
+    "capture_map": "mayday_event",
+    "skill_slots": [
+     {
+      "slot": 1,
+      "level": 1,
+      "skill_id": "splash",
+      "skill_key": "splash_lv1",
+      "skill_name": "溅射"
+     },
+     {
+      "slot": 2,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     },
+     {
+      "slot": 3,
+      "level": 0,
+      "skill_id": "",
+      "skill_key": "",
+      "skill_name": ""
+     }
+    ],
+    "final_attack": 9.0,
+    "final_max_hp": 65.0,
+    "growth_rates": {
+     "hp": 60.446,
+     "attack": 19.949,
+     "agility": 20.548,
+     "defense": 19.949
+    },
+    "medal_counts": {
+     "bold": 5,
+     "calm": 5,
+     "brave": 5
+    },
+    "total_growth": 60.446,
+    "final_agility": 9.0,
+    "final_defense": 9.0,
+    "mutation_count": 0,
+    "evolution_stage": 0,
+    "evolution_origin": "",
+    "is_evolution_pet": false,
+    "pending_medal_sync": false,
+    "lineage_seed_growth": 5.871,
+    "pet_raise_race_used": false,
+    "reincarnation_count": 0,
+    "last_max_level_medal_cap": 0,
+    "pending_skill_learn_sync": false,
+    "pending_medal_sync_reason": "",
+    "last_max_level_skill_learn_cap": 0,
+    "pending_skill_learn_prev_level": 0
+   }
+  ],
+  "pet_bag": [],
+  "version": 2,
+  "assist_pets": [],
+  "active_pet_id": "kvq0txqa",
+  "pet_bag_slots": {}
+ },
+ "inventoryData": {
+  "items": [],
+  "xianmo_chests": {},
+  "warehouse_items": [],
+  "equipment_warehouse": [],
+  "pet_equipment_items": [],
+  "pet_equipment_warehouse": []
+ },
+ "equipmentData": {
+  "equipped": {},
+  "inventory": []
+ },
+ "martialArtsData": {
+  "equipped_ids": [],
+  "martial_arts": [],
+  "daily_create_count": 0
+ },
+ "craftingData": {},
+ "gameSettings": {
+  "bgm_volume": 0.4,
+  "bgm_enabled": false,
+  "current_map": "浮影水城外郊（0,0）",
+  "operationId": "1792691203.37272_4143342972",
+  "compact_mode": true,
+  "previous_map": "浮影水城外郊（0,0）",
+  "save_revision": 58769,
+  "upload_reason": "compact_upload",
+  "schema_version": 2,
+  "is_tower_battle": false,
+  "is_tower_settling": false,
+  "last_broadcast_id": 257932,
+  "auto_capture_enabled": true,
+  "min_growth_threshold": 0.5,
+  "current_map_difficulty": "normal",
+  "is_suit_dungeon_battle": false,
+  "restricted_authority_fields": [
+   "equipmentData",
+   "suitData",
+   "petEquipmentData",
+   "inventoryData.equipment_warehouse",
+   "inventoryData.pet_equipment_items",
+   "inventoryData.pet_equipment_warehouse"
+  ]
+ },
+ "petCollectionData": {
+  "bonuses": {},
+  "progress": {},
+  "pet_soul_data": {},
+  "mutation_progress": {}
+ },
+ "petEquipmentData": {
+  "equipped": {}
+ },
+ "suitData": {
+  "equipped_suits": {},
+  "dungeon_progress": {}
+ },
+ "questData": {
+  "quests": {},
+  "daily_reset_time": 20260705046400
+ },
+ "updatedAt": "2026-10-22T17:47:40.000Z",
+ "saveRevision": 1
+}

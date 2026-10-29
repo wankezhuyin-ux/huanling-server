@@ -1,0 +1,4263 @@
+{
+ "source": "scripts/network.gd",
+ "endpoint_count": 177,
+ "endpoints": {
+  "/api/events/batch": {
+   "path": "/api/events/batch",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "send_events_batch"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": "post_api_events_batch.json"
+  },
+  "/api/player/buffs": {
+   "path": "/api/player/buffs",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_player_buffs"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": "get_api_player_buffs.json"
+  },
+  "/atlas-dungeon/finish": {
+   "path": "/atlas-dungeon/finish",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "tier",
+    "operationId",
+    "startOperationId",
+    "defeatedPetIds",
+    "minGrowthThreshold"
+   ],
+   "callers": [
+    "atlas_dungeon_finish"
+   ],
+   "request_keys": [
+    "atlas_dungeon_finish"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "createCount",
+    "detail",
+    "duplicate",
+    "error",
+    "eventId",
+    "eventType",
+    "isFirstLogin",
+    "isToday",
+    "maxSweeps",
+    "message",
+    "newGold",
+    "nobleBonus",
+    "offlineSeconds",
+    "remaining",
+    "rolledSuccess",
+    "serverSuccessRate",
+    "success",
+    "sweepsLeft",
+    "vipTier"
+   ],
+   "response_keys": [
+    "atlas_dungeon_finish"
+   ],
+   "capture_file": null
+  },
+  "/atlas-dungeon/start": {
+   "path": "/atlas-dungeon/start",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "start_atlas_dungeon"
+   ],
+   "request_keys": [
+    "atlas_dungeon_start"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "accountSuspended",
+    "code",
+    "createCount",
+    "currentWave",
+    "detail",
+    "duplicate",
+    "error",
+    "eventId",
+    "eventType",
+    "isToday",
+    "maxSweeps",
+    "message",
+    "newGold",
+    "nobleBonus",
+    "remaining",
+    "rolledSuccess",
+    "serverSuccessRate",
+    "success",
+    "sweepsLeft"
+   ],
+   "response_keys": [
+    "atlas_dungeon_start"
+   ],
+   "capture_file": null
+  },
+  "/atlas-dungeon/status": {
+   "path": "/atlas-dungeon/status",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_atlas_dungeon_status"
+   ],
+   "request_keys": [
+    "atlas_dungeon_status"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "createCount",
+    "currentWave",
+    "duplicate",
+    "error",
+    "eventId",
+    "eventType",
+    "isToday",
+    "maxSweeps",
+    "message",
+    "nobleBonus",
+    "remaining",
+    "remainingAttempts",
+    "serverSuccessRate",
+    "success",
+    "sweepsLeft"
+   ],
+   "response_keys": [
+    "atlas_dungeon_status"
+   ],
+   "capture_file": "get_atlas_dungeon_status.json"
+  },
+  "/battle/tower-run": {
+   "path": "/battle/tower-run",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "floor"
+   ],
+   "callers": [
+    "economy_tower_replay_run"
+   ],
+   "request_keys": [
+    "economy_tower_replay_run"
+   ],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [
+    "economy_tower_replay_run"
+   ],
+   "capture_file": null
+  },
+  "/battle/wild-abandon": {
+   "path": "/battle/wild-abandon",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "fightToken"
+   ],
+   "callers": [
+    "economy_wild_replay_abandon"
+   ],
+   "request_keys": [
+    "economy_wild_replay_abandon"
+   ],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [
+    "economy_wild_replay_abandon"
+   ],
+   "capture_file": null
+  },
+  "/battle/wild-run": {
+   "path": "/battle/wild-run",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "mapId",
+    "battleStancePlayer",
+    "battleStancePet"
+   ],
+   "callers": [
+    "economy_wild_replay_run"
+   ],
+   "request_keys": [
+    "economy_wild_replay_run"
+   ],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [
+    "economy_wild_replay_run"
+   ],
+   "capture_file": null
+  },
+  "/brother-tower/application/decide": {
+   "path": "/brother-tower/application/decide",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "brother_tower_decide_application"
+   ],
+   "request_keys": [
+    "brother_tower_application_decide"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "currentWave",
+    "error",
+    "friendshipGain",
+    "message",
+    "ok",
+    "session",
+    "success"
+   ],
+   "response_keys": [
+    "brother_tower_application_decide"
+   ],
+   "capture_file": null
+  },
+  "/brother-tower/battle-events": {
+   "path": "/brother-tower/battle-events",
+   "methods": [
+    "POST",
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "brother_tower_push_battle_events",
+    "brother_tower_fetch_battle_events"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/brother-tower/complete": {
+   "path": "/brother-tower/complete",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "_pump_brother_tower_complete_dedicated"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/brother-tower/create": {
+   "path": "/brother-tower/create",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "brother_tower_create"
+   ],
+   "request_keys": [
+    "brother_tower_create"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "currentWave",
+    "error",
+    "friendshipGain",
+    "message",
+    "session",
+    "success"
+   ],
+   "response_keys": [
+    "brother_tower_create"
+   ],
+   "capture_file": null
+  },
+  "/brother-tower/disband": {
+   "path": "/brother-tower/disband",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "brother_tower_disband"
+   ],
+   "request_keys": [
+    "brother_tower_disband"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "success"
+   ],
+   "response_keys": [
+    "brother_tower_disband"
+   ],
+   "capture_file": null
+  },
+  "/brother-tower/forfeit": {
+   "path": "/brother-tower/forfeit",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "brother_tower_forfeit"
+   ],
+   "request_keys": [
+    "brother_tower_forfeit"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "playerData",
+    "success"
+   ],
+   "response_keys": [
+    "brother_tower_forfeit"
+   ],
+   "capture_file": null
+  },
+  "/brother-tower/heartbeat": {
+   "path": "/brother-tower/heartbeat",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "brother_tower_heartbeat"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/brother-tower/join": {
+   "path": "/brother-tower/join",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "brother_tower_join"
+   ],
+   "request_keys": [
+    "brother_tower_join"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "currentWave",
+    "error",
+    "friendshipGain",
+    "message",
+    "ok",
+    "session",
+    "success"
+   ],
+   "response_keys": [
+    "brother_tower_join"
+   ],
+   "capture_file": null
+  },
+  "/brother-tower/leave": {
+   "path": "/brother-tower/leave",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "brother_tower_leave"
+   ],
+   "request_keys": [
+    "brother_tower_leave"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "success"
+   ],
+   "response_keys": [
+    "brother_tower_leave"
+   ],
+   "capture_file": null
+  },
+  "/brother-tower/list": {
+   "path": "/brother-tower/list",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_brother_tower_list"
+   ],
+   "request_keys": [
+    "brother_tower_list"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "currentWave",
+    "data",
+    "error",
+    "message",
+    "myPendingApplicationRoomIds",
+    "myRoom",
+    "ok",
+    "rooms",
+    "session",
+    "status",
+    "success"
+   ],
+   "response_keys": [
+    "brother_tower_list"
+   ],
+   "capture_file": "get_brother_tower_list.json"
+  },
+  "/brother-tower/pin-snapshot": {
+   "path": "/brother-tower/pin-snapshot",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "brother_tower_pin_snapshot"
+   ],
+   "request_keys": [
+    "brother_tower_pin_snapshot"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "currentWave",
+    "error",
+    "friendshipGain",
+    "message",
+    "ok",
+    "session",
+    "success"
+   ],
+   "response_keys": [
+    "brother_tower_pin_snapshot"
+   ],
+   "capture_file": null
+  },
+  "/brother-tower/poll": {
+   "path": "/brother-tower/poll",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_brother_tower_poll"
+   ],
+   "request_keys": [
+    "brother_tower_poll"
+   ],
+   "has_query": true,
+   "response_fields": [
+    "myPendingApplicationRoomIds",
+    "myRoom",
+    "rooms",
+    "session",
+    "status",
+    "success"
+   ],
+   "response_keys": [
+    "brother_tower_poll"
+   ],
+   "capture_file": null
+  },
+  "/brother-tower/ready": {
+   "path": "/brother-tower/ready",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "brother_tower_ready"
+   ],
+   "request_keys": [
+    "brother_tower_ready"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "currentWave",
+    "error",
+    "friendshipGain",
+    "message",
+    "ok",
+    "session",
+    "success"
+   ],
+   "response_keys": [
+    "brother_tower_ready"
+   ],
+   "capture_file": null
+  },
+  "/brother-tower/session": {
+   "path": "/brother-tower/session",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_brother_tower_session"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/brother-tower/start": {
+   "path": "/brother-tower/start",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "_pump_brother_tower_start_dedicated"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/brother-tower/status": {
+   "path": "/brother-tower/status",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_brother_tower_status"
+   ],
+   "request_keys": [
+    "brother_tower_status"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "friendshipGain",
+    "session",
+    "success"
+   ],
+   "response_keys": [
+    "brother_tower_status"
+   ],
+   "capture_file": "get_brother_tower_status.json"
+  },
+  "/brother-tower/wave-cleared": {
+   "path": "/brother-tower/wave-cleared",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "brother_tower_wave_cleared"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/crafting/pill-craft": {
+   "path": "/crafting/pill-craft",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "recipeKey",
+    "batchCount",
+    "operationId"
+   ],
+   "callers": [
+    "request_pill_craft"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/economy/battle-loot": {
+   "path": "/economy/battle-loot",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "_pump_economy_battle_loot_dedicated"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/economy/drop-config": {
+   "path": "/economy/drop-config",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "fetch_drop_config"
+   ],
+   "request_keys": [
+    "drop_config"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "deduped",
+    "dropRates",
+    "duplicate",
+    "events",
+    "success",
+    "throttled",
+    "token",
+    "userId"
+   ],
+   "response_keys": [
+    "drop_config"
+   ],
+   "capture_file": "get_economy_drop_config.json"
+  },
+  "/economy/offline-claim": {
+   "path": "/economy/offline-claim",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId"
+   ],
+   "callers": [
+    "economy_offline_claim"
+   ],
+   "request_keys": [
+    "economy_offline_claim"
+   ],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [
+    "economy_offline_claim"
+   ],
+   "capture_file": null
+  },
+  "/economy/offline-gold": {
+   "path": "/economy/offline-gold",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId"
+   ],
+   "callers": [
+    "economy_offline_gold"
+   ],
+   "request_keys": [
+    "economy_offline_gold"
+   ],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [
+    "economy_offline_gold"
+   ],
+   "capture_file": null
+  },
+  "/economy/pet-refine-gold": {
+   "path": "/economy/pet-refine-gold",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId"
+   ],
+   "callers": [
+    "economy_pet_refine_gold"
+   ],
+   "request_keys": [
+    "economy_pet_refine_gold"
+   ],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [
+    "economy_pet_refine_gold"
+   ],
+   "capture_file": null
+  },
+  "/economy/quest-claim": {
+   "path": "/economy/quest-claim",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "questId"
+   ],
+   "callers": [
+    "economy_quest_claim"
+   ],
+   "request_keys": [
+    "economy_quest_claim"
+   ],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [
+    "economy_quest_claim"
+   ],
+   "capture_file": null
+  },
+  "/economy/suit-dungeon-clear-reward": {
+   "path": "/economy/suit-dungeon-clear-reward",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "level"
+   ],
+   "callers": [
+    "economy_suit_dungeon_clear_reward"
+   ],
+   "request_keys": [
+    "economy_suit_clear"
+   ],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [
+    "economy_suit_clear"
+   ],
+   "capture_file": null
+  },
+  "/economy/suit-dungeon-sweep-reward": {
+   "path": "/economy/suit-dungeon-sweep-reward",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "level"
+   ],
+   "callers": [
+    "economy_suit_dungeon_sweep_reward"
+   ],
+   "request_keys": [
+    "economy_suit_sweep"
+   ],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [
+    "economy_suit_sweep"
+   ],
+   "capture_file": null
+  },
+  "/economy/tower-clear-reward": {
+   "path": "/economy/tower-clear-reward",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "_pump_economy_tower_clear_dedicated"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/economy/tower-sweep-reward": {
+   "path": "/economy/tower-sweep-reward",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId"
+   ],
+   "callers": [
+    "economy_tower_sweep_reward"
+   ],
+   "request_keys": [
+    "economy_tower_sweep"
+   ],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [
+    "economy_tower_sweep"
+   ],
+   "capture_file": null
+  },
+  "/economy/whitelist-gold": {
+   "path": "/economy/whitelist-gold",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "grantKey"
+   ],
+   "callers": [
+    "economy_whitelist_gold"
+   ],
+   "request_keys": [
+    "economy_whitelist_gold"
+   ],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [
+    "economy_whitelist_gold"
+   ],
+   "capture_file": null
+  },
+  "/economy/whitelist-item-consume": {
+   "path": "/economy/whitelist-item-consume",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "consumeKey"
+   ],
+   "callers": [
+    "economy_whitelist_item_consume"
+   ],
+   "request_keys": [
+    "economy_whitelist_item_consume"
+   ],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [
+    "economy_whitelist_item_consume"
+   ],
+   "capture_file": null
+  },
+  "/economy/xianmo-misc-gold": {
+   "path": "/economy/xianmo-misc-gold",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "amount"
+   ],
+   "callers": [
+    "economy_xianmo_misc_gold"
+   ],
+   "request_keys": [
+    "economy_xianmo_misc_gold"
+   ],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [
+    "economy_xianmo_misc_gold"
+   ],
+   "capture_file": null
+  },
+  "/equipment/dismantle-suit": {
+   "path": "/equipment/dismantle-suit",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "equipmentId",
+    "sealedItemId",
+    "operationId"
+   ],
+   "callers": [
+    "request_equipment_dismantle_suit"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/equipment/dismantle-suit-batch": {
+   "path": "/equipment/dismantle-suit-batch",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "targets",
+    "operationId"
+   ],
+   "callers": [
+    "request_equipment_dismantle_suit_batch"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/equipment/drop": {
+   "path": "/equipment/drop",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "equipmentId",
+    "operationId"
+   ],
+   "callers": [
+    "request_equipment_drop"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/equipment/equip": {
+   "path": "/equipment/equip",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "equipmentId",
+    "slot",
+    "operationId"
+   ],
+   "callers": [
+    "request_equipment_equip"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/equipment/grant": {
+   "path": "/equipment/grant",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "sourceType",
+    "sourceId",
+    "count",
+    "operationId"
+   ],
+   "callers": [
+    "request_equipment_grant"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/equipment/retrieve-warehouse": {
+   "path": "/equipment/retrieve-warehouse",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "equipmentId",
+    "warehouseType",
+    "operationId"
+   ],
+   "callers": [
+    "request_equipment_retrieve_warehouse",
+    "request_equipment_retrieve_warehouse_batch"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/equipment/store-warehouse": {
+   "path": "/equipment/store-warehouse",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "request_equipment_store_warehouse"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/equipment/suit-convert": {
+   "path": "/equipment/suit-convert",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "equipmentIds",
+    "operationId"
+   ],
+   "callers": [
+    "request_equipment_suit_convert"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/equipment/unequip": {
+   "path": "/equipment/unequip",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "slot",
+    "operationId"
+   ],
+   "callers": [
+    "request_equipment_unequip"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/equipment/unseal-suit": {
+   "path": "/equipment/unseal-suit",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "request_equipment_unseal_suit"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/festival/runtime-config": {
+   "path": "/festival/runtime-config",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "fetch_festival_runtime_config"
+   ],
+   "request_keys": [
+    "festival_runtime_config"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "deduped",
+    "dropRates",
+    "duplicate",
+    "events",
+    "nickname",
+    "success",
+    "throttled",
+    "token",
+    "userId",
+    "wipeId"
+   ],
+   "response_keys": [
+    "festival_runtime_config"
+   ],
+   "capture_file": null
+  },
+  "/five-elements-dungeon/status": {
+   "path": "/five-elements-dungeon/status",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_fe_dungeon_status"
+   ],
+   "request_keys": [
+    "fe_dungeon_status"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "createCount",
+    "duplicate",
+    "error",
+    "eventId",
+    "eventType",
+    "isToday",
+    "maxSweeps",
+    "message",
+    "nickname",
+    "nobleBonus",
+    "remainingAttempts",
+    "serverSuccessRate",
+    "success",
+    "sweepsLeft",
+    "token",
+    "userId",
+    "wipeId"
+   ],
+   "response_keys": [
+    "fe_dungeon_status"
+   ],
+   "capture_file": "get_five_elements_dungeon_status.json"
+  },
+  "/forge/execute": {
+   "path": "/forge/execute",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "mainEquipmentId",
+    "subMaterialId",
+    "targetAttr",
+    "operationId"
+   ],
+   "callers": [
+    "execute_forge"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/forge/preview": {
+   "path": "/forge/preview",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "mainEquipmentId",
+    "subMaterialId",
+    "targetAttr"
+   ],
+   "callers": [
+    "request_forge_preview"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": "post_forge_preview.json"
+  },
+  "/gameplay/runtime-config": {
+   "path": "/gameplay/runtime-config",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "fetch_gameplay_runtime_config"
+   ],
+   "request_keys": [
+    "gameplay_runtime_config"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "data",
+    "deduped",
+    "duplicate",
+    "events",
+    "nickname",
+    "success",
+    "throttled",
+    "token",
+    "userId",
+    "wipeId"
+   ],
+   "response_keys": [
+    "gameplay_runtime_config"
+   ],
+   "capture_file": null
+  },
+  "/gift/frontier/use": {
+   "path": "/gift/frontier/use",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId"
+   ],
+   "callers": [
+    "request_frontier_gift_use"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/gift/open-pet": {
+   "path": "/gift/open-pet",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "giftName",
+    "operationId"
+   ],
+   "callers": [
+    "request_pet_gift_open"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/gift/use-medal": {
+   "path": "/gift/use-medal",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId"
+   ],
+   "callers": [
+    "request_pet_medal_use"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/gift/use-medal-batch": {
+   "path": "/gift/use-medal-batch",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "batchCount"
+   ],
+   "callers": [
+    "request_pet_medal_use_batch"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/inventory/drop": {
+   "path": "/inventory/drop",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "itemId",
+    "count",
+    "operationId"
+   ],
+   "callers": [
+    "request_inventory_drop"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/inventory/store-warehouse": {
+   "path": "/inventory/store-warehouse",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "itemId",
+    "count",
+    "operationId"
+   ],
+   "callers": [
+    "request_inventory_store_warehouse",
+    "request_inventory_store_warehouse_batch"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/inventory/synthesize-seal-stone": {
+   "path": "/inventory/synthesize-seal-stone",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "batchCount",
+    "operationId"
+   ],
+   "callers": [
+    "request_inventory_synthesize_seal_stone"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/login": {
+   "path": "/login",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "username",
+    "password",
+    "clientVersion"
+   ],
+   "callers": [
+    "login"
+   ],
+   "request_keys": [
+    "login"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "accountSuspended",
+    "code",
+    "currentVersion",
+    "data",
+    "deduped",
+    "detail",
+    "duplicate",
+    "error",
+    "latestVersion",
+    "minimumVersion",
+    "nickname",
+    "openMaxFloor",
+    "openMaxFloorBypass",
+    "rankings",
+    "remainingAttempts",
+    "result",
+    "saveData",
+    "success",
+    "sweepCount",
+    "sweepUsed",
+    "throttled",
+    "token",
+    "towerFloor",
+    "towerHighest",
+    "updateUrl",
+    "userId",
+    "wipeId"
+   ],
+   "response_keys": [
+    "login"
+   ],
+   "capture_file": null
+  },
+  "/lottery/draw": {
+   "path": "/lottery/draw",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "pool"
+   ],
+   "callers": [
+    "lottery_draw"
+   ],
+   "request_keys": [
+    "lottery_draw"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "currentWave",
+    "data",
+    "deduped",
+    "dropRates",
+    "duplicate",
+    "error",
+    "events",
+    "success",
+    "throttled",
+    "token"
+   ],
+   "response_keys": [
+    "lottery_draw"
+   ],
+   "capture_file": null
+  },
+  "/lottery/pity/claim": {
+   "path": "/lottery/pity/claim",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "rewardName"
+   ],
+   "callers": [
+    "lottery_claim_pity_reward"
+   ],
+   "request_keys": [
+    "lottery_pity_claim"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "currentWave",
+    "data",
+    "deduped",
+    "dropRates",
+    "duplicate",
+    "error",
+    "events",
+    "nickname",
+    "result",
+    "success",
+    "throttled",
+    "token",
+    "userId",
+    "wipeId"
+   ],
+   "response_keys": [
+    "lottery_pity_claim"
+   ],
+   "capture_file": null
+  },
+  "/lottery/pity/status": {
+   "path": "/lottery/pity/status",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "lottery_get_pity_status"
+   ],
+   "request_keys": [
+    "lottery_pity_status"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "currentWave",
+    "data",
+    "deduped",
+    "dropRates",
+    "duplicate",
+    "error",
+    "events",
+    "nickname",
+    "result",
+    "success",
+    "throttled",
+    "token",
+    "userId",
+    "wipeId"
+   ],
+   "response_keys": [
+    "lottery_pity_status"
+   ],
+   "capture_file": "get_lottery_pity_status.json"
+  },
+  "/mail/list": {
+   "path": "/mail/list",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "request_mail_list"
+   ],
+   "request_keys": [
+    "mail_list"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "nickname",
+    "result",
+    "token",
+    "userId",
+    "wipeId"
+   ],
+   "response_keys": [
+    "mail_list"
+   ],
+   "capture_file": "get_mail_list.json"
+  },
+  "/martial/create": {
+   "path": "/martial/create",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "create_martial_art"
+   ],
+   "request_keys": [
+    "martial_create"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "endTime",
+    "equipment",
+    "eventId",
+    "eventType",
+    "goldReward",
+    "isFirstLogin",
+    "isToday",
+    "itemName",
+    "items",
+    "joined",
+    "mo",
+    "newGold",
+    "newTotalScore",
+    "nobleBonus",
+    "offlineSeconds",
+    "rankings",
+    "remaining",
+    "rewards",
+    "rolledSuccess",
+    "serverSuccessRate",
+    "startTime",
+    "success",
+    "vipTier",
+    "weekNumber",
+    "xian"
+   ],
+   "response_keys": [
+    "martial_create"
+   ],
+   "capture_file": null
+  },
+  "/martial/forget": {
+   "path": "/martial/forget",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "artId",
+    "operationId"
+   ],
+   "callers": [
+    "martial_forget"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/martial/info": {
+   "path": "/martial/info",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_martial_info"
+   ],
+   "request_keys": [
+    "martial_info"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "createCount",
+    "endTime",
+    "equipment",
+    "eventId",
+    "eventType",
+    "isFirstLogin",
+    "isToday",
+    "itemName",
+    "items",
+    "joined",
+    "mo",
+    "newGold",
+    "newTotalScore",
+    "nobleBonus",
+    "offlineSeconds",
+    "rankings",
+    "remaining",
+    "rewards",
+    "rolledSuccess",
+    "serverSuccessRate",
+    "startTime",
+    "success",
+    "vipTier",
+    "weekNumber",
+    "xian"
+   ],
+   "response_keys": [
+    "martial_info"
+   ],
+   "capture_file": "get_martial_info.json"
+  },
+  "/martial/skill_book_use": {
+   "path": "/martial/skill_book_use",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "bookName",
+    "operationId"
+   ],
+   "callers": [
+    "request_martial_skill_book_use"
+   ],
+   "request_keys": [
+    "martial_skill_book_use"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "endTime",
+    "equipment",
+    "eventId",
+    "eventType",
+    "goldReward",
+    "isFirstLogin",
+    "itemName",
+    "items",
+    "joined",
+    "mirror",
+    "mo",
+    "newTotalScore",
+    "offlineSeconds",
+    "rankings",
+    "rewards",
+    "rolledSuccess",
+    "scoreGain",
+    "startTime",
+    "success",
+    "vipTier",
+    "weekNumber",
+    "xian"
+   ],
+   "response_keys": [
+    "martial_skill_book_use"
+   ],
+   "capture_file": null
+  },
+  "/martial/sync-layout": {
+   "path": "/martial/sync-layout",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "martialArtsData",
+    "operationId"
+   ],
+   "callers": [
+    "martial_sync_layout"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/noble/claim": {
+   "path": "/noble/claim",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "claimType",
+    "operationId"
+   ],
+   "callers": [
+    "claim_noble_reward"
+   ],
+   "request_keys": [
+    "noble_claim"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "accountSuspended",
+    "code",
+    "currentWave",
+    "data",
+    "deduped",
+    "detail",
+    "dropRates",
+    "duplicate",
+    "error",
+    "events",
+    "nickname",
+    "result",
+    "saveData",
+    "success",
+    "throttled",
+    "token",
+    "userId",
+    "wipeId"
+   ],
+   "response_keys": [
+    "noble_claim"
+   ],
+   "capture_file": null
+  },
+  "/noble/info": {
+   "path": "/noble/info",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_noble_info"
+   ],
+   "request_keys": [
+    "noble_info"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "accountSuspended",
+    "code",
+    "currentWave",
+    "data",
+    "deduped",
+    "detail",
+    "dropRates",
+    "duplicate",
+    "error",
+    "events",
+    "nickname",
+    "result",
+    "success",
+    "throttled",
+    "token",
+    "userId",
+    "wipeId"
+   ],
+   "response_keys": [
+    "noble_info"
+   ],
+   "capture_file": "get_noble_info.json"
+  },
+  "/offline/heartbeat": {
+   "path": "/offline/heartbeat",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "send_offline_heartbeat"
+   ],
+   "request_keys": [
+    "offline_heartbeat"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "broadcasts",
+    "code",
+    "endTime",
+    "equipment",
+    "eventId",
+    "eventType",
+    "goldReward",
+    "isFirstLogin",
+    "itemName",
+    "items",
+    "joined",
+    "mirror",
+    "mo",
+    "newTotalScore",
+    "rankings",
+    "rewards",
+    "scoreGain",
+    "startTime",
+    "success",
+    "titles",
+    "token",
+    "vipTier",
+    "weekNumber",
+    "xian"
+   ],
+   "response_keys": [
+    "offline_heartbeat"
+   ],
+   "capture_file": null
+  },
+  "/offline/info": {
+   "path": "/offline/info",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_offline_info"
+   ],
+   "request_keys": [
+    "offline_info"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "token"
+   ],
+   "response_keys": [
+    "offline_info"
+   ],
+   "capture_file": "get_offline_info.json"
+  },
+  "/pet-equipment/dismantle": {
+   "path": "/pet-equipment/dismantle",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "equipmentId",
+    "operationId"
+   ],
+   "callers": [
+    "request_pet_equipment_dismantle"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet-equipment/dismantle-batch": {
+   "path": "/pet-equipment/dismantle-batch",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "equipmentIds",
+    "operationId"
+   ],
+   "callers": [
+    "request_pet_equipment_dismantle_batch"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet-equipment/drop": {
+   "path": "/pet-equipment/drop",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "equipmentId",
+    "operationId"
+   ],
+   "callers": [
+    "request_pet_equipment_drop"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet-equipment/enhance": {
+   "path": "/pet-equipment/enhance",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "equipmentId",
+    "stoneItemId",
+    "operationId"
+   ],
+   "callers": [
+    "request_pet_equipment_enhance"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet-equipment/equip": {
+   "path": "/pet-equipment/equip",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "equipmentId",
+    "slot",
+    "operationId"
+   ],
+   "callers": [
+    "request_pet_equipment_equip"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet-equipment/grant": {
+   "path": "/pet-equipment/grant",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "sourceType",
+    "sourceId",
+    "count",
+    "operationId"
+   ],
+   "callers": [
+    "request_pet_equipment_grant"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet-equipment/retrieve-warehouse": {
+   "path": "/pet-equipment/retrieve-warehouse",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "equipmentId",
+    "operationId"
+   ],
+   "callers": [
+    "request_pet_equipment_retrieve_warehouse"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet-equipment/store-warehouse": {
+   "path": "/pet-equipment/store-warehouse",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "equipmentId",
+    "operationId"
+   ],
+   "callers": [
+    "request_pet_equipment_store_warehouse"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet-equipment/synthesize-fragments": {
+   "path": "/pet-equipment/synthesize-fragments",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "fragmentCount",
+    "batchCount",
+    "operationId"
+   ],
+   "callers": [
+    "request_pet_equipment_synthesize_fragments"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet-equipment/unequip": {
+   "path": "/pet-equipment/unequip",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "slot",
+    "operationId"
+   ],
+   "callers": [
+    "request_pet_equipment_unequip"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/assist/equip": {
+   "path": "/pet/assist/equip",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "petId",
+    "slotIndex",
+    "operationId"
+   ],
+   "callers": [
+    "pet_assist_equip"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/assist/unequip": {
+   "path": "/pet/assist/unequip",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "slotIndex",
+    "operationId"
+   ],
+   "callers": [
+    "pet_assist_unequip"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/bag/retrieve": {
+   "path": "/pet/bag/retrieve",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "petId",
+    "operationId"
+   ],
+   "callers": [
+    "pet_bag_retrieve"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": "post_pet_bag_retrieve.json"
+  },
+  "/pet/bag/retrieve-batch": {
+   "path": "/pet/bag/retrieve-batch",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "petIds",
+    "operationId"
+   ],
+   "callers": [
+    "request_pet_bag_retrieve_batch"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": "post_pet_bag_retrieve_batch.json"
+  },
+  "/pet/bag/store": {
+   "path": "/pet/bag/store",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "petId",
+    "operationId"
+   ],
+   "callers": [
+    "pet_bag_store"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": "post_pet_bag_store.json"
+  },
+  "/pet/bag/store-batch": {
+   "path": "/pet/bag/store-batch",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "petIds",
+    "operationId"
+   ],
+   "callers": [
+    "request_pet_bag_store_batch"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": "post_pet_bag_store_batch.json"
+  },
+  "/pet/collection/invest": {
+   "path": "/pet/collection/invest",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "petInstanceId",
+    "operationId"
+   ],
+   "callers": [
+    "pet_collection_invest"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": "post_pet_collection_invest.json"
+  },
+  "/pet/evolve": {
+   "path": "/pet/evolve",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "petId",
+    "useMutant",
+    "operationId"
+   ],
+   "callers": [
+    "pet_evolve"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/grant-medal": {
+   "path": "/pet/grant-medal",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "petId",
+    "medalCounts"
+   ],
+   "callers": [
+    "request_pet_grant_medal"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/grant-starter": {
+   "path": "/pet/grant-starter",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId"
+   ],
+   "callers": [
+    "pet_grant_starter"
+   ],
+   "request_keys": [
+    "pet_grant_starter"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "createCount",
+    "detail",
+    "duplicate",
+    "error",
+    "eventId",
+    "eventType",
+    "isFirstLogin",
+    "isToday",
+    "maxSweeps",
+    "message",
+    "newGold",
+    "nobleBonus",
+    "offlineSeconds",
+    "remaining",
+    "rolledSuccess",
+    "serverSuccessRate",
+    "success",
+    "sweepsLeft",
+    "vipTier"
+   ],
+   "response_keys": [
+    "pet_grant_starter"
+   ],
+   "capture_file": null
+  },
+  "/pet/instance-level": {
+   "path": "/pet/instance-level",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "fetch_pet_instance_level"
+   ],
+   "request_keys": [],
+   "has_query": true,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/lock": {
+   "path": "/pet/lock",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "petId",
+    "locked",
+    "operationId"
+   ],
+   "callers": [
+    "pet_lock"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/max-level-learn": {
+   "path": "/pet/max-level-learn",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "petId",
+    "previousLevel"
+   ],
+   "callers": [
+    "request_pet_max_level_learn"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/merge": {
+   "path": "/pet/merge",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "mainPetId",
+    "subPetId",
+    "operationId",
+    "useTransformCharm"
+   ],
+   "callers": [
+    "pet_merge"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/open-egg": {
+   "path": "/pet/open-egg",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "eggName",
+    "operationId"
+   ],
+   "callers": [
+    "request_pet_egg_open"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/refine": {
+   "path": "/pet/refine",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "materialInstanceIds"
+   ],
+   "callers": [
+    "pet_refine"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/refine/validate": {
+   "path": "/pet/refine/validate",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "materialInstanceIds"
+   ],
+   "callers": [
+    "pet_refine_validate"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/reincarnate": {
+   "path": "/pet/reincarnate",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "petId",
+    "element",
+    "operationId"
+   ],
+   "callers": [
+    "pet_reincarnate"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/reincarnate-inherit": {
+   "path": "/pet/reincarnate-inherit",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "sourcePetId",
+    "targetPetId",
+    "operationId"
+   ],
+   "callers": [
+    "pet_reincarnate_inherit"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/release": {
+   "path": "/pet/release",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "petId",
+    "operationId"
+   ],
+   "callers": [
+    "pet_release"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/release-batch": {
+   "path": "/pet/release-batch",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "petIds",
+    "operationId"
+   ],
+   "callers": [
+    "request_pet_release_batch"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/roster/sync": {
+   "path": "/pet/roster/sync",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "pets",
+    "activePetId",
+    "saveRevision"
+   ],
+   "callers": [
+    "pet_roster_sync"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/soul/commit": {
+   "path": "/pet/soul/commit",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "petId",
+    "operationId"
+   ],
+   "callers": [
+    "pet_soul_commit"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/soul/commit-batch": {
+   "path": "/pet/soul/commit-batch",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "petIds",
+    "operationId"
+   ],
+   "callers": [
+    "pet_soul_commit_batch"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet/soul/use-item": {
+   "path": "/pet/soul/use-item",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "itemName",
+    "operationId"
+   ],
+   "callers": [
+    "pet_soul_use_item"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/pet_skill/action": {
+   "path": "/pet_skill/action",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "action",
+    "params",
+    "book_name",
+    "book_count",
+    "operation_id"
+   ],
+   "callers": [
+    "request_pet_skill_synthetic",
+    "request_pet_skill_split",
+    "request_pet_skill_learn",
+    "request_pet_skill_unlearn",
+    "request_pet_skill_slot_lock",
+    "request_pet_skill_sync",
+    "request_pet_skill_level_up"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/player/attr/auto-allocate": {
+   "path": "/player/attr/auto-allocate",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId"
+   ],
+   "callers": [
+    "player_attr_auto_allocate"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/player/attr/auto-plan": {
+   "path": "/player/attr/auto-plan",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "enabled",
+    "plan"
+   ],
+   "callers": [
+    "player_attr_save_auto_plan"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/player/attr/spend-points": {
+   "path": "/player/attr/spend-points",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "stat",
+    "count"
+   ],
+   "callers": [
+    "player_attr_spend_points"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/player/capture-settings": {
+   "path": "/player/capture-settings",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "autoCaptureEnabled",
+    "minGrowthThreshold",
+    "operationId"
+   ],
+   "callers": [
+    "set_capture_settings"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/player/realm/transition": {
+   "path": "/player/realm/transition",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "transitionType",
+    "playerData",
+    "operationId"
+   ],
+   "callers": [
+    "realm_transition"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/player/set-current-map": {
+   "path": "/player/set-current-map",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "mapName",
+    "operationId"
+   ],
+   "callers": [
+    "set_current_map"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/player/switch-character": {
+   "path": "/player/switch-character",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "characterId"
+   ],
+   "callers": [
+    "economy_player_switch_character"
+   ],
+   "request_keys": [
+    "economy_player_switch_character"
+   ],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [
+    "economy_player_switch_character"
+   ],
+   "capture_file": null
+  },
+  "/player/talent/allocate": {
+   "path": "/player/talent/allocate",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId",
+    "attack",
+    "defense",
+    "agility",
+    "hp"
+   ],
+   "callers": [
+    "player_talent_allocate"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/player/talent/reset": {
+   "path": "/player/talent/reset",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "operationId"
+   ],
+   "callers": [
+    "player_talent_reset"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/ranking": {
+   "path": "/ranking",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_ranking"
+   ],
+   "request_keys": [
+    "ranking"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "deduped",
+    "duplicate",
+    "error",
+    "throttled"
+   ],
+   "response_keys": [
+    "ranking"
+   ],
+   "capture_file": "get_ranking.json"
+  },
+  "/ranking/pets/evolution": {
+   "path": "/ranking/pets/evolution",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_ranking_pets_evolution"
+   ],
+   "request_keys": [
+    "ranking_pets_evolution"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "duplicate",
+    "error",
+    "eventId",
+    "eventType",
+    "message",
+    "openMaxFloor",
+    "openMaxFloorBypass",
+    "remainingAttempts",
+    "success",
+    "sweepCount",
+    "sweepUsed",
+    "towerFloor",
+    "towerHighest"
+   ],
+   "response_keys": [
+    "ranking_pets_evolution"
+   ],
+   "capture_file": "get_ranking_pets_evolution.json"
+  },
+  "/ranking/pets/non-evolution": {
+   "path": "/ranking/pets/non-evolution",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_ranking_pets_non_evolution"
+   ],
+   "request_keys": [
+    "ranking_pets_non_evolution"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "duplicate",
+    "error",
+    "eventId",
+    "eventType",
+    "message",
+    "openMaxFloor",
+    "openMaxFloorBypass",
+    "remainingAttempts",
+    "success",
+    "sweepCount",
+    "sweepUsed",
+    "towerFloor",
+    "towerHighest"
+   ],
+   "response_keys": [
+    "ranking_pets_non_evolution"
+   ],
+   "capture_file": "get_ranking_pets_non_evolution.json"
+  },
+  "/ranking/players": {
+   "path": "/ranking/players",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_ranking_players"
+   ],
+   "request_keys": [
+    "ranking_players"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "duplicate",
+    "error",
+    "message",
+    "openMaxFloor",
+    "openMaxFloorBypass",
+    "rankings",
+    "remainingAttempts",
+    "success",
+    "sweepCount",
+    "sweepUsed",
+    "towerFloor",
+    "towerHighest"
+   ],
+   "response_keys": [
+    "ranking_players"
+   ],
+   "capture_file": "get_ranking_players.json"
+  },
+  "/register": {
+   "path": "/register",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "username",
+    "password",
+    "nickname",
+    "clientVersion"
+   ],
+   "callers": [
+    "register"
+   ],
+   "request_keys": [
+    "register"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "accountSuspended",
+    "code",
+    "data",
+    "deduped",
+    "duplicate",
+    "nickname",
+    "openMaxFloor",
+    "openMaxFloorBypass",
+    "rankings",
+    "remainingAttempts",
+    "result",
+    "saveData",
+    "success",
+    "sweepCount",
+    "sweepUsed",
+    "throttled",
+    "token",
+    "towerFloor",
+    "towerHighest",
+    "userId",
+    "wipeId"
+   ],
+   "response_keys": [
+    "register"
+   ],
+   "capture_file": null
+  },
+  "/save/download": {
+   "path": "/save/download",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "download_save"
+   ],
+   "request_keys": [
+    "download_save"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "accountSuspended",
+    "code",
+    "detail",
+    "duplicate",
+    "error",
+    "message",
+    "openMaxFloor",
+    "openMaxFloorBypass",
+    "rankings",
+    "remainingAttempts",
+    "result",
+    "saveData",
+    "success",
+    "sweepCount",
+    "sweepUsed",
+    "towerFloor",
+    "towerHighest"
+   ],
+   "response_keys": [
+    "download_save"
+   ],
+   "capture_file": "get_save_download.json"
+  },
+  "/save/upload": {
+   "path": "/save/upload",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "_do_upload_save"
+   ],
+   "request_keys": [
+    "upload_save"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "accountSuspended",
+    "code",
+    "data",
+    "deduped",
+    "detail",
+    "duplicate",
+    "error",
+    "success",
+    "throttled"
+   ],
+   "response_keys": [
+    "upload_save"
+   ],
+   "capture_file": null
+  },
+  "/shengsi-tower/feed": {
+   "path": "/shengsi-tower/feed",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "_shengsi_fire_feed"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/shengsi-tower/floor": {
+   "path": "/shengsi-tower/floor",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "_shengsi_fire_floor"
+   ],
+   "request_keys": [],
+   "has_query": true,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/shengsi-tower/floor/battles": {
+   "path": "/shengsi-tower/floor/battles",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "_shengsi_fire_floor_battles"
+   ],
+   "request_keys": [],
+   "has_query": true,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/shengsi-tower/match": {
+   "path": "/shengsi-tower/match",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "_shengsi_fire_match"
+   ],
+   "request_keys": [],
+   "has_query": true,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/shengsi-tower/my-battles": {
+   "path": "/shengsi-tower/my-battles",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_shengsi_tower_my_battles"
+   ],
+   "request_keys": [
+    "shengsi_tower_my_battles"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "data",
+    "error",
+    "message",
+    "ok",
+    "playerData",
+    "success"
+   ],
+   "response_keys": [
+    "shengsi_tower_my_battles"
+   ],
+   "capture_file": "get_shengsi_tower_my_battles.json"
+  },
+  "/shengsi-tower/room/heartbeat": {
+   "path": "/shengsi-tower/room/heartbeat",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "shengsi_tower_room_heartbeat"
+   ],
+   "request_keys": [
+    "shengsi_tower_room_heartbeat"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "playerData",
+    "success"
+   ],
+   "response_keys": [
+    "shengsi_tower_room_heartbeat"
+   ],
+   "capture_file": null
+  },
+  "/shengsi-tower/room/list": {
+   "path": "/shengsi-tower/room/list",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "_shengsi_fire_room_list"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/shengsi-tower/round/matchup": {
+   "path": "/shengsi-tower/round/matchup",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "_shengsi_fire_matchup"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/shengsi-tower/round/ready": {
+   "path": "/shengsi-tower/round/ready",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "shengsi_tower_round_ready"
+   ],
+   "request_keys": [
+    "shengsi_tower_ready"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "playerData",
+    "success"
+   ],
+   "response_keys": [
+    "shengsi_tower_ready"
+   ],
+   "capture_file": null
+  },
+  "/shengsi-tower/round/stance": {
+   "path": "/shengsi-tower/round/stance",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "shengsi_tower_round_stance"
+   ],
+   "request_keys": [
+    "shengsi_tower_stance"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "playerData",
+    "success"
+   ],
+   "response_keys": [
+    "shengsi_tower_stance"
+   ],
+   "capture_file": null
+  },
+  "/shop/buy": {
+   "path": "/shop/buy",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "_pump_shop_buy_dedicated"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/shop/catalog": {
+   "path": "/shop/catalog",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_main_shop_catalog"
+   ],
+   "request_keys": [
+    "main_shop_catalog"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "broadcasts",
+    "code",
+    "endTime",
+    "equipment",
+    "eventId",
+    "eventType",
+    "faction",
+    "goldReward",
+    "itemName",
+    "items",
+    "matches",
+    "mirror",
+    "newGold",
+    "newTotalScore",
+    "nickname",
+    "participants",
+    "rewards",
+    "scoreGain",
+    "startTime",
+    "success",
+    "titles",
+    "token"
+   ],
+   "response_keys": [
+    "main_shop_catalog"
+   ],
+   "capture_file": "get_shop_catalog.json"
+  },
+  "/suit-dungeon/info": {
+   "path": "/suit-dungeon/info",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_suit_dungeon_info"
+   ],
+   "request_keys": [
+    "suit_dungeon_info"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "createCount",
+    "endTime",
+    "eventId",
+    "eventType",
+    "isFirstLogin",
+    "isToday",
+    "itemName",
+    "items",
+    "joined",
+    "maxSweeps",
+    "mo",
+    "newGold",
+    "newTotalScore",
+    "nobleBonus",
+    "offlineSeconds",
+    "rankings",
+    "remaining",
+    "rewards",
+    "rolledSuccess",
+    "serverSuccessRate",
+    "startTime",
+    "success",
+    "sweepsLeft",
+    "vipTier",
+    "weekNumber",
+    "xian"
+   ],
+   "response_keys": [
+    "suit_dungeon_info"
+   ],
+   "capture_file": "get_suit_dungeon_info.json"
+  },
+  "/suit-dungeon/ranking": {
+   "path": "/suit-dungeon/ranking",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_suit_dungeon_ranking"
+   ],
+   "request_keys": [
+    "ranking_suit_dungeon"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "duplicate",
+    "error",
+    "eventId",
+    "eventType",
+    "message",
+    "openMaxFloor",
+    "openMaxFloorBypass",
+    "remainingAttempts",
+    "success",
+    "sweepCount",
+    "sweepUsed",
+    "towerFloor",
+    "towerHighest"
+   ],
+   "response_keys": [
+    "ranking_suit_dungeon"
+   ],
+   "capture_file": null
+  },
+  "/suit-dungeon/sweep": {
+   "path": "/suit-dungeon/sweep",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "use_suit_dungeon_sweep"
+   ],
+   "request_keys": [
+    "suit_dungeon_sweep"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "createCount",
+    "endTime",
+    "eventId",
+    "eventType",
+    "isFirstLogin",
+    "isToday",
+    "itemName",
+    "items",
+    "joined",
+    "maxSweeps",
+    "mo",
+    "newGold",
+    "newTotalScore",
+    "nobleBonus",
+    "offlineSeconds",
+    "rankings",
+    "remaining",
+    "rewards",
+    "rolledSuccess",
+    "serverSuccessRate",
+    "startTime",
+    "success",
+    "sweepsLeft",
+    "vipTier",
+    "weekNumber",
+    "xian"
+   ],
+   "response_keys": [
+    "suit_dungeon_sweep"
+   ],
+   "capture_file": null
+  },
+  "/suit-equipment/enhance": {
+   "path": "/suit-equipment/enhance",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "equipmentId",
+    "operationId"
+   ],
+   "callers": [
+    "request_suit_equipment_enhance"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/suit-equipment/enhance/confirm": {
+   "path": "/suit-equipment/enhance/confirm",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "pendingToken",
+    "accept",
+    "operationId"
+   ],
+   "callers": [
+    "request_suit_equipment_enhance_confirm"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/tower/info": {
+   "path": "/tower/info",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_tower_info"
+   ],
+   "request_keys": [
+    "tower_info"
+   ],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [
+    "tower_info"
+   ],
+   "capture_file": "get_tower_info.json"
+  },
+  "/tower/ranking": {
+   "path": "/tower/ranking",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "get_tower_ranking"
+   ],
+   "request_keys": [
+    "ranking_tower"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "duplicate",
+    "error",
+    "eventId",
+    "eventType",
+    "message",
+    "openMaxFloor",
+    "openMaxFloorBypass",
+    "remainingAttempts",
+    "success",
+    "sweepCount",
+    "sweepUsed",
+    "towerFloor",
+    "towerHighest"
+   ],
+   "response_keys": [
+    "ranking_tower"
+   ],
+   "capture_file": null
+  },
+  "/tower/sweep": {
+   "path": "/tower/sweep",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "mark_tower_sweep"
+   ],
+   "request_keys": [
+    "tower_sweep"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "data",
+    "deduped",
+    "duplicate",
+    "error",
+    "success",
+    "throttled"
+   ],
+   "response_keys": [
+    "tower_sweep"
+   ],
+   "capture_file": null
+  },
+  "/tower/update": {
+   "path": "/tower/update",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "highestFloor"
+   ],
+   "callers": [
+    "update_tower_highest"
+   ],
+   "request_keys": [
+    "tower_update"
+   ],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [
+    "tower_update"
+   ],
+   "capture_file": null
+  },
+  "/treasure/battle-log": {
+   "path": "/treasure/battle-log",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "treasure_get_battle_log"
+   ],
+   "request_keys": [
+    "treasure_battle_log"
+   ],
+   "has_query": true,
+   "response_fields": [
+    "currentWave",
+    "data",
+    "dropRates",
+    "error",
+    "events",
+    "matches",
+    "message",
+    "participants",
+    "success",
+    "user",
+    "vip_daily_mutation_egg",
+    "vip_daily_yuanbao_granted",
+    "vip_expire_time",
+    "vip_level"
+   ],
+   "response_keys": [
+    "treasure_battle_log"
+   ],
+   "capture_file": null
+  },
+  "/treasure/chest/open": {
+   "path": "/treasure/chest/open",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "_treasure_open_try_request_deferred"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/treasure/chest/validate-tokens": {
+   "path": "/treasure/chest/validate-tokens",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "treasure_validate_tokens"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/treasure/join": {
+   "path": "/treasure/join",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "_treasure_join_try_request_deferred"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/treasure/participants": {
+   "path": "/treasure/participants",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "treasure_get_participants"
+   ],
+   "request_keys": [
+    "treasure_participants"
+   ],
+   "has_query": true,
+   "response_fields": [
+    "currentWave",
+    "data",
+    "dropRates",
+    "error",
+    "events",
+    "matches",
+    "message",
+    "participants",
+    "success",
+    "user",
+    "vip_daily_mutation_egg",
+    "vip_daily_yuanbao_granted",
+    "vip_expire_time",
+    "vip_level"
+   ],
+   "response_keys": [
+    "treasure_participants"
+   ],
+   "capture_file": null
+  },
+  "/treasure/status": {
+   "path": "/treasure/status",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "_treasure_status_try_request_deferred"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": "get_treasure_status.json"
+  },
+  "/user/info": {
+   "path": "/user/info",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "_send_heartbeat",
+    "get_user_info",
+    "get_vip_info"
+   ],
+   "request_keys": [
+    "user_info",
+    "vip_info"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "data",
+    "deduped",
+    "dropRates",
+    "duplicate",
+    "events",
+    "success",
+    "throttled",
+    "vip_expire_time"
+   ],
+   "response_keys": [
+    "user_info",
+    "vip_info"
+   ],
+   "capture_file": "get_user_info.json"
+  },
+  "/version/check": {
+   "path": "/version/check",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "check_version"
+   ],
+   "request_keys": [],
+   "has_query": true,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/xianmo/adventure": {
+   "path": "/xianmo/adventure",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "points"
+   ],
+   "callers": [
+    "xianmo_adventure"
+   ],
+   "request_keys": [
+    "xianmo_adventure"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "createCount",
+    "currentWave",
+    "detail",
+    "error",
+    "eventId",
+    "eventType",
+    "isFirstLogin",
+    "isToday",
+    "items",
+    "joined",
+    "maxSweeps",
+    "message",
+    "mo",
+    "newGold",
+    "nobleBonus",
+    "offlineSeconds",
+    "rankings",
+    "remaining",
+    "rolledSuccess",
+    "serverSuccessRate",
+    "success",
+    "sweepsLeft",
+    "vipTier",
+    "weekNumber",
+    "xian"
+   ],
+   "response_keys": [
+    "xianmo_adventure"
+   ],
+   "capture_file": null
+  },
+  "/xianmo/battle/result": {
+   "path": "/xianmo/battle/result",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "eventId",
+    "victory",
+    "scoreGain",
+    "opponent",
+    "operationId"
+   ],
+   "callers": [
+    "xianmo_report_battle_result"
+   ],
+   "request_keys": [
+    "xianmo_battle_result"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "data",
+    "deduped",
+    "duplicate",
+    "error",
+    "success",
+    "throttled"
+   ],
+   "response_keys": [
+    "xianmo_battle_result"
+   ],
+   "capture_file": null
+  },
+  "/xianmo/broadcast": {
+   "path": "/xianmo/broadcast",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "broadcastType",
+    "content",
+    "extraData"
+   ],
+   "callers": [
+    "xianmo_send_broadcast"
+   ],
+   "request_keys": [
+    "xianmo_broadcast"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "currentWave",
+    "data",
+    "deduped",
+    "duplicate",
+    "error",
+    "success",
+    "throttled"
+   ],
+   "response_keys": [
+    "xianmo_broadcast"
+   ],
+   "capture_file": null
+  },
+  "/xianmo/broadcasts": {
+   "path": "/xianmo/broadcasts",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "xianmo_get_broadcasts",
+    "fetch_xianmo_broadcast_history_snapshot"
+   ],
+   "request_keys": [
+    "xianmo_broadcasts"
+   ],
+   "has_query": true,
+   "response_fields": [
+    "currentWave"
+   ],
+   "response_keys": [
+    "xianmo_broadcasts"
+   ],
+   "capture_file": null
+  },
+  "/xianmo/chest/deposit": {
+   "path": "/xianmo/chest/deposit",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "chestType",
+    "operationId"
+   ],
+   "callers": [
+    "xianmo_chest_deposit"
+   ],
+   "request_keys": [],
+   "has_query": false,
+   "response_fields": [],
+   "response_keys": [],
+   "capture_file": null
+  },
+  "/xianmo/chest/open": {
+   "path": "/xianmo/chest/open",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "chestType"
+   ],
+   "callers": [
+    "xianmo_open_chest"
+   ],
+   "request_keys": [
+    "xianmo_chest_open"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "broadcasts",
+    "currentWave",
+    "endTime",
+    "equipment",
+    "error",
+    "faction",
+    "goldReward",
+    "matches",
+    "message",
+    "mirror",
+    "newGold",
+    "nickname",
+    "participants",
+    "rewards",
+    "scoreGain",
+    "startTime",
+    "success",
+    "titles",
+    "user",
+    "vip_daily_mutation_egg",
+    "vip_daily_yuanbao_granted",
+    "vip_expire_time",
+    "vip_level"
+   ],
+   "response_keys": [
+    "xianmo_chest_open"
+   ],
+   "capture_file": null
+  },
+  "/xianmo/chest/open-batch": {
+   "path": "/xianmo/chest/open-batch",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "chestType",
+    "count",
+    "operationId"
+   ],
+   "callers": [
+    "xianmo_open_chest_batch"
+   ],
+   "request_keys": [
+    "xianmo_chest_open_batch"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "broadcasts",
+    "currentWave",
+    "equipment",
+    "error",
+    "faction",
+    "goldReward",
+    "matches",
+    "message",
+    "mirror",
+    "newGold",
+    "nickname",
+    "participants",
+    "rewards",
+    "scoreGain",
+    "success",
+    "titles",
+    "user",
+    "vip_daily_yuanbao_granted",
+    "vip_level"
+   ],
+   "response_keys": [
+    "xianmo_chest_open_batch"
+   ],
+   "capture_file": null
+  },
+  "/xianmo/faction/stats": {
+   "path": "/xianmo/faction/stats",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "xianmo_get_faction_stats"
+   ],
+   "request_keys": [
+    "xianmo_faction_stats"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "currentWave"
+   ],
+   "response_keys": [
+    "xianmo_faction_stats"
+   ],
+   "capture_file": "get_xianmo_faction_stats.json"
+  },
+  "/xianmo/info": {
+   "path": "/xianmo/info",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "xianmo_get_info"
+   ],
+   "request_keys": [
+    "xianmo_info"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "currentWave"
+   ],
+   "response_keys": [
+    "xianmo_info"
+   ],
+   "capture_file": "get_xianmo_info.json"
+  },
+  "/xianmo/join": {
+   "path": "/xianmo/join",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "faction"
+   ],
+   "callers": [
+    "xianmo_join"
+   ],
+   "request_keys": [
+    "xianmo_join"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "broadcasts",
+    "currentWave",
+    "data",
+    "error",
+    "faction",
+    "matches",
+    "message",
+    "newGold",
+    "nickname",
+    "participants",
+    "success",
+    "user",
+    "vip_daily_mutation_egg",
+    "vip_daily_yuanbao_granted",
+    "vip_expire_time",
+    "vip_level"
+   ],
+   "response_keys": [
+    "xianmo_join"
+   ],
+   "capture_file": null
+  },
+  "/xianmo/mirror": {
+   "path": "/xianmo/mirror",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "xianmo_get_mirror"
+   ],
+   "request_keys": [
+    "xianmo_mirror"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "currentWave"
+   ],
+   "response_keys": [
+    "xianmo_mirror"
+   ],
+   "capture_file": "get_xianmo_mirror.json"
+  },
+  "/xianmo/pet/exchange": {
+   "path": "/xianmo/pet/exchange",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "xianmo_pet_exchange"
+   ],
+   "request_keys": [
+    "xianmo_pet_exchange"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "code",
+    "data",
+    "deduped",
+    "duplicate",
+    "error",
+    "success",
+    "throttled"
+   ],
+   "response_keys": [
+    "xianmo_pet_exchange"
+   ],
+   "capture_file": null
+  },
+  "/xianmo/ranking": {
+   "path": "/xianmo/ranking",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "xianmo_get_ranking"
+   ],
+   "request_keys": [
+    "xianmo_ranking"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "currentWave"
+   ],
+   "response_keys": [
+    "xianmo_ranking"
+   ],
+   "capture_file": null
+  },
+  "/xianmo/shop/buy": {
+   "path": "/xianmo/shop/buy",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "itemId"
+   ],
+   "callers": [
+    "xianmo_shop_buy"
+   ],
+   "request_keys": [
+    "xianmo_shop_buy"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "broadcasts",
+    "currentWave",
+    "data",
+    "deduped",
+    "duplicate",
+    "endTime",
+    "equipment",
+    "faction",
+    "goldReward",
+    "itemName",
+    "items",
+    "matches",
+    "mirror",
+    "newGold",
+    "newTotalScore",
+    "nickname",
+    "participants",
+    "rewards",
+    "scoreGain",
+    "startTime",
+    "success",
+    "throttled",
+    "titles"
+   ],
+   "response_keys": [
+    "xianmo_shop_buy"
+   ],
+   "capture_file": null
+  },
+  "/xianmo/shop/items": {
+   "path": "/xianmo/shop/items",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "xianmo_get_shop_items"
+   ],
+   "request_keys": [
+    "xianmo_shop_items"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "currentWave"
+   ],
+   "response_keys": [
+    "xianmo_shop_items"
+   ],
+   "capture_file": "get_xianmo_shop_items.json"
+  },
+  "/xianmo/titles": {
+   "path": "/xianmo/titles",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "xianmo_get_titles"
+   ],
+   "request_keys": [
+    "xianmo_titles"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "broadcasts",
+    "currentWave",
+    "error",
+    "faction",
+    "matches",
+    "message",
+    "mirror",
+    "newGold",
+    "nickname",
+    "participants",
+    "success",
+    "titles",
+    "user",
+    "vip_daily_mutation_egg",
+    "vip_daily_yuanbao_granted",
+    "vip_expire_time",
+    "vip_level"
+   ],
+   "response_keys": [
+    "xianmo_titles"
+   ],
+   "capture_file": "get_xianmo_titles.json"
+  },
+  "/xianmo/titles/activate": {
+   "path": "/xianmo/titles/activate",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "titleId"
+   ],
+   "callers": [
+    "xianmo_activate_title"
+   ],
+   "request_keys": [
+    "xianmo_title_activate"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "currentWave",
+    "data",
+    "deduped",
+    "duplicate",
+    "error",
+    "success",
+    "throttled"
+   ],
+   "response_keys": [
+    "xianmo_title_activate"
+   ],
+   "capture_file": "post_xianmo_titles_activate.json"
+  },
+  "/xianmo/titles/deactivate": {
+   "path": "/xianmo/titles/deactivate",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "xianmo_deactivate_title"
+   ],
+   "request_keys": [
+    "xianmo_title_deactivate"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "currentWave",
+    "data",
+    "deduped",
+    "duplicate",
+    "error",
+    "success",
+    "throttled"
+   ],
+   "response_keys": [
+    "xianmo_title_deactivate"
+   ],
+   "capture_file": "post_xianmo_titles_deactivate.json"
+  },
+  "/xianmo/treasure/exchange": {
+   "path": "/xianmo/treasure/exchange",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [],
+   "callers": [
+    "xianmo_treasure_exchange"
+   ],
+   "request_keys": [
+    "xianmo_treasure_exchange"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "broadcasts",
+    "currentWave",
+    "data",
+    "deduped",
+    "duplicate",
+    "equipment",
+    "error",
+    "faction",
+    "goldReward",
+    "matches",
+    "message",
+    "mirror",
+    "newGold",
+    "nickname",
+    "participants",
+    "scoreGain",
+    "success",
+    "throttled",
+    "titles",
+    "user",
+    "vip_daily_mutation_egg",
+    "vip_daily_yuanbao_granted",
+    "vip_expire_time",
+    "vip_level"
+   ],
+   "response_keys": [
+    "xianmo_treasure_exchange"
+   ],
+   "capture_file": null
+  },
+  "/xianmo/treasure/use": {
+   "path": "/xianmo/treasure/use",
+   "methods": [
+    "POST"
+   ],
+   "request_fields": [
+    "mapId",
+    "operationId"
+   ],
+   "callers": [
+    "xianmo_use_treasure_map"
+   ],
+   "request_keys": [
+    "xianmo_treasure_use"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "broadcasts",
+    "currentWave",
+    "error",
+    "faction",
+    "goldReward",
+    "matches",
+    "message",
+    "mirror",
+    "newGold",
+    "nickname",
+    "participants",
+    "scoreGain",
+    "success",
+    "titles",
+    "user",
+    "vip_daily_mutation_egg",
+    "vip_daily_yuanbao_granted",
+    "vip_expire_time",
+    "vip_level"
+   ],
+   "response_keys": [
+    "xianmo_treasure_use"
+   ],
+   "capture_file": null
+  },
+  "/xianmo/week/info": {
+   "path": "/xianmo/week/info",
+   "methods": [
+    "GET"
+   ],
+   "request_fields": [],
+   "callers": [
+    "xianmo_get_week_info"
+   ],
+   "request_keys": [
+    "xianmo_week_info"
+   ],
+   "has_query": false,
+   "response_fields": [
+    "currentWave"
+   ],
+   "response_keys": [
+    "xianmo_week_info"
+   ],
+   "capture_file": "get_xianmo_week_info.json"
+  }
+ }
+}
