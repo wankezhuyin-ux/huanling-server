@@ -27,11 +27,11 @@
   },
   {
    "id": "fortify_lv1_book",
-   "name": "格挡lv1技能书",
-   "description": "宠物技能书，可学习格挡lv1技能，受到的伤害降低（原「坚固lv1」客户端物品表里不存在，领取会报未知物品）",
+   "name": "收锋lv1技能书",
+   "description": "宠物技能书，可学习收锋lv1技能，受到的伤害降低（原「固色lv1」客户端物品表里不存在，领取会报未知物品）",
    "cost": 5000,
    "type": "item",
-   "item_name": "格挡lv1技能书",
+   "item_name": "收锋lv1技能书",
    "count": 1
   }
  ]

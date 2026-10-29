@@ -185,12 +185,12 @@ LOTTERY_ITEM_POOLS = {
     "limit_equip": ["极限武器", "极限衣服", "极限鞋子", "极限血佩", "极限内带"],
     "element_egg": ["金属性宠物蛋", "木属性宠物蛋", "水属性宠物蛋",
                     "火属性宠物蛋", "土属性宠物蛋"],
-    "common_skill_book_pool": ["自愈lv1技能书", "迅捷lv1技能书", "格挡lv1技能书",
-                               "长寿lv1技能书", "强壮lv1技能书", "凶猛lv1技能书",
-                               "追击lv1技能书", "忠心lv1技能书"],
-    "rare_skill_book_pool": ["溅射lv1技能书", "反击lv1技能书", "神佑lv1技能书",
-                             "连射lv1技能书", "吸血lv1技能书", "破甲lv1技能书",
-                             "格挡lv1技能书", "必杀lv1技能书", "嘲讽lv1技能书"],
+    "common_skill_book_pool": ["回润lv1技能书", "疾笔lv1技能书", "收锋lv1技能书",
+                               "寿墨lv1技能书", "壮笔lv1技能书", "烈墨lv1技能书",
+                               "续笔lv1技能书", "守纸lv1技能书"],
+    "rare_skill_book_pool": ["溅墨lv1技能书", "逆锋lv1技能书", "护墨lv1技能书",
+                             "连笔lv1技能书", "吮墨lv1技能书", "破纸lv1技能书",
+                             "收锋lv1技能书", "断锋lv1技能书", "引锋lv1技能书"],
 }
 
 
@@ -1775,7 +1775,7 @@ def _skill_def_level(key: str, row: dict) -> int:
 
 
 def _skill_book_map() -> dict:
-    """道具名「自愈lv1技能书」→ skill_key（如 `self_heal_lv1`）。"""
+    """道具名「回润lv1技能书」→ skill_key（如 `self_heal_lv1`）。"""
     out: dict[str, str] = {}
     for key, row in _pet_skill_defs().items():
         if not isinstance(row, dict):
@@ -3793,7 +3793,7 @@ def _gold_from_name(name: str) -> int:
 
 
 def _skill_book_name(skill_key: str) -> str:
-    """skill_key → 原版道具名（`splash_lv1` →「溅射lv1技能书」）。
+    """skill_key → 道具名（`splash_lv1` →「溅墨lv1技能书」）。
 
     中文名只存在于 runtime-config gameplay.skillDefinitions，现查不写死；
     查不到返回空串，由调用方兜底。

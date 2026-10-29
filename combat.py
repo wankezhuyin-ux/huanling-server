@@ -317,9 +317,9 @@ def _best_skill_cfg(skill_keys, skill_id: str, skill_defs: dict) -> dict:
 
 
 # 服务端战斗模拟需要消费的宠物技能（和 `pet_skill_config.gd` 的 skill_id 一一对应）：
-#   主动   splash 溅射 / double_shot 连射 / chase 追击 / life_steal 吸血 /
-#          counter_attack 反击 / guard 格挡 / divine_protect 神佑 / self_heal 自愈 /
-#          taunt 嘲讽 / loyal 忠心 / armor_pierce 破甲
+#   主动   splash 溅墨 / double_shot 连笔 / chase 续笔 / life_steal 吸血 /
+#          counter_attack 逆锋 / guard 收锋 / divine_protect 护墨 / self_heal 自愈 /
+#          taunt 引锋 / loyal 守纸 / armor_pierce 破甲
 #   被动   fatal 必杀（暴击率）/ fierce 凶猛（暴击伤害）
 #          —— 强壮/迅捷/长寿/坚固已进客户端上报的 final_attack/agility/max_hp/defense，
 #             服务端直接用 final 值，不需要再叠加。
@@ -625,7 +625,7 @@ def resolve(
                 "round": rnd,
                 "attacker": pet.name,
                 "petName": pet.name,
-                "skillName": "破甲",
+                "skillName": "破纸",
             })
         defense = float(primary.defense) * 0.5 if pierced else None
         hit = _hit(pet, primary, crit_stats=pet_crit, attacker_element=pet.element or "",
@@ -639,7 +639,7 @@ def resolve(
         pet_total = int(hit["damage"])
         style_did = False
 
-        # 溅射 / 连射：攻击风格互斥，只掷一个；合击的宠物补击不触发（和原版一致）
+        # 溅墨 / 连射：攻击风格互斥，只掷一个；合击的宠物补击不触发（和原版一致）
         if not joint and allow_splash:
             style_id = "splash"
             style_cfg = (pet_skills or {}).get("splash")
@@ -895,7 +895,7 @@ def resolve(
                                 "hpRestored": int(restore),
                                 "targetHp": int(restore),
                                 "targetMaxHp": int(pet.max_hp),
-                                "skillName": "神佑",
+                                "skillName": "护墨",
                             })
                     if not revived:
                         log.append({"type": "pet_dead", "name": pet.name,
@@ -955,7 +955,7 @@ def resolve(
                         "hpRestored": actual,
                         "targetHp": int(pet.hp),
                         "targetMaxHp": int(pet.max_hp),
-                        "skillName": "自愈",
+                        "skillName": "回润",
                     })
 
         if not player.alive and not (pet and pet.alive):

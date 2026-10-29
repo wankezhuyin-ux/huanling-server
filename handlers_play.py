@@ -1199,7 +1199,7 @@ def _xianmo_pick_item(pool: list[str]) -> str:
 
 _XIANMO_RANDOM_ITEM_POOL = [
     "悟道仙丹", "强化石", "宠装强化石", "双倍经验丹",
-    "反击lv1技能书", "自愈lv1技能书", "迅捷lv1技能书", "长寿lv1技能书", "强壮lv1技能书",
+    "逆锋lv1技能书", "回润lv1技能书", "疾笔lv1技能书", "寿墨lv1技能书", "壮笔lv1技能书",
 ]
 _XIANMO_RARE_ITEM_POOL = [
     "悟道仙丹", "5+宠物蛋",
@@ -1820,7 +1820,7 @@ def xianmo_shop_buy(ctx: Ctx) -> dict:
         price = int(item.get("cost", item.get("price", 0)) or 0)
         name = str(item.get("name", item.get("itemName", "仙魔商品")))
         if item.get("type") != "chest" and not _client_has_item(name):
-            # 客户端物品表里没有这个名字（例如老的「坚固lv1技能书」），
+            # 客户端物品表里没有这个名字（例如老的「固色lv1技能书」），
             # 发了也进不了背包 → 宁可拒绝，也别白扣积分
             return fail("该商品暂不可兑换（道具数据缺失），请联系管理员")
         total_score = int(box.get("totalScore", 0))

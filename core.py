@@ -58,7 +58,7 @@ def rnd_id(prefix: str = "") -> str:
 #
 # 客户端 `inventory_manager.add_item()` 只认 `game_data.gd ALL_ITEMS` 里的名字，
 # 名字对不上就 `未知物品: xxx`，邮件点「打开」直接失败、奖励永久卡在邮箱。
-# 线上真实踩过的坑：神兽蛋 / 高级技能书 / 洗髓丹 / 灵兽经验丹 / 坚固lv1技能书，
+# 线上真实踩过的坑：神兽蛋 / 高级技能书 / 洗髓丹 / 灵兽经验丹 / 固色lv1技能书，
 # 还有把数量写进名字的「2026纪念法宝碎片*20」。
 _CLIENT_ITEM_NAMES: set | None = None
 
@@ -77,6 +77,32 @@ def client_has_item(name: str) -> bool:
     """白名单没加载成功时放行（不能让整条链路因为丢文件而挂掉）。"""
     names = client_item_names()
     return (not names) or (str(name) in names)
+
+
+_ITEM_RENAME: dict | None = None
+
+
+def item_rename_map() -> dict:
+    """道具改名表：旧名 md5 前 8 位 → 现用名。
+
+    键用哈希而不是明文，是为了磁盘和日志里都不留历史名字；
+    生成方是客户端工程的 tools/rename_pet_skills.py。
+    """
+    table = _ITEM_RENAME
+    if table is None:
+        raw = load_json(DATA / "item-rename.json", {}) or {}
+        table = raw.get("map") if isinstance(raw, dict) else None
+        table = table if isinstance(table, dict) else {}
+        globals()["_ITEM_RENAME"] = table
+    return table
+
+
+def migrate_item_name(name: str) -> str:
+    """单个物品名的归一化；没命中就原样返回。"""
+    text = str(name or "")
+    if not text:
+        return text
+    return item_rename_map().get(hashlib.md5(text.encode("utf-8")).hexdigest()[:8], text)
 
 
 _ITEM_QTY_RE = re.compile(r"^(.*?)\s*[*xX×]\s*(\d+)$")
@@ -377,7 +403,7 @@ def build_captured_pet(state, pet_id: str, map_name: str = "", is_elite: bool = 
 # ---------------------------------------------------------------- 新号注册礼包
 # 2026-10-28 起：新号不再送种子里的「变异阿努」（五一活动遗留），改送一只
 # 随机总成长 10~11 的苦行龟；另外在角色邮箱发一封欢迎邮件，附件是
-# 7+可进化宠礼包 x1 + 溅射lv1技能书 x1，附言「欢迎来到幻灵修真世界」。
+# 7+可进化宠礼包 x1 + 溅墨lv1技能书 x1，附言「欢迎来到幻灵修真世界」。
 REGISTRATION_PET_ID = "kǔxínggūi"        # 苦行龟
 REGISTRATION_GROWTH = (10.0, 11.0)       # 总成长随机区间（攻防敏成长率之和）
 WELCOME_MAIL_TITLE = "新人欢迎礼包"
@@ -385,7 +411,7 @@ WELCOME_MAIL_CONTENT = "欢迎来到幻灵修真世界"
 # 2026-10-29：新手礼包改成「7+可成长宠礼包 + 溅射宠物技能书」各一份
 WELCOME_GIFT_ITEMS = (
     ("7+可进化宠礼包", 1),
-    ("溅射lv1技能书", 1),
+    ("溅墨lv1技能书", 1),
 )
 WELCOME_GIFT_ITEM = WELCOME_GIFT_ITEMS[0][0]   # 兼容老引用
 
@@ -621,8 +647,47 @@ class State:
         changed = self._ensure_map()
         if self._migrate_coin_bags():
             changed = True
+        if self._migrate_item_names():
+            changed = True
         if self.fresh or changed:
             self.flush()
+
+    def _migrate_item_names(self) -> bool:
+        """道具改名：老存档里的旧物品名换成现用名。
+
+        换皮过程中会陆续改道具显示名（宠物技能书、丹药、材料……）。客户端只在
+        「玩家看到」的层面对得上不够 —— 服务端 take_item/邮件领取是按名字找物品的，
+        存档里留着旧名就会出现「背包看得见、点使用说数量不足」。
+
+        改名表在 data/item-rename.json，键是旧名的 md5 前 8 位，磁盘上不留明文旧名。
+        只扫背包与邮件，不碰宠物昵称之类同名字段（哈希不会撞）。
+        """
+        table = item_rename_map()
+        if not table:
+            return False
+        changed = False
+
+        def walk(node) -> None:
+            nonlocal changed
+            if isinstance(node, list):
+                for x in node:
+                    walk(x)
+                return
+            if not isinstance(node, dict):
+                return
+            name = node.get("name")
+            if isinstance(name, str) and name:
+                new = table.get(hashlib.md5(name.encode("utf-8")).hexdigest()[:8])
+                if new and new != name:
+                    node["name"] = new
+                    changed = True
+            for value in node.values():
+                if isinstance(value, (dict, list)):
+                    walk(value)
+
+        walk(self.save.get("inventoryData") or {})
+        walk(self.meta.get("mails") or [])
+        return changed
 
     def _migrate_coin_bags(self) -> bool:
         """钱袋合并：14 种赞助钱袋 → 单一「钱币袋」（每个仍是 10 万金币）。
@@ -1760,7 +1825,7 @@ class State:
         """新号注册礼包：
 
         ① 把种子里的「变异阿努」换成一只随机总成长 10~11 的苦行龟（主战栏唯一宠）；
-        ② 角色邮箱发欢迎邮件：7+可进化宠礼包 x1 + 溅射lv1技能书 x1。
+        ② 角色邮箱发欢迎邮件：7+可进化宠礼包 x1 + 溅墨lv1技能书 x1。
         """
         save = self.raw.get("save") if isinstance(self.raw.get("save"), dict) else {}
         pets_data = save.get("petsData")
