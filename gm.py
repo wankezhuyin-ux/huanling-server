@@ -629,7 +629,7 @@ def gm_api(ctx) -> dict:
             state.bump()
             state.flush()
         audit("starter_pack", username, lvl, ip)
-        return {"success": True, "message": "新手礼包已发放：10万金币 + 1万元宝 + 等级30 + 通宝",
+        return {"success": True, "message": "新手锦囊已发放：10万金币 + 1万元宝 + 等级30 + 通宝",
                 "data": player_full(username)}
 
     return {"success": False, "message": "未知操作：%s" % action}
@@ -819,7 +819,7 @@ th{color:var(--dim);font-weight:500}
         <div class="card">
           <h3>道具</h3>
           <div class="row">
-            <div style="flex:2"><label>道具名</label><input id="itemName" list="itemList" placeholder="天山雪莲"><datalist id="itemList"></datalist></div>
+            <div style="flex:2"><label>道具名</label><input id="itemName" list="itemList" placeholder="雪莲"><datalist id="itemList"></datalist></div>
             <div><label>数量</label><input id="itemCount" type="number" value="10"></div>
             <div><label>类型</label><select id="itemType"><option value="material">material 材料</option><option value="consumable">consumable 消耗品</option><option value="equipment">equipment 装备</option></select></div>
             <button onclick="addItem()">发放</button>
@@ -839,8 +839,8 @@ th{color:var(--dim);font-weight:500}
           <label>正文</label><textarea id="mailBody">服主发的补给，记得领。</textarea>
           <div style="height:8px"></div>
           <label>附件道具（每行一个：道具名,数量）</label>
-          <textarea id="mailItems" placeholder="天山雪莲,10
-灵草,99"></textarea>
+          <textarea id="mailItems" placeholder="雪莲,10
+墨草,99"></textarea>
           <div style="height:8px"></div>
           <button onclick="sendMail()">发送邮件</button>
         </div>
@@ -1157,5 +1157,5 @@ def _item_presets() -> list[str]:
         name = str(item.get("name") or "").strip()
         if name:
             names.add(name)
-    names.update(["天山雪莲", "灵草", "洗髓丹", "还魂丹", "双倍经验卡", "封印套装", "解封石"])
+    names.update(["雪莲", "墨草", "洗髓丹", "还魂丹", "双倍经验卡", "封印套装", "解封石"])
     return sorted(names)

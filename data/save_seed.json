@@ -22,22 +22,22 @@
   "attack_base": 10,
   "cultivation": 446917,
   "recent_maps": [
-   "盈露台看守区（0,0）",
-   "石笋洞窟（0,0）",
-   "华山瀑布（5,14）",
-   "传说中的英雄冢（0,0）",
-   "盘龙洞窟（46,65）",
-   "华山瀑布（0,0）",
-   "紫苔洞窟2（32,38）",
-   "焰浆地狱（0,0）",
-   "华山腰道（50,26）",
-   "华山腰道（18,49）",
-   "古铜洞窟2（30,47）",
-   "青铜洞窟（51,44）",
-   "古铜洞窟2（49,38）",
-   "华山腰道（0,0）",
-   "碧水洞窟（29,14）",
-   "铡头地狱（0,0）"
+   "接露台（0,0）",
+   "石笋洞（0,0）",
+   "断崖瀑（5,14）",
+   "无名冢（0,0）",
+   "龙骨洞·上（46,65）",
+   "断崖瀑（0,0）",
+   "紫苔洞·下（32,38）",
+   "岩浆渊（0,0）",
+   "半山路（50,26）",
+   "半山路（18,49）",
+   "铜锈洞·乙（30,47）",
+   "铜锈洞·丙（51,44）",
+   "铜锈洞·乙（49,38）",
+   "半山路（0,0）",
+   "碧水潭（29,14）",
+   "巨铡渊（0,0）"
   ],
   "tower_floor": 602,
   "agility_base": 1905,
@@ -365,7 +365,7 @@
      "agility": 50,
      "defense": 20
     },
-    "capture_map": "九曲回廊（42,29）",
+    "capture_map": "九曲廊（42,29）",
     "skill_slots": [
      {
       "slot": 1,
@@ -447,7 +447,7 @@
      "agility": 50,
      "defense": 20
     },
-    "capture_map": "九曲回廊（42,29）",
+    "capture_map": "九曲廊（42,29）",
     "skill_slots": [
      {
       "slot": 1,
@@ -529,7 +529,7 @@
      "agility": 50,
      "defense": 20
     },
-    "capture_map": "九曲回廊（42,29）",
+    "capture_map": "九曲廊（42,29）",
     "skill_slots": [
      {
       "slot": 1,
@@ -611,7 +611,7 @@
      "agility": 50,
      "defense": 20
     },
-    "capture_map": "九曲回廊（42,29）",
+    "capture_map": "九曲廊（42,29）",
     "skill_slots": [
      {
       "slot": 1,
@@ -693,7 +693,7 @@
      "agility": 50,
      "defense": 20
     },
-    "capture_map": "九曲回廊（42,29）",
+    "capture_map": "九曲廊（42,29）",
     "skill_slots": [
      {
       "slot": 1,
@@ -857,7 +857,7 @@
      "agility": 31,
      "defense": 35
     },
-    "capture_map": "浮影水城外郊（0,0）",
+    "capture_map": "墨影城郊（0,0）",
     "skill_slots": [
      {
       "slot": 1,
@@ -2377,35 +2377,35 @@
   "items": [
    {
     "id": "ijxglwv4",
-    "name": "天山雪莲",
+    "name": "雪莲",
     "count": 999,
     "item_type": "material",
     "custom_data": {}
    },
    {
     "id": "t6kut8kb",
-    "name": "天山雪莲",
+    "name": "雪莲",
     "count": 33,
     "item_type": "material",
     "custom_data": {}
    },
    {
     "id": "4tbaqrnt",
-    "name": "九转还魂草",
+    "name": "还魂草",
     "count": 380,
     "item_type": "material",
     "custom_data": {}
    },
    {
     "id": "23vj7cqr",
-    "name": "聚灵丹",
+    "name": "蓄灵丹",
     "count": 33,
     "item_type": "cultivation_pill",
     "custom_data": {}
    },
    {
     "id": "l4xkjvcf",
-    "name": "凝神丹",
+    "name": "定神丹",
     "count": 79,
     "item_type": "cultivation_pill",
     "custom_data": {}
@@ -2430,42 +2430,42 @@
    },
    {
     "id": "btizz61w",
-    "name": "灵芝",
+    "name": "墨芝",
     "count": 999,
     "item_type": "material",
     "custom_data": {}
    },
    {
     "id": "tldi9h7x",
-    "name": "灵芝",
+    "name": "墨芝",
     "count": 129,
     "item_type": "material",
     "custom_data": {}
    },
    {
     "id": "5zo0omic",
-    "name": "灵草",
+    "name": "墨草",
     "count": 999,
     "item_type": "material",
     "custom_data": {}
    },
    {
     "id": "hxecdcvt",
-    "name": "灵草",
+    "name": "墨草",
     "count": 999,
     "item_type": "material",
     "custom_data": {}
    },
    {
     "id": "1gx34jjf",
-    "name": "灵草",
+    "name": "墨草",
     "count": 225,
     "item_type": "material",
     "custom_data": {}
    },
    {
     "id": "v8z51o8d",
-    "name": "普通解封石",
+    "name": "解封石",
     "count": 39,
     "item_type": "material",
     "custom_data": {}
@@ -2483,18 +2483,18 @@
    },
    {
     "id": "1781193718296_32519879",
-    "name": "兄弟天关令牌",
+    "name": "天关令牌",
     "count": 45,
     "item_type": "material",
     "custom_data": {
-     "id": "兄弟天关令牌",
-     "name": "兄弟天关令牌",
+     "id": "天关令牌",
+     "name": "天关令牌",
      "count": 1
     }
    },
    {
     "id": "ci0m0txj",
-    "name": "龙涎草",
+    "name": "墨涎草",
     "count": 14,
     "item_type": "material",
     "custom_data": {}
@@ -2526,12 +2526,12 @@
    },
    {
     "id": "1782617055595_61689237",
-    "name": "悟道仙丹",
+    "name": "开悟丹",
     "count": 37,
     "item_type": "cultivation_pill",
     "custom_data": {
-     "id": "悟道仙丹",
-     "name": "悟道仙丹",
+     "id": "开悟丹",
+     "name": "开悟丹",
      "count": 1
     }
    },
@@ -2558,14 +2558,14 @@
    },
    {
     "id": "offline_pet_gift_1792680870114",
-    "name": "离线宠物礼包",
+    "name": "离线宠物锦囊",
     "count": 2,
     "item_type": "gift",
     "custom_data": {}
    },
    {
     "id": "1792680870127_90234191",
-    "name": "普通法宝碎片",
+    "name": "一阶法宝碎片",
     "count": 1,
     "item_type": "material",
     "custom_data": {}
@@ -2579,14 +2579,14 @@
   "warehouse_items": [
    {
     "id": "z17uvrm0",
-    "name": "灵草",
+    "name": "墨草",
     "count": 999,
     "item_type": "material",
     "custom_data": {}
    },
    {
     "id": "99kbqboo",
-    "name": "灵芝",
+    "name": "墨芝",
     "count": 999,
     "item_type": "material",
     "custom_data": {}
@@ -2981,10 +2981,10 @@
  "gameSettings": {
   "bgm_volume": 0.4,
   "bgm_enabled": false,
-  "current_map": "浮影水城外郊（0,0）",
+  "current_map": "墨影城郊（0,0）",
   "operationId": "1792691203.37272_4143342972",
   "compact_mode": true,
-  "previous_map": "石笋洞窟（0,0）",
+  "previous_map": "石笋洞（0,0）",
   "save_revision": 58769,
   "upload_reason": "compact_upload",
   "schema_version": 2,
@@ -3753,7 +3753,7 @@
    "quest_001": {
     "status": 5,
     "progress": {
-     "kill_map_浮影水城外郊（0,0）": 3
+     "kill_map_墨影城郊（0,0）": 3
     },
     "completed_time": 1777819343
    },
@@ -3774,7 +3774,7 @@
    "quest_004": {
     "status": 5,
     "progress": {
-     "kill_map_徘徊林（0,0）": 5
+     "kill_map_迷踪林（0,0）": 5
     },
     "completed_time": 1776603816
    },

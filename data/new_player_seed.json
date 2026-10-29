@@ -172,10 +172,10 @@
  "gameSettings": {
   "bgm_volume": 0.4,
   "bgm_enabled": false,
-  "current_map": "浮影水城外郊（0,0）",
+  "current_map": "墨影城郊（0,0）",
   "operationId": "1792691203.37272_4143342972",
   "compact_mode": true,
-  "previous_map": "浮影水城外郊（0,0）",
+  "previous_map": "墨影城郊（0,0）",
   "save_revision": 58769,
   "upload_reason": "compact_upload",
   "schema_version": 2,

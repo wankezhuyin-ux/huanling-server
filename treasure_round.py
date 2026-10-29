@@ -245,7 +245,7 @@ def _pick_winner(candidates: list[dict]) -> dict:
 
 def _grant_chest(account: str, round_index: int, chest_no: int,
                  round_id: int = 0) -> dict | None:
-    """把藏宝箱塞进获胜者背包（每个箱子独立 token，开箱时按 token 核销）。"""
+    """把藏宝匣塞进获胜者背包（每个箱子独立 token，开箱时按 token 核销）。"""
     try:
         st = STORE.get(account)
     except Exception:
@@ -253,7 +253,7 @@ def _grant_chest(account: str, round_index: int, chest_no: int,
     token = "tc_" + rnd_id("")
     st.items.append({
         "id": rnd_id("i"),
-        "name": "藏宝箱",
+        "name": "藏宝匣",
         "count": 1,
         "item_type": "treasure_chest",
         # round_id / chest_no 只用于「这箱子发过没」的核对，开箱仍按 token
@@ -263,12 +263,12 @@ def _grant_chest(account: str, round_index: int, chest_no: int,
     })
     mail = st.send_mail(
         "藏宝洞夺宝所得",
-        "恭喜你在藏宝洞今日第%d轮夺得%d号秘箱，藏宝箱已放入背包，使用即可开奖。"
+        "恭喜你在藏宝洞今日第%d轮夺得%d号秘箱，藏宝匣已放入背包，使用即可开奖。"
         % (round_index, chest_no),
     )
     st.bump()
     # 结算跑在调度线程里，没有请求收尾去落盘 —— 这里必须自己 flush，
-    # 否则服务一重启，赢家的藏宝箱和邮件就只在内存里蒸发了。
+    # 否则服务一重启，赢家的藏宝匣和邮件就只在内存里蒸发了。
     st.flush()
     return mail
 
@@ -294,7 +294,7 @@ def _ensure_grants(rnd: dict) -> bool:
     """结算过但奖励没真正到手（当时没落盘/发奖时崩了）的箱子，补发一次。
 
     判据不是 reward_mail_id（内存里设过、重启就丢了），而是直接查赢家背包里
-    有没有「第 N 轮第 M 号箱」的藏宝箱，缺了才补。
+    有没有「第 N 轮第 M 号箱」的藏宝匣，缺了才补。
     """
     if not rnd.get("settled"):
         return False

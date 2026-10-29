@@ -183,14 +183,14 @@ def shop_buy(ctx: Ctx) -> dict:
 # 奖励永久卡在邮箱里（玩家实测）。池内等概率，与客户端 probabilityText 一致。
 LOTTERY_ITEM_POOLS = {
     "limit_equip": ["极限武器", "极限衣服", "极限鞋子", "极限血佩", "极限内带"],
-    "element_egg": ["金属性宠物蛋", "木属性宠物蛋", "水属性宠物蛋",
-                    "火属性宠物蛋", "土属性宠物蛋"],
-    "common_skill_book_pool": ["回润lv1技能书", "疾笔lv1技能书", "收锋lv1技能书",
-                               "寿墨lv1技能书", "壮笔lv1技能书", "烈墨lv1技能书",
-                               "续笔lv1技能书", "守纸lv1技能书"],
-    "rare_skill_book_pool": ["溅墨lv1技能书", "逆锋lv1技能书", "护墨lv1技能书",
-                             "连笔lv1技能书", "吮墨lv1技能书", "破纸lv1技能书",
-                             "收锋lv1技能书", "断锋lv1技能书", "引锋lv1技能书"],
+    "element_egg": ["金纹蛋", "木纹蛋", "水纹蛋",
+                    "火纹蛋", "土纹蛋"],
+    "common_skill_book_pool": ["自复lv1技能书", "轻身lv1技能书", "挡伤lv1技能书",
+                               "长命lv1技能书", "力壮lv1技能书", "凶性lv1技能书",
+                               "追杀lv1技能书", "守主lv1技能书"],
+    "rare_skill_book_pool": ["溅墨lv1技能书", "反打lv1技能书", "护主lv1技能书",
+                             "连击lv1技能书", "饮血lv1技能书", "破防lv1技能书",
+                             "挡伤lv1技能书", "致命lv1技能书", "挑衅lv1技能书"],
 }
 
 
@@ -442,9 +442,9 @@ _OFFLINE_DEFAULT = {
     # 原版标定（用玩家登录原版服的截图反推，不是拍的数）：
     #   截图面板「离线时间 8.0 小时 → 金币 13116491」，同一张图人物 733 级升到 1125 级。
     #   1) 金币侧：13116491 / 8h = 1,639,561 金币/小时。原版该账号当时在
-    #      「石壁洞口（25,32）」(data/maps.json avgGold=911.7)，反解得 1798.6 场/小时。
+    #      「石壁洞（25,32）」(data/maps.json avgGold=911.7)，反解得 1798.6 场/小时。
     #   2) 经验侧：733→1125 需 5.2 亿经验，÷8h÷1800 场 ≈ 41000 经验/场，
-    #      和「石壁洞口」avgPlayerExp=41025 对得上。
+    #      和「石壁洞」avgPlayerExp=41025 对得上。
     #   3) 节奏侧：原版战斗录屏实测「战斗开始 → 战斗胜利 + 结算 ≈ 2 秒」，
     #      3600 / 2 = 1800 场/小时 —— 也就是说**原版离线收益就是按在线同速结算**，
     #      并不是打了折扣。原来这里填 12，等于离线只有在线的 1/150，
@@ -455,7 +455,7 @@ _OFFLINE_DEFAULT = {
     "petExpRatio": 0.6,
     # 同上表的「离线礼包概率」行
     "petGiftChanceByVip": [0.25, 0.40, 0.45, 0.50],
-    # 地图查不到 / 该地图原本就不给奖励（清幽古洞系列 avgPlayerExp=0）时的兜底。
+    # 地图查不到 / 该地图原本就不给奖励（冷泉洞系列 avgPlayerExp=0）时的兜底。
     # 这些图在线本来就不掉经验，离线给 0 才对；这里保留「每小时 0.35 级」只是
     # 一个避免玩家以为系统坏掉的小保底，不要按主路径的量级去理解它。
     "fallbackExpPerHourRatio": 0.35,
@@ -492,7 +492,7 @@ def _offline_hourly_rates(state) -> tuple[float, float]:
     `battlesPerHour` = 1800 的原版依据见 `_OFFLINE_DEFAULT` 里的标定注释：
     原版战斗 2 秒一场 → 3600/2 = 1800，即**离线与在线同速**，不是打折结算。
 
-    地图查不到、或该地图原服本来就不给奖励（清幽古洞系列 avgPlayerExp=0），
+    地图查不到、或该地图原服本来就不给奖励（冷泉洞系列 avgPlayerExp=0），
     回退到按当前等级需求估算（只给一个象征性保底，见 fallbackExpPerHourRatio）。
     """
     cfg = _offline_cfg()
@@ -584,7 +584,7 @@ def _offline_has_character(state) -> bool:
 
 @route("POST", "/economy/offline-claim")
 def offline_claim(ctx: Ctx) -> dict:
-    """离线收益结算：按距上次在线时长发经验/金币/宠物经验/离线宠物礼包。"""
+    """离线收益结算：按距上次在线时长发经验/金币/宠物经验/离线宠物锦囊。"""
     state = ctx.state
     p = state.player
     cfg = _offline_cfg()
@@ -651,7 +651,7 @@ def offline_claim(ctx: Ctx) -> dict:
     base_exp = float(exp_per_hour) * hours
     gold = int(round(gold_per_hour * hours))
 
-    # 经验倍率：VIP（1/1.3/1.6/2.0）+ 每种生效中的双倍经验丹 +100%。
+    # 经验倍率：VIP（1/1.3/1.6/2.0）+ 每种生效中的双倍经验符 +100%。
     # 双倍丹只对落在它自身有效期内的那段离线时长生效，过期部分不翻倍；
     # 三种丹各自计时，所以这里是逐通道叠加，而不是只看最晚的那一个。
     now_ts = int(time.time())
@@ -691,7 +691,7 @@ def offline_claim(ctx: Ctx) -> dict:
                 state.grant_pet_exp(pet, pet_exp)
             pet_after = int(pet.get("level", 1) or 1)
 
-    # 离线宠物礼包：按 VIP 概率 roll
+    # 离线宠物锦囊：按 VIP 概率 roll
     gifts = 0
     chances = cfg.get("petGiftChanceByVip") or [0.25, 0.40, 0.45, 0.50]
     try:
@@ -700,7 +700,7 @@ def offline_claim(ctx: Ctx) -> dict:
         chance = 0.25
     if chance > 0 and random.random() < chance:
         gifts = 1
-        state.add_item("离线宠物礼包", 1, "gift")
+        state.add_item("离线宠物锦囊", 1, "gift")
 
     p["timestamp"] = int(time.time())
     state.bump()
@@ -782,7 +782,7 @@ _GOLD_BAG_RULES = {
     "gold_bag_100k_dajudali": (("大橘大利",), 100000),
     "gold_bag_100k_renjianshi": (("人间事",), 100000),
     "gold_bag_100k_sinian": (("思念",), 100000),
-    # 开发期「测试礼包」：客户端 inventory_manager.gd 4879 直接要 1 亿金币、不扣道具
+    # 开发期「测试锦囊」：客户端 inventory_manager.gd 4879 直接要 1 亿金币、不扣道具
     "test_gift_100m": ((), 100000000),
 }
 
@@ -909,33 +909,33 @@ def _authority_save(state, include_pet_equip_bag: bool = True) -> dict:
 # 客户端只传 consumeKey（network.gd economy_whitelist_item_consume 的请求体
 # 只有 operationId/consumeKey/batchCount），**从来不传道具名**；
 # 原来按 itemName 扣道具，客户端调过来 name 是空串，必然「道具不足」——
-# 双倍经验丹、修行丹、经验丹这些高价值道具全部用不了。
+# 双倍经验符、修行丹、经验丹这些高价值道具全部用不了。
 # 这里按 key 反查真实道具名，扣多少、给什么由服务端说了算。
 #
 # key 全部取自客户端源码（scripts/inventory_manager.gd 里的 economy_whitelist_item_consume 调用）：
-#   double_exp_day / double_exp_week / double_exp_month  → 三种双倍经验丹
-#   wudao_pill_gift                                      → 悟道仙丹礼包（每包 50 颗悟道仙丹）
-#   limit_equipment_gift                                 → 极限装备礼包（每包 5 件：武器/衣服/鞋子/血佩/内带）
-#   player_upgrade_dan                                   → 人物升级丹（直接顶到满级）
-#   pet_upgrade_dan                                      → 宠物升级丹（出战宠顶到满级）
+#   double_exp_day / double_exp_week / double_exp_month  → 三种双倍经验符
+#   wudao_pill_gift                                      → 开悟丹锦囊（每包 50 颗开悟丹）
+#   limit_equipment_gift                                 → 极限装备锦囊（每包 5 件：武器/衣服/鞋子/血佩/内带）
+#   player_upgrade_dan                                   → 人物经验丹（直接顶到满级）
+#   pet_upgrade_dan                                      → 宠物经验丹（出战宠顶到满级）
 _CONSUME_RULES = {
     # key: (道具名, 处理类型)
-    "double_exp_day": ("双倍经验丹", "double_exp"),
-    "double_exp_week": ("双倍经验丹(周)", "double_exp"),
-    "double_exp_month": ("双倍经验丹(月)", "double_exp"),
-    "wudao_pill_gift": ("悟道仙丹礼包", "wudao"),
-    "limit_equipment_gift": ("极限装备礼包", "limit_equip"),
-    "player_upgrade_dan": ("人物升级丹", "player_dan"),
-    "pet_upgrade_dan": ("宠物升级丹", "pet_dan"),
+    "double_exp_day": ("双倍经验符", "double_exp"),
+    "double_exp_week": ("双倍经验符·周", "double_exp"),
+    "double_exp_month": ("双倍经验符·月", "double_exp"),
+    "wudao_pill_gift": ("开悟丹锦囊", "wudao"),
+    "limit_equipment_gift": ("极限装备锦囊", "limit_equip"),
+    "player_upgrade_dan": ("人物经验丹", "player_dan"),
+    "pet_upgrade_dan": ("宠物经验丹", "pet_dan"),
 }
 
-# 修行丹（聚灵丹/凝神丹/悟道仙丹）：客户端 CULTIVATION_PILL_WHITELIST_KEYS 的三个 key。
+# 修行丹（蓄灵丹/定神丹/开悟丹）：客户端 CULTIVATION_PILL_WHITELIST_KEYS 的三个 key。
 # 原来这里没有对应规则，落进「表外 key」分支后又拿不到道具名（客户端只传 consumeKey），
 # 于是三颗修行丹一用就报「该道具暂未接入服务端权威消耗」。
 _CULTIVATION_PILL_RULES = {
-    "cultivation_pill_juling": ("聚灵丹", 100),
-    "cultivation_pill_ningshen": ("凝神丹", 200),
-    "cultivation_pill_wudao": ("悟道仙丹", 500),
+    "cultivation_pill_juling": ("蓄灵丹", 100),
+    "cultivation_pill_ningshen": ("定神丹", 200),
+    "cultivation_pill_wudao": ("开悟丹", 500),
 }
 MAX_CULTIVATION_PILLS_PER_LIFE = 5
 for _ckey, (_cname, _cbonus) in _CULTIVATION_PILL_RULES.items():
@@ -944,7 +944,7 @@ for _ckey, (_cname, _cbonus) in _CULTIVATION_PILL_RULES.items():
 
 # 客户端 inventory_manager.gd 常量：
 #   LIMIT_EQUIPMENT_GIFT_GRANTED_NAMES / WUDAO_PILL_GIFT_GRANTED_NAMES
-WUDAO_PILL_NAME = "悟道仙丹"
+WUDAO_PILL_NAME = "开悟丹"
 WUDAO_PILL_PER_GIFT = 50
 LIMIT_EQUIP_NAMES = ("极限武器", "极限衣服", "极限鞋子", "极限血佩", "极限内带")
 LIMIT_EQUIP_BATCH_MAX = 5
@@ -963,7 +963,7 @@ def _active_pet_of(state) -> dict | None:
 
 
 def _apply_player_upgrade_dan(state) -> int:
-    """人物升级丹：直接把人物顶到满级（1200）。
+    """人物经验丹：直接把人物顶到满级（1200）。
 
     客户端 inventory_manager.gd 3300 一系只认回包 playerData.level，文案是
     「恭喜！您已升级到 %d 级（满级）」，所以这里必须真的把 level 写满，
@@ -995,7 +995,7 @@ def _apply_player_upgrade_dan(state) -> int:
 
 
 def _apply_pet_upgrade_dan(state, pet: dict) -> int:
-    """宠物升级丹：出战宠顶到自己的等级上限（进化宠 1200 / 普通宠 1500）。
+    """宠物经验丹：出战宠顶到自己的等级上限（进化宠 1200 / 普通宠 1500）。
 
     每级都按 pet.gd `_level_up_stats()` 的口径 roll 成长并重算属性，
     不能只改 level —— 只改等级会让面板数值不动。
@@ -1775,7 +1775,7 @@ def _skill_def_level(key: str, row: dict) -> int:
 
 
 def _skill_book_map() -> dict:
-    """道具名「回润lv1技能书」→ skill_key（如 `self_heal_lv1`）。"""
+    """道具名「自复lv1技能书」→ skill_key（如 `self_heal_lv1`）。"""
     out: dict[str, str] = {}
     for key, row in _pet_skill_defs().items():
         if not isinstance(row, dict):
@@ -2147,7 +2147,7 @@ SOUL_ITEM_POINTS = 50
 
 @route("POST", "/pet/soul/use-item")
 def pet_soul_use_item(ctx: Ctx) -> dict:
-    """魂魄道具（金/木/水/火/土魂魄50）：扣 1 个，对应五行魂魄 +50 点。
+    """魂魄道具（金/木/水/火/土魂魄）：扣 1 个，对应五行魂魄 +50 点。
 
     原来是「扣掉道具直接 ok()」——客户端拿不到 result.addedPoints/element
     （读的是 saveData.petCollectionData.pet_soul_data），于是提示「使用成功」但
@@ -2490,7 +2490,7 @@ def equipment_drop(ctx: Ctx) -> dict:
     return fail("装备不存在")
 
 
-# 单手属性套装发放（新手礼包 / 内测先锋礼包等）
+# 单手属性套装发放（新手锦囊 / 先锋锦囊等）
 #
 # 客户端 `_grant_single_attr_set_via_server` 走 `/equipment/grant`，回包必须是
 # `{saveData, result:{grantedItems}, message}`：
@@ -2498,10 +2498,10 @@ def equipment_drop(ctx: Ctx) -> dict:
 # 原来是 `equipment_drop` 的转发——不扣礼包、不给整套装备、不回 saveData，
 # 于是「点了使用提示成功，礼包还在包里，装备也没进背包」。
 EQUIP_GRANT_SETS = {
-    "新手礼包": {"value": 50, "prefix": "新手", "rarity": "rare"},
-    "内测先锋礼包": {"value": 100, "prefix": "内测先锋·", "rarity": "legendary"},
-    "新人扶持礼包": {"value": 100, "prefix": "新人扶持·", "rarity": "legendary"},
-    "开荒礼包": {"value": 400, "prefix": "开荒·", "rarity": "legendary"},
+    "新手锦囊": {"value": 50, "prefix": "新手", "rarity": "rare"},
+    "先锋锦囊": {"value": 100, "prefix": "内测先锋·", "rarity": "legendary"},
+    "新人扶持锦囊": {"value": 100, "prefix": "新人扶持·", "rarity": "legendary"},
+    "开荒锦囊": {"value": 400, "prefix": "开荒·", "rarity": "legendary"},
 }
 EQUIP_SET_SLOTS = [
     ("weapon", "武器", "attack"),
@@ -3424,7 +3424,7 @@ def martial_skill_book_use(ctx: Ctx) -> dict:
     tpl = books.get(book_key)
     if tpl is None:
         # 客户端传过来的是书名，按名字反查模板；查不到就按三目标技处理
-        tpl = books.get("三锋齐下")
+        tpl = books.get("一击三伤")
     art = {"id": "skill_%d" % int(random.random() * 1e9)}
     art.update(dict(tpl or {}))
     art["layer"] = max(1, min(9, ctx.i("layer", 1)))
@@ -3479,9 +3479,9 @@ def forge_execute(ctx: Ctx) -> dict:
 @route("POST", "/crafting/pill-craft")
 def pill_craft(ctx: Ctx) -> dict:
     state = ctx.state
-    name = ctx.s("pillName") or "凝神丹"
-    if not state.take_item("灵草", 3):
-        return fail("灵草不足")
+    name = ctx.s("pillName") or "定神丹"
+    if not state.take_item("墨草", 3):
+        return fail("墨草不足")
     state.add_item(name, 1, "item")
     state.bump()
     return ok(items=[{"name": name, "count": 1}])
@@ -3529,10 +3529,10 @@ def synthesize_seal_stone(ctx: Ctx) -> dict:
 
 @route("POST", "/gift/frontier/use")
 def gift_frontier_use(ctx: Ctx) -> dict:
-    """开荒礼包：5 亿金币 + 7 只成长 6.0 的琳琳 + 一套单属性 +400 装备。
+    """开荒锦囊：5 亿金币 + 7 只成长 6.0 的琳琳 + 一套单属性 +400 装备。
 
     原实现是往背包塞一个「边境礼包」的占位桩：客户端开了礼包只拿到一个查不到
-    图鉴的道具，金币/宠物/装备全没有，开荒礼包本身也不扣（「使用成功但礼包还在」）。
+    图鉴的道具，金币/宠物/装备全没有，开荒锦囊本身也不扣（「使用成功但礼包还在」）。
     """
     state = ctx.state
     op_id = ctx.s("operationId")
@@ -3547,9 +3547,9 @@ def gift_frontier_use(ctx: Ctx) -> dict:
                   saveData=_authority_save(state), saveRevision=state.revision,
                   newGold=state.gold())
 
-    if state.item_count("开荒礼包") <= 0:
-        return fail("背包里没有【开荒礼包】")
-    state.take_item("开荒礼包", 1)
+    if state.item_count("开荒锦囊") <= 0:
+        return fail("背包里没有【开荒锦囊】")
+    state.take_item("开荒锦囊", 1)
 
     bag: dict = {"gold": 0, "pets": [], "items": [], "lines": []}
     bag["gold"] = 500000000
@@ -3594,12 +3594,12 @@ def gift_frontier_use(ctx: Ctx) -> dict:
 
 # 客户端把这两个礼包走 `/gift/open-pet`
 # （inventory_manager.gd `_request_server_auth_pet_reward_open("gift", name)`），
-# **不是** `/equipment/grant`。原来 open-pet 只认宠物礼包 / 掉率表 / 天关礼包，
+# **不是** `/equipment/grant`。原来 open-pet 只认宠物礼包 / 掉率表 / 天关锦囊，
 # 这两个名字一律落进「该礼包暂不支持开启」—— 玩家拿到礼包点了完全没反应。
 # desc：1 亿金币 + 1 只成长 6.0 琳琳 + 一套单属性 +100 人物装备。
 GIFT_EQUIP_PACKS = {
-    "内测先锋礼包": {"gold": 100000000, "pets": 1, "pet_id": "linlin", "growth": 6.0},
-    "新人扶持礼包": {"gold": 100000000, "pets": 1, "pet_id": "linlin", "growth": 6.0},
+    "先锋锦囊": {"gold": 100000000, "pets": 1, "pet_id": "linlin", "growth": 6.0},
+    "新人扶持锦囊": {"gold": 100000000, "pets": 1, "pet_id": "linlin", "growth": 6.0},
 }
 
 # 注意：不要和上面 `_PET_CATALOG_CACHE` 共用同一个全局变量。
@@ -3749,7 +3749,7 @@ def _add_pet_to_state(state, pet: dict) -> str:
 # ---------------------------------------------------------------- 礼包掉率表
 # data/gift-rewards.json 是原版掉率表的逐条抄录。
 # 客户端 inventory_manager.gd `SERVER_AUTH_PET_GIFT_NAMES`（74 个名字）走
-# /gift/open-pet，原来服务端只认「天关礼包」「N关礼包」和 _pet_reward_spec
+# /gift/open-pet，原来服务端只认「天关锦囊」「N关礼包」和 _pet_reward_spec
 # 的正则族，塔1~5 / 生死塔参与 / 兄弟天关 / 世界boss / 冠军·亚军·季军·十强
 # 这 12 个一律 fail「该礼包暂不支持开启」—— 玩家拿到礼包也开不了。
 PET_OPEN_BATCH_MAX = 20
@@ -3813,7 +3813,7 @@ def _skill_book_name(skill_key: str) -> str:
 
 
 def _lv1_pet_skill_books() -> list:
-    """全部 lv1 宠物技能书道具名（世界boss礼包「lv1宠物技能书之一」）。"""
+    """全部 lv1 宠物技能书道具名（世界首领锦囊「lv1宠物技能书之一」）。"""
     defs = RULES.v("gameplay", "skillDefinitions", {}) or {}
     out = []
     for key in (defs.keys() if isinstance(defs, dict) else []):
@@ -4001,8 +4001,8 @@ def _pet_reward_spec(item_name: str) -> dict | None:
     `inventory_manager.gd _open_pet_egg`，`game_data.gd` 道具 desc）：
 
       - 普通蛋 5.0~6.0；五行属性宠物蛋 4.0~7.0（`_open_pet_egg`）；
-      - `金/木/水/火/土变异宠物蛋` 6.0~7.9，1 级 0 代 变异 1 本属性；
-      - `5+宠物礼包` 5.0~5.9，但 `5+宠物蛋` 是 5.0~6.0（两个 desc 不一样，别合并）；
+      - `金/木/水/火/土纹异蛋` 6.0~7.9，1 级 0 代 变异 1 本属性；
+      - `五阶宠物锦囊` 5.0~5.9，但 `五阶宠物蛋` 是 5.0~6.0（两个 desc 不一样，别合并）；
       - `N+可进化宠礼包` N.0~N.9（12+ / 13+ 是 N.0~N.99）；
       - `N+不可进化宠礼包` N.0~N.5；
       - `N+可进化宠礼包(可能变异)` N.0~N.9，约 10% 变异 1；
@@ -4037,7 +4037,7 @@ def _pet_reward_spec(item_name: str) -> dict | None:
         return {"growth": (6.0, 7.9) if mutated else (4.0, 7.0),
                 "pool": "any", "element": element,
                 "mutation": 1 if mutated else 0}
-    # `金属性宠物蛋` 这一族（不带「变异」二字）也是 open-egg 路由，成长 4.0~7.0
+    # `金纹蛋` 这一族（不带「变异」二字）也是 open-egg 路由，成长 4.0~7.0
     m = re.match(r"^(金|木|水|火|土)属性宠物蛋$", name)
     if m:
         return {"growth": (4.0, 7.0), "pool": "any",
@@ -4046,9 +4046,9 @@ def _pet_reward_spec(item_name: str) -> dict | None:
         return {"growth": (4.0, 7.0), "pool": "any", "random_element": True}
     if name == "每日变异宠物蛋":
         return {"growth": (6.0, 7.0), "pool": "any", "mutation": 1}
-    if name == "5+宠物礼包":
+    if name == "五阶宠物锦囊":
         return {"growth": (5.0, 5.9), "pool": "any"}
-    if name == "5+宠物蛋":
+    if name == "五阶宠物蛋":
         return {"growth": (5.0, 6.0), "pool": "any"}
     m = re.match(r"^(\d+)\+可进化宠礼包(\(可能变异\))?$", name)
     if m:
@@ -4071,7 +4071,7 @@ def _pet_reward_spec(item_name: str) -> dict | None:
         pool = "evolution" if m.group(3) == "可进化" else "non_evolution"
         return {"growth": (float(m.group(1)), float(m.group(2)) + 0.9),
                 "pool": pool, "mutation": 1}
-    if name == "离线宠物礼包":
+    if name == "离线宠物锦囊":
         # 原版 desc：「打开可获得一只极品宠物，宠物来自离线挂机地图」
         # 成长取普通捕捉区间（宠物池由离线地图决定，客户端另行处理）。
         return {"growth": (5.0, 6.0), "pool": "any"}
@@ -4139,15 +4139,15 @@ def _open_pet_reward(ctx: Ctx, default_kind: str = "gift") -> dict:
     bag: dict = {"gold": 0, "pets": [], "items": [], "lines": []}
     handled = False
 
-    # ---- 天关礼包：runtime-config tower.towerGift = 100 万金币 + 5% 额外 5+宠物礼包
-    if item_name == "天关礼包":
+    # ---- 天关锦囊：runtime-config tower.towerGift = 100 万金币 + 5% 额外 五阶宠物锦囊
+    if item_name == "天关锦囊":
         cfg = RULES.v("tower", "towerGift", {}) or {}
         unit_gold = int(cfg.get("goldAmount", 1000000) or 1000000)
         extra_rate = float(cfg.get("extraPetGiftRate", 0.0) or 0.0)
         extra_name = str(cfg.get("extraPetGiftName", "") or "")
         state.take_item(item_name, count)
         bag["gold"] += unit_gold * count
-        bag["lines"].append("开启天关礼包 x%d，获得金币 %d" % (count, unit_gold * count))
+        bag["lines"].append("开启天关锦囊 x%d，获得金币 %d" % (count, unit_gold * count))
         for _ in range(count):
             if extra_name and random.random() < extra_rate:
                 state.add_item(extra_name, 1, "gift")
@@ -4155,7 +4155,7 @@ def _open_pet_reward(ctx: Ctx, default_kind: str = "gift") -> dict:
                 bag["lines"].append("获得【%s】" % extra_name)
         handled = True
     # ---- N关礼包：runtime-config tower.floorGiftRewards 掉落表（宠物直接发放 / 蛋落背包）
-    elif item_name.endswith("关礼包") and item_name != "天关礼包" and item_name[:-3].isdigit():
+    elif item_name.endswith("关礼包") and item_name != "天关锦囊" and item_name[:-3].isdigit():
         table = RULES.v("tower", "floorGiftRewards", []) or []
         table = [row for row in table if isinstance(row, dict) and float(row.get("rate", 0) or 0) > 0]
         state.take_item(item_name, count)

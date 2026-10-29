@@ -58,8 +58,8 @@ def rnd_id(prefix: str = "") -> str:
 #
 # 客户端 `inventory_manager.add_item()` 只认 `game_data.gd ALL_ITEMS` 里的名字，
 # 名字对不上就 `未知物品: xxx`，邮件点「打开」直接失败、奖励永久卡在邮箱。
-# 线上真实踩过的坑：神兽蛋 / 高级技能书 / 洗髓丹 / 灵兽经验丹 / 固色lv1技能书，
-# 还有把数量写进名字的「2026纪念法宝碎片*20」。
+# 线上真实踩过的坑：神兽蛋 / 高级技能书 / 洗髓丹 / 灵兽经验丹 / 硬皮lv1技能书，
+# 还有把数量写进名字的「周年法宝碎片*20」。
 _CLIENT_ITEM_NAMES: set | None = None
 
 
@@ -105,6 +105,37 @@ def migrate_item_name(name: str) -> str:
     return item_rename_map().get(hashlib.md5(text.encode("utf-8")).hexdigest()[:8], text)
 
 
+_MAP_RENAME: dict | None = None
+
+
+def map_rename_map() -> dict:
+    """地图改名表：原版名 → {name, domain, terrain, setting}。
+
+    mapId 形如「名字（x,y）」，改名只换括号前的名字，坐标不动。
+    存档里的 current_map / previous_map 靠这张表迁移。
+    """
+    table = _MAP_RENAME
+    if table is None:
+        raw = load_json(DATA / "map-rename.json", {}) or {}
+        table = raw.get("map") if isinstance(raw, dict) else None
+        table = table if isinstance(table, dict) else {}
+        globals()["_MAP_RENAME"] = table
+    return table
+
+
+def migrate_map_id(map_id: str) -> str:
+    """把 mapId 里的旧地名换成现用名；坐标后缀原样保留。"""
+    text = str(map_id or "")
+    if not text:
+        return text
+    cut = text.rfind("（")
+    name, tail = (text[:cut], text[cut:]) if cut > 0 else (text, "")
+    row = map_rename_map().get(name)
+    if isinstance(row, dict) and row.get("name") and row["name"] != name:
+        return str(row["name"]) + tail
+    return text
+
+
 _ITEM_QTY_RE = re.compile(r"^(.*?)\s*[*xX×]\s*(\d+)$")
 
 
@@ -125,7 +156,7 @@ def split_item_qty(text: str) -> tuple[str, int]:
         qty = max(1, int(hit.group(2)))
     except ValueError:
         return raw, 1
-    # 只有当「去掉后缀的名字」确实是个物品时才拆，避免误伤「双倍经验丹(月)」这类
+    # 只有当「去掉后缀的名字」确实是个物品时才拆，避免误伤「双倍经验符·月」这类
     if not name or (client_item_names() and name not in client_item_names()):
         return raw, 1
     return name, qty
@@ -403,14 +434,14 @@ def build_captured_pet(state, pet_id: str, map_name: str = "", is_elite: bool = 
 # ---------------------------------------------------------------- 新号注册礼包
 # 2026-10-28 起：新号不再送种子里的「变异阿努」（五一活动遗留），改送一只
 # 随机总成长 10~11 的苦行龟；另外在角色邮箱发一封欢迎邮件，附件是
-# 7+可进化宠礼包 x1 + 溅墨lv1技能书 x1，附言「欢迎来到幻灵修真世界」。
+# 七阶可进化宠锦囊 x1 + 溅墨lv1技能书 x1，附言「欢迎来到幻灵修真世界」。
 REGISTRATION_PET_ID = "kǔxínggūi"        # 苦行龟
 REGISTRATION_GROWTH = (10.0, 11.0)       # 总成长随机区间（攻防敏成长率之和）
 WELCOME_MAIL_TITLE = "新人欢迎礼包"
 WELCOME_MAIL_CONTENT = "欢迎来到幻灵修真世界"
-# 2026-10-29：新手礼包改成「7+可成长宠礼包 + 溅射宠物技能书」各一份
+# 2026-10-29：新手锦囊改成「7+可成长宠礼包 + 溅射宠物技能书」各一份
 WELCOME_GIFT_ITEMS = (
-    ("7+可进化宠礼包", 1),
+    ("七阶可进化宠锦囊", 1),
     ("溅墨lv1技能书", 1),
 )
 WELCOME_GIFT_ITEM = WELCOME_GIFT_ITEMS[0][0]   # 兼容老引用
@@ -604,7 +635,7 @@ def snake(name: str) -> str:
 
 # ---------------------------------------------------------------- 玩家状态
 
-DEFAULT_MAP = "浮影水城外郊（0,0）"
+DEFAULT_MAP = "墨影城郊（0,0）"
 
 # 钱袋统一道具名（2026-10 合并）。旧档里这些赞助者命名的钱袋会在读档时并入钱币袋。
 COIN_BAG_NAME = "钱币袋"
@@ -649,8 +680,32 @@ class State:
             changed = True
         if self._migrate_item_names():
             changed = True
+        if self._migrate_map_names():
+            changed = True
         if self.fresh or changed:
             self.flush()
+
+    def _migrate_map_names(self) -> bool:
+        """地图改名：老存档里存的 mapId 换成新地名。
+
+        mapId 是「名字（x,y）」，换皮把名字全改了，但老存档里还留着旧名字。
+        不迁移的话，玩家下次登录会「地图数据加载失败」，位置回默认点。
+        """
+        if not map_rename_map():
+            return False
+        gs = self.save.get("gameSettings")
+        if not isinstance(gs, dict):
+            return False
+        changed = False
+        for key in ("current_map", "previous_map"):
+            old = gs.get(key)
+            if not isinstance(old, str) or not old:
+                continue
+            new = migrate_map_id(old)
+            if new != old:
+                gs[key] = new
+                changed = True
+        return changed
 
     def _migrate_item_names(self) -> bool:
         """道具改名：老存档里的旧物品名换成现用名。
@@ -726,7 +781,7 @@ class State:
         """兜底修正 gameSettings.current_map。
 
         客户端 game_manager.gd 恢复存档时是无条件 `current_map = settings.current_map`，
-        空串会直接覆盖掉默认的"浮影水城外郊（0,0）"，接着
+        空串会直接覆盖掉默认的"墨影城郊（0,0）"，接着
         `GameData.MAPS_DATA.get("")` 取不到 → 主界面「地图数据加载失败」、
         不刷怪、也不显示人物和宠物。
         """
@@ -1045,11 +1100,11 @@ class State:
     NOBLE_MARTIAL_BONUS = (0, 3, 7, 10, 13, 17, 20, 23, 27, 30, 33, 37, 40, 43, 47, 50)
     NOBLE_PET_DAMAGE = (0, 0, 0, 0, 0, 0, 3, 5, 7, 10, 13, 16, 19, 22, 25, 30)
     NOBLE_EXP_BONUS = NOBLE_PET_DAMAGE
-    # 三种双倍经验丹的叠加通道与时长（客户端 game_data.gd 道具描述 + inventory_manager 的 consumeKey）
+    # 三种双倍经验符的叠加通道与时长（客户端 game_data.gd 道具描述 + inventory_manager 的 consumeKey）
     DOUBLE_EXP_CHANNELS = {
-        "双倍经验丹": 24 * 3600,
-        "双倍经验丹(周)": 7 * 24 * 3600,
-        "双倍经验丹(月)": 30 * 24 * 3600,
+        "双倍经验符": 24 * 3600,
+        "双倍经验符·周": 7 * 24 * 3600,
+        "双倍经验符·月": 30 * 24 * 3600,
     }
 
     def vip_tier(self) -> int:
@@ -1080,18 +1135,18 @@ class State:
         return max(0, min(3, level))
 
     def double_exp_channels(self) -> dict:
-        """三种双倍经验丹各自的到期时间（服务端权威）。"""
+        """三种双倍经验符各自的到期时间（服务端权威）。"""
         box = self.player.get("double_exp_channels")
         if not isinstance(box, dict):
             box = {}
         # 老存档：只有单个 double_exp_until 时，把它当成「日」通道
         legacy = int(self.player.get("double_exp_until", 0) or 0)
         if legacy > 0 and not box:
-            box = {"双倍经验丹": legacy}
+            box = {"双倍经验符": legacy}
         return box
 
     def double_exp_active_count(self) -> int:
-        """当前生效的双倍经验丹种类数（每多一种 +100% 经验）。"""
+        """当前生效的双倍经验符种类数（每多一种 +100% 经验）。"""
         ts = int(time.time())
         box = self.double_exp_channels()
         return sum(1 for v in box.values() if int(v or 0) > ts)
@@ -1229,7 +1284,7 @@ class State:
     def exp_multiplier(self) -> float:
         """player.gd get_total_exp_multiplier 的服务端复刻。
 
-        = VIP 倍率 + 帮会加成 + 贵族加成 + 生效中的双倍经验丹种类数
+        = VIP 倍率 + 帮会加成 + 贵族加成 + 生效中的双倍经验符种类数
           + 新人 10 天 +100% + 周末野外 +100%
           （原版多一种丹就多 +100%，三丹全开就是 +300%；各块全部加算）
         本服帮会/贵族加成都未开放，取 0。
@@ -1825,7 +1880,7 @@ class State:
         """新号注册礼包：
 
         ① 把种子里的「变异阿努」换成一只随机总成长 10~11 的苦行龟（主战栏唯一宠）；
-        ② 角色邮箱发欢迎邮件：7+可进化宠礼包 x1 + 溅墨lv1技能书 x1。
+        ② 角色邮箱发欢迎邮件：七阶可进化宠锦囊 x1 + 溅墨lv1技能书 x1。
         """
         save = self.raw.get("save") if isinstance(self.raw.get("save"), dict) else {}
         pets_data = save.get("petsData")

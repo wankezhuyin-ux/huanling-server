@@ -457,7 +457,7 @@ def world_boss_challenge(ctx: Ctx) -> dict:
     box = _boss_state(state)
     box["damage"] = int(box.get("damage", 0)) + damage
     # 伤害达标发礼包（走邮件）
-    gift = str(cfg.get("giftItemName", "世界boss礼包"))
+    gift = str(cfg.get("giftItemName", "世界首领锦囊"))
     state.send_mail("世界 Boss 参与礼包", "世界 Boss 挑战结算，请查收附件。", [{"name": gift, "count": 1}])
     state.bump()
     return ok(damage=damage, totalDamage=box["damage"], remainingAttempts=max(0, cap - used - 1),
@@ -508,7 +508,7 @@ def shengsi_signup(ctx: Ctx) -> dict:
     state.add_friendship(points)
     gift = str(RULES.v("shengsi_tower", "participateGiftItem", "") or "")
     if gift and RULES.v("shengsi_tower", "participateGiftEnabled", False):
-        state.send_mail("生死塔参与礼包", "生死塔报名成功，请查收附件。", [{"name": gift, "count": 1}])
+        state.send_mail("生死塔参与锦囊", "生死塔报名成功，请查收附件。", [{"name": gift, "count": 1}])
     state.bump()
     return ok(floor=floor, friendshipPoints=state.friendship())
 
@@ -554,7 +554,7 @@ def treasure_join(ctx: Ctx) -> dict:
 
 
 def _treasure_gold_from_name(name: str) -> int:
-    """「1亿金币」/「金币30亿」/「1000万金币」→ 金币数（藏宝箱奖池口径）。"""
+    """「1亿金币」/「金币30亿」/「1000万金币」→ 金币数（藏宝匣奖池口径）。"""
     text = str(name or "").strip()
     if not text:
         return 0
@@ -576,11 +576,11 @@ def _treasure_gold_from_name(name: str) -> int:
 
 @route("POST", "/treasure/chest/open")
 def treasure_chest_open(ctx: Ctx) -> dict:
-    """藏宝箱开奖（服务端权威）。
+    """藏宝匣开奖（服务端权威）。
 
     原来只回 items，不回 saveData 也不扣箱子：客户端 `use()` 里
     「有 saveData 才 apply_cloud_save / 才 count -= 1」，于是
-    弹「使用成功」但藏宝箱还在背包里。
+    弹「使用成功」但藏宝匣还在背包里。
     """
     state = ctx.state
     token = ctx.s("token") or ctx.s("treasureToken")
@@ -596,7 +596,7 @@ def treasure_chest_open(ctx: Ctx) -> dict:
                   reward=memo.get("reward", {}), items=memo.get("items", []),
                   saveData=state.save, saveRevision=state.revision, newGold=state.gold())
 
-    # 扣掉对应的藏宝箱：客户端把 token 存在 custom_data.treasure_token 里
+    # 扣掉对应的藏宝匣：客户端把 token 存在 custom_data.treasure_token 里
     removed = False
     for item in list(state.items):
         cd = item.get("custom_data")
@@ -613,7 +613,7 @@ def treasure_chest_open(ctx: Ctx) -> dict:
     row = RULES.roll(rewards)
     items = []
     reward: dict = {}
-    message = "藏宝箱已开启"
+    message = "藏宝匣已开启"
     if row:
         name = str(row.get("name", "") or "")
         count = max(1, int(row.get("count", 1) or 1))
@@ -630,7 +630,7 @@ def treasure_chest_open(ctx: Ctx) -> dict:
             reward = {"type": "item", "name": name, "count": count}
             message = "获得 %s x%d" % (name, count)
     if not reward:
-        message = "藏宝箱已开启（本次没有获得道具）"
+        message = "藏宝匣已开启（本次没有获得道具）"
 
     state.bump()
     if op_id:
@@ -639,15 +639,15 @@ def treasure_chest_open(ctx: Ctx) -> dict:
             for stale in sorted(ops, key=lambda k: str(ops[k].get("at", "")))[:-40]:
                 ops.pop(stale, None)
 
-    # 开箱出货播报（对齐原游戏 treasure_cave_open：恭喜玩家【大火花】开启藏宝箱，
-    # 幸运获得【5+宠物礼包】！）。只播「开出了东西」的，空箱不播。
+    # 开箱出货播报（对齐原游戏 treasure_cave_open：恭喜玩家【大火花】开启藏宝匣，
+    # 幸运获得【五阶宠物锦囊】！）。只播「开出了东西」的，空箱不播。
     if reward:
         rname = str(reward.get("name", "") or "")
         rcount = max(1, int(reward.get("count", 1) or 1))
         display = "%s x%d" % (rname, rcount) if rcount > 1 else rname
         import broadcasts as _broadcasts
         _broadcasts.append("treasure_cave_open", state.nickname(),
-                           "恭喜玩家【%s】开启藏宝箱，幸运获得【%s】！" % (state.nickname(), display),
+                           "恭喜玩家【%s】开启藏宝匣，幸运获得【%s】！" % (state.nickname(), display),
                            {"rewards": [display], "rewardCount": 1})
 
     return ok(duplicate=False, alreadyOpened=False, message=message, reward=reward, items=items,
@@ -657,7 +657,7 @@ def treasure_chest_open(ctx: Ctx) -> dict:
 
 @route("GET", "/treasure/battle-log")
 def treasure_battle_log(ctx: Ctx) -> dict:
-    """某个藏宝箱的逐场争夺战报（单败签表 + 每场战斗日志，可点开回放）。
+    """某个藏宝匣的逐场争夺战报（单败签表 + 每场战斗日志，可点开回放）。
 
     客户端 ui/city/treasure_cave_ui.gd:_show_battle_log_list_dialog 读的是
     `payload.matches`（数组，逐场一条）+ total/page/pageSize。
@@ -867,7 +867,7 @@ def brother_pin(ctx: Ctx) -> dict:
 #
 # 原版节奏（客户端 scripts/xianmo/*.gd + 抓包）：
 #   · 每周一 00:00（UTC+8）开新赛季：周积分归零、行动力回满、**阵营要重新选**；
-#   · 上周按两阵营总积分定胜负，各阵营前 3 名发称号（7 天）+ 宝箱 + 金币 + 悟道仙丹，
+#   · 上周按两阵营总积分定胜负，各阵营前 3 名发称号（7 天）+ 宝箱 + 金币 + 开悟丹，
 #     其余参加过（有积分）的人发参与奖；
 #   · 排行榜是「仙道榜 / 魔道榜」两个独立榜，按**周积分**排。
 # 老实现只清了 score，faction 一直留着 → 玩家加入一次之后永远不用再选，
@@ -894,7 +894,7 @@ _XIANMO_TITLE_TABLE = {
                   3: ("mo_qiangzhe", "魔道强者", 300)},
     },
 }
-# (宝箱类型, 个数, 金币, 悟道仙丹) —— 来自 scripts/xianmo/xianmo_reward.gd
+# (宝箱类型, 个数, 金币, 开悟丹) —— 来自 scripts/xianmo/xianmo_reward.gd
 _XIANMO_WIN_REWARDS = {1: ("gold", 2, 500_000_000, 5),
                        2: ("silver", 2, 300_000_000, 3),
                        3: ("bronze", 2, 200_000_000, 2)}
@@ -1059,8 +1059,8 @@ def _xianmo_pay_week_reward(row: dict, winner: str, week: int) -> None:
         st.add_gold(gold)
         lines.append("金币：%d亿" % (gold // 100_000_000))
     if pills:
-        st.add_item("悟道仙丹", pills, "item")
-        lines.append("悟道仙丹 ×%d" % pills)
+        st.add_item("开悟丹", pills, "item")
+        lines.append("开悟丹 ×%d" % pills)
     if chest_n:
         for _ in range(chest_n):
             box.setdefault("chests", []).append(
@@ -1198,13 +1198,13 @@ def _xianmo_pick_item(pool: list[str]) -> str:
 
 
 _XIANMO_RANDOM_ITEM_POOL = [
-    "悟道仙丹", "强化石", "宠装强化石", "双倍经验丹",
-    "逆锋lv1技能书", "回润lv1技能书", "疾笔lv1技能书", "寿墨lv1技能书", "壮笔lv1技能书",
+    "开悟丹", "强化石", "宠装强化石", "双倍经验符",
+    "反打lv1技能书", "自复lv1技能书", "轻身lv1技能书", "长命lv1技能书", "力壮lv1技能书",
 ]
 _XIANMO_RARE_ITEM_POOL = [
-    "悟道仙丹", "5+宠物蛋",
-    "金属性宠物蛋", "木属性宠物蛋", "水属性宠物蛋", "火属性宠物蛋", "土属性宠物蛋",
-    "金变异宠物蛋", "木变异宠物蛋", "水变异宠物蛋", "火变异宠物蛋", "土变异宠物蛋",
+    "开悟丹", "五阶宠物蛋",
+    "金纹蛋", "木纹蛋", "水纹蛋", "火纹蛋", "土纹蛋",
+    "金纹异蛋", "木纹异蛋", "水纹异蛋", "火纹异蛋", "土纹异蛋",
 ]
 
 # 捕获灵兽 → 发「仙魔礼包」到邮箱（原版线上口径：mail_manager 对这四个礼包
@@ -1212,27 +1212,27 @@ _XIANMO_RARE_ITEM_POOL = [
 # 以前直接 append 到 state.pet_bag，客户端宠物列表读不到这批（pet_id=xianmo_pet
 # 没有模板），表现就是「提示捕获了灵兽，但哪儿都找不到」。
 _XIANMO_PET_GIFT_BY_EVENT = {
-    "spirit_beast": "仙魔灵兽礼包",
-    "spirit_beast_cub": "仙魔野生礼包",
-    "divine_beast_trace": "仙魔神兽礼包",
-    "mutant_beast": "仙魔变异礼包",
-    "spirit_beast_guardian": "仙魔灵兽礼包",
-    "pet_recognition": "仙魔灵兽礼包",
+    "spirit_beast": "仙魔灵兽锦囊",
+    "spirit_beast_cub": "仙魔野生锦囊",
+    "divine_beast_trace": "仙魔神兽锦囊",
+    "mutant_beast": "仙魔变异锦囊",
+    "spirit_beast_guardian": "仙魔灵兽锦囊",
+    "pet_recognition": "仙魔灵兽锦囊",
 }
 
 
 def _xianmo_pet_gift(event_id: str, cfg: dict, growth: float) -> str:
-    """按事件挑礼包；名字必须存在于客户端物品表，兜底用仙魔灵兽礼包。"""
+    """按事件挑礼包；名字必须存在于客户端物品表，兜底用仙魔灵兽锦囊。"""
     gift = str(cfg.get("giftName") or _XIANMO_PET_GIFT_BY_EVENT.get(event_id, ""))
     if not gift or not _client_has_item(gift):
-        gift = "仙魔灵兽礼包"
+        gift = "仙魔灵兽锦囊"
     # 成长档位和礼包区间差太多时换更贴的一个（神兽/变异礼包成长更高）
-    if growth >= 6.2 and _client_has_item("仙魔神兽礼包"):
-        gift = "仙魔神兽礼包"
-    elif growth >= 6.0 and _client_has_item("仙魔变异礼包"):
-        gift = "仙魔变异礼包"
-    elif growth < 5.0 and _client_has_item("仙魔野生礼包"):
-        gift = "仙魔野生礼包"
+    if growth >= 6.2 and _client_has_item("仙魔神兽锦囊"):
+        gift = "仙魔神兽锦囊"
+    elif growth >= 6.0 and _client_has_item("仙魔变异锦囊"):
+        gift = "仙魔变异锦囊"
+    elif growth < 5.0 and _client_has_item("仙魔野生锦囊"):
+        gift = "仙魔野生锦囊"
     return gift
 
 
@@ -1314,7 +1314,7 @@ def _xianmo_take_chest(state, chest_type: str) -> bool:
     """扣 1 个宝箱。
 
     注意宝箱在 meta.xianmo.chests 里是**堆叠**的（`{"type":"gold","count":2}`），
-    原来整条 pop 掉：玩家有 2 个黄金宝箱、点批量开 2 个，
+    原来整条 pop 掉：玩家有 2 个黄金匣、点批量开 2 个，
     `_xianmo_chest_counts` 算出来是 2（够），但第一次 take 就把整叠删了，
     第二次拿不到 → 实际只开 1 个、另一叠也跟着消失。
     """
@@ -1491,10 +1491,10 @@ def _xianmo_broadcast(state, event_id: str, cfg: dict, rewards: list,
             return
         g = float(growth or 0)
         if btype == "pet_recognition":
-            content = "【%s】在仙魔界触发灵兽认主，获得了【仙魔灵兽礼包】！（可开出成长%.2f）" % (nick, g)
+            content = "【%s】在仙魔界触发灵兽认主，获得了【仙魔灵兽锦囊】！（可开出成长%.2f）" % (nick, g)
         else:
             action = "发现灵兽幼崽" if event_id == "spirit_beast_cub" else "发现灵兽"
-            content = "【%s】在仙魔界%s，获得了【仙魔灵兽礼包】！（可开出成长%.2f）" % (nick, action, g)
+            content = "【%s】在仙魔界%s，获得了【仙魔灵兽锦囊】！（可开出成长%.2f）" % (nick, action, g)
         extra = {"type": btype, "growth": round(g, 2)}
     else:
         return
@@ -1820,7 +1820,7 @@ def xianmo_shop_buy(ctx: Ctx) -> dict:
         price = int(item.get("cost", item.get("price", 0)) or 0)
         name = str(item.get("name", item.get("itemName", "仙魔商品")))
         if item.get("type") != "chest" and not _client_has_item(name):
-            # 客户端物品表里没有这个名字（例如老的「固色lv1技能书」），
+            # 客户端物品表里没有这个名字（例如老的「硬皮lv1技能书」），
             # 发了也进不了背包 → 宁可拒绝，也别白扣积分
             return fail("该商品暂不可兑换（道具数据缺失），请联系管理员")
         total_score = int(box.get("totalScore", 0))
@@ -1912,11 +1912,11 @@ def xianmo_mirror(ctx: Ctx) -> dict:
 def xianmo_chest_deposit(ctx: Ctx) -> dict:
     """背包里的宝箱 → 仙魔宝箱栏。
 
-    客户端 inventory_manager 用掉「黄金宝箱」时走这里，然后**等回包里的 saveData**
+    客户端 inventory_manager 用掉「黄金匣」时走这里，然后**等回包里的 saveData**
     才把背包那一格抹掉（`if deposit_data.has("saveData") ... else: item.count -= 1`）。
     老实现既不动 state.items、也不回 saveData：
       * 服务端背包里那口箱子一直在 → 玩家下次 /save/download 又看到它，
-        表现就是「黄金宝箱开了又有，一直能开」；
+        表现就是「黄金匣开了又有，一直能开」；
       * 客户端只能自己本地扣，一旦这次扣减被旧快照上传覆盖，箱子又回来了。
     所以这里必须由服务端扣掉背包里那口箱子，并把权威存档回给客户端。
     """
@@ -2335,13 +2335,13 @@ def xianmo_pet_exchange(ctx: Ctx) -> dict:
 #   * 奖励按真实表发放（金币/元宝/道具），数量与界面宣传一致
 #   * 老档乱数据（抢领过的 day=7、day=0/-3）读档时自动清洗
 SIGNIN7_REWARDS = [
-    {"day": 1, "name": "6+可进化宠礼包", "type": "item", "item_id": "6+可进化宠礼包", "amount": 1},
+    {"day": 1, "name": "六阶可进化宠锦囊", "type": "item", "item_id": "六阶可进化宠锦囊", "amount": 1},
     {"day": 2, "name": "金币1亿", "type": "gold", "item_id": "金币", "amount": 100000000},
     {"day": 3, "name": "五行属性宠物蛋", "type": "item", "item_id": "五行属性宠物蛋", "amount": 1},
-    {"day": 4, "name": "悟道仙丹", "type": "item", "item_id": "悟道仙丹", "amount": 1},
+    {"day": 4, "name": "开悟丹", "type": "item", "item_id": "开悟丹", "amount": 1},
     {"day": 5, "name": "法宝碎片*20", "type": "item", "item_id": "法宝碎片", "amount": 20},
     {"day": 6, "name": "元宝100", "type": "yuanbao", "item_id": "元宝", "amount": 100},
-    {"day": 7, "name": "10+可进化宠礼包", "type": "item", "item_id": "10+可进化宠礼包", "amount": 1},
+    {"day": 7, "name": "十阶可进化宠锦囊", "type": "item", "item_id": "十阶可进化宠锦囊", "amount": 1},
 ]
 
 

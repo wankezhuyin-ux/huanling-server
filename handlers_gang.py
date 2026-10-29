@@ -41,13 +41,13 @@ for _lv in range(1, 11):
 
 # 帮贡商店：id / 名称 / 价格（帮贡）/ 周限购 / 解锁帮派等级
 SHOP_ITEMS = [
-    {"id": "gang_exp_pill", "itemName": "双倍经验丹", "cost": 200, "weeklyLimit": 5,
+    {"id": "gang_exp_pill", "itemName": "双倍经验符", "cost": 200, "weeklyLimit": 5,
      "minGangLevel": 1, "itemType": "consumable", "count": 1,
      "desc": "使用后获得 30 分钟双倍经验"},
     {"id": "gang_material", "itemName": "建设材料", "cost": 100, "weeklyLimit": 20,
      "minGangLevel": 1, "itemType": "material", "count": 1,
      "desc": "帮派建设材料，可捐献"},
-    {"id": "gang_pet_exp_pill", "itemName": "宠物双倍经验丹", "cost": 300, "weeklyLimit": 5,
+    {"id": "gang_pet_exp_pill", "itemName": "宠物双倍经验符", "cost": 300, "weeklyLimit": 5,
      "minGangLevel": 3, "itemType": "consumable", "count": 1,
      "desc": "宠物 30 分钟双倍经验"},
     {"id": "gang_cultivation_pill", "itemName": "修炼丹", "cost": 500, "weeklyLimit": 3,

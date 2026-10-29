@@ -152,7 +152,7 @@ def player_battle_element(state) -> str:
 
 
 def player_triple_ratio(state) -> float:
-    """装备中的「一箭三雕」层数 → 伤害系数（1 层 0.8，每层 +0.05）。"""
+    """装备中的「一击三伤」层数 → 伤害系数（1 层 0.8，每层 +0.05）。"""
     ratio = 0.0
     for art in _equipped_arts(state):
         if str(art.get("effect_type", "")) != "triple_shot":
@@ -507,7 +507,7 @@ def battle_loot(ctx: Ctx) -> dict:
 
     # 线上实测：部分地图服务端不发任何奖励
     #   不认识的 mapId -> code=UNKNOWN_MAP、goldGranted=0、无 playerExpGranted
-    #   九曲回廊 / 清幽古洞 系列 -> success=true 但 goldGranted=0、无玩家经验
+    #   九曲廊 / 冷泉洞 系列 -> success=true 但 goldGranted=0、无玩家经验
     map_cfg = MAPS_DATA.get(str(pending.get("mapId", "")))
     if map_cfg is None:
         state.bump()
@@ -537,7 +537,7 @@ def battle_loot(ctx: Ctx) -> dict:
     # ---- 经验：复刻 game_manager._apply_field_battle_exp_multipliers + player.add_exp
     # 1) 基础经验 = Σ怪物 exp_reward × wildBattle.fieldExpMultiplier(0.5)
     # 2) 法宝难度地图加成：FabaoConfig.map_exp_bonus_pct = 难度档位 × 5%
-    # 3) 总倍率 = VIP倍率(1/1.3/1.6/2.0) + 生效中的双倍经验丹种类数（每种 +100%）
+    # 3) 总倍率 = VIP倍率(1/1.3/1.6/2.0) + 生效中的双倍经验符种类数（每种 +100%）
     #    客户端在线模式不自己算经验（直接吃服务端下发的 level/experience），
     #    所以倍率必须在这里乘，否则双倍丹只对离线经验生效、野外经验一点没变。
     map_bonus_pct = _map_exp_bonus_pct(map_cfg, pending, ctx.s("difficulty") or ctx.s("mapDifficulty"))
@@ -721,7 +721,7 @@ def tower_clear_reward(ctx: Ctx) -> dict:
     if floor > 0 and floor % every == 0:
         row = RULES.roll(RULES.v("tower", "floorGiftRewards", []) or [])
         if row:
-            state.add_item(str(row.get("name", "天关礼包")), 1, "item")
+            state.add_item(str(row.get("name", "天关锦囊")), 1, "item")
             gifts.append({"name": str(row.get("name", "")), "count": 1})
     state.bump()
     return ok(goldGained=gold, newGold=state.gold(), gifts=gifts, items=gifts)

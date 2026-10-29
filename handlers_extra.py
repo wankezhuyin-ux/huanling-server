@@ -232,7 +232,7 @@ def pet_equipment_drop(ctx: Ctx) -> dict:
 
 # ---------------------------------------------------------------- 宠装礼包发放
 #
-# 客户端 `inventory_manager.gd` 里「开荒宠装礼包 / 测试宠物装备礼包」走
+# 客户端 `inventory_manager.gd` 里「开荒宠装锦囊 / 测试宠物装备礼包」走
 # `network.request_pet_equipment_grant("gift", 礼包名, 5, opId)`，要求回包带
 # `saveData`（拿 `reward_inventory_slice` + `authoritative_equipment_inventory`
 # 去对齐背包和宠装列表）。原来的实现只是转调 `pet_equipment_drop`：
@@ -242,15 +242,15 @@ def pet_equipment_drop(ctx: Ctx) -> dict:
 #   - 不回 saveData → 客户端等 90s 超时后弹「请求超时」。
 # 这里改成真正的服务端发放：扣 1 个礼包，发 5 件各单属性 +500 的宠装。
 
-PET_EQUIP_GIFT_SOURCES = {"开荒宠装礼包", "测试宠物装备礼包", "frontier_pet_equipment_gift"}
+PET_EQUIP_GIFT_SOURCES = {"开荒宠装锦囊", "测试宠物装备礼包", "frontier_pet_equipment_gift"}
 
 # sourceId → 实际要扣的道具名。
 #
 # `frontier_pet_equipment_gift` 是客户端 `open_frontier_pet_equipment_gift()` 用的
-# 内部标识（不是道具名），对应背包里的「开荒宠装礼包」本体 ——
+# 内部标识（不是道具名），对应背包里的「开荒宠装锦囊」本体 ——
 # 直接把 sourceId 当道具名去扣会永远「背包里没有【frontier_pet_equipment_gift】」。
 PET_EQUIP_GIFT_CONSUME_NAME = {
-    "frontier_pet_equipment_gift": "开荒宠装礼包",
+    "frontier_pet_equipment_gift": "开荒宠装锦囊",
 }
 PET_EQUIP_GIFT_VALUE = 500
 PET_EQUIP_GRANT_SLOTS = refs.PET_EQUIP_GRANT_SLOTS
@@ -568,7 +568,7 @@ def suit_sweep_reward(ctx: Ctx) -> dict:
     return suit_clear_reward(ctx)
 
 
-# ================================================================ 兄弟天关（实时部分）
+# ================================================================ 兄弟天关城（实时部分）
 
 def _bt_box(state) -> dict:
     return state.meta.setdefault("brotherTower", {})

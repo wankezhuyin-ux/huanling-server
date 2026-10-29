@@ -2,7 +2,7 @@
  "success": true,
  "items": [
   {
-   "itemName": "新手礼包",
+   "itemName": "新手锦囊",
    "currency": "gold",
    "basePrice": 1000,
    "finalPrice": 1000,
@@ -14,7 +14,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "开荒礼包",
+   "itemName": "开荒锦囊",
    "currency": "yuanbao",
    "basePrice": 500,
    "finalPrice": 500,
@@ -26,7 +26,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "开荒宠装礼包",
+   "itemName": "开荒宠装锦囊",
    "currency": "yuanbao",
    "basePrice": 500,
    "finalPrice": 500,
@@ -38,7 +38,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "悟道仙丹礼包",
+   "itemName": "开悟丹锦囊",
    "currency": "yuanbao",
    "basePrice": 200,
    "finalPrice": 200,
@@ -50,7 +50,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "宠物升级丹",
+   "itemName": "宠物经验丹",
    "currency": "yuanbao",
    "basePrice": 200,
    "finalPrice": 200,
@@ -62,7 +62,7 @@
    "dailyRemaining": 1
   },
   {
-   "itemName": "双倍经验丹",
+   "itemName": "双倍经验符",
    "currency": "yuanbao",
    "basePrice": 100,
    "finalPrice": 100,
@@ -74,7 +74,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "双倍经验丹(月)",
+   "itemName": "双倍经验符·月",
    "currency": "yuanbao",
    "basePrice": 2900,
    "finalPrice": 2900,
@@ -86,7 +86,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "双倍经验丹(周)",
+   "itemName": "双倍经验符·周",
    "currency": "yuanbao",
    "basePrice": 700,
    "finalPrice": 700,
@@ -110,7 +110,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "6+可进化宠礼包",
+   "itemName": "六阶可进化宠锦囊",
    "currency": "yuanbao",
    "basePrice": 50,
    "finalPrice": 50,
@@ -122,7 +122,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "7+可进化宠礼包",
+   "itemName": "七阶可进化宠锦囊",
    "currency": "yuanbao",
    "basePrice": 150,
    "finalPrice": 150,
@@ -134,7 +134,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "8+可进化宠礼包",
+   "itemName": "八阶可进化宠锦囊",
    "currency": "yuanbao",
    "basePrice": 600,
    "finalPrice": 600,
@@ -146,7 +146,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "7+不可进化宠礼包",
+   "itemName": "七阶不可进化宠锦囊",
    "currency": "yuanbao",
    "basePrice": 150,
    "finalPrice": 150,
@@ -158,7 +158,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "8+不可进化宠礼包",
+   "itemName": "八阶不可进化宠锦囊",
    "currency": "yuanbao",
    "basePrice": 450,
    "finalPrice": 450,
@@ -170,7 +170,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "9+可进化宠礼包",
+   "itemName": "九阶可进化宠锦囊",
    "currency": "yuanbao",
    "basePrice": 900,
    "finalPrice": 900,
@@ -182,7 +182,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "6+可进化宠礼包(可能变异)",
+   "itemName": "六阶可进化宠锦囊（变异）",
    "currency": "yuanbao",
    "basePrice": 100,
    "finalPrice": 100,
@@ -194,7 +194,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "7+可进化宠礼包(可能变异)",
+   "itemName": "七阶可进化宠锦囊（变异）",
    "currency": "yuanbao",
    "basePrice": 200,
    "finalPrice": 200,
@@ -206,7 +206,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "8+可进化宠礼包(可能变异)",
+   "itemName": "八阶可进化宠锦囊（变异）",
    "currency": "yuanbao",
    "basePrice": 800,
    "finalPrice": 800,
@@ -218,7 +218,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "9+可进化宠礼包(可能变异)",
+   "itemName": "九阶可进化宠锦囊（变异）",
    "currency": "yuanbao",
    "basePrice": 1200,
    "finalPrice": 1200,
@@ -230,7 +230,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "6+不可进化宠礼包(可能变异)",
+   "itemName": "六阶不可进化宠锦囊（变异）",
    "currency": "yuanbao",
    "basePrice": 80,
    "finalPrice": 80,
@@ -242,7 +242,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "7+不可进化宠礼包(可能变异)",
+   "itemName": "七阶不可进化宠锦囊（变异）",
    "currency": "yuanbao",
    "basePrice": 180,
    "finalPrice": 180,
@@ -254,7 +254,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "8+不可进化宠礼包(可能变异)",
+   "itemName": "八阶不可进化宠锦囊（变异）",
    "currency": "yuanbao",
    "basePrice": 550,
    "finalPrice": 550,
@@ -266,7 +266,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "9+不可进化宠礼包(可能变异)",
+   "itemName": "九阶不可进化宠锦囊（变异）",
    "currency": "yuanbao",
    "basePrice": 1000,
    "finalPrice": 1000,
@@ -350,7 +350,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "金魂魄50",
+   "itemName": "金魂魄",
    "currency": "friendship",
    "basePrice": 50,
    "finalPrice": 50,
@@ -362,7 +362,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "木魂魄50",
+   "itemName": "木魂魄",
    "currency": "friendship",
    "basePrice": 50,
    "finalPrice": 50,
@@ -374,7 +374,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "水魂魄50",
+   "itemName": "水魂魄",
    "currency": "friendship",
    "basePrice": 50,
    "finalPrice": 50,
@@ -386,7 +386,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "火魂魄50",
+   "itemName": "火魂魄",
    "currency": "friendship",
    "basePrice": 50,
    "finalPrice": 50,
@@ -398,7 +398,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "土魂魄50",
+   "itemName": "土魂魄",
    "currency": "friendship",
    "basePrice": 50,
    "finalPrice": 50,
@@ -482,7 +482,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "7+可进化宠礼包",
+   "itemName": "七阶可进化宠锦囊",
    "currency": "friendship",
    "basePrice": 100,
    "finalPrice": 100,
@@ -494,7 +494,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "8+可进化宠礼包",
+   "itemName": "八阶可进化宠锦囊",
    "currency": "friendship",
    "basePrice": 300,
    "finalPrice": 300,
@@ -506,7 +506,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "9+可进化宠礼包",
+   "itemName": "九阶可进化宠锦囊",
    "currency": "friendship",
    "basePrice": 500,
    "finalPrice": 500,
@@ -518,7 +518,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "10+可进化宠礼包",
+   "itemName": "十阶可进化宠锦囊",
    "currency": "friendship",
    "basePrice": 900,
    "finalPrice": 900,
@@ -530,7 +530,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "7+不可进化宠礼包",
+   "itemName": "七阶不可进化宠锦囊",
    "currency": "friendship",
    "basePrice": 100,
    "finalPrice": 100,
@@ -542,7 +542,7 @@
    "dailyRemaining": 0
   },
   {
-   "itemName": "8+不可进化宠礼包",
+   "itemName": "八阶不可进化宠锦囊",
    "currency": "friendship",
    "basePrice": 250,
    "finalPrice": 250,

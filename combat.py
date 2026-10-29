@@ -21,7 +21,7 @@
   合击       = `_check_joint_attack_condition`
                人宠都活着、都不防御、有活怪，且**人宠敏捷都低于所有活怪**才触发
                人物先手一击 → 宠物补一击（含破甲、魂魄）
-  一箭三雕   = 心法 `triple_shot`（`get_triple_shot_damage_ratio`，1 层 0.8 → 9 层 1.2）
+  一击三伤   = 心法 `triple_shot`（`get_triple_shot_damage_ratio`，1 层 0.8 → 9 层 1.2）
                合击的人物段打最多 3 个目标（用户说的「伤害溢出去打 2~3 只怪」）
   溅射       = 宠物技能 `splash`（`_preroll_pet_splash_plan`）
                `target_count - 1` 个额外目标，伤害再 × `damage_ratio`
@@ -317,9 +317,9 @@ def _best_skill_cfg(skill_keys, skill_id: str, skill_defs: dict) -> dict:
 
 
 # 服务端战斗模拟需要消费的宠物技能（和 `pet_skill_config.gd` 的 skill_id 一一对应）：
-#   主动   splash 溅墨 / double_shot 连笔 / chase 续笔 / life_steal 吸血 /
-#          counter_attack 逆锋 / guard 收锋 / divine_protect 护墨 / self_heal 自愈 /
-#          taunt 引锋 / loyal 守纸 / armor_pierce 破甲
+#   主动   splash 溅墨 / double_shot 连击 / chase 追杀 / life_steal 吸血 /
+#          counter_attack 反打 / guard 挡伤 / divine_protect 护主 / self_heal 自愈 /
+#          taunt 挑衅 / loyal 守主 / armor_pierce 破甲
 #   被动   fatal 必杀（暴击率）/ fierce 凶猛（暴击伤害）
 #          —— 强壮/迅捷/长寿/坚固已进客户端上报的 final_attack/agility/max_hp/defense，
 #             服务端直接用 final 值，不需要再叠加。
@@ -540,7 +540,7 @@ def resolve(
         return True
 
     def _player_attack(rnd: int, *, target=None, joint: bool = False) -> None:
-        """人物出手：普通一击；合击时带一箭三雕的多目标。"""
+        """人物出手：普通一击；合击时带一击三伤的多目标。"""
         nonlocal splash_hits
         if not player.alive:
             return
@@ -625,7 +625,7 @@ def resolve(
                 "round": rnd,
                 "attacker": pet.name,
                 "petName": pet.name,
-                "skillName": "破纸",
+                "skillName": "破防",
             })
         defense = float(primary.defense) * 0.5 if pierced else None
         hit = _hit(pet, primary, crit_stats=pet_crit, attacker_element=pet.element or "",
@@ -895,7 +895,7 @@ def resolve(
                                 "hpRestored": int(restore),
                                 "targetHp": int(restore),
                                 "targetMaxHp": int(pet.max_hp),
-                                "skillName": "护墨",
+                                "skillName": "护主",
                             })
                     if not revived:
                         log.append({"type": "pet_dead", "name": pet.name,
@@ -955,7 +955,7 @@ def resolve(
                         "hpRestored": actual,
                         "targetHp": int(pet.hp),
                         "targetMaxHp": int(pet.max_hp),
-                        "skillName": "回润",
+                        "skillName": "自复",
                     })
 
         if not player.alive and not (pet and pet.alive):

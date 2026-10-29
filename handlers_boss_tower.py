@@ -166,7 +166,7 @@ def world_boss_battle_report(ctx: Ctx) -> dict:
             my_rank = int(row["rank"])
             break
 
-    gift = str(cfg.get("giftItemName", "世界boss礼包"))
+    gift = str(cfg.get("giftItemName", "世界首领锦囊"))
     state.send_mail("世界 Boss 参与礼包",
                     "世界 Boss 挑战结算：本次造成 %d 点伤害，请查收参与礼包。" % damage,
                     [{"name": gift, "count": 1}])

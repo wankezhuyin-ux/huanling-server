@@ -415,11 +415,11 @@ def _merge_authoritative_progress(old: dict, incoming: dict) -> None:
                     new_list.append(row)
             new_inv[key] = new_list
 
-        # 藏宝洞的藏宝箱（`item_type=treasure_chest` + `custom_data.treasure_token`）
+        # 藏宝洞的藏宝匣（`item_type=treasure_chest` + `custom_data.treasure_token`）
         # 是**服务端结算线程**直接写进背包的（treasure_round._grant_chest），
         # 只能通过 /treasure/chest/open 核销。发奖那一刻玩家往往不在线，
         # 客户端本地还没有这口箱子，下一次整包上传就会把它冲掉：
-        # 邮件里写着「藏宝箱已放入背包」，背包里却什么都没有（2026-10-28 报障）。
+        # 邮件里写着「藏宝匣已放入背包」，背包里却什么都没有（2026-10-28 报障）。
         # 所以这里按 token 兜住：只要服务端那份还在、客户端没带上，就补回去。
         # 玩家真开了箱，服务端会先把箱子从 old 里删掉，这段就不会再塞回来。
         old_items = old_inv.get("items")
