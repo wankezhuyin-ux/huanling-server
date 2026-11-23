@@ -40,7 +40,7 @@
           },
           {
             "id": "normal_unseal",
-            "name": "解封石",
+            "name": "普通解封石",
             "weight": 11.35,
             "type": "item",
             "broadcast": false
@@ -54,21 +54,21 @@
           },
           {
             "id": "bronze_chest",
-            "name": "青铜匣",
+            "name": "青铜宝箱",
             "weight": 7.09,
             "type": "item",
             "broadcast": false
           },
           {
             "id": "silver_chest",
-            "name": "白银匣",
+            "name": "白银宝箱",
             "weight": 2.84,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "gold_chest",
-            "name": "黄金匣",
+            "name": "黄金宝箱",
             "weight": 1.13,
             "type": "item",
             "broadcast": true
@@ -82,7 +82,7 @@
           },
           {
             "id": "pet_gift_5",
-            "name": "五阶宠物锦囊",
+            "name": "5+宠物礼包",
             "weight": 11.13,
             "type": "item",
             "broadcast": true
@@ -96,14 +96,14 @@
           },
           {
             "id": "evo_gift_6",
-            "name": "六阶可进化宠锦囊",
+            "name": "6+可进化宠礼包",
             "weight": 5.57,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "evo_gift_7",
-            "name": "七阶可进化宠锦囊",
+            "name": "7+可进化宠礼包",
             "weight": 2.14,
             "type": "item",
             "broadcast": true
@@ -132,35 +132,35 @@
           },
           {
             "id": "fabao_frag_memorial_2026",
-            "name": "周年法宝碎片",
+            "name": "2026纪念法宝碎片",
             "weight": 5,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "evo_gift_6",
-            "name": "六阶可进化宠锦囊",
+            "name": "6+可进化宠礼包",
             "weight": 6,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "evo_gift_7",
-            "name": "七阶可进化宠锦囊",
+            "name": "7+可进化宠礼包",
             "weight": 5,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "nonevo_gift_7",
-            "name": "七阶不可进化宠锦囊",
+            "name": "7+不可进化宠礼包",
             "weight": 6.5,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "gold_chest",
-            "name": "黄金匣",
+            "name": "黄金宝箱",
             "weight": 6,
             "type": "item",
             "broadcast": true
@@ -195,175 +195,175 @@
           },
           {
             "id": "player_level_pill",
-            "name": "人物经验丹",
+            "name": "人物升级丹",
             "weight": 1,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "pet_level_pill",
-            "name": "宠物经验丹",
+            "name": "宠物升级丹",
             "weight": 1,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "evo_gift_8",
-            "name": "八阶可进化宠锦囊",
+            "name": "8+可进化宠礼包",
             "weight": 1.5,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "nonevo_gift_8",
-            "name": "八阶不可进化宠锦囊",
+            "name": "8+不可进化宠礼包",
             "weight": 1.5,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "nonevo_gift_9",
-            "name": "九阶不可进化宠锦囊",
+            "name": "9+不可进化宠礼包",
             "weight": 1,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "evo_gift_9",
-            "name": "九阶可进化宠锦囊",
+            "name": "9+可进化宠礼包",
             "weight": 1,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "shuijinger_gift",
-            "name": "七至九阶晶儿锦囊",
+            "name": "7-9水晶儿礼包",
             "weight": 1,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "mengjinger_gift",
-            "name": "七至九阶梦晶锦囊",
+            "name": "7-9梦晶儿礼包",
             "weight": 1,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "adidas_gift",
-            "name": "七至九阶阿弟锦囊",
+            "name": "7-9冥狼崽礼包",
             "weight": 1,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "nonevo_gift_10",
-            "name": "十阶不可进化宠锦囊",
+            "name": "10+不可进化宠礼包",
             "weight": 0.7,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "evo_gift_10",
-            "name": "十阶可进化宠锦囊",
+            "name": "10+可进化宠礼包",
             "weight": 0.7,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "evo_gift_11",
-            "name": "十一阶可进化宠锦囊",
+            "name": "11+可进化宠礼包",
             "weight": 0.5,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "nonevo_gift_11",
-            "name": "十一阶不可进化宠锦囊",
+            "name": "11+不可进化宠礼包",
             "weight": 0.5,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "custom_12_可进化宠礼包_1782137342292",
-            "name": "十二阶可进化宠锦囊",
+            "name": "12+可进化宠礼包",
             "weight": 0.5,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "custom_12_不可进化宠礼包_1782137356217",
-            "name": "十二阶不可进化宠锦囊",
+            "name": "12+不可进化宠礼包",
             "weight": 0.5,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "custom_13_不可进化宠礼包_1784631598818",
-            "name": "十三阶不可进化宠锦囊",
+            "name": "13+不可进化宠礼包",
             "weight": 0.5,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "custom_13_可进化宠礼包_1784631612165",
-            "name": "十三阶可进化宠锦囊",
+            "name": "13+可进化宠礼包",
             "weight": 0.5,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "custom_6_不可进化宠礼包_可能变异__1786866233998",
-            "name": "六阶不可进化宠锦囊（变异）",
+            "name": "6+不可进化宠礼包(可能变异)",
             "weight": 2,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "custom_6_可进化宠礼包_可能变异__1786866252683",
-            "name": "六阶可进化宠锦囊（变异）",
+            "name": "6+可进化宠礼包(可能变异)",
             "weight": 2,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "custom_7_可进化宠礼包_可能变异__1786866272008",
-            "name": "七阶可进化宠锦囊（变异）",
+            "name": "7+可进化宠礼包(可能变异)",
             "weight": 1.5,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "custom_7_不可进化宠礼包_可能变异__1786866283122",
-            "name": "七阶不可进化宠锦囊（变异）",
+            "name": "7+不可进化宠礼包(可能变异)",
             "weight": 1.5,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "custom_8_不可进化宠礼包_可能变异__1786866302073",
-            "name": "八阶不可进化宠锦囊（变异）",
+            "name": "8+不可进化宠礼包(可能变异)",
             "weight": 0.5,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "custom_8_可进化宠礼包_可能变异__1786866314839",
-            "name": "八阶可进化宠锦囊（变异）",
+            "name": "8+可进化宠礼包(可能变异)",
             "weight": 0.5,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "custom_9_不可进化宠礼包_可能变异__1786866333142",
-            "name": "九阶不可进化宠锦囊（变异）",
+            "name": "9+不可进化宠礼包(可能变异)",
             "weight": 0.5,
             "type": "item",
             "broadcast": true
           },
           {
             "id": "custom_9_可进化宠礼包_可能变异__1786866346010",
-            "name": "九阶可进化宠锦囊（变异）",
+            "name": "9+可进化宠礼包(可能变异)",
             "weight": 0.5,
             "type": "item",
             "broadcast": true
@@ -411,12 +411,12 @@
         "护主lv1技能书",
         "溅墨lv1技能书",
         "饮血lv1技能书",
-        "十三阶可进化宠锦囊（变异）",
-        "十三阶不可进化宠锦囊（变异）",
-        "周年法宝碎片*20",
+        "13+可进化宠礼包(可能变异)",
+        "13+不可进化宠礼包(可能变异)",
+        "2026纪念法宝碎片*20",
         "法宝重置石"
       ],
-      "description": "【100次保底】\n元宝抽奖累计达到100次后，可在以下奖励中【六选一】领取1份（仅可领取其中1份，邮件发放）：\n- 破防lv1技能书\n- 致命lv1技能书\n- 挑衅lv1技能书\n- 挡伤lv1技能书\n- 连击lv1技能书\n- 反打lv1技能书\n- 护主lv1技能书\n- 溅墨lv1技能书\n- 饮血lv1技能书\n- 十三阶可进化宠锦囊（变异）\n- 十三阶不可进化宠锦囊（变异）\n- 周年法宝碎片*20\n- 法宝重置石"
+      "description": "【100次保底】\n元宝抽奖累计达到100次后，可在以下奖励中【六选一】领取1份（仅可领取其中1份，邮件发放）：\n- 破防lv1技能书\n- 致命lv1技能书\n- 挑衅lv1技能书\n- 挡伤lv1技能书\n- 连击lv1技能书\n- 反打lv1技能书\n- 护主lv1技能书\n- 溅墨lv1技能书\n- 饮血lv1技能书\n- 13+可进化宠礼包(可能变异)\n- 13+不可进化宠礼包(可能变异)\n- 2026纪念法宝碎片*20\n- 法宝重置石"
     },
     "display": {
       "tabLabels": {
@@ -434,15 +434,15 @@
             "icon": "equip"
           },
           {
-            "name": "七阶可进化宠锦囊",
+            "name": "7+可进化宠礼包",
             "icon": "pet"
           },
           {
-            "name": "六阶可进化宠锦囊",
+            "name": "6+可进化宠礼包",
             "icon": "pet"
           },
           {
-            "name": "五阶宠物锦囊",
+            "name": "5+宠物礼包",
             "icon": "pet"
           },
           {
@@ -454,7 +454,7 @@
             "icon": "gem"
           },
           {
-            "name": "黄金匣",
+            "name": "黄金宝箱",
             "icon": "box"
           },
           {
@@ -464,15 +464,15 @@
         ],
         "yuanbao": [
           {
-            "name": "周年法宝碎片",
+            "name": "2026纪念法宝碎片",
             "icon": "gift"
           },
           {
-            "name": "十三阶可进化宠锦囊",
+            "name": "13+可进化宠礼包",
             "icon": "pet"
           },
           {
-            "name": "十三阶不可进化宠锦囊",
+            "name": "13+不可进化宠礼包",
             "icon": "pet"
           },
           {
@@ -502,8 +502,8 @@
         ]
       },
       "probabilityText": {
-        "gold": "金币池（5亿金币/次）\n\n1亿金币: 33.5%\n2亿金币: 12%\n5亿金币: 约0.57%\n10亿金币: 约0.14%\n解封石: 11.35%\n高级解封石: 4.26%\n青铜匣: 7.09%\n白银匣: 2.84%\n黄金匣: 1.13%\n极限装备之一: 5%\n  - 极限武器: 池内20%\n  - 极限衣服: 池内20%\n  - 极限鞋子: 池内20%\n  - 极限血佩: 池内20%\n  - 极限内带: 池内20%\n五阶宠物锦囊: 11.13%\n五行属性宠物蛋: 1.28%\n  - 金纹蛋: 池内20%\n  - 木纹蛋: 池内20%\n  - 水纹蛋: 池内20%\n  - 火纹蛋: 池内20%\n  - 土纹蛋: 池内20%\n六阶可进化宠锦囊: 5.57%\n七阶可进化宠锦囊: 2.14%\n普通技能书之一: 2%\n  - 自复lv1技能书: 池内12.5%\n  - 轻身lv1技能书: 池内12.5%\n  - 硬皮lv1技能书: 池内12.5%\n  - 长命lv1技能书: 池内12.5%\n  - 力壮lv1技能书: 池内12.5%\n  - 凶性lv1技能书: 池内12.5%\n  - 追杀lv1技能书: 池内12.5%\n  - 守主lv1技能书: 池内12.5%",
-        "yuanbao": "元宝池（100元宝/次）\n\n5亿金币: 28%\n周年法宝碎片: 5%\n六阶可进化宠锦囊: 6%\n七阶可进化宠锦囊: 5%\n七阶不可进化宠锦囊: 6.5%\n黄金匣: 6%\n极限装备之一: 2%\n  - 极限武器: 池内20%\n  - 极限衣服: 池内20%\n  - 极限鞋子: 池内20%\n  - 极限血佩: 池内20%\n  - 极限内带: 池内20%\n10亿金币: 4%\n五行属性宠物蛋: 4%\n  - 金纹蛋: 池内20%\n  - 木纹蛋: 池内20%\n  - 水纹蛋: 池内20%\n  - 火纹蛋: 池内20%\n  - 土纹蛋: 池内20%\n高级解封石: 3.6%\n人物经验丹: 1%\n宠物经验丹: 1%\n八阶可进化宠锦囊: 1.5%\n八阶不可进化宠锦囊: 1.5%\n九阶不可进化宠锦囊: 1%\n九阶可进化宠锦囊: 1%\n七至九阶晶儿锦囊: 1%\n七至九阶梦晶锦囊: 1%\n七至九阶阿弟锦囊: 1%\n十阶不可进化宠锦囊: 约0.7%\n十阶可进化宠锦囊: 约0.7%\n十一阶可进化宠锦囊: 约0.5%\n十一阶不可进化宠锦囊: 约0.5%\n十二阶可进化宠锦囊: 约0.5%\n十二阶不可进化宠锦囊: 约0.5%\n十三阶不可进化宠锦囊: 约0.5%\n十三阶可进化宠锦囊: 约0.5%\n六阶不可进化宠锦囊（变异）: 2%\n六阶可进化宠锦囊（变异）: 2%\n七阶可进化宠锦囊（变异）: 1.5%\n七阶不可进化宠锦囊（变异）: 1.5%\n八阶不可进化宠锦囊（变异）: 约0.5%\n八阶可进化宠锦囊（变异）: 约0.5%\n九阶不可进化宠锦囊（变异）: 约0.5%\n九阶可进化宠锦囊（变异）: 约0.5%\n法宝洗练石: 1%\n法宝重置石: 约0.5%\n稀有技能书之一: 1%\n  - 溅墨lv1技能书: 池内11.11%\n  - 反打lv1技能书: 池内11.11%\n  - 护主lv1技能书: 池内11.11%\n  - 连击lv1技能书: 池内11.11%\n  - 饮血lv1技能书: 池内11.11%\n  - 破防lv1技能书: 池内11.11%\n  - 挡伤lv1技能书: 池内11.11%\n  - 致命lv1技能书: 池内11.11%\n  - 挑衅lv1技能书: 池内11.11%\n普通技能书之一: 4%\n  - 自复lv1技能书: 池内14.29%\n  - 轻身lv1技能书: 池内14.29%\n  - 长命lv1技能书: 池内14.29%\n  - 力壮lv1技能书: 池内14.29%\n  - 凶性lv1技能书: 池内14.29%\n  - 追杀lv1技能书: 池内14.29%\n  - 守主lv1技能书: 池内14.29%\n\n【100次保底】\n元宝抽奖累计达到100次后，可在以下奖励中【六选一】领取1份（仅可领取其中1份，邮件发放）：\n- 破防lv1技能书\n- 致命lv1技能书\n- 挑衅lv1技能书\n- 挡伤lv1技能书\n- 连击lv1技能书\n- 反打lv1技能书\n- 护主lv1技能书\n- 溅墨lv1技能书\n- 饮血lv1技能书\n- 十三阶可进化宠锦囊（变异）\n- 十三阶不可进化宠锦囊（变异）\n- 周年法宝碎片*20\n- 法宝重置石"
+        "gold": "金币池（5亿金币/次）\n\n1亿金币: 33.5%\n2亿金币: 12%\n5亿金币: 约0.57%\n10亿金币: 约0.14%\n普通解封石: 11.35%\n高级解封石: 4.26%\n青铜宝箱: 7.09%\n白银宝箱: 2.84%\n黄金宝箱: 1.13%\n极限装备之一: 5%\n  - 极限武器: 池内20%\n  - 极限衣服: 池内20%\n  - 极限鞋子: 池内20%\n  - 极限血佩: 池内20%\n  - 极限内带: 池内20%\n5+宠物礼包: 11.13%\n五行属性宠物蛋: 1.28%\n  - 金属性宠物蛋: 池内20%\n  - 木属性宠物蛋: 池内20%\n  - 水属性宠物蛋: 池内20%\n  - 火属性宠物蛋: 池内20%\n  - 土属性宠物蛋: 池内20%\n6+可进化宠礼包: 5.57%\n7+可进化宠礼包: 2.14%\n普通技能书之一: 2%\n  - 自复lv1技能书: 池内12.5%\n  - 轻身lv1技能书: 池内12.5%\n  - 硬皮lv1技能书: 池内12.5%\n  - 长命lv1技能书: 池内12.5%\n  - 力壮lv1技能书: 池内12.5%\n  - 凶性lv1技能书: 池内12.5%\n  - 追杀lv1技能书: 池内12.5%\n  - 守主lv1技能书: 池内12.5%",
+        "yuanbao": "元宝池（100元宝/次）\n\n5亿金币: 28%\n2026纪念法宝碎片: 5%\n6+可进化宠礼包: 6%\n7+可进化宠礼包: 5%\n7+不可进化宠礼包: 6.5%\n黄金宝箱: 6%\n极限装备之一: 2%\n  - 极限武器: 池内20%\n  - 极限衣服: 池内20%\n  - 极限鞋子: 池内20%\n  - 极限血佩: 池内20%\n  - 极限内带: 池内20%\n10亿金币: 4%\n五行属性宠物蛋: 4%\n  - 金属性宠物蛋: 池内20%\n  - 木属性宠物蛋: 池内20%\n  - 水属性宠物蛋: 池内20%\n  - 火属性宠物蛋: 池内20%\n  - 土属性宠物蛋: 池内20%\n高级解封石: 3.6%\n人物升级丹: 1%\n宠物升级丹: 1%\n8+可进化宠礼包: 1.5%\n8+不可进化宠礼包: 1.5%\n9+不可进化宠礼包: 1%\n9+可进化宠礼包: 1%\n7-9水晶儿礼包: 1%\n7-9梦晶儿礼包: 1%\n7-9冥狼崽礼包: 1%\n10+不可进化宠礼包: 约0.7%\n10+可进化宠礼包: 约0.7%\n11+可进化宠礼包: 约0.5%\n11+不可进化宠礼包: 约0.5%\n12+可进化宠礼包: 约0.5%\n12+不可进化宠礼包: 约0.5%\n13+不可进化宠礼包: 约0.5%\n13+可进化宠礼包: 约0.5%\n6+不可进化宠礼包(可能变异): 2%\n6+可进化宠礼包(可能变异): 2%\n7+可进化宠礼包(可能变异): 1.5%\n7+不可进化宠礼包(可能变异): 1.5%\n8+不可进化宠礼包(可能变异): 约0.5%\n8+可进化宠礼包(可能变异): 约0.5%\n9+不可进化宠礼包(可能变异): 约0.5%\n9+可进化宠礼包(可能变异): 约0.5%\n法宝洗练石: 1%\n法宝重置石: 约0.5%\n稀有技能书之一: 1%\n  - 溅墨lv1技能书: 池内11.11%\n  - 反打lv1技能书: 池内11.11%\n  - 护主lv1技能书: 池内11.11%\n  - 连击lv1技能书: 池内11.11%\n  - 饮血lv1技能书: 池内11.11%\n  - 破防lv1技能书: 池内11.11%\n  - 挡伤lv1技能书: 池内11.11%\n  - 致命lv1技能书: 池内11.11%\n  - 挑衅lv1技能书: 池内11.11%\n普通技能书之一: 4%\n  - 自复lv1技能书: 池内14.29%\n  - 轻身lv1技能书: 池内14.29%\n  - 长命lv1技能书: 池内14.29%\n  - 力壮lv1技能书: 池内14.29%\n  - 凶性lv1技能书: 池内14.29%\n  - 追杀lv1技能书: 池内14.29%\n  - 守主lv1技能书: 池内14.29%\n\n【100次保底】\n元宝抽奖累计达到100次后，可在以下奖励中【六选一】领取1份（仅可领取其中1份，邮件发放）：\n- 破防lv1技能书\n- 致命lv1技能书\n- 挑衅lv1技能书\n- 挡伤lv1技能书\n- 连击lv1技能书\n- 反打lv1技能书\n- 护主lv1技能书\n- 溅墨lv1技能书\n- 饮血lv1技能书\n- 13+可进化宠礼包(可能变异)\n- 13+不可进化宠礼包(可能变异)\n- 2026纪念法宝碎片*20\n- 法宝重置石"
       }
     }
   },
@@ -703,11 +703,11 @@
     "towerGift": {
       "goldAmount": 1000000,
       "extraPetGiftRate": 0.05,
-      "extraPetGiftName": "五阶宠物锦囊"
+      "extraPetGiftName": "5+宠物礼包"
     },
     "floorGiftRewards": [
       {
-        "name": "五阶宠物蛋",
+        "name": "5+宠物蛋",
         "rate": 0.55,
         "displayRate": "55.0%"
       },
@@ -717,7 +717,7 @@
         "displayRate": "5.0%"
       },
       {
-        "name": "赤翅蛾",
+        "name": "琳琳",
         "rate": 0.2,
         "displayRate": "20.0%"
       },
@@ -727,7 +727,7 @@
         "displayRate": "20.0%"
       }
     ],
-    "descriptionText": "每通过10层获得天关锦囊；每通过100层获得对应百关礼包。百关礼包概率：55% 五阶宠物蛋，5% 五行蛋，20% 赤翅蛾，20% 纹地龙。"
+    "descriptionText": "每通过10层获得天关礼包；每通过100层获得对应百关礼包。百关礼包概率：55% 5+宠物蛋，5% 五行蛋，20% 琳琳，20% 纹地龙。"
   },
   "treasure": {
     "featureEnabled": true,
@@ -750,13 +750,13 @@
         "rare": true
       },
       {
-        "name": "八阶可进化宠锦囊",
+        "name": "8+可进化宠礼包",
         "weight": 2,
         "percent": 0.5,
         "rare": true
       },
       {
-        "name": "七阶可进化宠锦囊",
+        "name": "7+可进化宠礼包",
         "weight": 4,
         "percent": 1,
         "rare": true
@@ -768,13 +768,13 @@
         "rare": true
       },
       {
-        "name": "人物经验丹",
+        "name": "人物升级丹",
         "weight": 11,
         "percent": 2.76,
         "rare": true
       },
       {
-        "name": "宠物经验丹",
+        "name": "宠物升级丹",
         "weight": 14,
         "percent": 3.51,
         "rare": false
@@ -798,7 +798,7 @@
         "rare": false
       },
       {
-        "name": "六阶可进化宠锦囊",
+        "name": "6+可进化宠礼包",
         "weight": 59,
         "percent": 14.79,
         "rare": false
@@ -810,13 +810,13 @@
         "rare": false
       },
       {
-        "name": "五阶宠物锦囊",
+        "name": "5+宠物礼包",
         "weight": 126,
         "percent": 31.58,
         "rare": false
       }
     ],
-    "descriptionText": "开放时间：9:00–24:00（上海时区）\n报名 10 分钟 + 争夺 10 分钟，共 15 回合。\n须先更新镜像后再参与，争夺使用该镜像互打。\nVIP 日次数：2 / 4 / 5 / 8\n\n奖励权重：\n硬皮lv1技能书: 0.25%\n八阶可进化宠锦囊: 0.5%\n七阶可进化宠锦囊: 1%\n10亿金币: 1.5%\n人物经验丹: 2.76%\n宠物经验丹: 3.51%\n5亿金币: 5.26%\n五行属性宠物蛋: 7.27%\n1亿金币: 10.53%\n六阶可进化宠锦囊: 14.79%\n极限装备池: 21.05%\n五阶宠物锦囊: 31.58%"
+    "descriptionText": "开放时间：9:00–24:00（上海时区）\n报名 10 分钟 + 争夺 10 分钟，共 15 回合。\n须先更新镜像后再参与，争夺使用该镜像互打。\nVIP 日次数：2 / 4 / 5 / 8\n\n奖励权重：\n硬皮lv1技能书: 0.25%\n8+可进化宠礼包: 0.5%\n7+可进化宠礼包: 1%\n10亿金币: 1.5%\n人物升级丹: 2.76%\n宠物升级丹: 3.51%\n5亿金币: 5.26%\n五行属性宠物蛋: 7.27%\n1亿金币: 10.53%\n6+可进化宠礼包: 14.79%\n极限装备池: 21.05%\n5+宠物礼包: 31.58%"
   },
   "fiveElementsDungeon": {
     "enabled": true,
@@ -879,12 +879,12 @@
     "rewards": {
       "simple": [
         {
-          "name": "金系转生令",
+          "name": "金宠物转生令牌",
           "rate": 0.015,
           "displayRate": "1.50%"
         },
         {
-          "name": "金纹异蛋",
+          "name": "金变异宠物蛋",
           "rate": 0.1,
           "displayRate": "10.00%"
         },
@@ -996,12 +996,12 @@
       ],
       "normal": [
         {
-          "name": "金系转生令",
+          "name": "金宠物转生令牌",
           "rate": 0.03,
           "displayRate": "3.00%"
         },
         {
-          "name": "金纹异蛋",
+          "name": "金变异宠物蛋",
           "rate": 0.1,
           "displayRate": "10.00%"
         },
@@ -1113,12 +1113,12 @@
       ],
       "hard": [
         {
-          "name": "金系转生令",
+          "name": "金宠物转生令牌",
           "rate": 0.06,
           "displayRate": "6.00%"
         },
         {
-          "name": "金纹异蛋",
+          "name": "金变异宠物蛋",
           "rate": 0.1,
           "displayRate": "10.00%"
         },
@@ -1240,12 +1240,13 @@
     "sweepGoldBase": 100000,
     "sweepGoldPerLevel": 50000,
     "dropRates": {
-      "sealedSuitRate": 0.1,
-      "sealedStoneRate": 0.1,
-      "sealedSuitDisplay": "10%",
-      "sealedStoneDisplay": "10%"
+      "sealedSuitRate": 1.0,
+      "sealedStoneRate": 0.05,
+      "sealedSuitDisplay": "100%（每场必出1件，部位不重复）",
+      "sealedStoneDisplay": "5%",
+      "uniqueSlotCycle": true
     },
-    "descriptionText": "每槽位 10% 封印套装，10% 解封石；入场消耗 50 万金币。"
+    "descriptionText": "每场挑战/扫荡必出1件封印套装，5个部位轮换不重复，5次可凑齐一套；解封石5%；入场消耗50万金币。"
   },
   "atlasDungeon": {
     "enabled": true,
@@ -1289,18 +1290,18 @@
     "nobleClearBonusPerLevel": 1,
     "maxMembers": 2,
     "reconnectWaitSec": 90,
-    "tokenItemName": "天关令牌",
-    "giftItemName": "天关组队锦囊",
-    "giftDesc": "60.54%1亿金币 / 5%5亿金币 / 5%一击三伤 / 1%以血养血 / 2%套装强化石 / 5%极限装备之一 / 2%10亿金币 / 18%五阶宠物蛋 / 0.01%溅墨lv1技能书 / 0.01%连击lv1技能书 / 0.01%反打lv1技能书 / 0.01%护主lv1技能书 / 0.01%硬皮lv1技能书 / 0.01%饮血lv1技能书 / 0.01%破防lv1技能书 / 0.01%挡伤lv1技能书 / 0.01%致命lv1技能书 / 0.01%挑衅lv1技能书 / 0.05%自复lv1技能书 / 0.05%轻身lv1技能书 / 0.05%长命lv1技能书 / 0.05%力壮lv1技能书 / 0.05%凶性lv1技能书 / 0.05%追杀lv1技能书 / 0.05%守主lv1技能书 / 1%法宝洗练石 / 0.01%法宝重置石",
+    "tokenItemName": "兄弟天关令牌",
+    "giftItemName": "兄弟天关礼包",
+    "giftDesc": "60.54%1亿金币 / 5%5亿金币 / 5%一箭三雕 / 1%以战养战 / 2%套装强化石 / 5%极限装备之一 / 2%10亿金币 / 18%5+宠物蛋 / 0.01%溅墨lv1技能书 / 0.01%连击lv1技能书 / 0.01%反打lv1技能书 / 0.01%护主lv1技能书 / 0.01%硬皮lv1技能书 / 0.01%饮血lv1技能书 / 0.01%破防lv1技能书 / 0.01%挡伤lv1技能书 / 0.01%致命lv1技能书 / 0.01%挑衅lv1技能书 / 0.05%自复lv1技能书 / 0.05%轻身lv1技能书 / 0.05%长命lv1技能书 / 0.05%力壮lv1技能书 / 0.05%凶性lv1技能书 / 0.05%追杀lv1技能书 / 0.05%守主lv1技能书 / 1%法宝洗练石 / 0.01%法宝重置石",
     "giftShowcaseNames": [
       "1亿金币",
       "5亿金币",
-      "一击三伤",
-      "以血养血",
+      "一箭三雕",
+      "以战养战",
       "套装强化石",
       "极限装备之一",
       "10亿金币",
-      "五阶宠物蛋",
+      "5+宠物蛋",
       "溅墨lv1技能书",
       "连击lv1技能书",
       "反打lv1技能书",
@@ -1414,12 +1415,19 @@
       "heicaishen"
     ],
     "sponsorCustomPetIds": [
+      "bashen",
+      "babata",
+      "buzhihuowu",
       "cailin",
       "huangyidaonan",
       "heicaishen",
+      "henrendadi",
+      "jiulama",
       "goumang",
       "kezhanmeimei",
       "lianyugulong",
+      "liushen",
+      "zuozhu",
       "longzhanjiang",
       "maiduo",
       "qingqiujiuwei",
@@ -1427,7 +1435,9 @@
       "shuangyanzhan",
       "songbukuai",
       "shaiziwangwu",
+      "ximenchuixue",
       "yizhanmafu",
+      "youerha",
       "yuzu",
       "zhusisi"
     ],
@@ -1447,9 +1457,6 @@
     "evolveLearnChance": 0.01,
     "mergeInheritChance": 0.2
   },
-  "martialCreate": {
-    "serverAuthorityEnabled": true
-  },
   "worldBoss": {
     "featureEnabled": true,
     "challengeStartHour": 9,
@@ -1468,7 +1475,7 @@
     "rankingDisplayLimit": 100,
     "petGrantGrowthMin": 9,
     "petGrantGrowthMax": 9.9,
-    "giftItemName": "世界首领锦囊",
+    "giftItemName": "世界boss礼包",
     "giftLootDisplay": [
       "金币1亿",
       "金币5亿",
@@ -1481,7 +1488,7 @@
       "五只世界boss宠之一",
       "法宝洗练石"
     ],
-    "descriptionText": "活动时间：每日09:30-22:30(北京时间）\n每日最多挑战3次；出战宠单挑Boss,10回合内输出越高排名越高\n当日22:35邮件发放排名奖励；同分先达到该伤害者靠前\n每日结算时，前100名还将额外获得一个帮派建设材料，邮件领取\n\n排名奖励：\n第1名：5个世界首领锦囊\n第2名：4个世界首领锦囊\n第3名：3个世界首领锦囊\n第4-10名：各2个世界首领锦囊\n第11-30名：各1个世界首领锦囊\n第31-100名：各5000万金币\n未进前100名：无奖励",
+    "descriptionText": "活动时间：每日09:30-22:30(北京时间）\n每日最多挑战3次；出战宠单挑Boss,10回合内输出越高排名越高\n当日22:35邮件发放排名奖励；同分先达到该伤害者靠前\n每日结算时，前100名还将额外获得一个帮派建设材料，邮件领取\n\n排名奖励：\n第1名：5个世界boss礼包\n第2名：4个世界boss礼包\n第3名：3个世界boss礼包\n第4-10名：各2个世界boss礼包\n第11-30名：各1个世界boss礼包\n第31-100名：各5000万金币\n未进前100名：无奖励",
     "lootTable": [
       {
         "name": "金币1亿",
@@ -1543,7 +1550,7 @@
     "shopItems": [
       {
         "id": "limit_equip_gift",
-        "itemName": "极限装备锦囊",
+        "itemName": "极限装备礼包",
         "cost": 1500
       },
       {
@@ -1563,10 +1570,10 @@
       "以一敌百"
     ],
     "giftPackNames": [
-      "冠军锦囊",
-      "亚军锦囊",
-      "季军锦囊",
-      "十强锦囊"
+      "冠军礼包",
+      "亚军礼包",
+      "季军礼包",
+      "十强礼包"
     ],
     "streakMilestones": [
       3,
@@ -1578,7 +1585,7 @@
       50,
       70
     ],
-    "descriptionText": "开放时间：每日 8:30–23:30（上海时区，周日 23:30 截止挑战）\n每周日 23:35 按当周竞技点排名邮件发奖\n每日最多挑战 10 次；胜 +10 / 负 +2 仅影响当周竞技点（周榜排名）\n上周结余竞技点用于商店兑换；新周开始时上周当周分自动转入结余；当周胜负不影响上周结余\n战斗最多 20 回合，超时判负\n\n周榜奖励：\n第1名：称号「天下无敌」（攻+2000 防+2000 敏+2000 血+10000） + 冠军锦囊（极限装备锦囊×3、50亿金币）\n第2名：称号「一骑当千」（攻+1500 防+1500 敏+1500 血+6000） + 亚军锦囊（极限装备锦囊×2、30亿金币）\n第3名：称号「以一敌百」（攻+1000 防+1000 敏+1000 血+3000） + 季军锦囊（极限装备锦囊×1、10亿金币）\n第4–10名：十强锦囊（极限装备之一×1、5亿金币）\n第11–30名：5亿金币\n第31–50名：2亿金币\n第51–100名：1亿金币\n未进前100名：无奖励",
+    "descriptionText": "开放时间：每日 8:30–23:30（上海时区，周日 23:30 截止挑战）\n每周日 23:35 按当周竞技点排名邮件发奖\n每日最多挑战 10 次；胜 +10 / 负 +2 仅影响当周竞技点（周榜排名）\n上周结余竞技点用于商店兑换；新周开始时上周当周分自动转入结余；当周胜负不影响上周结余\n战斗最多 20 回合，超时判负\n\n周榜奖励：\n第1名：称号「天下无敌」（攻+2000 防+2000 敏+2000 血+10000） + 冠军礼包（极限装备礼包×3、50亿金币）\n第2名：称号「一骑当千」（攻+1500 防+1500 敏+1500 血+6000） + 亚军礼包（极限装备礼包×2、30亿金币）\n第3名：称号「以一敌百」（攻+1000 防+1000 敏+1000 血+3000） + 季军礼包（极限装备礼包×1、10亿金币）\n第4–10名：十强礼包（极限装备之一×1、5亿金币）\n第11–30名：5亿金币\n第31–50名：2亿金币\n第51–100名：1亿金币\n未进前100名：无奖励",
     "timeRangeText": "8:30–23:30"
   },
   "shengsiTower": {
@@ -1593,7 +1600,7 @@
     "dailyLimitPerUser": 1,
     "participateFriendshipPoints": 5,
     "participateGiftEnabled": true,
-    "participateGiftItem": "生死塔参与锦囊",
+    "participateGiftItem": "生死塔参与礼包",
     "prepSeconds": 20,
     "stanceEnabled": true,
     "matchReadyCanStartEarly": true,
@@ -1609,43 +1616,43 @@
         "minReincarnation": 0,
         "maxReincarnation": 99,
         "capacity": 8,
-        "championGiftItem": "试炼塔锦囊·一",
-        "rewardText": "试炼塔锦囊·一（开箱随机）"
+        "championGiftItem": "塔1礼包",
+        "rewardText": "塔1礼包（开箱随机）"
       },
       {
         "floor": 2,
         "minReincarnation": 100,
         "maxReincarnation": 199,
         "capacity": 8,
-        "championGiftItem": "试炼塔锦囊·二",
-        "rewardText": "试炼塔锦囊·二（开箱随机）"
+        "championGiftItem": "塔2礼包",
+        "rewardText": "塔2礼包（开箱随机）"
       },
       {
         "floor": 3,
         "minReincarnation": 200,
         "maxReincarnation": 201,
         "capacity": 8,
-        "championGiftItem": "试炼塔锦囊·三",
-        "rewardText": "试炼塔锦囊·三（开箱随机）"
+        "championGiftItem": "塔3礼包",
+        "rewardText": "塔3礼包（开箱随机）"
       },
       {
         "floor": 4,
         "minReincarnation": 202,
         "maxReincarnation": 399,
         "capacity": 8,
-        "championGiftItem": "试炼塔锦囊·四",
-        "rewardText": "试炼塔锦囊·四（开箱随机）"
+        "championGiftItem": "塔4礼包",
+        "rewardText": "塔4礼包（开箱随机）"
       },
       {
         "floor": 5,
         "minReincarnation": 400,
         "maxReincarnation": null,
         "capacity": 8,
-        "championGiftItem": "试炼塔锦囊·五",
-        "rewardText": "试炼塔锦囊·五（开箱随机）"
+        "championGiftItem": "塔5礼包",
+        "rewardText": "塔5礼包（开箱随机）"
       }
     ],
-    "descriptionText": "【生死塔】每日一场的分层淘汰赛：2 人组队报名，与自己投胎数相同层的队伍对战，败者当场出局，每层最后只留 1 队（塔主）。\n报名时间：每日 19:45–20:00（上海时区），20:00 统一开赛；每人每天限参加 1 次。\n每层容量 8/8/8/8/8 队（第 1 层至第 5 层），先到先得，报满即关闭该层报名。\n开赛后每轮淘汰，每层最终只留 1 支队伍；塔主队两人各获该层礼包（开箱随机）。\n\n分层门槛与奖励：\n第 1 层（投胎数 0–99）：试炼塔锦囊·一（开箱随机，仅塔主队）\n第 2 层（投胎数 100–199）：试炼塔锦囊·二（开箱随机，仅塔主队）\n第 3 层（投胎数 200–299）：试炼塔锦囊·三（开箱随机，仅塔主队）\n第 4 层（投胎数 300–399）：试炼塔锦囊·四（开箱随机，仅塔主队）\n第 5 层（投胎数 400 次以上）：试炼塔锦囊·五（开箱随机，仅塔主队）"
+    "descriptionText": "【生死塔】每日一场的分层淘汰赛：2 人组队报名，与自己投胎数相同层的队伍对战，败者当场出局，每层最后只留 1 队（塔主）。\n报名时间：每日 19:45–20:00（上海时区），20:00 统一开赛；每人每天限参加 1 次。\n每层容量 8/8/8/8/8 队（第 1 层至第 5 层），先到先得，报满即关闭该层报名。\n开赛后每轮淘汰，每层最终只留 1 支队伍；塔主队两人各获该层礼包（开箱随机）。\n\n分层门槛与奖励：\n第 1 层（投胎数 0–99）：塔1礼包（开箱随机，仅塔主队）\n第 2 层（投胎数 100–199）：塔2礼包（开箱随机，仅塔主队）\n第 3 层（投胎数 200–299）：塔3礼包（开箱随机，仅塔主队）\n第 4 层（投胎数 300–399）：塔4礼包（开箱随机，仅塔主队）\n第 5 层（投胎数 400 次以上）：塔5礼包（开箱随机，仅塔主队）"
   },
   "petRaiseRace": {
     "featureEnabled": true,
@@ -1661,11 +1668,11 @@
     "targetGrowthMax": 44.999,
     "descriptionText": "活动时间：每日 8:00–22:15（北京时间）可提交一只宠物镜像（成长20-44.999）；\n提交条件：3代、未转生、基础满级（可进化终极1200， 不可进化1500）；\n提交镜像后宠物保留，但该宠终身不可再交；每人每天仅一次；\n排名：成长与当日目标差值越小越靠前；差值相同则先提交者靠前；\n22:20 公布结果，第1名邮件发放随机五行变异宠物蛋 成长6.0-7.9",
     "rewardEggNames": [
-      "金纹异蛋",
-      "木纹异蛋",
-      "水纹异蛋",
-      "火纹异蛋",
-      "土纹异蛋"
+      "金变异宠物蛋",
+      "木变异宠物蛋",
+      "水变异宠物蛋",
+      "火变异宠物蛋",
+      "土变异宠物蛋"
     ],
     "submitTimeRange": "8:00–22:15"
   },
@@ -1713,13 +1720,13 @@
       "petStatCheck": "on",
       "wildReplay": "on",
       "brotherTowerSim": "off",
-      "towerReplay": "on",
+      "towerReplay": "off",
       "worldBossReplay": "off"
     },
     "skillDefinitions": {
       "splash_lv1": {
         "skill_id": "splash",
-        "skill_name": "溅射",
+        "skill_name": "溅墨",
         "level": 1,
         "trigger_rate": 0.5,
         "target_count": 2,
@@ -1728,7 +1735,7 @@
       },
       "splash_lv2": {
         "skill_id": "splash",
-        "skill_name": "溅射",
+        "skill_name": "溅墨",
         "level": 2,
         "trigger_rate": 1,
         "target_count": 2,
@@ -1737,7 +1744,7 @@
       },
       "splash_lv3": {
         "skill_id": "splash",
-        "skill_name": "溅射",
+        "skill_name": "溅墨",
         "level": 3,
         "trigger_rate": 1,
         "target_count": 3,
@@ -1746,7 +1753,7 @@
       },
       "splash_lv4": {
         "skill_id": "splash",
-        "skill_name": "溅射",
+        "skill_name": "溅墨",
         "level": 4,
         "trigger_rate": 1,
         "target_count": 4,
@@ -1755,7 +1762,7 @@
       },
       "splash_lv5": {
         "skill_id": "splash",
-        "skill_name": "溅射",
+        "skill_name": "溅墨",
         "level": 5,
         "trigger_rate": 1,
         "target_count": 5,
@@ -1764,7 +1771,7 @@
       },
       "double_shot_lv1": {
         "skill_id": "double_shot",
-        "skill_name": "连射",
+        "skill_name": "连击",
         "level": 1,
         "trigger_rate": 0.2,
         "hit_count": 3,
@@ -1773,7 +1780,7 @@
       },
       "double_shot_lv2": {
         "skill_id": "double_shot",
-        "skill_name": "连射",
+        "skill_name": "连击",
         "level": 2,
         "trigger_rate": 0.3,
         "hit_count": 3,
@@ -1782,7 +1789,7 @@
       },
       "double_shot_lv3": {
         "skill_id": "double_shot",
-        "skill_name": "连射",
+        "skill_name": "连击",
         "level": 3,
         "trigger_rate": 0.5,
         "hit_count": 3,
@@ -1791,7 +1798,7 @@
       },
       "double_shot_lv4": {
         "skill_id": "double_shot",
-        "skill_name": "连射",
+        "skill_name": "连击",
         "level": 4,
         "trigger_rate": 0.6,
         "hit_count": 3,
@@ -1800,7 +1807,7 @@
       },
       "double_shot_lv5": {
         "skill_id": "double_shot",
-        "skill_name": "连射",
+        "skill_name": "连击",
         "level": 5,
         "trigger_rate": 0.7,
         "hit_count": 4,
@@ -1809,7 +1816,7 @@
       },
       "divine_protect_lv1": {
         "skill_id": "divine_protect",
-        "skill_name": "神佑",
+        "skill_name": "护主",
         "level": 1,
         "trigger_rate": 0.2,
         "hp_restore_ratio": 0.5,
@@ -1817,7 +1824,7 @@
       },
       "divine_protect_lv2": {
         "skill_id": "divine_protect",
-        "skill_name": "神佑",
+        "skill_name": "护主",
         "level": 2,
         "trigger_rate": 0.3,
         "hp_restore_ratio": 0.5,
@@ -1825,7 +1832,7 @@
       },
       "divine_protect_lv3": {
         "skill_id": "divine_protect",
-        "skill_name": "神佑",
+        "skill_name": "护主",
         "level": 3,
         "trigger_rate": 0.5,
         "hp_restore_ratio": 1,
@@ -1833,7 +1840,7 @@
       },
       "divine_protect_lv4": {
         "skill_id": "divine_protect",
-        "skill_name": "神佑",
+        "skill_name": "护主",
         "level": 4,
         "trigger_rate": 0.6,
         "hp_restore_ratio": 1,
@@ -1841,7 +1848,7 @@
       },
       "divine_protect_lv5": {
         "skill_id": "divine_protect",
-        "skill_name": "神佑",
+        "skill_name": "护主",
         "level": 5,
         "trigger_rate": 0.7,
         "hp_restore_ratio": 1,
@@ -1849,72 +1856,72 @@
       },
       "counter_attack_lv1": {
         "skill_id": "counter_attack",
-        "skill_name": "反击",
+        "skill_name": "反打",
         "level": 1,
         "trigger_rate": 0.2,
         "damage_ratio": 0.5
       },
       "counter_attack_lv2": {
         "skill_id": "counter_attack",
-        "skill_name": "反击",
+        "skill_name": "反打",
         "level": 2,
         "trigger_rate": 0.3,
         "damage_ratio": 0.8
       },
       "counter_attack_lv3": {
         "skill_id": "counter_attack",
-        "skill_name": "反击",
+        "skill_name": "反打",
         "level": 3,
         "trigger_rate": 0.5,
         "damage_ratio": 1
       },
       "counter_attack_lv4": {
         "skill_id": "counter_attack",
-        "skill_name": "反击",
+        "skill_name": "反打",
         "level": 4,
         "trigger_rate": 0.6,
         "damage_ratio": 1
       },
       "counter_attack_lv5": {
         "skill_id": "counter_attack",
-        "skill_name": "反击",
+        "skill_name": "反打",
         "level": 5,
         "trigger_rate": 0.7,
         "damage_ratio": 1.2
       },
       "fortify_lv1": {
         "skill_id": "fortify",
-        "skill_name": "坚固",
+        "skill_name": "硬皮",
         "level": 1,
         "defense_bonus_percent": 70
       },
       "fortify_lv2": {
         "skill_id": "fortify",
-        "skill_name": "坚固",
+        "skill_name": "硬皮",
         "level": 2,
         "defense_bonus_percent": 140
       },
       "fortify_lv3": {
         "skill_id": "fortify",
-        "skill_name": "坚固",
+        "skill_name": "硬皮",
         "level": 3,
         "defense_bonus_percent": 210
       },
       "fortify_lv4": {
         "skill_id": "fortify",
-        "skill_name": "坚固",
+        "skill_name": "硬皮",
         "level": 4,
         "defense_bonus_percent": 230
       },
       "fortify_lv5": {
         "skill_id": "fortify",
-        "skill_name": "坚固",
+        "skill_name": "硬皮",
         "level": 5,
         "defense_bonus_percent": 250
       },
       "life_steal_lv1": {
         "skill_id": "life_steal",
-        "skill_name": "吸血",
+        "skill_name": "饮血",
         "level": 1,
         "trigger_rate": 0.1,
         "lifesteal_ratio": 0.1,
@@ -1922,7 +1929,7 @@
       },
       "life_steal_lv2": {
         "skill_id": "life_steal",
-        "skill_name": "吸血",
+        "skill_name": "饮血",
         "level": 2,
         "trigger_rate": 0.2,
         "lifesteal_ratio": 0.15,
@@ -1930,7 +1937,7 @@
       },
       "life_steal_lv3": {
         "skill_id": "life_steal",
-        "skill_name": "吸血",
+        "skill_name": "饮血",
         "level": 3,
         "trigger_rate": 0.3,
         "lifesteal_ratio": 0.2,
@@ -1938,7 +1945,7 @@
       },
       "life_steal_lv4": {
         "skill_id": "life_steal",
-        "skill_name": "吸血",
+        "skill_name": "饮血",
         "level": 4,
         "trigger_rate": 0.4,
         "lifesteal_ratio": 0.25,
@@ -1946,7 +1953,7 @@
       },
       "life_steal_lv5": {
         "skill_id": "life_steal",
-        "skill_name": "吸血",
+        "skill_name": "饮血",
         "level": 5,
         "trigger_rate": 0.5,
         "lifesteal_ratio": 0.3,
@@ -1954,340 +1961,340 @@
       },
       "swift_lv1": {
         "skill_id": "swift",
-        "skill_name": "迅捷",
+        "skill_name": "轻身",
         "level": 1,
         "agility_bonus_percent": 5
       },
       "swift_lv2": {
         "skill_id": "swift",
-        "skill_name": "迅捷",
+        "skill_name": "轻身",
         "level": 2,
         "agility_bonus_percent": 10
       },
       "swift_lv3": {
         "skill_id": "swift",
-        "skill_name": "迅捷",
+        "skill_name": "轻身",
         "level": 3,
         "agility_bonus_percent": 15
       },
       "swift_lv4": {
         "skill_id": "swift",
-        "skill_name": "迅捷",
+        "skill_name": "轻身",
         "level": 4,
         "agility_bonus_percent": 20
       },
       "swift_lv5": {
         "skill_id": "swift",
-        "skill_name": "迅捷",
+        "skill_name": "轻身",
         "level": 5,
         "agility_bonus_percent": 25
       },
       "longevity_lv1": {
         "skill_id": "longevity",
-        "skill_name": "长寿",
+        "skill_name": "长命",
         "level": 1,
         "hp_bonus_percent": 5
       },
       "longevity_lv2": {
         "skill_id": "longevity",
-        "skill_name": "长寿",
+        "skill_name": "长命",
         "level": 2,
         "hp_bonus_percent": 10
       },
       "longevity_lv3": {
         "skill_id": "longevity",
-        "skill_name": "长寿",
+        "skill_name": "长命",
         "level": 3,
         "hp_bonus_percent": 15
       },
       "longevity_lv4": {
         "skill_id": "longevity",
-        "skill_name": "长寿",
+        "skill_name": "长命",
         "level": 4,
         "hp_bonus_percent": 20
       },
       "longevity_lv5": {
         "skill_id": "longevity",
-        "skill_name": "长寿",
+        "skill_name": "长命",
         "level": 5,
         "hp_bonus_percent": 25
       },
       "mighty_lv1": {
         "skill_id": "mighty",
-        "skill_name": "强壮",
+        "skill_name": "力壮",
         "level": 1,
         "attack_bonus_percent": 5
       },
       "mighty_lv2": {
         "skill_id": "mighty",
-        "skill_name": "强壮",
+        "skill_name": "力壮",
         "level": 2,
         "attack_bonus_percent": 10
       },
       "mighty_lv3": {
         "skill_id": "mighty",
-        "skill_name": "强壮",
+        "skill_name": "力壮",
         "level": 3,
         "attack_bonus_percent": 15
       },
       "mighty_lv4": {
         "skill_id": "mighty",
-        "skill_name": "强壮",
+        "skill_name": "力壮",
         "level": 4,
         "attack_bonus_percent": 20
       },
       "mighty_lv5": {
         "skill_id": "mighty",
-        "skill_name": "强壮",
+        "skill_name": "力壮",
         "level": 5,
         "attack_bonus_percent": 25
       },
       "fierce_lv1": {
         "skill_id": "fierce",
-        "skill_name": "凶猛",
+        "skill_name": "凶性",
         "level": 1,
         "crit_damage_bonus_percent": 5
       },
       "fierce_lv2": {
         "skill_id": "fierce",
-        "skill_name": "凶猛",
+        "skill_name": "凶性",
         "level": 2,
         "crit_damage_bonus_percent": 10
       },
       "fierce_lv3": {
         "skill_id": "fierce",
-        "skill_name": "凶猛",
+        "skill_name": "凶性",
         "level": 3,
         "crit_damage_bonus_percent": 15
       },
       "fierce_lv4": {
         "skill_id": "fierce",
-        "skill_name": "凶猛",
+        "skill_name": "凶性",
         "level": 4,
         "crit_damage_bonus_percent": 20
       },
       "fierce_lv5": {
         "skill_id": "fierce",
-        "skill_name": "凶猛",
+        "skill_name": "凶性",
         "level": 5,
         "crit_damage_bonus_percent": 25
       },
       "fatal_lv1": {
         "skill_id": "fatal",
-        "skill_name": "必杀",
+        "skill_name": "致命",
         "level": 1,
         "crit_rate_bonus_percent": 5
       },
       "fatal_lv2": {
         "skill_id": "fatal",
-        "skill_name": "必杀",
+        "skill_name": "致命",
         "level": 2,
         "crit_rate_bonus_percent": 10
       },
       "fatal_lv3": {
         "skill_id": "fatal",
-        "skill_name": "必杀",
+        "skill_name": "致命",
         "level": 3,
         "crit_rate_bonus_percent": 15
       },
       "fatal_lv4": {
         "skill_id": "fatal",
-        "skill_name": "必杀",
+        "skill_name": "致命",
         "level": 4,
         "crit_rate_bonus_percent": 20
       },
       "fatal_lv5": {
         "skill_id": "fatal",
-        "skill_name": "必杀",
+        "skill_name": "致命",
         "level": 5,
         "crit_rate_bonus_percent": 25
       },
       "self_heal_lv1": {
         "skill_id": "self_heal",
-        "skill_name": "自愈",
+        "skill_name": "自复",
         "level": 1,
         "heal_ratio": 0.05
       },
       "self_heal_lv2": {
         "skill_id": "self_heal",
-        "skill_name": "自愈",
+        "skill_name": "自复",
         "level": 2,
         "heal_ratio": 0.1
       },
       "self_heal_lv3": {
         "skill_id": "self_heal",
-        "skill_name": "自愈",
+        "skill_name": "自复",
         "level": 3,
         "heal_ratio": 0.15
       },
       "self_heal_lv4": {
         "skill_id": "self_heal",
-        "skill_name": "自愈",
+        "skill_name": "自复",
         "level": 4,
         "heal_ratio": 0.2
       },
       "self_heal_lv5": {
         "skill_id": "self_heal",
-        "skill_name": "自愈",
+        "skill_name": "自复",
         "level": 5,
         "heal_ratio": 0.25
       },
       "chase_lv1": {
         "skill_id": "chase",
-        "skill_name": "追击",
+        "skill_name": "追杀",
         "level": 1,
         "chase_trigger_rate": 0.4,
         "chase_ratio": 1
       },
       "chase_lv2": {
         "skill_id": "chase",
-        "skill_name": "追击",
+        "skill_name": "追杀",
         "level": 2,
         "chase_trigger_rate": 0.7,
         "chase_ratio": 1
       },
       "chase_lv3": {
         "skill_id": "chase",
-        "skill_name": "追击",
+        "skill_name": "追杀",
         "level": 3,
         "chase_trigger_rate": 0.8,
         "chase_ratio": 1
       },
       "chase_lv4": {
         "skill_id": "chase",
-        "skill_name": "追击",
+        "skill_name": "追杀",
         "level": 4,
         "chase_trigger_rate": 0.9,
         "chase_ratio": 1
       },
       "chase_lv5": {
         "skill_id": "chase",
-        "skill_name": "追击",
+        "skill_name": "追杀",
         "level": 5,
         "chase_trigger_rate": 1,
         "chase_ratio": 1
       },
       "loyal_lv1": {
         "skill_id": "loyal",
-        "skill_name": "忠心",
+        "skill_name": "守主",
         "level": 1,
         "block_chance": 0.05
       },
       "loyal_lv2": {
         "skill_id": "loyal",
-        "skill_name": "忠心",
+        "skill_name": "守主",
         "level": 2,
         "block_chance": 0.1
       },
       "loyal_lv3": {
         "skill_id": "loyal",
-        "skill_name": "忠心",
+        "skill_name": "守主",
         "level": 3,
         "block_chance": 0.15
       },
       "loyal_lv4": {
         "skill_id": "loyal",
-        "skill_name": "忠心",
+        "skill_name": "守主",
         "level": 4,
         "block_chance": 0.2
       },
       "loyal_lv5": {
         "skill_id": "loyal",
-        "skill_name": "忠心",
+        "skill_name": "守主",
         "level": 5,
         "block_chance": 0.25
       },
       "taunt_lv1": {
         "skill_id": "taunt",
-        "skill_name": "嘲讽",
+        "skill_name": "挑衅",
         "level": 1,
         "trigger_rate": 0.2
       },
       "taunt_lv2": {
         "skill_id": "taunt",
-        "skill_name": "嘲讽",
+        "skill_name": "挑衅",
         "level": 2,
         "trigger_rate": 0.4
       },
       "taunt_lv3": {
         "skill_id": "taunt",
-        "skill_name": "嘲讽",
+        "skill_name": "挑衅",
         "level": 3,
         "trigger_rate": 0.6
       },
       "taunt_lv4": {
         "skill_id": "taunt",
-        "skill_name": "嘲讽",
+        "skill_name": "挑衅",
         "level": 4,
         "trigger_rate": 0.8
       },
       "taunt_lv5": {
         "skill_id": "taunt",
-        "skill_name": "嘲讽",
+        "skill_name": "挑衅",
         "level": 5,
         "trigger_rate": 1
       },
       "armor_pierce_lv1": {
         "skill_id": "armor_pierce",
-        "skill_name": "破甲",
+        "skill_name": "破防",
         "level": 1,
         "trigger_rate": 0.01
       },
       "armor_pierce_lv2": {
         "skill_id": "armor_pierce",
-        "skill_name": "破甲",
+        "skill_name": "破防",
         "level": 2,
         "trigger_rate": 0.02
       },
       "armor_pierce_lv3": {
         "skill_id": "armor_pierce",
-        "skill_name": "破甲",
+        "skill_name": "破防",
         "level": 3,
         "trigger_rate": 0.03
       },
       "armor_pierce_lv4": {
         "skill_id": "armor_pierce",
-        "skill_name": "破甲",
+        "skill_name": "破防",
         "level": 4,
         "trigger_rate": 0.04
       },
       "armor_pierce_lv5": {
         "skill_id": "armor_pierce",
-        "skill_name": "破甲",
+        "skill_name": "破防",
         "level": 5,
         "trigger_rate": 0.05
       },
       "guard_lv1": {
         "skill_id": "guard",
-        "skill_name": "格挡",
+        "skill_name": "挡伤",
         "level": 1,
         "trigger_rate": 0.1,
         "damage_reduction_ratio": 0.5
       },
       "guard_lv2": {
         "skill_id": "guard",
-        "skill_name": "格挡",
+        "skill_name": "挡伤",
         "level": 2,
         "trigger_rate": 0.2,
         "damage_reduction_ratio": 0.6
       },
       "guard_lv3": {
         "skill_id": "guard",
-        "skill_name": "格挡",
+        "skill_name": "挡伤",
         "level": 3,
         "trigger_rate": 0.3,
         "damage_reduction_ratio": 0.7
       },
       "guard_lv4": {
         "skill_id": "guard",
-        "skill_name": "格挡",
+        "skill_name": "挡伤",
         "level": 4,
         "trigger_rate": 0.4,
         "damage_reduction_ratio": 0.8
       },
       "guard_lv5": {
         "skill_id": "guard",
-        "skill_name": "格挡",
+        "skill_name": "挡伤",
         "level": 5,
         "trigger_rate": 0.5,
         "damage_reduction_ratio": 0.9
@@ -2690,304 +2697,304 @@
   "petOpenItems": {
     "items": [
       {
-        "itemName": "金纹异蛋",
+        "itemName": "金变异宠物蛋",
         "route": "open-egg",
         "rarity": "legendary",
         "desc": "打开获得一只1级0代变异1金属性宠物，成长约6.0～7.9",
         "type": "pet_egg"
       },
       {
-        "itemName": "木纹异蛋",
+        "itemName": "木变异宠物蛋",
         "route": "open-egg",
         "rarity": "legendary",
         "desc": "打开获得一只1级0代变异1木属性宠物，成长约6.0～7.9",
         "type": "pet_egg"
       },
       {
-        "itemName": "水纹异蛋",
+        "itemName": "水变异宠物蛋",
         "route": "open-egg",
         "rarity": "legendary",
         "desc": "打开获得一只1级0代变异1水属性宠物，成长约6.0～7.9",
         "type": "pet_egg"
       },
       {
-        "itemName": "火纹异蛋",
+        "itemName": "火变异宠物蛋",
         "route": "open-egg",
         "rarity": "legendary",
         "desc": "打开获得一只1级0代变异1火属性宠物，成长约6.0～7.9",
         "type": "pet_egg"
       },
       {
-        "itemName": "土纹异蛋",
+        "itemName": "土变异宠物蛋",
         "route": "open-egg",
         "rarity": "legendary",
         "desc": "打开获得一只1级0代变异1土属性宠物，成长约6.0～7.9",
         "type": "pet_egg"
       },
       {
-        "itemName": "五阶宠物锦囊",
+        "itemName": "5+宠物礼包",
         "route": "open-pet",
         "rarity": "rare",
         "desc": "打开后随机获得一只成长5.0-5.9的宠物",
         "type": "gift"
       },
       {
-        "itemName": "六阶可进化宠锦囊",
+        "itemName": "6+可进化宠礼包",
         "route": "open-pet",
         "rarity": "rare",
         "desc": "打开获得一只可进化宠物，成长约6.0～6.9",
         "type": "gift"
       },
       {
-        "itemName": "七阶可进化宠锦囊",
+        "itemName": "7+可进化宠礼包",
         "route": "open-pet",
         "rarity": "rare",
         "desc": "打开获得一只可进化宠物，成长约7.0～7.9",
         "type": "gift"
       },
       {
-        "itemName": "八阶可进化宠锦囊",
+        "itemName": "8+可进化宠礼包",
         "route": "open-pet",
         "rarity": "rare",
         "desc": "打开获得一只可进化宠物，成长约8.0～8.9",
         "type": "gift"
       },
       {
-        "itemName": "九阶可进化宠锦囊",
+        "itemName": "9+可进化宠礼包",
         "route": "open-pet",
         "rarity": "rare",
         "desc": "打开获得一只可进化宠物，成长约9.0～9.9",
         "type": "gift"
       },
       {
-        "itemName": "十阶可进化宠锦囊",
+        "itemName": "10+可进化宠礼包",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开获得一只可进化宠物，成长约10.0～10.9",
         "type": "gift"
       },
       {
-        "itemName": "十一阶可进化宠锦囊",
+        "itemName": "11+可进化宠礼包",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开获得一只可进化宠物，成长约11.0～11.9",
         "type": "gift"
       },
       {
-        "itemName": "十二阶可进化宠锦囊",
+        "itemName": "12+可进化宠礼包",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开获得一只可进化宠物，成长约12.0～12.99",
         "type": "gift"
       },
       {
-        "itemName": "十三阶可进化宠锦囊",
+        "itemName": "13+可进化宠礼包",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开获得一只可进化宠物，成长约13.0～13.99",
         "type": "gift"
       },
       {
-        "itemName": "六阶不可进化宠锦囊",
+        "itemName": "6+不可进化宠礼包",
         "route": "open-pet",
         "rarity": "rare",
         "desc": "打开获得一只不可进化宠物，成长约6.0～6.5",
         "type": "gift"
       },
       {
-        "itemName": "七阶不可进化宠锦囊",
+        "itemName": "7+不可进化宠礼包",
         "route": "open-pet",
         "rarity": "rare",
         "desc": "打开获得一只不可进化宠物，成长约7.0～7.5",
         "type": "gift"
       },
       {
-        "itemName": "八阶不可进化宠锦囊",
+        "itemName": "8+不可进化宠礼包",
         "route": "open-pet",
         "rarity": "rare",
         "desc": "打开获得一只不可进化宠物，成长约8.0～8.5",
         "type": "gift"
       },
       {
-        "itemName": "九阶不可进化宠锦囊",
+        "itemName": "9+不可进化宠礼包",
         "route": "open-pet",
         "rarity": "rare",
         "desc": "打开获得一只不可进化宠物，成长约9.0～9.5",
         "type": "gift"
       },
       {
-        "itemName": "十阶不可进化宠锦囊",
+        "itemName": "10+不可进化宠礼包",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开获得一只不可进化宠物，成长约10.0～10.5",
         "type": "gift"
       },
       {
-        "itemName": "十一阶不可进化宠锦囊",
+        "itemName": "11+不可进化宠礼包",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开获得一只不可进化宠物，成长约11.0～11.5",
         "type": "gift"
       },
       {
-        "itemName": "十二阶不可进化宠锦囊",
+        "itemName": "12+不可进化宠礼包",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开获得一只不可进化宠物，成长约12.0～12.5",
         "type": "gift"
       },
       {
-        "itemName": "十三阶不可进化宠锦囊",
+        "itemName": "13+不可进化宠礼包",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开获得一只不可进化宠物，成长约13.0～13.5",
         "type": "gift"
       },
       {
-        "itemName": "六阶可进化宠锦囊（变异）",
+        "itemName": "6+可进化宠礼包(可能变异)",
         "route": "open-pet",
         "rarity": "epic",
         "desc": "打开后随机获得一只成长6.0-6.9的1级可进化宠，约10%几率获得变异1",
         "type": "gift"
       },
       {
-        "itemName": "七阶可进化宠锦囊（变异）",
+        "itemName": "7+可进化宠礼包(可能变异)",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开后随机获得一只成长7.0-7.9的1级可进化宠，约10%几率获得变异1",
         "type": "gift"
       },
       {
-        "itemName": "八阶可进化宠锦囊（变异）",
+        "itemName": "8+可进化宠礼包(可能变异)",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开后随机获得一只成长8.0-8.9的1级可进化宠，约10%几率获得变异1",
         "type": "gift"
       },
       {
-        "itemName": "九阶可进化宠锦囊（变异）",
+        "itemName": "9+可进化宠礼包(可能变异)",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开后随机获得一只成长9.0-9.9的1级可进化宠，约10%几率获得变异1",
         "type": "gift"
       },
       {
-        "itemName": "十阶可进化宠锦囊（变异）",
+        "itemName": "10+可进化宠礼包(可能变异)",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开后随机获得一只成长10.0-10.9的1级可进化宠，约10%几率获得变异1",
         "type": "gift"
       },
       {
-        "itemName": "十一阶可进化宠锦囊（变异）",
+        "itemName": "11+可进化宠礼包(可能变异)",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开后随机获得一只成长11.0-11.9的1级可进化宠，约10%几率获得变异1",
         "type": "gift"
       },
       {
-        "itemName": "十二阶可进化宠锦囊（变异）",
+        "itemName": "12+可进化宠礼包(可能变异)",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开后随机获得一只成长12.0-12.9的1级可进化宠，约10%几率获得变异1",
         "type": "gift"
       },
       {
-        "itemName": "十三阶可进化宠锦囊（变异）",
+        "itemName": "13+可进化宠礼包(可能变异)",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开后随机获得一只成长13.0-13.9的1级可进化宠，约10%几率获得变异1",
         "type": "gift"
       },
       {
-        "itemName": "六阶不可进化宠锦囊（变异）",
+        "itemName": "6+不可进化宠礼包(可能变异)",
         "route": "open-pet",
         "rarity": "epic",
         "desc": "打开后随机获得一只1级不可进化宠，成长6.0-6.9；不含活动限定宠物，约10%几率获得变异1",
         "type": "gift"
       },
       {
-        "itemName": "七阶不可进化宠锦囊（变异）",
+        "itemName": "7+不可进化宠礼包(可能变异)",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开后随机获得一只1级不可进化宠，成长7.0-7.9；不含活动限定宠物，约10%几率获得变异1",
         "type": "gift"
       },
       {
-        "itemName": "八阶不可进化宠锦囊（变异）",
+        "itemName": "8+不可进化宠礼包(可能变异)",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开后随机获得一只1级不可进化宠，成长8.0-8.9；不含活动限定宠物，约10%几率获得变异1",
         "type": "gift"
       },
       {
-        "itemName": "九阶不可进化宠锦囊（变异）",
+        "itemName": "9+不可进化宠礼包(可能变异)",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开后随机获得一只1级不可进化宠，成长9.0-9.9；不含活动限定宠物，约10%几率获得变异1",
         "type": "gift"
       },
       {
-        "itemName": "十阶不可进化宠锦囊（变异）",
+        "itemName": "10+不可进化宠礼包(可能变异)",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开后随机获得一只1级不可进化宠，成长10.0-10.9；不含活动限定宠物，约10%几率获得变异1",
         "type": "gift"
       },
       {
-        "itemName": "十一阶不可进化宠锦囊（变异）",
+        "itemName": "11+不可进化宠礼包(可能变异)",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开后随机获得一只1级不可进化宠，成长11.0-11.9；不含活动限定宠物，约10%几率获得变异1",
         "type": "gift"
       },
       {
-        "itemName": "十二阶不可进化宠锦囊（变异）",
+        "itemName": "12+不可进化宠礼包(可能变异)",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开后随机获得一只1级不可进化宠，成长12.0-12.9；不含活动限定宠物，约10%几率获得变异1",
         "type": "gift"
       },
       {
-        "itemName": "十三阶不可进化宠锦囊（变异）",
+        "itemName": "13+不可进化宠礼包(可能变异)",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开后随机获得一只1级不可进化宠，成长13.0-13.9；不含活动限定宠物，约10%几率获得变异1",
         "type": "gift"
       },
       {
-        "itemName": "十至十三阶变异可进化锦囊",
+        "itemName": "10-13变异可进化宠礼包",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开获得一只变异1可进化宠物，成长约10.0～13.9",
         "type": "gift"
       },
       {
-        "itemName": "十至十三阶变异宠锦囊",
+        "itemName": "10-13变异不可进化宠礼包",
         "route": "open-pet",
         "rarity": "legendary",
         "desc": "打开获得一只变异1不可进化宠物，成长约10.0～13.9",
         "type": "gift"
       },
       {
-        "itemName": "七至九阶晶儿锦囊",
+        "itemName": "7-9水晶儿礼包",
         "route": "open-pet",
         "rarity": "rare",
         "desc": "打开获得水晶儿，成长约7.0～9.9",
         "type": "gift"
       },
       {
-        "itemName": "七至九阶梦晶锦囊",
+        "itemName": "7-9梦晶儿礼包",
         "route": "open-pet",
         "rarity": "rare",
         "desc": "打开获得梦晶儿，成长约7.0～9.9",
         "type": "gift"
       },
       {
-        "itemName": "七至九阶阿弟锦囊",
+        "itemName": "7-9冥狼崽礼包",
         "route": "open-pet",
         "rarity": "rare",
-        "desc": "打开获得阿弟达斯，成长约7.0～9.9",
+        "desc": "打开获得冥狼崽，成长约7.0～9.9",
         "type": "gift"
       },
       {
@@ -3139,6 +3146,7 @@
   "offline": {
     "enabled": true,
     "minSeconds": 60,
+    "maxHours": 12,
     "maxHoursByVip": [
       8,
       12,
@@ -3157,7 +3165,15 @@
     "fallbackGoldPerHourBase": 500,
     "fallbackGoldPerLevelPerHour": 100
   },
+  "drop_rate_overrides": {
+    "钱币袋": 0.05
+  },
   "session": {
     "idleTimeoutSeconds": 300
+  },
+  "martial_create": {
+    "goldCost": 1000000,
+    "serverSuccessRate": 0.3,
+    "serverAuthorityEnabled": true
   }
 }

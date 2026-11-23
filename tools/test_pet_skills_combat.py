@@ -5,10 +5,16 @@
 用法：cd outputs/deploy/server && python3 tools/test_pet_skills_combat.py
 """
 import os
+import random
 import sys
 from collections import Counter
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# combat.resolve 用的是全局 random；不钉种子时「吸血」这类低频事件偶尔不触发，
+# 同一份代码会时 PASS 时 FAIL，发布前全量回归会被这个假失败干扰。
+# 需要换样本时用 TEST_SEED=<数字> 覆盖。
+random.seed(int(os.environ.get("TEST_SEED", "20261105")))
 
 import combat  # noqa: E402
 

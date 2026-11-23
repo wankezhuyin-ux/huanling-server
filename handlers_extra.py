@@ -14,6 +14,7 @@ import random
 from core import Ctx, RULES, fail, iso, now, ok, route
 import handlers_growth as refs
 import handlers_play as play_refs
+import bt_session as bt
 
 # 主战栏 / 灵兽袋上限，直接取 handlers_growth 的权威常量（客户端 GameData.MAX_PETS=10 / MAX_PET_BAG=50）
 PET_ROSTER_MAX = refs.MAX_PETS_HELD
@@ -226,7 +227,8 @@ def pet_equipment_drop(ctx: Ctx) -> dict:
             bag.remove(item)
             state.bump()
             return ok(item=item, message="已丢弃【%s】" % str(item.get("name", "宠装")),
-                      saveData=refs._authority_save(state), saveRevision=state.revision)
+                      saveData=refs._authority_save(state, removed_pet_equip_ids=[item_id]),
+                      saveRevision=state.revision)
     return fail("宠装不存在")
 
 
@@ -365,27 +367,35 @@ def pet_equipment_dismantle_batch(ctx: Ctx) -> dict:
     pool = refs._pet_equip_bag(state)
     by_id = {str(i.get("id", "")): i for i in pool if isinstance(i, dict)}
     removed = 0
+    frag = 0
+    removed_ids = []
     for raw in ids:
         item = by_id.pop(str(raw), None)
         if item is not None and item in pool:
+            # 碎片按宝箱档次给（青铜 1 / 白银 2 / 黄金 3），和单件分解同一套规则
+            frag += refs._pet_equip_fragment_count(item)
             pool.remove(item)
+            removed_ids.append(str(item.get("id", "")))
             removed += 1
     if removed <= 0:
         return fail("没有可分解的宠装")
-    state.add_item("宠装碎片", removed, "material")
+    frag = max(1, frag)
+    state.add_item(refs.PET_ENHANCE_FRAGMENT_ITEM, frag, "material")
     state.bump()
-    return ok(items=[{"name": "宠装碎片", "count": removed}],
-              message="分解 %d 件，获得宠装碎片×%d" % (removed, removed),
-              saveData=refs._authority_save(state), saveRevision=state.revision)
+    return ok(items=[{"name": refs.PET_ENHANCE_FRAGMENT_ITEM, "count": frag}],
+              fragmentCount=frag,
+              message="分解 %d 件，获得%s×%d" % (removed, refs.PET_ENHANCE_FRAGMENT_ITEM, frag),
+              saveData=refs._authority_save(state, removed_pet_equip_ids=removed_ids),
+              saveRevision=state.revision)
 
 
 @route("POST", "/equipment/dismantle-suit-batch")
 def equipment_dismantle_suit_batch(ctx: Ctx) -> dict:
     state = ctx.state
     count = len(ctx.body.get("ids") or ctx.body.get("equipmentIds") or [])
-    state.add_item("解封石", max(1, count), "material")
+    state.add_item("普通解封石", max(1, count), "material")
     state.bump()
-    return ok(items=[{"name": "解封石", "count": max(1, count)}])
+    return ok(items=[{"name": "普通解封石", "count": max(1, count)}])
 
 
 PET_MEDAL_TYPES = ("brave", "calm", "bold")
@@ -546,26 +556,124 @@ def gift_use_medal_batch(ctx: Ctx) -> dict:
 
 # ================================================================ 套装副本结算
 
+SUIT_CLEAR_OPS_CAP = 200
+SUIT_SWEEP_OPS_CAP = 400
+
+
+def _suit_ops(state, key: str, cap: int) -> dict:
+    box = state.meta.get(key)
+    if not isinstance(box, dict):
+        box = {}
+        state.meta[key] = box
+    if len(box) > cap:
+        for k in list(box.keys())[: len(box) - cap]:
+            box.pop(k, None)
+    return box
+
+
 @route("POST", "/economy/suit-dungeon-clear-reward")
 def suit_clear_reward(ctx: Ctx) -> dict:
+    """套装副本通关结算。
+
+    `level` 以前是**被忽略**的，于是 `suit_dungeon_progress` 永远停在 0：
+    客户端 `is_cleared = level <= suit_dungeon_progress` 恒为假，二十一层全是
+    「未通关」，扫荡按钮一次都出不来（原版通关过的层可以扫荡）。
+    """
     state = ctx.state
+    body = ctx.body or {}
+    level = int(body.get("level", 0) or 0)
+    op_id = str(body.get("operationId", "") or "").strip()
+
+    ops = _suit_ops(state, "suitClearOps", SUIT_CLEAR_OPS_CAP)
+    if op_id and op_id in ops:
+        cached = ops.get(op_id) or {}
+        # 注意：回包里**不能**带 sweepsLeft。客户端 network.gd 的通用分发里
+        # `data.has("sweepsLeft")` 那一支排在 `current_type.begins_with("economy_")`
+        # 之前，带了就会被它截走，economy_result 永远不 emit，wait_economy 只能等超时。
+        return ok(
+            duplicate=True,
+            goldGained=0,
+            items=[],
+            dropItems=[],
+            suitDropMailSent=False,
+            newGold=state.gold(),
+            suitDungeonProgress=play_refs._suit_progress(state),
+            level=int(cached.get("level", level) or level),
+            message="本次通关奖励已结算",
+        )
+
     gold = int(RULES.v("suit_dungeon", "clearGoldPerLevel", 0) or 0)
     state.add_gold(gold)
-    drops = []
-    rates = RULES.v("suit_dungeon", "dropRates", {}) or {}
-    if random.random() < float(rates.get("sealedSuitRate", 0.1)):
-        state.add_item("封印套装", 1, "equipment")
-        drops.append({"name": "封印套装", "count": 1})
-    if random.random() < float(rates.get("sealedStoneRate", 0.1)):
-        state.add_item("解封石", 1, "material")
-        drops.append({"name": "解封石", "count": 1})
+    # 封印套装不能直接写服务端 items（同名会被 add_item 合并成 count=2，
+    # 客户端解析不出 data 等于白掉），统一走邮件，由客户端逐件入装备栏。
+    drops = play_refs._suit_drop_roll(state, level)
+    mail = play_refs._suit_drop_mail(
+        state, level, drops, "套装副本通关 · 第%d层" % int(level))
+    progress = play_refs._suit_progress_bump(state, level)
+    if op_id:
+        ops[op_id] = {"level": int(level), "at": iso(now())}
     state.bump()
-    return ok(goldGained=gold, items=drops, newGold=state.gold())
+    return ok(
+        duplicate=False,
+        goldGained=gold,
+        items=drops,
+        dropItems=drops,
+        suitDropMailSent=mail is not None,
+        newGold=state.gold(),
+        suitDungeonProgress=progress,
+        level=int(level),
+    )
 
 
 @route("POST", "/economy/suit-dungeon-sweep-reward")
 def suit_sweep_reward(ctx: Ctx) -> dict:
-    return suit_clear_reward(ctx)
+    """扫荡已通关的层：扣 1 次每日次数，发金币 + 掉落（掉落走邮件）。
+
+    以前这个接口直接 `return suit_clear_reward(ctx)`：既不扣次数、也不回
+    `sweepsLeft`，客户端 `player.suit_dungeon_sweeps` 永远是满的，界面上的
+    「今日可扫荡: N 次」怎么点都不掉；同时金币/掉落还能无限刷。
+    """
+    state = ctx.state
+    body = ctx.body or {}
+    level = int(body.get("level", 0) or 0)
+    op_id = str(body.get("operationId", "") or "").strip()
+
+    ops = _suit_ops(state, "suitSweepOps", SUIT_SWEEP_OPS_CAP)
+    if op_id and op_id in ops:
+        cached = ops.get(op_id) or {}
+        return ok(
+            duplicate=True,
+            goldGranted=0,
+            goldGained=0,
+            items=[],
+            dropItems=[],
+            newGold=state.gold(),
+            sweepsLeft=play_refs._suit_sweeps_left(state),
+            suitDungeonProgress=play_refs._suit_progress(state),
+            level=int(cached.get("level", level) or level),
+            suitDropMailSent=False,
+            message="本次扫荡已结算",
+        )
+
+    progress = play_refs._suit_progress(state)
+    if progress <= 0:
+        return fail("尚未通关任何层，无法扫荡")
+    if level < 1 or level > play_refs._suit_max_level():
+        return fail("副本层数不合法")
+    if level > progress:
+        return fail("第%d层尚未通关，无法扫荡" % level)
+
+    left = play_refs._suit_sweeps_consume(state, 1)
+    if left < 0:
+        return fail("今日扫荡次数已用完")
+
+    payload = play_refs._suit_sweep_apply(state, level)
+    if op_id:
+        ops[op_id] = {"level": int(level), "at": iso(now())}
+        state.mark_dirty()
+    payload["level"] = int(level)
+    payload["duplicate"] = False
+    return ok(**payload)
 
 
 # ================================================================ 兄弟天关城（实时部分）
@@ -576,16 +684,21 @@ def _bt_box(state) -> dict:
 
 @route("POST", "/brother-tower/disband")
 def brother_disband(ctx: Ctx) -> dict:
-    box = _bt_box(ctx.state)
-    box["joined"] = None
-    box["rooms"] = []
-    ctx.state.bump()
-    return ok()
+    res = bt.disband_result(ctx)
+    if res.get("error"):
+        return fail(res["error"])
+    return ok(**res)
 
 
 @route("POST", "/brother-tower/application/decide")
 def brother_application_decide(ctx: Ctx) -> dict:
-    return ok(roomId=ctx.i("roomId"), accepted=bool(ctx.body.get("accept", True)))
+    approve = ctx.body.get("approve")
+    if approve is None:
+        approve = ctx.body.get("accept", True)
+    res = bt.decide_result(ctx, ctx.i("roomId"), ctx.i("userId"), bool(approve))
+    if res.get("error") and not res.get("approved"):
+        return ok(approved=False, roomId=ctx.i("roomId"), message=res["error"])
+    return ok(**res)
 
 
 @route("POST", "/brother-tower/heartbeat")
@@ -596,27 +709,40 @@ def brother_heartbeat(ctx: Ctx) -> dict:
 
 @route("POST", "/brother-tower/session")
 def brother_session(ctx: Ctx) -> dict:
-    return ok(session={"id": int(now().timestamp()) % 100000, "status": "in_battle", "wave": 1,
-                       "members": [ctx.state.nickname()]})
+    view = bt.session_view(ctx.state)
+    return ok(session=view, **(view if view else {}))
 
 
 @route("GET", "/brother-tower/battle-events")
 def brother_battle_events(ctx: Ctx) -> dict:
-    """按 sinceSeq 增量返回战斗事件；本地只有自己一队，事件流到 1 波结束。"""
-    since = ctx.qi("sinceSeq", 0)
-    events = [
-        {"seq": 1, "type": "wave_start", "wave": 1, "at": iso(now())},
-        {"seq": 2, "type": "monster_spawn", "wave": 1, "count": int(RULES.v("brother_tower", "monstersPerWave", 8) or 8)},
-        {"seq": 3, "type": "wave_cleared", "wave": 1, "at": iso(now())},
-    ]
-    return ok(events=[e for e in events if int(e["seq"]) > since], nextSeq=4, finished=True)
+    """按 sinceSeq 增量返回战斗事件；按会话当前波次推进，仅通关后 finished=True。"""
+    events, next_seq, finished = bt.events_since(ctx.state, ctx.qi("sinceSeq", 0))
+    return ok(events=events, nextSeq=next_seq, finished=finished)
+
+
+@route("POST", "/brother-tower/battle-events")
+def brother_battle_events_push(ctx: Ctx) -> dict:
+    """driver 上报事件（客户端 push）。本地由服务端生成事件流，幂等回执即可。"""
+    events, next_seq, finished = bt.events_since(ctx.state, ctx.i("sinceSeq", 0))
+    return ok(accepted=True, nextSeq=next_seq, finished=finished, events=events)
 
 
 @route("POST", "/brother-tower/wave-cleared")
 def brother_wave_cleared(ctx: Ctx) -> dict:
-    wave = ctx.i("wave", 1)
-    total = int(RULES.v("brother_tower", "waveCount", 10) or 10)
-    return ok(wave=wave, cleared=True, remaining=max(0, total - wave))
+    sess = bt.current(ctx.state)
+    if not sess or sess.get("status") != "in_battle":
+        return fail("当前没有进行中的战斗")
+    wave = ctx.i("wave", 0) or int(sess.get("currentWave", 1))
+    total = int(sess.get("waveCount", 10))
+    bt.clear_wave(ctx.state, wave)
+    after = bt.current(ctx.state)
+    return ok(
+        wave=wave, cleared=True,
+        currentWave=int(after.get("currentWave", wave)),
+        remaining=max(0, total - wave),
+        finished=after.get("status") == "cleared",
+        status=after.get("status"),
+    )
 
 
 # ================================================================ 生死塔（实时部分）

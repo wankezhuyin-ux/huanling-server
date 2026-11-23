@@ -53,7 +53,7 @@ def main() -> int:
     seed = {"playerData": {"name": "测试道友", "level": 10},
             "petsData": {"active_pet_id": "p1", "pets": [{"id": "p1", "name": "嘟嘟鸟"}]},
             "items": [{"id": "i1", "name": "金币", "count": 100}],
-            "gameSettings": {"current_map": "浮影水城外郊（0,0）"}}
+            "gameSettings": {"current_map": "浮光水城外郊（0,0）"}}
     try:
         st = core.State("flush_test", seed=seed)
         path = st.path

@@ -1,0 +1,424 @@
+{
+ "success": true,
+ "mails": [
+  {
+   "id": 406449,
+   "sender": "系统",
+   "title": "天关扫荡 · 百关礼包",
+   "content": "您通过天关扫荡获得以下百关礼包，请查收附件。\n100关礼包 x1\n200关礼包 x1\n300关礼包 x1\n400关礼包 x1\n500关礼包 x1\n600关礼包 x1",
+   "attachments": {
+    "items": [
+     {
+      "name": "100关礼包",
+      "count": 1
+     },
+     {
+      "name": "200关礼包",
+      "count": 1
+     },
+     {
+      "name": "300关礼包",
+      "count": 1
+     },
+     {
+      "name": "400关礼包",
+      "count": 1
+     },
+     {
+      "name": "500关礼包",
+      "count": 1
+     },
+     {
+      "name": "600关礼包",
+      "count": 1
+     }
+    ]
+   },
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": "2026-10-29T15:10:03.000Z",
+   "created_at": "2026-10-22T15:10:03.000Z"
+  },
+  {
+   "id": 406448,
+   "sender": "系统",
+   "title": "天关扫荡 · 天关奖励",
+   "content": "您通过天关扫荡获得以下天关奖励，请查收附件。\n金币 x60000000\n5+宠物礼包 x6",
+   "attachments": {
+    "gold": 60000000,
+    "items": [
+     {
+      "name": "5+宠物礼包",
+      "count": 6
+     }
+    ]
+   },
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": "2026-10-29T15:10:03.000Z",
+   "created_at": "2026-10-22T15:10:03.000Z"
+  },
+  {
+   "id": 404848,
+   "sender": "系统",
+   "title": "普通法宝进化变异几率显示错误说明",
+   "content": "普通法宝进化变异几率3%是客户端显示错误，服务器上实际上是按1%结算，下次更新会正常显示1%。望周知。",
+   "attachments": {},
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-10-22T04:58:16.000Z"
+  },
+  {
+   "id": 365071,
+   "sender": "系统",
+   "title": "服务器故障补偿：中秋礼包10个",
+   "content": "服务器故障补偿：中秋礼包10个",
+   "attachments": {
+    "items": [
+     {
+      "id": "中秋节礼包",
+      "name": "中秋节礼包",
+      "count": 10
+     }
+    ],
+    "grant_meta": {
+     "op_id": "admin_mail_1791344377616_258080",
+     "admin_id": 2,
+     "batch_id": "",
+     "ticket_no": "",
+     "granted_at": "2026-10-07T03:39:37.616Z"
+    },
+    "trusted_admin_grant": true
+   },
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-10-07T03:39:37.000Z"
+  },
+  {
+   "id": 318758,
+   "sender": "系统",
+   "title": "2.4.6更新兄弟天关新增史诗难度",
+   "content": "1、兄弟天关新增史诗难度，简单/困难/地狱难度也有小幅提升，友情点改为4/5/6/7，每日首次获得礼包数1/2/3/4\n2、兄弟天关组队方式优化，队长可以选择审批模式，从申请列表中选择队员。\n3、修复宠物满级时，领悟技能提示\n\n非强制更新。注意，不更新的话，看不到新史诗难度兄弟天关，",
+   "attachments": {},
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-09-20T16:11:23.000Z"
+  },
+  {
+   "id": 318288,
+   "sender": "系统",
+   "title": "2.4.6更新兄弟天关新增史诗难度",
+   "content": "1、兄弟天关新增史诗难度，简单/困难/地狱 难度也有小幅提升，友情点改为4/5/6/7，每日首次获得礼包数1/2/3/4\n2、兄弟天关组队方式优化，队长可以选择审批模式，从申请列表中选择队员。\n3、修复宠物满级时，领悟技能提示\n\n非强制更新。注意，不更新的话，看不到新史诗难度兄弟天关，建议更新",
+   "attachments": {
+    "type": "gold",
+    "amount": 1,
+    "grant_meta": {
+     "op_id": "admin_mail_1789920572695_726216",
+     "admin_id": 2,
+     "batch_id": "",
+     "ticket_no": "",
+     "granted_at": "2026-09-20T16:09:32.695Z"
+    },
+    "trusted_admin_grant": true
+   },
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-09-20T16:09:32.000Z"
+  },
+  {
+   "id": 314314,
+   "sender": "系统",
+   "title": "2.4.3新增生死塔玩法",
+   "content": "1、新增生死塔玩法，为2v2 竞技玩法，每日晚上20:30开启，入口在主城右上角图标，具体规则可以在界面中查看\n2、当宠物图鉴满50个时，可继续投入变异宠物，获得新的加成\n\n生死塔涉及到组队玩法，我自己测试不方便，可能存在bug，晚上开一轮看看情况，有bug请私聊反馈，请大家尽快在群文件下载安装最新安装包",
+   "attachments": {},
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-09-19T11:19:15.000Z"
+  },
+  {
+   "id": 303578,
+   "sender": "系统",
+   "title": "2.4.0开放宠物技能领悟玩法",
+   "content": "1、宠物满级5%几率、满级进化1%几率领悟技能，宠物幻化时若主宠和副宠有同一种技能，该技能提升1级，最高3级，若主宠有空槽，有20%几率继承副宠技能（不能与主宠已有技能互斥）\n2、宠物领悟的技能和通过幻化获得的技能不可卸载，仍然可通过宠物技能书学习和提升技能，但卸载的时候只原路退还技能书。注意：尽量不要给副宠学习技能书，因为幻化到主宠之后会变成不可卸载状态，副宠参与幻化之前请提前卸载\n3、元宝抽奖新增稀有技能书池和普通技能书池，金币抽奖新增通技能书池，请查看概率规则\n4、普通宠物技能槽保持3个，定制宠物技能槽升为4个，天系宠物技能槽升为5个\n5、节日活动宠物参与幻化的时候，溅射技能不会升级和继承，幻化的时候不允许两者都为节日活动宠物，节日宠物技能可以继续使用技能书升级，但卸载的时候只会原路退回技能书\n6、若不想让宠物领悟技能占用技能槽，可在宠物详情页技能槽后面点击锁定，锁定的槽位不可学习技能和领悟技能，解锁后才可以",
+   "attachments": {
+    "type": "gold",
+    "amount": 100000000,
+    "grant_meta": {
+     "op_id": "admin_mail_1789471208069_146881",
+     "admin_id": 2,
+     "batch_id": "",
+     "ticket_no": "",
+     "granted_at": "2026-09-15T11:20:08.069Z"
+    },
+    "trusted_admin_grant": true
+   },
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-09-15T11:20:08.000Z"
+  },
+  {
+   "id": 302578,
+   "sender": "系统",
+   "title": "bug补偿：宠物补章器10个",
+   "content": "宠物补章器",
+   "attachments": {
+    "type": "item",
+    "item_id": "宠物补章器",
+    "quantity": 10,
+    "grant_meta": {
+     "op_id": "admin_mail_1789450299519_527344",
+     "admin_id": 2,
+     "batch_id": "",
+     "ticket_no": "",
+     "granted_at": "2026-09-15T05:31:39.519Z"
+    },
+    "trusted_admin_grant": true
+   },
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-09-15T05:31:39.000Z"
+  },
+  {
+   "id": 284540,
+   "sender": "系统",
+   "title": "世界boss礼包",
+   "content": "世界boss礼包",
+   "attachments": {
+    "type": "item",
+    "item_id": "世界boss礼包",
+    "quantity": 10,
+    "grant_meta": {
+     "op_id": "admin_mail_1788860884601_308121",
+     "admin_id": 2,
+     "batch_id": "",
+     "ticket_no": "",
+     "granted_at": "2026-09-08T09:48:04.601Z"
+    },
+    "trusted_admin_grant": true
+   },
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-09-08T09:48:04.000Z"
+  },
+  {
+   "id": 256938,
+   "sender": "系统",
+   "title": "2.3.0版本新增「法宝」与「野外难度」",
+   "content": "本次更新新增「法宝」与「野外难度」。法宝可穿戴，提升经验和属性；野外可按难度变强，并掉落对应法宝碎片。\n\n1000 级以上野外按所选难度掉碎片（约 1/2000），100 片合成 1 件对应法宝。野外地图难度共八档：普通～无上，按投胎次数解锁。\n\n分解法宝获得 50 碎片。友情点商店卖洗练石（100 点/枚），洗练只改数值，可选择应用或放弃（石头不退）\n\n8月30日中午左右强制更新，请到群文件下载最新安装包，避免到时候被踢下线",
+   "attachments": {
+    "type": "gold",
+    "amount": 100000000,
+    "grant_meta": {
+     "op_id": "admin_mail_1788003205715_260078",
+     "admin_id": 2,
+     "batch_id": "",
+     "ticket_no": "",
+     "granted_at": "2026-08-29T11:33:25.715Z"
+    },
+    "trusted_admin_grant": true
+   },
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-08-29T11:33:25.000Z"
+  },
+  {
+   "id": 233434,
+   "sender": "系统",
+   "title": "补偿七夕节礼包10个",
+   "content": "补偿七夕节礼包10个",
+   "attachments": {
+    "type": "item",
+    "item_id": "七夕节礼包",
+    "quantity": 10,
+    "grant_meta": {
+     "op_id": "admin_mail_1787237337761_755064",
+     "admin_id": 2,
+     "batch_id": "",
+     "ticket_no": "",
+     "granted_at": "2026-08-20T14:48:57.761Z"
+    },
+    "trusted_admin_grant": true
+   },
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-08-20T14:48:57.000Z"
+  },
+  {
+   "id": 231299,
+   "sender": "系统",
+   "title": "8.20服务器升级维护补偿七夕礼包",
+   "content": "服务器进行了配置升级，同时发放维护补偿10个七夕礼包",
+   "attachments": {
+    "type": "item",
+    "item_id": "七夕节礼包",
+    "quantity": 10,
+    "grant_meta": {
+     "op_id": "admin_mail_1787166370732_203767",
+     "admin_id": 2,
+     "batch_id": "",
+     "ticket_no": "",
+     "granted_at": "2026-08-19T19:06:10.732Z"
+    },
+    "trusted_admin_grant": true
+   },
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-08-19T19:06:10.000Z"
+  },
+  {
+   "id": 230945,
+   "sender": "系统",
+   "title": "8.20服务器升级维护补偿双倍经验丹",
+   "content": "服务器进行了配置升级，同时发放维护补偿双倍经验丹",
+   "attachments": {
+    "type": "item",
+    "item_id": "双倍经验丹",
+    "quantity": 1,
+    "grant_meta": {
+     "op_id": "admin_mail_1787166340790_597836",
+     "admin_id": 2,
+     "batch_id": "",
+     "ticket_no": "",
+     "granted_at": "2026-08-19T19:05:40.790Z"
+    },
+    "trusted_admin_grant": true
+   },
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-08-19T19:05:40.000Z"
+  },
+  {
+   "id": 218326,
+   "sender": "系统",
+   "title": "日本鬼子投降81周年福利",
+   "content": "延安新华广播电台，XNCR，现在开始播音：\n全中国的同胞们，今天，日本已宣布无条件投降！\n我们人民的军队，马上要去解除敌人的武装，去恢复交通和城镇！\n坚决大胆，迅速向前进，谁敢阻挡，就把他消灭得干干净净！",
+   "attachments": {
+    "type": "gold",
+    "amount": 815000000,
+    "grant_meta": {
+     "op_id": "admin_mail_1786768730105_655907",
+     "admin_id": 2,
+     "batch_id": "",
+     "ticket_no": "",
+     "granted_at": "2026-08-15T04:38:50.105Z"
+    },
+    "trusted_admin_grant": true
+   },
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-08-15T04:38:50.000Z"
+  },
+  {
+   "id": 215375,
+   "sender": "系统",
+   "title": "2.2.7更新说明和更新福利",
+   "content": "1、新增人物天赋：从500投开始（包含500投），每满50次可获得1点天赋，加到攻防敏生命上时，可提升出战宠1%对应加成，可在角色-天赋 查看具体规则\n2、从1000投开始，每次投胎的永久点数从25点降为10点\n3、新增助战宠玩法：每100投开启一个槽位，最多10个槽位，可为出战宠增加一定比例的属性，具体可在宠物-助战宠 查看具体规则\n4、为了防止后期加成数据统计混乱，统一了角色和宠物的加成公式，全部改为加算，所以属性会有小幅度减少属于正常情况\n5、新增金币袋道具：长空秋雁，打开后可获得appy大佬赞助的10万金币\n6、优化了一些功能，老包可能会不兼容，本次为强更，更新福利5亿金币",
+   "attachments": {
+    "type": "gold",
+    "amount": 500000000,
+    "grant_meta": {
+     "op_id": "admin_mail_1786681027217_231551",
+     "admin_id": 2,
+     "batch_id": "",
+     "ticket_no": "",
+     "granted_at": "2026-08-14T04:17:07.218Z"
+    },
+    "trusted_admin_grant": true
+   },
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-08-14T04:17:07.000Z"
+  },
+  {
+   "id": 197920,
+   "sender": "系统",
+   "title": "2.2.5更新：帮派领地新增6个领地",
+   "content": "帮派领地新增4个初级领地和2个中级领地，想申请领地战的帮派成员，请去群文件下载最新安装包",
+   "attachments": {},
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-08-07T14:19:23.000Z"
+  },
+  {
+   "id": 170129,
+   "sender": "系统",
+   "title": "元宝抽奖保底奖励变更告知",
+   "content": "元宝抽奖保底奖励的13+变异礼包替换成13+普通宠物礼包，望周知",
+   "attachments": {},
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-07-27T15:15:43.000Z"
+  },
+  {
+   "id": 153976,
+   "sender": "系统",
+   "title": "2.17新版本上线请群内下载最新包",
+   "content": "2.1.7更新内容\n一、变异玩法重构\n· 宠物新增「变异」品质：变异1、变异2\n· 品质等级：变异 > 极品 > 普通· 变异获取途径：宠物一进1%几率变异、1500关之后的百关礼包（1%几率变异琳琳/纹地龙）、变异五行宠物蛋6.0-7.9、魂魄重生、元宝抽奖保底奖励\n二、养宠赛\n· 入口：竞技场大厅 →「养宠赛」\n· 奖励：当日第 1 名邮件邮件获得随机五行变异宠物蛋，成长6.0-7.9\n三、新增武功\n· 以战养战：普攻后有 50% 概率按伤害比例吸血回血\n· 破军劲（被动）：提升暴击率\n· 重创诀（被动）：提升暴击伤害\n四、新增宠物技能\n· 吸血（lv1 / lv2 / lv3）：普攻后按概率吸血回血\n五、天关开放到1699关，元宝奖池更新13+可进化和不可进化宠、吸血技能书、保底奖励10-13变异可进化礼包、10-13变异不可进化礼包\n六、五行副本的宠物蛋更换为变异五行宠物蛋（成长6.0-7.9）",
+   "attachments": {},
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-07-21T12:10:30.000Z"
+  },
+  {
+   "id": 153381,
+   "sender": "系统",
+   "title": "帮派人数上限调整",
+   "content": "1、帮派人数上限更改为1-19级10个人，20级15个人\n2、现有帮派人数超过的上限的，可以在8月1日之前，各自调整保留人员不要超过上限。否则8月1日，除了帮主、副帮主、精英外，其他人会被踢出帮派，\n3、新建帮派门槛降低，只需要100元宝，之前的创建帮派的人私聊我，我给你退回900元宝\n4、个人未使用的帮贡会帮留，重新加入帮派会恢复\n5、8月1日前，退出帮派临时设置成没有冷却时间，8月1日后设置冷却时间为24小时",
+   "attachments": {},
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-07-21T09:22:01.000Z"
+  },
+  {
+   "id": 143624,
+   "sender": "系统",
+   "title": "新人下载新包，享受新人经验加成",
+   "content": "新人到群文件下载新包，新人创建账号10天内享受新人经验加成100%，可以在设置-增益中查看剩余时间，对人物和宠物都生效，加算，也就是各种加成一起可以到400%以上",
+   "attachments": {},
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-07-17T09:26:47.000Z"
+  },
+  {
+   "id": 143194,
+   "sender": "系统",
+   "title": "建议新人50级加帮派，有属性经验加成",
+   "content": "建议新人早点加入帮派，50级就可以加，有免费属性和经验加成",
+   "attachments": {},
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-07-17T08:09:43.000Z"
+  },
+  {
+   "id": 125097,
+   "sender": "系统",
+   "title": "新版本帮派上线，记得加入帮派享受加成，没有门槛！",
+   "content": "新版本帮派上线，记得加入帮派享受加成，没有门槛！",
+   "attachments": {},
+   "is_read": false,
+   "is_claimed": false,
+   "expire_at": null,
+   "created_at": "2026-07-09T12:47:08.000Z"
+  }
+ ]
+}

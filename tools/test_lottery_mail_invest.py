@@ -298,7 +298,7 @@ def test_mail_fix_tool() -> None:
 # ---------------------------------------------------------------- 客户端道具表
 def _load_client_items() -> set[str]:
     """从客户端 game_data.gd 抠出道具名，校验服务端发的东西客户端真认识。"""
-    gd = Path("/Users/a1111/Documents/Codex/2026-10-21/n/outputs/recovered-godot-project/scripts/game_data.gd")
+    gd = Path(__file__).resolve().parents[3] / "recovered-godot-project" / "scripts" / "game_data.gd"
     if not gd.exists():
         return set()
     text = gd.read_text(encoding="utf-8", errors="replace")

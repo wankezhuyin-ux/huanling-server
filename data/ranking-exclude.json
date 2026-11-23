@@ -1,0 +1,21 @@
+{
+  "_readme": "排行榜排除名单。这里列出的账号名不会出现在任何排行榜（玩家/宠物/天关/套装）里，账号和存档完全不动，随时可以加减；改完即时生效（每次请求都会重新读这个文件）。",
+  "_why": "开发期建的测试号/探针号不该占着榜单前排。",
+  "usernames": [
+    "emu2026",
+    "uicheck",
+    "v216check",
+    "speedtest",
+    "newbie26806",
+    "newbieB26879",
+    "newbieC26897",
+    "newbieD26967",
+    "probe1",
+    "probeA",
+    "zz_off_probe",
+    "zzprobe12896",
+    "zzguard12250",
+    "probepb99exr3",
+    "zzzzz"
+  ]
+}

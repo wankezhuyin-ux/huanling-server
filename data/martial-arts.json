@@ -3,60 +3,60 @@
   "version": 1,
   "realms": {
     "凡人": [
-      {"name": "吐纳功", "effect_type": "all_stats", "base_value": 2, "desc": "调息匀笔，全属性小幅提升"},
-      {"name": "强身术", "effect_type": "hp", "base_value": 5, "desc": "层层积染，生命上限提升"},
+      {"name": "基础吐纳术", "effect_type": "all_stats", "base_value": 2, "desc": "调息匀笔，全属性小幅提升"},
+      {"name": "强身健体", "effect_type": "hp", "base_value": 5, "desc": "层层积染，生命上限提升"},
       {"name": "铁布衫", "effect_type": "defense", "base_value": 3, "desc": "罩一层色护住纸骨，防御提升"},
       {"name": "疾风步", "effect_type": "agility", "base_value": 3, "desc": "笔掠留白，身法轻捷"},
       {"name": "蛮牛劲", "effect_type": "attack", "base_value": 3, "desc": "重按顿笔，出手沉猛"},
-      {"name": "蓄墨诀", "effect_type": "mp_max", "base_value": 3, "desc": "含毫蓄墨，内力上限提升"},
+      {"name": "蓄灵诀", "effect_type": "mp_max", "base_value": 3, "desc": "含毫蓄墨，内力上限提升"},
       {"name": "养生诀", "effect_type": "exp", "base_value": 2, "desc": "日日养砚，阅历渐长"}
     ],
     "散仙": [
-      {"name": "仙鹤功", "effect_type": "all_stats", "base_value": 4, "desc": "游丝细笔，全属性提升"},
-      {"name": "金刚身", "effect_type": "defense", "base_value": 6, "desc": "重彩多层，防御大幅提升"},
-      {"name": "踏水步", "effect_type": "agility", "base_value": 6, "desc": "笔尖掠水，身法迅疾"},
-      {"name": "破山掌", "effect_type": "attack", "base_value": 6, "desc": "锋破防面，掌力大增"},
-      {"name": "行墨诀", "effect_type": "mp_max", "base_value": 6, "desc": "行云流水，内力上限大幅提升"},
-      {"name": "长春功", "effect_type": "hp", "base_value": 8, "desc": "宿墨醇厚，气血绵长"}
+      {"name": "仙鹤吐纳", "effect_type": "all_stats", "base_value": 4, "desc": "游丝细笔，全属性提升"},
+      {"name": "金刚不坏", "effect_type": "defense", "base_value": 6, "desc": "重彩多层，防御大幅提升"},
+      {"name": "凌波微步", "effect_type": "agility", "base_value": 6, "desc": "笔尖掠水，身法迅疾"},
+      {"name": "降龙掌", "effect_type": "attack", "base_value": 6, "desc": "锋破防面，掌力大增"},
+      {"name": "行气诀", "effect_type": "mp_max", "base_value": 6, "desc": "行云流水，内力上限大幅提升"},
+      {"name": "长生诀", "effect_type": "hp", "base_value": 8, "desc": "宿墨醇厚，气血绵长"}
     ],
     "地仙": [
-      {"name": "紫云功", "effect_type": "all_stats", "base_value": 6, "desc": "紫毫落纸，全属性提升"},
-      {"name": "不动身", "effect_type": "defense", "base_value": 10, "desc": "铁线绷紧，防御极大提升"},
-      {"name": "踏雪步", "effect_type": "agility", "base_value": 10, "desc": "不着一笔，身法极大提升"},
-      {"name": "移山劲", "effect_type": "attack", "base_value": 10, "desc": "泼墨横扫，攻击极大提升"},
+      {"name": "紫霞神功", "effect_type": "all_stats", "base_value": 6, "desc": "紫毫落纸，全属性提升"},
+      {"name": "不动明王", "effect_type": "defense", "base_value": 10, "desc": "铁线绷紧，防御极大提升"},
+      {"name": "踏雪无痕", "effect_type": "agility", "base_value": 10, "desc": "不着一笔，身法极大提升"},
+      {"name": "乾坤大挪移", "effect_type": "attack", "base_value": 10, "desc": "泼墨横扫，攻击极大提升"},
       {"name": "归真诀", "effect_type": "mp_max", "base_value": 10, "desc": "锋藏画内，内力上限极大提升"},
-      {"name": "烈阳功", "effect_type": "hp", "base_value": 12, "desc": "朱砂点护，生命极大提升"}
+      {"name": "九阳神功", "effect_type": "hp", "base_value": 12, "desc": "朱砂点护，生命极大提升"}
     ],
     "天仙": [
-      {"name": "无字经", "effect_type": "all_stats", "base_value": 9, "desc": "永字八法，全属性大幅提升"},
-      {"name": "不坏身", "effect_type": "defense", "base_value": 15, "desc": "金碧覆身，防御巨幅提升"},
-      {"name": "缩地功", "effect_type": "agility", "base_value": 15, "desc": "一笔纵贯，敏捷巨幅提升"},
-      {"name": "万剑归一", "effect_type": "attack", "base_value": 15, "desc": "万毫并下，攻击巨幅提升"},
-      {"name": "凝墨诀", "effect_type": "mp_max", "base_value": 15, "desc": "毫端凝墨，内力上限巨幅提升"},
-      {"name": "不死身", "effect_type": "hp", "base_value": 18, "desc": "青绿长皴，生命巨幅提升"}
+      {"name": "太玄经", "effect_type": "all_stats", "base_value": 9, "desc": "永字八法，全属性大幅提升"},
+      {"name": "不灭金身", "effect_type": "defense", "base_value": 15, "desc": "金碧覆身，防御巨幅提升"},
+      {"name": "缩地成寸", "effect_type": "agility", "base_value": 15, "desc": "一笔纵贯，敏捷巨幅提升"},
+      {"name": "万剑归宗", "effect_type": "attack", "base_value": 15, "desc": "万毫并下，攻击巨幅提升"},
+      {"name": "凝神诀", "effect_type": "mp_max", "base_value": 15, "desc": "毫端凝墨，内力上限巨幅提升"},
+      {"name": "不死神功", "effect_type": "hp", "base_value": 18, "desc": "青绿长皴，生命巨幅提升"}
     ],
     "大罗金仙": [
-      {"name": "混元劲", "effect_type": "all_stats", "base_value": 12, "desc": "一笔贯气，全属性巨幅提升"},
-      {"name": "万劫身", "effect_type": "defense", "base_value": 20, "desc": "丹青不坏，防御极大提升"},
-      {"name": "瞬息千里", "effect_type": "agility", "base_value": 20, "desc": "意到笔到，敏捷极大提升"},
-      {"name": "开天劲", "effect_type": "attack", "base_value": 20, "desc": "侧锋劈斫，攻击极大提升"},
+      {"name": "混元一气", "effect_type": "all_stats", "base_value": 12, "desc": "一笔贯气，全属性巨幅提升"},
+      {"name": "万劫不灭", "effect_type": "defense", "base_value": 20, "desc": "丹青不坏，防御极大提升"},
+      {"name": "瞬息万里", "effect_type": "agility", "base_value": 20, "desc": "意到笔到，敏捷极大提升"},
+      {"name": "开天辟地", "effect_type": "attack", "base_value": 20, "desc": "侧锋劈斫，攻击极大提升"},
       {"name": "玄罡诀", "effect_type": "mp_max", "base_value": 20, "desc": "玄墨成渊，内力上限极大提升"},
-      {"name": "长生身", "effect_type": "hp", "base_value": 25, "desc": "绢本不朽，生命极大提升"}
+      {"name": "永恒生命", "effect_type": "hp", "base_value": 25, "desc": "绢本不朽，生命极大提升"}
     ],
     "幻灵天神": [
-      {"name": "同寿功", "effect_type": "all_stats", "base_value": 15, "desc": "墨与寿齐，全属性极大提升"},
-      {"name": "铁壁功", "effect_type": "defense", "base_value": 25, "desc": "金刚为色，终极防御提升"},
-      {"name": "破空行", "effect_type": "agility", "base_value": 25, "desc": "行出画外，终极敏捷提升"},
-      {"name": "破灭劲", "effect_type": "attack", "base_value": 25, "desc": "焦墨起火，终极攻击提升"},
-      {"name": "造化功", "effect_type": "mp_max", "base_value": 25, "desc": "造化凝于锋端，终极内力提升"},
-      {"name": "生生不息", "effect_type": "hp", "base_value": 25, "desc": "生宣不蛀，终极生命提升"},
-      {"name": "点穴手", "effect_type": "acupoint_seal", "base_value": 25, "desc": "有内力时普攻打3目标各1点，点中清空内力"},
+      {"name": "天地同寿", "effect_type": "all_stats", "base_value": 15, "desc": "墨与寿齐，全属性极大提升"},
+      {"name": "绝对防御", "effect_type": "defense", "base_value": 25, "desc": "金刚为色，终极防御提升"},
+      {"name": "超越时空", "effect_type": "agility", "base_value": 25, "desc": "行出画外，终极敏捷提升"},
+      {"name": "毁灭之力", "effect_type": "attack", "base_value": 25, "desc": "焦墨起火，终极攻击提升"},
+      {"name": "造化玄罡", "effect_type": "mp_max", "base_value": 25, "desc": "造化凝于锋端，终极内力提升"},
+      {"name": "无限生命", "effect_type": "hp", "base_value": 25, "desc": "生宣不蛀，终极生命提升"},
+      {"name": "葵花点穴", "effect_type": "acupoint_seal", "base_value": 25, "desc": "有内力时普攻打3目标各1点，点中清空内力"},
       {"name": "破军劲", "effect_type": "crit_rate", "base_value": 10, "desc": "出锋锐利，暴击率提升（1层10%，9层20%）"},
-      {"name": "重击诀", "effect_type": "crit_damage", "base_value": 10, "desc": "枯笔重压，暴击伤害提升（1层+10%，9层+50%；默认暴击1.5倍）"}
+      {"name": "重创诀", "effect_type": "crit_damage", "base_value": 10, "desc": "枯笔重压，暴击伤害提升（1层+10%，9层+50%；默认暴击1.5倍）"}
     ]
   },
   "skill_books": {
-    "一击三伤": {"effect_type": "triple_shot", "base_value": 80.0, "desc": "装备后普攻最多同时攻击3个目标；每箭伤害1层80%、9层120%", "realm": "技能书"},
-    "以血养血": {"effect_type": "life_steal", "base_value": 5.0, "desc": "装备后普攻有50%概率按伤害吸血回血（1层5%，9层20%）", "realm": "技能书"}
+    "一箭三雕": {"effect_type": "triple_shot", "base_value": 80.0, "desc": "装备后普攻最多同时攻击3个目标；每箭伤害1层80%、9层120%", "realm": "技能书"},
+    "以战养战": {"effect_type": "life_steal", "base_value": 5.0, "desc": "装备后普攻有50%概率按伤害吸血回血（1层5%，9层20%）", "realm": "技能书"}
   }
 }

@@ -862,7 +862,7 @@ def shengsi_register(ctx: Ctx) -> dict:
     if gift and bool(cfg.get("participateGiftEnabled", False)) and box.get("participateDate") != today():
         from core import client_has_item
         if client_has_item(gift):
-            state.send_mail("生死塔参与锦囊", "报名成功，参与奖励已附上。",
+            state.send_mail("生死塔参与礼包", "报名成功，参与奖励已附上。",
                             [{"name": gift, "count": 1}])
             box["participateDate"] = today()
     state.bump()

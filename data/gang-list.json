@@ -3,153 +3,153 @@
  "gangs": [
   {
    "id": 17,
-   "name": "墨池",
+   "name": "炸天帮",
    "level": 10,
    "emblemId": 32,
-   "notice": "日常捐献、副本组队，欢迎同好。",
+   "notice": "闲揽山河色，不问世间争！",
    "autoJoin": false,
    "memberCount": 10,
-   "leaderName": "墨尘"
+   "leaderName": "橘子"
   },
   {
    "id": 18,
-   "name": "松风阁",
+   "name": "一剑破苍穹",
    "level": 9,
    "emblemId": 14,
-   "notice": "日常捐献、副本组队，欢迎同好。",
+   "notice": "人生若只如初见，何事秋风悲画扇。",
    "autoJoin": false,
    "memberCount": 10,
-   "leaderName": "砚石"
+   "leaderName": "天云"
   },
   {
    "id": 31,
-   "name": "残碑社",
+   "name": "宠爱一生",
    "level": 8,
    "emblemId": 3,
-   "notice": "日常捐献、副本组队，欢迎同好。",
+   "notice": "三次金币捐一下，帮贡可以换双倍。",
    "autoJoin": false,
    "memberCount": 10,
-   "leaderName": "松灯"
+   "leaderName": "思念"
   },
   {
    "id": 28,
-   "name": "听雪庐",
+   "name": "凌霄宝殿",
    "level": 7,
    "emblemId": 1,
-   "notice": "日常捐献、副本组队，欢迎同好。",
+   "notice": "每天记得使用3次金币捐赠，帮战和抢占领地随大家时间开",
    "autoJoin": false,
    "memberCount": 9,
-   "leaderName": "竹渡"
+   "leaderName": "根正苗红"
   },
   {
    "id": 19,
-   "name": "拾叶堂",
+   "name": "摆烂的一伙人",
    "level": 6,
    "emblemId": 12,
-   "notice": "日常捐献、副本组队，欢迎同好。",
+   "notice": "建设材料出处：1.金币捐献3次；2.世界boss拿一个材料；3.仙魔刷完体力基本出一个。",
    "autoJoin": false,
    "memberCount": 8,
-   "leaderName": "云照"
+   "leaderName": "雪翼青龙"
   },
   {
    "id": 29,
-   "name": "砚山会",
+   "name": "心腹大患",
    "level": 5,
    "emblemId": 28,
-   "notice": "日常捐献、副本组队，欢迎同好。",
+   "notice": "加帮先加企鹅群:151059023",
    "autoJoin": true,
    "memberCount": 10,
-   "leaderName": "雪鹤"
+   "leaderName": "appy"
   },
   {
    "id": 33,
-   "name": "寒渡",
+   "name": "众神领域",
    "level": 5,
    "emblemId": 2,
-   "notice": "日常捐献、副本组队，欢迎同好。",
+   "notice": "消磨时间",
    "autoJoin": true,
    "memberCount": 10,
-   "leaderName": "江苔"
+   "leaderName": "悠嘻猴"
   },
   {
    "id": 34,
-   "name": "竹外居",
+   "name": "悠然居",
    "level": 5,
    "emblemId": 18,
-   "notice": "日常捐献、副本组队，欢迎同好。",
+   "notice": "每天记得捐献。",
    "autoJoin": true,
    "memberCount": 10,
-   "leaderName": "山溪"
+   "leaderName": "悠悠我心"
   },
   {
    "id": 39,
-   "name": "石鼓门",
+   "name": "烟雨丶江南",
    "level": 5,
    "emblemId": 16,
-   "notice": "日常捐献、副本组队，欢迎同好。",
+   "notice": "为了大家的福利，每天金币要捐满",
    "autoJoin": false,
    "memberCount": 10,
-   "leaderName": "石澜"
+   "leaderName": "时光慢煮茶"
   },
   {
    "id": 36,
-   "name": "云深处",
+   "name": "摘星阁",
    "level": 5,
    "emblemId": 9,
-   "notice": "日常捐献、副本组队，欢迎同好。",
+   "notice": "兄弟们，每日金币贡献整一整，升级快了福利属性大家都有，一天不金币贡献直接机票",
    "autoJoin": true,
    "memberCount": 9,
-   "leaderName": "林书"
+   "leaderName": "老玩家幻灵"
   },
   {
    "id": 43,
-   "name": "淡墨斋",
+   "name": "梦幻国度",
    "level": 5,
    "emblemId": 31,
-   "notice": "日常捐献、副本组队，欢迎同好。",
+   "notice": "记得捐献",
    "autoJoin": false,
    "memberCount": 9,
-   "leaderName": "野阙"
+   "leaderName": "人无再少年"
   },
   {
    "id": 45,
-   "name": "孤峰台",
+   "name": "百成搭子帮",
    "level": 5,
    "emblemId": 6,
-   "notice": "日常捐献、副本组队，欢迎同好。",
+   "notice": "咱们帮建个群聊吧，方便联系，帮派声望是怎么弄的？谁知道，升6级还需要声望",
    "autoJoin": true,
    "memberCount": 9,
-   "leaderName": "寒渠"
+   "leaderName": "黑龙使"
   },
   {
    "id": 48,
-   "name": "临渊阁",
+   "name": "瑶瑶",
    "level": 3,
    "emblemId": 30,
-   "notice": "日常捐献、副本组队，欢迎同好。",
+   "notice": "",
    "autoJoin": false,
    "memberCount": 9,
-   "leaderName": "青舟"
+   "leaderName": "猪猪侠变"
   },
   {
    "id": 32,
-   "name": "照野庄",
+   "name": "野驴帮",
    "level": 3,
    "emblemId": 15,
-   "notice": "日常捐献、副本组队，欢迎同好。",
+   "notice": "",
    "autoJoin": false,
    "memberCount": 1,
-   "leaderName": "白篁"
+   "leaderName": "不吃香菜"
   },
   {
    "id": 49,
-   "name": "拂石居",
+   "name": "黄金大地",
    "level": 2,
    "emblemId": 10,
-   "notice": "日常捐献、副本组队，欢迎同好。",
+   "notice": "",
    "autoJoin": false,
    "memberCount": 3,
-   "leaderName": "玄渊"
+   "leaderName": "不死邪刀"
   }
  ],
  "usedEmblemIds": [

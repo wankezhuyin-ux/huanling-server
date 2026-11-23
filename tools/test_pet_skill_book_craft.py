@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """技能书「2合1进阶 / 拆分」的回归测试。
 
-玩家报障：背包里点【追击lv1技能书】的「2合1进阶」，确认后弹「合成失败 灵兽不存在」。
+玩家报障：背包里点【追杀lv1技能书】的「2合1进阶」，确认后弹「合成失败 灵兽不存在」。
 根因是服务端 /pet_skill/action 先查出战宠（客户端合成请求不带 petId），
 且 synthetic/split 分支原本直接回「该技能书操作暂未开放」。
 
@@ -33,8 +33,8 @@ import handlers_growth as hg  # noqa: E402  （import 即注册路由）
 
 PASS = 0
 FAIL = 0
-CHASE1 = "追击lv1技能书"
-CHASE2 = "追击lv2技能书"
+CHASE1 = "追杀lv1技能书"
+CHASE2 = "追杀lv2技能书"
 
 
 def check(name: str, ok: bool, detail: str = "") -> None:
@@ -110,14 +110,14 @@ def main() -> int:
     check("没有凭空出 lv2", bag_count(st, CHASE2) == 0, str(bag_count(st, CHASE2)))
 
     print("④ lv5 封顶")
-    lv5 = "追击lv5技能书"
+    lv5 = "追杀lv5技能书"
     st = new_state("probe_cap", {lv5: 2})
     out = call(st, "synthetic", lv5, count=2, op_id="op_cap_1")
     check("success=false", out.get("success") is False, str(out.get("message")))
     check("lv5 没被扣", bag_count(st, lv5) == 2, str(bag_count(st, lv5)))
 
     print("⑤ 拆分：lv3 → 4 本 lv1")
-    lv3 = "追击lv3技能书"
+    lv3 = "追杀lv3技能书"
     st = new_state("probe_split", {lv3: 1})
     out = call(st, "split", lv3, count=None, op_id="op_split_1")
     check("success=true", out.get("success") is True, str(out.get("message")))

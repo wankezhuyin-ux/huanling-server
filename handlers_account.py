@@ -176,13 +176,123 @@ def version_check(ctx: Ctx) -> dict:
 
 # ---------------------------------------------------------------- 存档
 
+# 钱币袋自动兑换（2026-11-07）。早期客户端本地掉率 13%，线上一个号攒到
+# 12 万个 / 121 格 999，背包被占满反而成负担。产品口径：
+#   · 历史存量按 10 万金币/个 等值兑换成金币并清空，玩家价值不损失；
+#   · 野外掉率由服务端降到 5%；
+#   · 以后只要某个账号的钱币袋总数超过一组（999），下次同步存档时自动
+#     等值兑换一次，避免再次堆满背包。
+# 下载和上传两条链路都跑同一份纯函数：下载时服务端先兑换再回包（客户端
+# apply_cloud_save 会整包覆盖本地背包和金币），上传时若抢先到的是旧快照，
+# 也会就地兑换后落库，结果与下载路径收敛，不会把 14 万个袋子写回来。
+COIN_BAG_ITEM_NAME = "钱币袋"
+COIN_BAG_UNIT_GOLD = 100000
+COIN_BAG_AUTO_CONVERT_THRESHOLD = 999
+
+
+def _convert_coin_bags_in_save(save_dict: dict) -> tuple[int, int]:
+    """把一份存档里超量的钱币袋等值兑换成金币（原地改 save_dict）。
+
+    返回 (兑换个数, 入账金币)。背包 items 和仓库 warehouse_items 都算。
+    阈值以下完全不动，玩家正常持有/使用少量钱袋不受影响。
+    """
+    inv = save_dict.get("inventoryData")
+    if not isinstance(inv, dict):
+        return 0, 0
+    rows_by_key = [(key, inv[key]) for key in ("items", "warehouse_items")
+                   if isinstance(inv.get(key), list)]
+    total = 0
+    for _key, rows in rows_by_key:
+        for row in rows:
+            if isinstance(row, dict) and str(row.get("name", "")) == COIN_BAG_ITEM_NAME:
+                try:
+                    total += max(0, int(row.get("count", 0) or 0))
+                except (TypeError, ValueError):
+                    pass
+    if total <= COIN_BAG_AUTO_CONVERT_THRESHOLD:
+        return 0, 0
+    for key, rows in rows_by_key:
+        inv[key] = [row for row in rows
+                    if not (isinstance(row, dict)
+                            and str(row.get("name", "")) == COIN_BAG_ITEM_NAME)]
+    gold = total * COIN_BAG_UNIT_GOLD
+    player = save_dict.get("playerData")
+    if isinstance(player, dict):
+        try:
+            cur = int(player.get("gold", 0) or 0)
+        except (TypeError, ValueError):
+            cur = 0
+        player["gold"] = max(0, cur) + gold
+    return total, gold
+
+
+def _record_coin_bag_conversion(state, bags: int, gold: int) -> None:
+    prev = state.meta.get("coinBagAutoConvert")
+    if not isinstance(prev, dict):
+        prev = {}
+    state.meta["coinBagAutoConvert"] = {
+        "count": int(prev.get("count", 0) or 0) + bags,
+        "gold": int(prev.get("gold", 0) or 0) + gold,
+        "at": iso(now()),
+    }
+
+
+def _drop_stale_coin_bags(state, incoming: dict) -> int:
+    """已完成一次性清理的账号：上传包里若又带回大批历史钱袋，直接丢弃。
+
+    客户端本地内存可能仍是清理前的快照（12 万个 / 121 格 999）。如果照常走
+    等值兑换，每上传一次就会再发一遍金币 —— 2026-11-07 线上就是这样把
+    主号多发了 120 亿。阈值以下视为新掉落的钱袋，正常入账不受影响。
+    """
+    if not bool(state.meta.get("coinBagPurgeDone")):
+        return 0
+    inv = incoming.get("inventoryData")
+    if not isinstance(inv, dict):
+        return 0
+    keys = [k for k in ("items", "warehouse_items") if isinstance(inv.get(k), list)]
+    total = 0
+    for key in keys:
+        for row in inv[key]:
+            if isinstance(row, dict) and str(row.get("name", "")) == COIN_BAG_ITEM_NAME:
+                try:
+                    total += max(0, int(row.get("count", 0) or 0))
+                except (TypeError, ValueError):
+                    pass
+    if total <= COIN_BAG_AUTO_CONVERT_THRESHOLD:
+        return 0
+    for key in keys:
+        inv[key] = [row for row in inv[key]
+                    if not (isinstance(row, dict)
+                            and str(row.get("name", "")) == COIN_BAG_ITEM_NAME)]
+    state.meta["coinBagStaleDropped"] = int(state.meta.get("coinBagStaleDropped", 0) or 0) + total
+    # 旧快照里的 gold 也是清理前的值，别让它把已经入账的兑换金币冲掉
+    old_gold = state.gold()
+    player = incoming.get("playerData")
+    if isinstance(player, dict):
+        try:
+            uploaded_gold = int(player.get("gold", 0) or 0)
+        except (TypeError, ValueError):
+            uploaded_gold = 0
+        if uploaded_gold < old_gold:
+            player["gold"] = old_gold
+    return total
+
+
 @route("GET", "/save/download")
 def save_download(ctx: Ctx) -> dict:
     state = ctx.state
+    bags, granted = _convert_coin_bags_in_save(state.save)
+    if bags:
+        _record_coin_bag_conversion(state, bags, granted)
+        state.meta["coinBagPurgeDone"] = True
+        state.bump()
+        state.flush(force=True)
     return {
         "success": True,
         "saveRevision": state.revision,
         "saveData": state.save,
+        "coinBagsConverted": bags,
+        "coinBagGoldGranted": granted,
     }
 
 
@@ -250,6 +360,13 @@ def _merge_authoritative_progress(old: dict, incoming: dict) -> None:
     old_p = old.get("playerData") if isinstance(old.get("playerData"), dict) else {}
     new_p = incoming.get("playerData") if isinstance(incoming.get("playerData"), dict) else {}
     if old_p and new_p:
+        # 天关进度是服务端权威：客户端整包上传里经常还是「打开天关页之前」
+        # 的旧快照（tower_floor=1），直接落库会把闯到 200 层的进度打回第 1 层。
+        # 这两个字段只允许由 /tower/update、/tower/sweep、/battle/tower-run
+        # 和投胎重置改动，存档上传一律以服务端值为准。
+        for _tower_key in ("tower_floor", "tower_highest"):
+            if _tower_key in old_p:
+                new_p[_tower_key] = old_p[_tower_key]
         # 境界转换（飞升 / 投胎）会让等级合法地归 1，且把五维/属性点重置。
         # 这里的「等级只增不减」必须给它让路，否则玩家点完飞升，
         # 客户端紧接着的整包上传会把 level=1 顶回 1200：
@@ -339,13 +456,17 @@ def _merge_authoritative_progress(old: dict, incoming: dict) -> None:
             except (TypeError, ValueError):
                 prev_until = 0
             new_p["double_exp_until"] = max(prev_until, max(channels.values()))
-        # VIP 是服务端权威（GM/活动发放）。客户端本地根本没有开通入口，
-        # 上传包里永远是 is_vip=false / vip_level=0，不兜住的话刚开的 VIP
-        # 下一次自动存档就被冲掉 —— 表现是「VIP 开了但经验倍率没变」。
-        if bool(old_p.get("is_vip", False)) and not bool(new_p.get("is_vip", False)):
-            new_p["is_vip"] = True
-            new_p["vip_level"] = int(old_p.get("vip_level", 0) or 0)
-            new_p["vip_expire_time_str"] = str(old_p.get("vip_expire_time_str", "") or "")
+        # VIP 是服务端权威（GM/活动发放），三个字段一律以服务端存档为准，
+        # 双向都不能让客户端整包上传改动：
+        #   · 服务端已开、客户端上传 is_vip=false → 不能被冲掉（旧逻辑只防了这半边）；
+        #   · 服务端没开、客户端上传 is_vip=true + vip_level=3 + 未来到期时间 →
+        #     旧逻辑照单全收，等于任何人都能给自己刷 VIP：天关扫荡 1→3、
+        #     套装扫荡 2→5、自创武功 3→6、藏宝洞 2→8、战斗经验 ×2、
+        #     极品捕捉率翻倍。线上 2026-11-06 已用 /save/upload 实测复现。
+        # GM 开通直接写服务端存档，不经过 /save/upload，不受影响。
+        for _vip_key, _vip_default in (("is_vip", False), ("vip_level", 0),
+                                       ("vip_expire_time_str", "")):
+            new_p[_vip_key] = old_p.get(_vip_key, _vip_default)
         # 贵族是服务端权威。客户端 playerData 里**根本没有** noble_* 这三个键
         # （等级来自 /noble/info 的 nobleLevel，客户端另外存了一份缓存），
         # 不兜住的话每次自动存档上传都会把贵族冲回 0 级、累计额度清零 ——
@@ -360,6 +481,36 @@ def _merge_authoritative_progress(old: dict, incoming: dict) -> None:
                 new_p["yuanbao_currency"] = int(old_p.get("yuanbao_currency", 0) or 0)
             except (TypeError, ValueError):
                 pass
+        # 套装副本：进度只增不减（客户端 is_cleared = level <= progress，掉回去就等于
+        # 通关过的层又变回未通关、扫荡按钮消失）；每日**剩余**扫荡次数是服务端权威，
+        # 客户端本地也存了一份，旧快照上传会把刚扣掉的次数还回来 → 无限扫荡。
+        try:
+            old_suit = int(old_p.get("suit_dungeon_progress", 0) or 0)
+            new_suit = int(new_p.get("suit_dungeon_progress", 0) or 0)
+        except (TypeError, ValueError):
+            old_suit = new_suit = 0
+        if old_suit > new_suit:
+            new_p["suit_dungeon_progress"] = old_suit
+        for _suit_key in ("suit_dungeon_sweeps", "suit_dungeon_sweeps_date"):
+            if _suit_key in old_p:
+                new_p[_suit_key] = old_p[_suit_key]
+        # 天关扫荡 / 五行副本次数同样是服务端权威，且按日期跨天归零：
+        # 客户端整包上传的是「扣次数之前」的旧快照，直接落库会把刚用掉的
+        # 次数还回来（无限扫荡），或把今日已用次数冲成历史累计大数。
+        # 这里无条件以服务端值为准，连老账号缺键的情况也补上缺省值。
+        # 注意：不把 fe_yuanbao_attempts / fe_yuanbao_attempts_date 列进来。
+        # 「元宝购买额外挑战次数」目前只有客户端本地计数（服务端 /five-elements-
+        # dungeon/start 还没接 is_yuanbao 的权威扣次），若这里也强制覆盖成服务端
+        # 恒为 0，玩家重登后会被判「还剩 1 次」，反而变成无限元宝挑战。
+        # 这项保持原样，等服务端补上权威结算后再一起收编。
+        _cnt_defaults = {
+            "tower_sweep_count": 0,
+            "tower_sweep_date": "",
+            "five_elements_dungeon_attempts": 0,
+            "five_elements_dungeon_attempts_date": "",
+        }
+        for _cnt_key, _default in _cnt_defaults.items():
+            new_p[_cnt_key] = old_p.get(_cnt_key, _default)
 
     # 图鉴进度只增不减。
     # 客户端是整包上传，旧快照（切后台前、上传失败留下的）会把刚投进去的 +1 冲掉，
@@ -521,6 +672,15 @@ def save_upload(ctx: Ctx) -> dict:
     incoming = ctx.body.get("saveData") if isinstance(ctx.body.get("saveData"), dict) else ctx.body
     if not isinstance(incoming, dict) or not incoming:
         return fail("存档内容为空")
+    # 客户端整包上传里可能还是清理前的旧快照（十几万个钱袋）。已完成一次性
+    # 清理的账号直接丢弃这批旧条目、**不再发金币**（那批已经等值兑换过了）；
+    # 未清理过的账号才走正常自动兑换。否则同一批历史钱袋每上传一次就发一遍。
+    stale = _drop_stale_coin_bags(state, incoming)
+    if not stale:
+        bags, granted = _convert_coin_bags_in_save(incoming)
+        if bags:
+            _record_coin_bag_conversion(state, bags, granted)
+            state.meta["coinBagPurgeDone"] = True
     _merge_authoritative_progress(state.save or {}, incoming)
     # 紧凑存档里被声明为「受限」的字段不能用空占位覆盖服务端权威数据，
     # 否则装备/套装/宠装每上传一次就被清空一次。
@@ -559,6 +719,11 @@ def save_upload(ctx: Ctx) -> dict:
     }
     incoming.update(keep)
     state.raw["save"] = incoming
+    # 改名迁移也要覆盖上传链路：玩家客户端里还是旧名字时，整包上传会把旧名
+    # 写回磁盘（下次登录又要再迁一次，中途显示会来回跳）。这里就地归一，
+    # 保证存档不管从「读档」还是「上传」进来，都收敛到同一套现用名。
+    state._migrate_item_names()
+    state._migrate_pet_names()
     state.bump()
     state.flush()
     return ok(saveRevision=state.revision, revision=state.revision)
@@ -725,12 +890,22 @@ def offline_info(ctx: Ctx) -> dict:
         max_hours = float(hours_table[min(vip, len(hours_table) - 1)])
     except (TypeError, ValueError, IndexError):
         max_hours = 8.0
+    # 与 /economy/offline-claim 共用同一个 12 小时全局硬上限（2026-11-07）；
+    # 预览说的时长必须等于实发时长，否则玩家会看到「24h 只发了 12h」。
+    try:
+        global_hours = float(RULES.v("offline", "maxHours", 12) or 12)
+    except (TypeError, ValueError):
+        global_hours = 12.0
+    max_hours = min(max_hours, max(0.0, global_hours))
     seconds = state.peek_offline_seconds()
+    cap_seconds = int(max_hours * 3600)
     return {
         "success": True,
         "offlineSeconds": seconds,
-        "effectiveSeconds": min(seconds, int(max_hours * 3600)),
+        "effectiveSeconds": min(seconds, cap_seconds),
         "maxOfflineHours": max_hours,
+        "globalMaxOfflineHours": max(0.0, global_hours),
+        "unusedOfflineSeconds": max(0, seconds - cap_seconds),
         "isFirstLogin": not bool(state.meta.get("lastSeen")),
         "isVip": vip > 0,
         "vipTier": vip,

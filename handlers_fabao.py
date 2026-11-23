@@ -154,9 +154,12 @@ def _tier_unlocked(tier: str, reincarnation: int, noble: int) -> bool:
 def _unlock_hint(tier: str) -> str:
     name = _display_name(tier)
     need_n = _noble_need(tier)
+    # 注意：% 右侧必须是 tuple。写成 list 时 Python 会把整个 list 当成一个值，
+    # 于是 "a real number is required, not list" —— 越级切难度会直接 500，
+    # 玩家看到的是「操作失败」而不是「投胎满 N 次」。
     if need_n > 0:
-        return "投胎满%d次或贵族等级达到%d可解锁%s" % [_reinc_need(tier), need_n, name]
-    return "投胎满%d次可解锁%s" % [_reinc_need(tier), name]
+        return "投胎满%d次或贵族等级达到%d可解锁%s" % (_reinc_need(tier), need_n, name)
+    return "投胎满%d次可解锁%s" % (_reinc_need(tier), name)
 
 
 def _is_lockable_group(group: str) -> bool:

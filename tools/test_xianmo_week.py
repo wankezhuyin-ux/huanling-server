@@ -50,6 +50,32 @@ def check(name: str, ok: bool, detail: str = "") -> None:
         print("  [FAIL] %s  %s" % (name, detail))
 
 
+def settle_mails(st) -> list:
+    return [m for m in (st.meta.get("mails") or [])
+            if isinstance(m, dict) and "结算" in str(m.get("title", ""))]
+
+
+def settle_gold(st) -> int:
+    """结算邮件附件里的金币（2026-11-04 起金币走附件领取，不再直接入账）。"""
+    for m in settle_mails(st):
+        attach = m.get("attachments") or {}
+        if isinstance(attach, dict):
+            try:
+                return int(attach.get("gold", 0) or 0)
+            except (TypeError, ValueError):
+                return 0
+    return 0
+
+
+def settle_pills(st) -> int:
+    for m in settle_mails(st):
+        attach = m.get("attachments") or {}
+        for row in (attach.get("items") or []) if isinstance(attach, dict) else []:
+            if isinstance(row, dict) and str(row.get("name", "")) == "悟道仙丹":
+                return int(row.get("count", 0) or 0)
+    return 0
+
+
 def make_player(username: str, nickname: str, faction: str, score: int,
                 week: int, total: int = 0) -> object:
     st = core.State(username)
@@ -130,40 +156,45 @@ def main() -> None:
     check("称号加成 1000", int(titles.get("xian_zhizun", {}).get("attack_bonus", 0)) == 1000)
     check("称号 7 天有效期",
           int(titles.get("xian_zhizun", {}).get("expire_time_unix", 0)) > time.time() + 6 * 86400)
-    check("胜方第1名金币 5 亿", int(top.player.get("gold", 0)) == 500_000_000,
-          str(top.player.get("gold")))
+    check("胜方第1名金币 5 亿（邮件附件）", settle_gold(top) == 500_000_000,
+          str(settle_gold(top)))
     check("胜方第1名黄金宝箱 x2",
           len([c for c in tbox.get("chests", []) if c.get("type") == "gold"]) == 2)
-    check("胜方第1名悟道仙丹 x5",
-          any(int(i.get("count", 0)) == 5 and i.get("name") == "悟道仙丹" for i in top.items))
-    check("结算邮件已发", any("结算" in str(m.get("title", "")) for m in top.meta.get("mails", [])))
+    check("胜方第1名悟道仙丹 x5（邮件附件）", settle_pills(top) == 5, str(settle_pills(top)))
+    check("结算邮件已发", len(settle_mails(top)) == 1, str(len(settle_mails(top))))
+    check("结算邮件真的有附件可领",
+          bool((settle_mails(top)[0].get("attachments") or {}).get("gold")) and
+          bool((settle_mails(top)[0].get("attachments") or {}).get("items")),
+          json.dumps((settle_mails(top)[0].get("attachments") or {}), ensure_ascii=False))
 
     second = reload("s_xian_2")
     check("第2名是「仙道圣者」",
           any(t["title_id"] == "xian_shengzhe" for t in second.meta["xianmo"].get("titleItems", [])))
-    check("胜方第2名金币 3 亿", int(second.player.get("gold", 0)) == 300_000_000,
-          str(second.player.get("gold")))
+    check("胜方第2名金币 3 亿（邮件附件）", settle_gold(second) == 300_000_000,
+          str(settle_gold(second)))
 
     runner = reload("s_xian_4")
-    check("第4名发参与奖 1 亿", int(runner.player.get("gold", 0)) == 100_000_000,
-          str(runner.player.get("gold")))
+    check("第4名发参与奖 1 亿（邮件附件）", settle_gold(runner) == 100_000_000,
+          str(settle_gold(runner)))
     check("第4名无称号", not runner.meta["xianmo"].get("titleItems"))
 
     loser = reload("s_mo_top")
     ltitle = [t["title_id"] for t in loser.meta["xianmo"].get("titleItems", [])]
     check("败方第1名是「魔道先锋」", "mo_xianfeng" in ltitle, str(ltitle))
-    check("败方第1名金币 3 亿", int(loser.player.get("gold", 0)) == 300_000_000,
-          str(loser.player.get("gold")))
+    check("败方第1名金币 3 亿（邮件附件）", settle_gold(loser) == 300_000_000,
+          str(settle_gold(loser)))
 
     idle = reload("s_idle")
-    check("只报名没积分不发奖", int(idle.player.get("gold", 0)) == 0 and
+    check("只报名没积分不发奖", settle_gold(idle) == 0 and
           not idle.meta["xianmo"].get("titleItems"))
 
     again = hp._xianmo_settle_due()
     check("重复调用不再结算", again == {}, str(again))
     top2 = reload("s_xian_top")
-    check("金币没有被重复发", int(top2.player.get("gold", 0)) == 500_000_000,
-          str(top2.player.get("gold")))
+    check("金币没有被重复发（结算邮件仍只有一封）", len(settle_mails(top2)) == 1,
+          str(len(settle_mails(top2))))
+    check("金币没有被重复发（附件金额不变）", settle_gold(top2) == 500_000_000,
+          str(settle_gold(top2)))
 
     print("== D. 称号接口 ==")
     ctx = core.Ctx(top2, {}, {}, None, {})
@@ -189,7 +220,9 @@ def main() -> None:
 
     print("== E. 奖励道具名全部是客户端认识的 ==")
     names = hp._client_item_names()
-    check("白名单已加载（289 项）", len(names) >= 280, str(len(names)))
+    # 阈值随客户端道具表走：ALL_ITEMS 现在是 276 项（2026-11-01 精简过一版），
+    # 原来写死 280，道具表一精简这里就恒失败，跟奖励名对不对没关系。
+    check("白名单已加载（≥250 项）", len(names) >= 250, str(len(names)))
     bad_pool = [n for n in hp._XIANMO_RANDOM_ITEM_POOL + hp._XIANMO_RARE_ITEM_POOL
                 if n not in names]
     check("随机/稀有池无未知物品", not bad_pool, str(bad_pool))

@@ -12,9 +12,9 @@ import random
 import re
 import time
 
-from core import (COLLECTION_MAX_PER_SPECIES, Ctx, DATA, RULES, fail,
-                  invest_pet_to_collection, load_json, iso, now, ok,
-                  pet_hp_growth, route, today)
+from core import (COLLECTION_MAX_PER_SPECIES, Ctx, DATA, RULES, client_has_item, fail,
+                  invest_pet_to_collection, load_json, iso, migrate_item_name,
+                  now, ok, pet_hp_growth, rnd_id, route, today)
 from handlers_battle import MAPS_DATA
 
 
@@ -183,8 +183,11 @@ def shop_buy(ctx: Ctx) -> dict:
 # 奖励永久卡在邮箱里（玩家实测）。池内等概率，与客户端 probabilityText 一致。
 LOTTERY_ITEM_POOLS = {
     "limit_equip": ["极限武器", "极限衣服", "极限鞋子", "极限血佩", "极限内带"],
-    "element_egg": ["金纹蛋", "木纹蛋", "水纹蛋",
-                    "火纹蛋", "土纹蛋"],
+    # 必须发客户端 ALL_ITEMS 里真实存在的名字（金属性宠物蛋…）。
+    # 早前这里写的是改名方案里的新名「金纹蛋」，客户端没这个道具，
+    # 邮件点「打开」直接报「附件添加失败：未知物品：金纹蛋」，奖励卡死在邮箱。
+    "element_egg": ["金属性宠物蛋", "木属性宠物蛋", "水属性宠物蛋",
+                    "火属性宠物蛋", "土属性宠物蛋"],
     "common_skill_book_pool": ["自复lv1技能书", "轻身lv1技能书", "挡伤lv1技能书",
                                "长命lv1技能书", "力壮lv1技能书", "凶性lv1技能书",
                                "追杀lv1技能书", "守主lv1技能书"],
@@ -205,9 +208,13 @@ def expand_lottery_reward(row: dict) -> dict:
     options = LOTTERY_ITEM_POOLS.get(str(row.get("id", "") or ""))
     if not options:
         return row
+    # 池子里写的是旧名/新名都无所谓，先过一遍改名表；再去掉客户端不认识的，
+    # 免得发进邮箱后点「打开」报「附件添加失败：未知物品：xxx」。
+    options = [migrate_item_name(n) for n in options]
+    known = [n for n in options if client_has_item(n)]
     out = dict(row)
     out["poolName"] = str(row.get("name", "") or "")
-    out["name"] = random.choice(options)
+    out["name"] = random.choice(known or options)
     out["type"] = "item"
     return out
 
@@ -386,7 +393,34 @@ def lottery_pity_claim(ctx: Ctx) -> dict:
 
 @route("GET", "/economy/drop-config")
 def drop_config(ctx: Ctx) -> dict:
-    return RULES.drop
+    """下发掉落率 = 原版 18 项 + 本服显式覆盖项。
+
+    data/drop-config.json 必须逐项保持原版 rules.drop_rates（见
+    tools/test_original_parity.py A1/A2/A3）。但客户端 GameData.ALL_ITEMS 里
+    「钱币袋」还留着本地 drop_rate=0.13，而 GameData.apply_drop_config 只覆盖
+    **服务端下发过的名字** —— 原版表里没有钱币袋，这个 0.13 就永远留着；
+    inventory_manager.get_random_drop() 每场战斗都遍历 ALL_ITEMS roll 一遍，
+    于是 13% 的钱袋把背包顶到上百格 999（线上实测 14.4 万个）。
+
+    这里额外下发一条显式覆盖值（2026-11-07 用户定口径 5%，原为 13%）：
+    客户端 apply_drop_config 会用服务端的值盖掉本地残留。钱币袋仍是
+    10 万金币/个 的可使用道具；超过 999 个时存档同步会自动等值兑换成金币
+    （见 handlers_account._convert_coin_bags_in_save），不会再把背包堆满。
+    以后调爆率只改 runtime-config.json 的 dropRateOverrides，不用重新打客户端包。
+    """
+    payload = dict(RULES.drop)
+    rates = dict(payload.get("dropRates") or {})
+    overrides = RULES.m("dropRateOverrides")
+    if isinstance(overrides, dict):
+        for name, rate in overrides.items():
+            try:
+                value = float(rate)
+            except (TypeError, ValueError):
+                continue
+            if 0.0 <= value <= 1.0:
+                rates[str(name)] = value
+    payload["dropRates"] = rates
+    return payload
 
 
 @route("GET", "/gameplay/runtime-config")
@@ -394,6 +428,8 @@ def gameplay_config(ctx: Ctx) -> dict:
     payload = {snake_name: value for snake_name, value in RULES.modules.items()}
     # offline 是本服自己的离线结算参数，客户端不认识也不需要，别混进玩法配置
     payload.pop("offline", None)
+    # 掉率覆盖只由 /economy/drop-config 下发，别在玩法配置里再带一份
+    payload.pop("drop_rate_overrides", None)
     payload["success"] = True
     return payload
 
@@ -437,6 +473,10 @@ _OFFLINE_DEFAULT = {
     "minSeconds": 60,
     # VIP 特权表（ui/city/settings_hall.gd 离线时长行）：非VIP / 青铜 / 白银 / 黄金
     "maxHoursByVip": [8, 12, 16, 24],
+    # 2026-11-07 产品口径：离线时间最多累计 12 小时，超出部分不计入。
+    # 这是**全局硬上限**，与 VIP 表取小：非VIP 8h / 青铜 12h 不变，
+    # 白银 16h、黄金 24h 两档一并压到 12h。改这一个数就能调，不必动代码。
+    "maxHours": 12,
     # 离线折算成「每小时打多少场」；地图收益取 data/maps.json 里的原服实测均值。
     #
     # 原版标定（用玩家登录原版服的截图反推，不是拍的数）：
@@ -482,6 +522,504 @@ def _vip_index(player: dict) -> int:
     return max(0, min(3, tier))
 
 
+def _offline_cap_seconds(cfg: dict, vip: int = 0) -> int:
+    """本次离线最多能计多少秒 = min(VIP 上限, 全局 12 小时硬上限)。
+
+    单独抽成函数，是为了让 /economy/offline-claim（真正发奖）和
+    /offline/info（预览）共用同一口径，不会出现「预览说 24h、实发 12h」。
+    超出部分直接丢弃：不补领、不按天重置、也不滚到下一次登录。
+    """
+    table = cfg.get("maxHoursByVip") or [8, 12, 16, 24]
+    try:
+        vip_hours = float(table[max(0, min(int(vip), len(table) - 1))])
+    except (TypeError, ValueError, IndexError):
+        vip_hours = 8.0
+    try:
+        global_hours = float(cfg.get("maxHours", 12) or 12)
+    except (TypeError, ValueError):
+        global_hours = 12.0
+    hours = max(0.0, min(vip_hours, max(0.0, global_hours)))
+    return int(hours * 3600)
+
+
+# ---------------------------------------------------------------------------
+# 离线「边结算边飞升」
+# ---------------------------------------------------------------------------
+# 原版客户端 player.gd `ascend()` / `reincarnate()` 最后都会走
+# `_reset_allocated_stats_for_level_one()`：**level = 1、experience = 0**。
+# 而离线经验是「每小时经验 × 离线时长」一次性算出来的总量，如果直接整包灌进去，
+# 角色会一路冲过飞升门槛顶到 1200 级，等客户端上线再做自动飞升 —— 超过门槛的
+# 那一大截经验当场清零。
+#
+# 2026-11-04 实测（某测试账号）：离线 34.7 分钟拿到 7.6 亿经验，
+# 凡人 627 级被顶到 1068 级，客户端上线自动飞升后只剩「散仙 1 级」，玩家原话
+# 「按理说应该这么久不止散仙 1 级」。所以要按境界分段：够门槛就先飞升，再把
+# 剩下的经验接着往里灌，循环到经验用完。
+_REALM_CHAIN = ("凡人", "散仙", "地仙", "天仙", "大罗金仙", "幻灵天神")
+_REALM_NEXT = {
+    "凡人": "散仙",
+    "散仙": "地仙",
+    "地仙": "天仙",
+    "天仙": "大罗金仙",
+    "大罗金仙": "幻灵天神",
+}
+# 与客户端 game_data.gd `ASCENSION_CONDITIONS` 完全一致
+_ASCEND_REQ_LEVEL = {
+    "凡人": 800,
+    "散仙": 800,
+    "地仙": 1000,
+    "天仙": 1000,
+    "大罗金仙": 1000,
+}
+# 「天仙 → 大罗金仙」还要五行图鉴各 10 个，服务端没有图鉴数据。离线时
+# 不敢替玩家跨这一步（跨了就是白送一个本来不该有的境界），停在天仙，
+# 交给客户端在线的自动飞升去判图鉴。
+#
+# 但图鉴是**永久收集**：客户端 `can_ascend` 只看当前持有数量，投胎走
+# `_reset_allocated_stats_for_level_one()` 只重置等级/经验/五维，压根不碰图鉴。
+# 所以只要这个账号成功飞过一次大罗金仙，就证明图鉴已凑齐过，之后再投胎、
+# 再练回天仙，离线也应当能自动跨过去 —— 否则每次投胎都要在线等一次手动飞升。
+# 用一个账号级标志记住这件事（`_DALUO_UNLOCK_KEY`）。
+_OFFLINE_ASCEND_STOP_REALM = "天仙"
+_DALUO_UNLOCK_KEY = "daluo_ascend_unlocked"
+_DALUO_REALM = "大罗金仙"
+_REINCARNATE_REQ_LEVEL = 1200       # GameData.MAX_LEVEL_EVOLUTION
+_MAX_REINCARNATION = 2000           # GameData.MAX_PLAYER_REINCARNATION
+_OFFLINE_ATTR_GUARD_LEVEL = 21      # 1 + player.gd ATTR_RESET_GUARD_SPAN(20)
+
+
+def _offline_exp_to_level(state, level: int, exp_now: int, target_level: int) -> int:
+    """从「level 级 + exp_now 点进度」升到 target_level 级还需要多少经验。
+
+    等级经验公式两侧必须同源（state.required_exp 已经是
+    GameData.get_required_exp 的复刻），否则飞升点会算偏、多吞或少吞经验。
+    """
+    level = max(1, int(level))
+    target_level = max(level, int(target_level))
+    total = -max(0, int(exp_now))
+    for lv in range(level, target_level):
+        total += int(state.required_exp(lv))
+    return max(0, total)
+
+
+def _offline_daluo_unlocked(player: dict) -> bool:
+    """这个账号是否已经证明「五行图鉴凑齐过」（能飞大罗金仙）。
+
+    三条判据，任一成立即可：
+      1. 服务端记过标志（`realm_transition` 里飞上大罗金仙时写）；
+      2. 转生次数 > 0 —— 投胎的前置是幻灵天神，路上必然经过大罗金仙，
+         图鉴一定齐过（修复前就已经投过胎的老账号靠这条兜底）；
+      3. 当前境界已经在大罗金仙或更高。
+    """
+    if bool(player.get(_DALUO_UNLOCK_KEY, False)):
+        return True
+    try:
+        if int(player.get("reincarnation", 0) or 0) > 0:
+            return True
+    except (TypeError, ValueError):
+        pass
+    realm = str(player.get("realm", "") or "")
+    if realm in _REALM_CHAIN:
+        return _REALM_CHAIN.index(realm) >= _REALM_CHAIN.index(_DALUO_REALM)
+    return False
+
+
+def _offline_auto_transition_enabled(state) -> bool:
+    """玩家勾了「启用双倍经验丹权益（自动飞升/投胎）」才会在离线时替他飞升。
+
+    和客户端 `_try_auto_realm_transition` 的判据保持一致：只看勾选，
+    不额外要求双倍丹还在生效（原版 tick 也只判这一项）。
+    """
+    return bool(state.player.get("double_exp_auto_realm_enabled", False))
+
+
+def _offline_reset_to_realm_start(state, next_realm: str) -> None:
+    """复刻 player.gd `_reset_allocated_stats_for_level_one()`。
+
+    飞升 / 投胎后：等级 1、经验 0、五维回 10、属性点回「20 + 永久点」、
+    血蓝回基础值。少一样都会和客户端本地飞升的结果对不上。
+    """
+    p = state.player
+    p["realm"] = next_realm
+    p["level"] = 1
+    p["experience"] = 0
+    try:
+        perm = int(p.get("permanent_points", 0) or 0)
+    except (TypeError, ValueError):
+        perm = 0
+    points = 20 + perm
+    p["points"] = points
+    p["pending_auto_points"] = 0
+    # 客户端 _route_points_to_pending_auto_if_enabled()：开了自动加点就直接进待分配池
+    if bool(p.get("auto_allocation_enabled", False)) and points > 0:
+        p["pending_auto_points"] = points
+        p["points"] = 0
+    p["vitality"] = 10
+    p["magic"] = 10
+    p["attack_base"] = 10
+    p["defense_base"] = 10
+    p["agility_base"] = 10
+    p["max_hp"] = 100
+    p["hp"] = 100
+    p["max_mp"] = 100
+    p["mp"] = 100
+    p["attr_reset_guard_level"] = _OFFLINE_ATTR_GUARD_LEVEL
+
+
+def _offline_do_reincarnate(state) -> None:
+    """复刻 player.gd `reincarnate()` 的状态变更（转生次数 + 永久点 + 重置）。"""
+    p = state.player
+    try:
+        rei = int(p.get("reincarnation", 0) or 0) + 1
+    except (TypeError, ValueError):
+        rei = 1
+    p["reincarnation"] = rei
+    # GameData.permanent_delta_on_reincarnate：>=1000 次后每次 10 点，之前 25 点
+    delta = 10 if rei >= 1000 else 25
+    try:
+        p["permanent_points"] = int(p.get("permanent_points", 0) or 0) + delta
+    except (TypeError, ValueError):
+        p["permanent_points"] = delta
+    _offline_reset_to_realm_start(state, "凡人")
+    p["tower_floor"] = 1
+    # 投胎重练的「塔层归 1」是合法的，别被 /tower/info 的老账号自愈推回历史最高
+    state.meta["towerFloorResetPending"] = True
+    p["cultivation_pills_used"] = 0
+
+
+def _offline_grant_exp_with_auto_realm(state, exp: int) -> list:
+    """把离线经验按境界分段注入：到门槛先飞升，再继续吃剩下的经验。
+
+    返回本次发生的转换记录（客户端弹窗/日志用），如
+    `["凡人→散仙", "散仙→地仙", "投胎"]`。
+    """
+    p = state.player
+    remaining = max(0, int(exp))
+    records: list = []
+    # 每轮必定消耗「到门槛的经验」或一次性花完，正常不会超过境界数那么多次；
+    # 上限 16 只是防御配置写坏时卡死请求。
+    for _ in range(16):
+        if remaining <= 0:
+            break
+        realm = str(p.get("realm", "凡人") or "凡人")
+        try:
+            level = int(p.get("level", 1) or 1)
+            exp_now = int(p.get("experience", 0) or 0)
+        except (TypeError, ValueError):
+            level, exp_now = 1, 0
+
+        if realm == "幻灵天神":
+            rei = int(p.get("reincarnation", 0) or 0)
+            need = _offline_exp_to_level(state, level, exp_now, _REINCARNATE_REQ_LEVEL)
+            if rei < _MAX_REINCARNATION and remaining >= need:
+                remaining -= need
+                if need > 0:
+                    state.grant_player_exp(need)
+                _offline_do_reincarnate(state)
+                records.append("投胎")
+                continue
+            state.grant_player_exp(remaining)
+            remaining = 0
+            break
+
+        nxt = _REALM_NEXT.get(realm, "")
+        req = int(_ASCEND_REQ_LEVEL.get(realm, 0) or 0)
+        # 天仙这一步要五行图鉴：没解锁过的账号离线不替它跨，等在线飞一次
+        # 由 `realm_transition` 记下标志，之后（含投胎重练）就能自动飞了。
+        gated_by_atlas = (realm == _OFFLINE_ASCEND_STOP_REALM
+                          and not _offline_daluo_unlocked(p))
+        if not nxt or req <= 0 or gated_by_atlas:
+            state.grant_player_exp(remaining)
+            remaining = 0
+            break
+
+        need = _offline_exp_to_level(state, level, exp_now, req)
+        if remaining >= need:
+            remaining -= need
+            if need > 0:
+                # 用正常升级通道走到门槛，升级点数 / 血量 / 修为都不会少发
+                state.grant_player_exp(need)
+            _offline_reset_to_realm_start(state, nxt)
+            records.append("%s→%s" % (realm, nxt))
+            continue
+        state.grant_player_exp(remaining)
+        remaining = 0
+        break
+    else:
+        if remaining > 0:
+            state.grant_player_exp(remaining)
+    return records
+
+
+# ---------------------------------------------------------------------------
+# 离线「按该图刷怪 + 真实战斗模拟」结算
+# ---------------------------------------------------------------------------
+# 帮助文档（客户端 ui/city/settings_hall.gd「十二、离线与经验」）写的是：
+#   • 按你下线时所在野外地图结算，和在线自动打野同一套节奏
+#   • 服务端会按该图刷怪，并用你已装备的武功、出战宠技能做多场模拟：
+#     人宠打完后，同一回合里该出手的怪一起算约 1 秒
+#   • 用平均一场时间和平均经验/金币，再按离线时长折算场次
+#   • 每一场按野外追赶规则入账：一场最多连升规定级数，升满后多出的经验清零
+#
+# 旧实现是「avgPlayerExp × 1800 × 小时」一次性灌，文档里这四条一条都不满足：
+# 不看战力（切到打不过的高级图照样全额给）、不看回合数（硬编码 2 秒一场）、
+# 不封连升（一次灌到 1200 级再去飞升）、也不逐场入账。
+#
+# 所以这里改成：采样若干场真实战斗（spawn_wild_monsters + combat.resolve，
+# 和在线 /battle/wild-run 同一个模拟器）→ 取平均一场耗时/经验/金币 →
+# 按「离线秒数 ÷ 平均一场耗时」折算场次 → 逐场走 grant_player_exp(field=True)。
+_OFFLINE_SAMPLE_BATTLES = 64
+# 极端情况（1 秒一场 + 24 小时 VIP）会有 8 万多场，留个硬上限防止请求卡死
+_OFFLINE_MAX_BATTLES = 200000
+
+
+class _OfflineCtx:
+    """只有 state 的假 Ctx：handlers_battle 的 player_fighter / active_pet 只用到它。"""
+
+    __slots__ = ("state",)
+
+    def __init__(self, state) -> None:
+        self.state = state
+
+
+def _offline_level_map(state, level: int) -> str:
+    """按等级挑一张匹配的野外图，给「飞升/投胎后继续挂」用。
+
+    取「地图等级 ≤ 玩家等级」里最高的那张；都没有就退回最低级的有奖励图。
+    只考虑在线本来就有经验的图（avgPlayerExp > 0），否则飞升后会被丢进
+    冷泉洞那种「打一晚一分经验没有」的图。
+    """
+    try:
+        import handlers_battle as hb
+        maps = hb.MAPS_DATA
+    except Exception:
+        return str((state.save.get("gameSettings") or {}).get("current_map", "") or "")
+    level = max(1, int(level or 1))
+    best_level = -1
+    best_name = ""
+    lowest_level = 10 ** 9
+    lowest_name = ""
+    for name, cfg in (maps or {}).items():
+        if not isinstance(cfg, dict):
+            continue
+        if float(cfg.get("avgPlayerExp", 0) or 0) <= 0:
+            continue
+        map_level = int(cfg.get("level", 0) or 0)
+        if map_level <= 0:
+            continue
+        if map_level < lowest_level:
+            lowest_level, lowest_name = map_level, str(name)
+        if map_level <= level and map_level > best_level:
+            best_level, best_name = map_level, str(name)
+    return best_name or lowest_name
+
+
+def _offline_field_sample(state, map_id: str, samples: int = _OFFLINE_SAMPLE_BATTLES) -> dict:
+    """在 map_id 上真跑 samples 场战斗，返回平均值。
+
+    返回的 exp 分成两份：`player_exp` 只统计「人物活着打完」的场次（在线口径
+    人死了不给人物经验），`pet_exp_base` 统计所有胜利场次（宠物照样在打）。
+    """
+    import handlers_battle as hb
+
+    wild = RULES.m("gameplay").get("wildBattle", {}) or {}
+    max_rounds = int(wild.get("battleMaxRounds", 10) or 10)
+    field_mult = float(wild.get("fieldExpMultiplier", 0.5) or 0.5)
+    empty = {
+        "avg_seconds": 0.0, "player_exp": 0.0, "pet_exp_base": 0.0, "gold": 0.0,
+        "win_rate": 0.0, "alive_rate": 0.0, "map_id": str(map_id), "samples": 0,
+    }
+    map_cfg = hb.MAPS_DATA.get(str(map_id))
+    if isinstance(map_cfg, dict) and map_cfg.get("rewardEnabled") is False:
+        # 线上实测这些图本来就不给奖励，离线也不能凭空发
+        return empty
+
+    ctx = _OfflineCtx(state)
+    pet_data = hb.active_pet(ctx)
+    opts = hb.combat_options(state, pet_data if isinstance(pet_data, dict) else None)
+    # 地图难度经验加成：必须传玩家**当前选的档位**，否则离线比在线少 5%~35%。
+    # 在线结算走 `handlers_battle.battle_loot` → `_map_exp_bonus_pct(map_cfg, pending, tier)`，
+    # 两边取同一个 `player_map_tier()` 才是同口径。
+    bonus = (1.0 + float(hb._map_exp_bonus_pct(map_cfg, None, hb.player_map_tier(state))) / 100.0) \
+        * (1.0 + float(hb._martial_exp_pct(state)) / 100.0) \
+        * (1.0 + float(hb._fabao_exp_pct(state)) / 100.0)
+
+    n = max(1, int(samples))
+    total_seconds = 0.0
+    total_player_exp = 0.0
+    total_pet_exp = 0.0
+    total_gold = 0.0
+    wins = 0
+    alive = 0
+    for _ in range(n):
+        # 每场都要重新构造 Fighter：combat.resolve 会就地扣 hp，
+        # 复用同一个对象等于「上一场打完的残血继续打下一场」，
+        # 存活率会被算成 1.5%~5% 上下乱跳，离线收益能差几十倍。
+        player = hb.player_fighter(ctx)
+        pet = hb.pet_fighter(pet_data) if isinstance(pet_data, dict) else None
+        monsters = hb.spawn_wild_monsters(str(map_id))
+        try:
+            result = hb.combat.resolve(player, pet, monsters, max_rounds, **opts)
+        except Exception:
+            return empty
+        total_seconds += float(max(1, int(result.get("rounds", 1) or 1)))
+        if not result.get("victory"):
+            continue
+        wins += 1
+        monster_exp = sum(int(m.exp_reward) for m in monsters) * field_mult * bonus
+        total_gold += float(sum(int(m.gold_reward) for m in monsters))
+        total_pet_exp += monster_exp
+        if result.get("playerAlive", True):
+            alive += 1
+            total_player_exp += monster_exp
+    return {
+        "avg_seconds": total_seconds / n,
+        "player_exp": total_player_exp / n,
+        "pet_exp_base": total_pet_exp / n,
+        "gold": total_gold / n,
+        "win_rate": wins / n,
+        "alive_rate": alive / n,
+        "map_id": str(map_id),
+        "samples": n,
+    }
+
+
+def _offline_step_transition(state) -> str:
+    """等级已经到门槛就飞升/投胎一次，返回记录文本；不够返回空串。
+
+    逐场结算时每场都调一次，所以这里只管「到没到门槛」，经验怎么分配由
+    grant_player_exp 负责（飞升后经验清零，符合客户端 ascend() 的 level=1/exp=0）。
+    """
+    p = state.player
+    realm = str(p.get("realm", "凡人") or "凡人")
+    try:
+        level = int(p.get("level", 1) or 1)
+    except (TypeError, ValueError):
+        level = 1
+    if realm == "幻灵天神":
+        if level < _REINCARNATE_REQ_LEVEL:
+            return ""
+        if int(p.get("reincarnation", 0) or 0) >= _MAX_REINCARNATION:
+            return ""
+        _offline_do_reincarnate(state)
+        return "投胎"
+    nxt = _REALM_NEXT.get(realm, "")
+    req = int(_ASCEND_REQ_LEVEL.get(realm, 0) or 0)
+    if not nxt or req <= 0 or level < req:
+        return ""
+    if realm == _OFFLINE_ASCEND_STOP_REALM and not _offline_daluo_unlocked(p):
+        return ""
+    _offline_reset_to_realm_start(state, nxt)
+    return "%s→%s" % (realm, nxt)
+
+
+def _offline_pick_map_after_transition(state, current_map: str) -> str:
+    """飞升/投胎后还要不要待在这张图。
+
+    文档的基准是「下线时所在图」，所以默认原地不动 —— 服务端手里的战力快照
+    （final_attack/final_defense/final_max_hp）在离线期间不会变，飞升后照样打得动，
+    继续挂同一张图才能实现「只要双倍还在就一路飞升/投胎」。
+
+    只有这张图真的打不动了（胜率低于 80%，或者人物一场都活不下来、拿不到人物
+    经验）才按新等级往下换一张 —— 否则就会出现「飞升回 1 级 → 被丢进 4 级新手图
+    → 8 小时连 300 级都爬不回来」。
+    """
+    sample = _offline_field_sample(state, current_map, 16)
+    if (float(sample.get("avg_seconds", 0.0)) > 0
+            and float(sample.get("win_rate", 0.0)) >= 0.8
+            and float(sample.get("player_exp", 0.0)) > 0):
+        return current_map
+    return _offline_level_map(state, int(state.player.get("level", 1) or 1))
+
+
+def _offline_run_field(state, seconds: int, exp_mult: float, cfg: dict,
+                       auto_realm: bool, records: list) -> dict:
+    """按「刷怪 → 平均一场 → 折算场次 → 逐场入账」结算整段离线。
+
+    每次飞升/投胎后重新判一次图（见 `_offline_pick_map_after_transition`）：
+    还打得动就留在原图接着挂，打不动才按新等级往下换；换图后重新采样，
+    把剩下的时间接着用完。
+    """
+    import handlers_battle as hb
+
+    left = float(max(0, int(seconds)))
+    settings = state.save.get("gameSettings") if isinstance(state.save.get("gameSettings"), dict) else {}
+    map_id = str(settings.get("current_map", "") or "")
+    pet_data = hb.active_pet(_OfflineCtx(state))
+    pet_ratio = float(cfg.get("petExpRatio", 0.6) or 0.6)
+    pet_mult = float(state.pet_exp_multiplier())
+    out = {
+        "exp": 0, "gold": 0, "battles": 0, "mapId": map_id, "avgSeconds": 0.0,
+        "winRate": 0.0, "aliveRate": 0.0, "simulated": False, "switchedTo": "",
+        "segments": [], "fragments": {},
+    }
+    guard = 0
+    while left >= 0.5 and guard < 8:
+        sample = _offline_field_sample(state, map_id)
+        avg_seconds = float(sample["avg_seconds"])
+        if avg_seconds <= 0:
+            break
+        battles = int(left / avg_seconds)
+        if battles <= 0:
+            break
+        battles = min(battles, _OFFLINE_MAX_BATTLES)
+        exp_each = int(round(float(sample["player_exp"]) * float(exp_mult)))
+        pet_each = int(round(float(sample["pet_exp_base"]) * float(exp_mult) * pet_ratio * pet_mult))
+        gold_each = int(round(float(sample["gold"])))
+        out["simulated"] = True
+        out["avgSeconds"] = avg_seconds
+        out["winRate"] = float(sample["win_rate"])
+        out["aliveRate"] = float(sample["alive_rate"])
+        out["mapId"] = map_id
+        if exp_each <= 0 and gold_each <= 0 and pet_each <= 0:
+            # 该图真的一点奖励都不给（或每场都输），别空转几十万次
+            break
+        ups = state.field_max_level_ups()
+        done = 0
+        transitioned = ""
+        frag_cfg = hb.MAPS_DATA.get(str(map_id))
+        for _ in range(battles):
+            if exp_each > 0:
+                state.grant_player_exp(exp_each, field=True, max_level_ups=ups)
+                out["exp"] += exp_each
+            if gold_each > 0:
+                state.add_gold(gold_each)
+                out["gold"] += gold_each
+            if isinstance(pet_data, dict) and pet_each > 0:
+                state.grant_pet_exp(pet_data, pet_each, field=True, max_level_ups=ups)
+            # 法宝碎片与在线同一套掉率（roll_fabao_fragment 内部按 minMapLevel/dropDenom 判定），
+            # 离线只是把「一场」原样跑一遍，不该少掉这部分产出。
+            frag = hb.roll_fabao_fragment(state, frag_cfg)
+            if frag:
+                name = str(frag["name"])
+                out["fragments"][name] = int(out["fragments"].get(name, 0)) + int(frag["count"])
+            done += 1
+            out["battles"] += 1
+            if auto_realm:
+                transitioned = _offline_step_transition(state)
+                if transitioned:
+                    records.append(transitioned)
+                    break
+        left -= done * avg_seconds
+        out["segments"].append({
+            "mapId": map_id, "battles": done, "expEach": exp_each,
+            "avgSeconds": round(avg_seconds, 3), "aliveRate": round(out["aliveRate"], 4),
+            "seconds": round(done * avg_seconds, 1),
+            "realm": str(state.player.get("realm", "")), "level": int(state.player.get("level", 1) or 1),
+            "transition": transitioned,
+        })
+        if transitioned:
+            # 飞升/投胎后：还打得动就继续在原图挂，打不动才按等级换图
+            new_map = _offline_pick_map_after_transition(state, map_id)
+            if new_map and new_map != map_id:
+                map_id = new_map
+                out["switchedTo"] = new_map
+            guard += 1
+            continue
+        break
+    return out
+
+
 def _offline_hourly_rates(state) -> tuple[float, float]:
     """返回 (每小时经验, 每小时金币)。
 
@@ -494,6 +1032,21 @@ def _offline_hourly_rates(state) -> tuple[float, float]:
 
     地图查不到、或该地图原服本来就不给奖励（冷泉洞系列 avgPlayerExp=0），
     回退到按当前等级需求估算（只给一个象征性保底，见 fallbackExpPerHourRatio）。
+
+    **结算基准就是「下线瞬间那一张图」，整段离线固定用它，故意不做两件事：**
+
+    1. **不模拟自动换图**。自动换图是客户端 `main_ui.gd` 里 `_process` 的计时器
+       （每 5 分钟，3 次完美胜利升档 / 死亡降档 +5 分钟冷却），客户端进程不在跑
+       就一张图都不会换。原版同样如此 —— 原版 8 小时离线实测金币 13,116,491，
+       正好等于「石壁洞（25,32）× 1800 × 8 = 13,128,480」（差 0.09%）；若真会
+       随等级换图，733→1125 级中途换到 670 级图应是 2.4 倍、1100 级图应是 5.2 倍，
+       和实测完全对不上。所以「离线期间按自动换图一路推到 1500 级图再按它结算」
+       在原版不存在，这里也不做。
+    2. **不按玩家等级/战力加封顶**。副作用是双向的：等级远低于地图时能拿到高于
+       自身等级的收益（例如 423 级停在 1080 级图 = 匹配图的 2.2 倍），等级远高于
+       地图时又吃亏。2026-11-04 与产品确认：**保持与原版一致，不加校验**。
+       真要防「切高图挂机白拿」，改法是在这里取 `min(下线图, 等级匹配图)`，
+       别在调用方乱加判断。
     """
     cfg = _offline_cfg()
     p = state.player
@@ -584,7 +1137,7 @@ def _offline_has_character(state) -> bool:
 
 @route("POST", "/economy/offline-claim")
 def offline_claim(ctx: Ctx) -> dict:
-    """离线收益结算：按距上次在线时长发经验/金币/宠物经验/离线宠物锦囊。"""
+    """离线收益结算：按距上次在线时长发经验/金币/宠物经验/离线宠物礼包。"""
     state = ctx.state
     p = state.player
     cfg = _offline_cfg()
@@ -634,12 +1187,9 @@ def offline_claim(ctx: Ctx) -> dict:
     state.meta.pop("offlinePending", None)
 
     vip = state.vip_tier()
-    hours_table = cfg.get("maxHoursByVip") or [8, 12, 16, 24]
-    try:
-        cap_hours = float(hours_table[min(vip, len(hours_table) - 1)])
-    except (TypeError, ValueError, IndexError):
-        cap_hours = 8.0
-    effective = min(int(seconds), int(cap_hours * 3600))
+    # 12 小时硬上限（2026-11-07）：超过的部分直接不计入，不补领、不滚存。
+    cap_seconds = _offline_cap_seconds(cfg, vip)
+    effective = min(int(seconds), cap_seconds)
     if effective <= min_seconds:
         replay = _offline_recent_replay(state, min_seconds)
         if replay is not None:
@@ -647,30 +1197,61 @@ def offline_claim(ctx: Ctx) -> dict:
         return _offline_empty(state)
     hours = effective / 3600.0
 
-    exp_per_hour, gold_per_hour = _offline_hourly_rates(state)
-    base_exp = float(exp_per_hour) * hours
-    gold = int(round(gold_per_hour * hours))
-
-    # 经验倍率：VIP（1/1.3/1.6/2.0）+ 每种生效中的双倍经验符 +100%。
-    # 双倍丹只对落在它自身有效期内的那段离线时长生效，过期部分不翻倍；
-    # 三种丹各自计时，所以这里是逐通道叠加，而不是只看最晚的那一个。
+    # 经验倍率（对标 player.gd get_total_exp_multiplier，全部加算）：
+    #   VIP（1/1.3/1.6/2.0）+ 帮派等级加成 + 贵族加成 + 新人 10 天 +100%
+    #   + 每种生效中的双倍经验丹 +100%
+    #
+    # 以前这里只有 VIP + 帮派 + 双倍丹，漏了「新人 10 天」和「贵族」两项 ——
+    # 而客户端 settings_hall 明确写着「新人经验加成：野外/离线 +100%」，
+    # 贵族面板也写了经验百分比，玩家离线挂着却一分不多拿。
+    #
+    # 双倍丹和新人加成都有到期时间：只对落在有效期内的那段离线时长生效
+    # （过期部分不翻倍），按 overlap 比例摊；VIP / 帮派 / 贵族是常驻的，整段计入。
+    # 周末「野外经验 +100%」不算离线：那是野外战斗 buff，周常面板也只写「野外」。
     now_ts = int(time.time())
     start_ts = now_ts - effective
-    exp_mult = float(state.VIP_EXP_MULT[vip])
-    for _name, until in state.double_exp_channels().items():
-        until = int(until or 0)
-        if until <= start_ts:
-            continue
-        overlap = min(until, now_ts) - start_ts
-        exp_mult += max(0.0, min(1.0, overlap / float(max(1, effective))))
-    exp = int(round(base_exp * exp_mult))
 
+    def _window_ratio(until_ts: int) -> float:
+        """限时加成在本次离线时长里的生效比例（0~1）。"""
+        until_ts = int(until_ts or 0)
+        if until_ts <= start_ts:
+            return 0.0
+        overlap = min(until_ts, now_ts) - start_ts
+        return max(0.0, min(1.0, overlap / float(max(1, effective))))
+
+    noble_pct = float(state.NOBLE_EXP_BONUS[max(0, min(15, state.noble_level()))])
+    newbie_ratio = _window_ratio(state.newbie_exp_until())
+    double_ratio = sum(_window_ratio(until) for until in state.double_exp_channels().values())
+    exp_mult = (
+        float(state.VIP_EXP_MULT[vip])
+        + state.gang_exp_bonus_percent() / 100.0
+        + noble_pct / 100.0
+        + newbie_ratio
+        + double_ratio
+    )
     level_before = int(p.get("level", 1) or 1)
-    if exp > 0:
-        state.grant_player_exp(exp)
-    if gold > 0:
-        state.add_gold(gold)
+    realm_before = str(p.get("realm", "凡人") or "凡人")
+    auto_transitions: list = []
+    auto_realm = _offline_auto_transition_enabled(state)
+    # 主路径：按该图刷怪 + 真实战斗模拟 + 逐场入账（见 _offline_run_field）
+    sim = _offline_run_field(state, effective, exp_mult, cfg, auto_realm, auto_transitions)
+    exp = int(sim.get("exp", 0))
+    gold = int(sim.get("gold", 0))
+    if not bool(sim.get("simulated")):
+        # 兜底：地图数据缺失 / 战斗模拟异常时退回旧的「每小时均值 × 时长」，
+        # 宁可给个粗数，也别让玩家离线回来一分没有。
+        exp_per_hour, gold_per_hour = _offline_hourly_rates(state)
+        exp = int(round(float(exp_per_hour) * hours * exp_mult))
+        gold = int(round(gold_per_hour * hours))
+        if exp > 0:
+            if auto_realm:
+                auto_transitions = _offline_grant_exp_with_auto_realm(state, exp)
+            else:
+                state.grant_player_exp(exp)
+        if gold > 0:
+            state.add_gold(gold)
     level_after = int(p.get("level", 1) or 1)
+    realm_after = str(p.get("realm", "凡人") or "凡人")
 
     # 宠物：服务端直接结算并下发 petsData，客户端看到 petsData 就不会再叠加
     # petOfflineExp（game_manager._merge_offline_claim_response_into_save_data），
@@ -686,12 +1267,18 @@ def offline_claim(ctx: Ctx) -> dict:
         if isinstance(pet, dict):
             pet_before = int(pet.get("level", 1) or 1)
             pet_name = str(pet.get("name", "灵兽"))
-            pet_exp = int(round(exp * float(cfg.get("petExpRatio", 0.6) or 0.6)))
-            if pet_exp > 0:
-                state.grant_pet_exp(pet, pet_exp)
+            # 模拟路径已经「逐场」给宠物发过经验了，这里只在兜底路径补发，
+            # 否则同一份经验会被发两遍。
+            if not bool(sim.get("simulated")):
+                pet_exp = int(round(exp * float(cfg.get("petExpRatio", 0.6) or 0.6)))
+                # 宠物双倍经验丹对离线同样生效（道具文案写的就是「30 分钟双倍经验」，
+                # 只加灵兽，人物那段 exp 不受影响）
+                pet_exp = int(round(pet_exp * state.pet_exp_multiplier()))
+                if pet_exp > 0:
+                    state.grant_pet_exp(pet, pet_exp)
             pet_after = int(pet.get("level", 1) or 1)
 
-    # 离线宠物锦囊：按 VIP 概率 roll
+    # 离线宠物礼包：按 VIP 概率 roll
     gifts = 0
     chances = cfg.get("petGiftChanceByVip") or [0.25, 0.40, 0.45, 0.50]
     try:
@@ -700,7 +1287,7 @@ def offline_claim(ctx: Ctx) -> dict:
         chance = 0.25
     if chance > 0 and random.random() < chance:
         gifts = 1
-        state.add_item("离线宠物锦囊", 1, "gift")
+        state.add_item("离线宠物礼包", 1, "gift")
 
     p["timestamp"] = int(time.time())
     state.bump()
@@ -726,10 +1313,40 @@ def offline_claim(ctx: Ctx) -> dict:
         petsData=state.save.get("petsData", {}),
         playerLevelBefore=level_before,
         playerLevelAfter=level_after,
+        playerRealmBefore=realm_before,
+        playerRealmAfter=realm_after,
+        # 离线期间替玩家做的自动飞升/投胎记录（客户端弹窗给个提示）
+        autoTransitions=auto_transitions,
         petLevelBefore=pet_before,
         petLevelAfter=pet_after,
         petName=pet_name,
         offlineSeconds=int(seconds),
+        # 12h 上限对账字段：客户端不读，留给自检脚本确认「超出的确实没算进去」
+        maxOfflineSeconds=cap_seconds,
+        offlineCapped=bool(int(seconds) > cap_seconds),
+        unusedOfflineSeconds=max(0, int(seconds) - effective),
+        # 模拟口径明细：平均一场几秒、胜率、人物存活率、折算了多少场、有没有换图。
+        # 客户端弹窗不用，留给出问题时对账（「为什么离线只升了这么点」先看这里）。
+        offlineSim={
+            "mapId": str(sim.get("mapId", "")),
+            "switchedTo": str(sim.get("switchedTo", "")),
+            "avgSeconds": round(float(sim.get("avgSeconds", 0.0) or 0.0), 3),
+            "battles": int(sim.get("battles", 0) or 0),
+            "winRate": round(float(sim.get("winRate", 0.0) or 0.0), 4),
+            "aliveRate": round(float(sim.get("aliveRate", 0.0) or 0.0), 4),
+            "simulated": bool(sim.get("simulated")),
+            # 离线打出来的法宝碎片（与在线同一套掉率），客户端只用于弹窗里补一句提示
+            "fragments": dict(sim.get("fragments") or {}),
+        },
+        # 倍率明细：客户端弹窗不看这些字段，留给出问题时的自检脚本和对账
+        expMultiplier=round(exp_mult, 4),
+        expBonusBreakdown={
+            "vip": round(float(state.VIP_EXP_MULT[vip]), 4),
+            "gang": round(state.gang_exp_bonus_percent() / 100.0, 4),
+            "noble": round(noble_pct / 100.0, 4),
+            "newbie": round(newbie_ratio, 4),
+            "doubleExp": round(double_ratio, 4),
+        },
     )
     # 缓存一份「本次离线的展示数据」，供 5 分钟内第二次 claim 回放（见 _offline_recent_replay）。
     # 只存展示字段，不含 playerData/inventoryData/petsData 这类大块存档，
@@ -745,6 +1362,9 @@ def offline_claim(ctx: Ctx) -> dict:
             "vipTier": vip,
             "playerLevelBefore": level_before,
             "playerLevelAfter": level_after,
+            "playerRealmBefore": realm_before,
+            "playerRealmAfter": realm_after,
+            "autoTransitions": list(auto_transitions),
             "petLevelBefore": pet_before,
             "petLevelAfter": pet_after,
             "petName": pet_name,
@@ -853,7 +1473,8 @@ def whitelist_gold(ctx: Ctx) -> dict:
               saveData=_authority_save(state), saveRevision=state.revision)
 
 
-def _authority_save(state, include_pet_equip_bag: bool = True) -> dict:
+def _authority_save(state, include_pet_equip_bag: bool = True,
+                    removed_pet_equip_ids=None) -> dict:
     """道具使用类接口的权威存档回包。
 
     **必须带 inventoryData**：客户端 game_manager.gd `apply_cloud_save` 里
@@ -870,21 +1491,32 @@ def _authority_save(state, include_pet_equip_bag: bool = True) -> dict:
     玩家背包里其余几件当场消失。宠装背包的增删由客户端
     `_reconcile_pet_equipment_bag()` 按回包的 `equipped` / `item` 自己对齐，
     服务端只要保证 `item` 是「这次从身上换下来的那件」就够了。
+
+    `removed_pet_equip_ids` 供**删除类**操作（分解 / 批量分解 / 丢弃）用。
+    分解掉最后一件时上面那段「空数组不发」的保护会把 `pet_equipment_items`
+    整个键抹掉，而客户端 `inventory_manager.from_dict` 是
+    `if data.has("pet_equipment_items")` 才动手 —— 键没了就整段跳过，
+    本地背包原样保留。玩家看到的就是「提示分解成功，装备还在背包里」（2026-11-04 报障）。
+    只带 `removedPetEquipIds` 精确删这几件，比整包下发安全：老账号服务端那份
+    背包本来就残缺，整包覆盖反而会把玩家其余的宠装一起清掉。
     """
     inv = state.inv
+    removed_ids = [str(x) for x in (removed_pet_equip_ids or []) if str(x).strip()]
     if not include_pet_equip_bag:
         inv = {k: v for k, v in inv.items() if k != "pet_equipment_items"}
     else:
         pet_equip_bag = inv.get("pet_equipment_items") if isinstance(inv, dict) else None
-        if isinstance(pet_equip_bag, list) and not pet_equip_bag:
+        if isinstance(pet_equip_bag, list) and not pet_equip_bag and not removed_ids:
             # 空数组也不能发。客户端 `inventory_manager.from_dict` 是
             # `if data.has("pet_equipment_items"): pet_equipment_items.clear(); ...`，
             # 收到一个空数组就会把本地整格宠物装备背包清空 —— 玩家点一次「穿戴」，
             # 背包里剩下的几件就凭空消失了。
             # 老账号的服务端侧这份背包是空的（客户端一直在紧凑上传里把它 erase 掉），
             # 这种时候宁可不发这个键，让客户端保留自己那份。
+            # 例外：本次是删除类操作（removed_ids 非空），那这份空表是刚被
+            # 我们删空的、确定可信，照发 —— 否则客户端删不掉最后一件。
             inv = {k: v for k, v in inv.items() if k != "pet_equipment_items"}
-    return {
+    payload = {
         "playerData": state.player,
         "inventoryData": inv,
         "petsData": state.save.get("petsData", {}),
@@ -903,39 +1535,52 @@ def _authority_save(state, include_pet_equip_bag: bool = True) -> dict:
         # 出战宠物的战斗属性也没有装备加成 —— 服务端明明已经穿上去了。
         "petEquipmentData": state.save.get("petEquipmentData", {}),
     }
+    if removed_ids:
+        # 客户端 `apply_cloud_save` 认这个键：按 id 从本地 `pet_equipment_items`
+        # 精确移除。整包背包不下发（或下发了但本地还没对齐）时也能删干净。
+        payload["removedPetEquipIds"] = removed_ids
+    return payload
 
 
 # 服务端权威消耗（/economy/whitelist-item-consume）。
 # 客户端只传 consumeKey（network.gd economy_whitelist_item_consume 的请求体
 # 只有 operationId/consumeKey/batchCount），**从来不传道具名**；
 # 原来按 itemName 扣道具，客户端调过来 name 是空串，必然「道具不足」——
-# 双倍经验符、修行丹、经验丹这些高价值道具全部用不了。
+# 双倍经验丹、修行丹、经验丹这些高价值道具全部用不了。
 # 这里按 key 反查真实道具名，扣多少、给什么由服务端说了算。
 #
 # key 全部取自客户端源码（scripts/inventory_manager.gd 里的 economy_whitelist_item_consume 调用）：
-#   double_exp_day / double_exp_week / double_exp_month  → 三种双倍经验符
-#   wudao_pill_gift                                      → 开悟丹锦囊（每包 50 颗开悟丹）
-#   limit_equipment_gift                                 → 极限装备锦囊（每包 5 件：武器/衣服/鞋子/血佩/内带）
-#   player_upgrade_dan                                   → 人物经验丹（直接顶到满级）
-#   pet_upgrade_dan                                      → 宠物经验丹（出战宠顶到满级）
+#   double_exp_day / double_exp_week / double_exp_month  → 三种双倍经验丹（原版道具名）
+#   wudao_pill_gift                                      → 悟道仙丹礼包（每包 50 颗悟道仙丹）
+#   limit_equipment_gift                                 → 极限装备礼包（每包 5 件：武器/衣服/鞋子/血佩/内带）
+#   player_upgrade_dan                                   → 人物升级丹（直接顶到满级）
+#   pet_upgrade_dan                                      → 宠物升级丹（出战宠顶到满级）
 _CONSUME_RULES = {
     # key: (道具名, 处理类型)
-    "double_exp_day": ("双倍经验符", "double_exp"),
-    "double_exp_week": ("双倍经验符·周", "double_exp"),
-    "double_exp_month": ("双倍经验符·月", "double_exp"),
-    "wudao_pill_gift": ("开悟丹锦囊", "wudao"),
-    "limit_equipment_gift": ("极限装备锦囊", "limit_equip"),
-    "player_upgrade_dan": ("人物经验丹", "player_dan"),
-    "pet_upgrade_dan": ("宠物经验丹", "pet_dan"),
+    # 道具名必须与 game_data.gd ALL_ITEMS 完全一致：这里曾经写成「双倍经验符」，
+    # 而背包里叫「双倍经验丹」，take_item 按名字精确匹配 → 玩家点使用只会看到
+    # 「道具数量不足」，一颗都吃不上。同理：经验丹→升级丹、开悟丹锦囊→悟道仙丹礼包、
+    # 极限装备锦囊→极限装备礼包，全是「服务端认识、客户端不认识」的名字。
+    "double_exp_day": ("双倍经验丹", "double_exp"),
+    "double_exp_week": ("双倍经验丹(周)", "double_exp"),
+    "double_exp_month": ("双倍经验丹(月)", "double_exp"),
+    "wudao_pill_gift": ("悟道仙丹礼包", "wudao"),
+    "limit_equipment_gift": ("极限装备礼包", "limit_equip"),
+    "player_upgrade_dan": ("人物升级丹", "player_dan"),
+    "pet_upgrade_dan": ("宠物升级丹", "pet_dan"),
+    # 帮贡商店的「宠物双倍经验丹」：只加灵兽经验，人物不受影响（30 分钟/颗）
+    "pet_double_exp_day": ("宠物双倍经验丹", "pet_double_exp"),
 }
 
-# 修行丹（蓄灵丹/定神丹/开悟丹）：客户端 CULTIVATION_PILL_WHITELIST_KEYS 的三个 key。
+# 修行丹：客户端 CULTIVATION_PILL_WHITELIST_KEYS 的三个 key。
+# 名字必须照抄客户端（聚灵丹/凝神丹/悟道仙丹），以前写成「蓄灵丹/定神丹/开悟丹」，
+# 客户端背包里根本没有这三个名字 → take_item 恒失败、三颗丹一颗都用不了。
 # 原来这里没有对应规则，落进「表外 key」分支后又拿不到道具名（客户端只传 consumeKey），
 # 于是三颗修行丹一用就报「该道具暂未接入服务端权威消耗」。
 _CULTIVATION_PILL_RULES = {
-    "cultivation_pill_juling": ("蓄灵丹", 100),
-    "cultivation_pill_ningshen": ("定神丹", 200),
-    "cultivation_pill_wudao": ("开悟丹", 500),
+    "cultivation_pill_juling": ("聚灵丹", 100),
+    "cultivation_pill_ningshen": ("凝神丹", 200),
+    "cultivation_pill_wudao": ("悟道仙丹", 500),
 }
 MAX_CULTIVATION_PILLS_PER_LIFE = 5
 for _ckey, (_cname, _cbonus) in _CULTIVATION_PILL_RULES.items():
@@ -944,7 +1589,8 @@ for _ckey, (_cname, _cbonus) in _CULTIVATION_PILL_RULES.items():
 
 # 客户端 inventory_manager.gd 常量：
 #   LIMIT_EQUIPMENT_GIFT_GRANTED_NAMES / WUDAO_PILL_GIFT_GRANTED_NAMES
-WUDAO_PILL_NAME = "开悟丹"
+# 客户端发的修行丹叫「悟道仙丹」（不是开悟丹），礼包叫「悟道仙丹礼包」。
+WUDAO_PILL_NAME = "悟道仙丹"
 WUDAO_PILL_PER_GIFT = 50
 LIMIT_EQUIP_NAMES = ("极限武器", "极限衣服", "极限鞋子", "极限血佩", "极限内带")
 LIMIT_EQUIP_BATCH_MAX = 5
@@ -1127,6 +1773,13 @@ def whitelist_item_consume(ctx: Ctx) -> dict:
         result["petLevelUps"] = _apply_pet_upgrade_dan(state, pet_for_dan)
         result["petLevel"] = int(pet_for_dan.get("level", 1))
         result["learnedSkill"] = {}
+    elif kind == "pet_double_exp":
+        # 同类道具顺延（和双倍经验丹同一口径），不设上限，多吃了就多挂一会儿
+        seconds = int(state.PET_DOUBLE_EXP_SECONDS) * count
+        until = state.add_pet_double_exp(seconds)
+        result["seconds"] = seconds
+        result["petDoubleExpUntil"] = until
+        result["petExpMultiplier"] = 2.0
 
     state.bump()
     if op_id:
@@ -1143,6 +1796,7 @@ def whitelist_item_consume(ctx: Ctx) -> dict:
         doubleExpUntil=int(p.get("double_exp_until", 0) or 0),
         doubleExpChannels=state.double_exp_channels(),
         activeChannels=state.double_exp_active_count(),
+        petDoubleExpUntil=state.pet_double_exp_until(),
         newGold=state.gold(),
         saveData=_authority_save(state),
         saveRevision=state.revision,
@@ -1787,6 +2441,66 @@ def _skill_book_map() -> dict:
     return out
 
 
+_ROMAN_LEVELS = {"iiii": 4, "iii": 3, "iv": 4, "vi": 6, "ii": 2, "v": 5, "i": 1,
+                 "四": 4, "三": 3, "二": 2, "五": 5, "一": 1}
+
+# 技能书族名的两版旧写法 → 现用名。改名表（md5）能覆盖绝大多数，但等级写法千奇百怪
+# （「坚固 4 技能书」），先把族名归一再拼，怎么写的都能认。
+_PET_SKILL_FAMILY_RENAMES = {
+    "溅射": "溅墨", "连射": "连击", "神佑": "护主", "反击": "反打",
+    "坚固": "硬皮", "吸血": "饮血", "迅捷": "轻身", "长寿": "长命",
+    "强壮": "力壮", "凶猛": "凶性", "必杀": "致命", "自愈": "自复",
+    "追击": "追杀", "忠心": "守主", "嘲讽": "挑衅", "破甲": "破防",
+    "格挡": "挡伤",
+    "连笔": "连击", "护墨": "护主", "逆锋": "反打", "固色": "硬皮",
+    "吮墨": "饮血", "疾笔": "轻身", "寿墨": "长命", "壮笔": "力壮",
+    "烈墨": "凶性", "断锋": "致命", "回润": "自复", "续笔": "追杀",
+    "守纸": "守主", "引锋": "挑衅", "破纸": "破防", "收锋": "挡伤",
+}
+
+
+def _canon_skill_book_name(name) -> str:
+    """把任何写法的技能书名字折成 `_skill_book_map()` 的键。
+
+    老客户端/老存档会发「坚固IV技能书」「坚固lv4技能书」这种旧族名 + 罗马数字，
+    直接查表必然 miss，玩家看到的就是「未知技能书」。这里先过改名表（md5），
+    再按算法补上等级后缀（IV / 4 / LV4 / 四 都认）。
+    """
+    books = _skill_book_map()
+    n = str(name or "").strip()
+    if not n:
+        return ""
+    if n in books:
+        return n
+    n = n.replace(" ", "").replace("　", "").replace("Ｌ", "L").replace("ｌ", "l")
+    if n in books:
+        return n
+    migrated = str(migrate_item_name(n) or "").strip()
+    if migrated in books:
+        return migrated
+    body = migrated[:-3] if migrated.endswith("技能书") else migrated
+    fam, lv = body, 0
+    m = re.match(r"(?i)^(.+?)lv(\d+)$", body)
+    if m:
+        fam, lv = m.group(1), int(m.group(2))
+    else:
+        m = re.match(r"^(.+?)(\d+)$", body)
+        if m:
+            fam, lv = m.group(1), int(m.group(2))
+        else:
+            low = body.lower()
+            for token in ("iiii", "iii", "iv", "vi", "ii", "v", "i", "四", "三", "二", "五", "一"):
+                if low.endswith(token):
+                    fam, lv = body[: len(body) - len(token)], int(_ROMAN_LEVELS.get(token, 0))
+                    break
+    fam = fam.strip()
+    if not fam or lv < 1 or lv > 5:
+        return ""
+    fam = _PET_SKILL_FAMILY_RENAMES.get(fam, fam)
+    cand = "%slv%d技能书" % (fam, lv)
+    return cand if cand in books else ""
+
+
 def _pet_slots(pet: dict) -> list:
     """把 skill_slots 规整成客户端认的结构（缺字段补齐，空档补 3 格）。"""
     slots = pet.get("skill_slots")
@@ -1843,6 +2557,7 @@ def _pet_learn_book(state, pet: dict, book_name: str) -> tuple[bool, str, dict]:
       * 有空栏 → 占空栏；空栏也没有 → 拒绝。
     """
     books = _skill_book_map()
+    book_name = _canon_skill_book_name(book_name) or str(book_name or "").strip()
     key = books.get(book_name)
     if not key:
         return False, "未知宠物技能书：%s" % book_name, {}
@@ -1852,7 +2567,7 @@ def _pet_learn_book(state, pet: dict, book_name: str) -> tuple[bool, str, dict]:
     level = _skill_def_level(key, cfg)
     if level <= 0:
         return False, "技能配置错误", {}
-    if state.item_count(book_name) <= 0:
+    if _pet_skill_book_total(state, book_name) <= 0:
         return False, "技能书不足", {}
 
     slots = _pet_slots(pet)
@@ -1899,11 +2614,19 @@ def _pet_skill_book_arrays(state) -> list:
     return [bag, wh]
 
 
+def _book_name_matches(stored, canon: str) -> bool:
+    """背包里那一格算不算目标技能书。老写法（坚固IV技能书）也要能对上。"""
+    if str(stored) == canon:
+        return True
+    return bool(canon) and _canon_skill_book_name(stored) == canon
+
+
 def _pet_skill_book_total(state, name: str) -> int:
+    canon = _canon_skill_book_name(name) or str(name or "").strip()
     total = 0
     for arr in _pet_skill_book_arrays(state):
         for it in arr:
-            if not isinstance(it, dict) or str(it.get("name", "")) != name:
+            if not isinstance(it, dict) or not _book_name_matches(it.get("name", ""), canon):
                 continue
             try:
                 total += int(it.get("count", 0) or 0)
@@ -1914,14 +2637,15 @@ def _pet_skill_book_total(state, name: str) -> int:
 
 def _pet_skill_book_take(state, name: str, count: int) -> bool:
     """先扣背包再扣仓库；总量不够就一本都不扣（不能让玩家「扣了一半」）。"""
-    if count <= 0 or _pet_skill_book_total(state, name) < count:
+    canon = _canon_skill_book_name(name) or str(name or "").strip()
+    if count <= 0 or _pet_skill_book_total(state, canon) < count:
         return False
     need = count
     for arr in _pet_skill_book_arrays(state):
         for it in list(arr):
             if need <= 0:
                 break
-            if not isinstance(it, dict) or str(it.get("name", "")) != name:
+            if not isinstance(it, dict) or not _book_name_matches(it.get("name", ""), canon):
                 continue
             try:
                 have = int(it.get("count", 0) or 0)
@@ -1952,6 +2676,7 @@ def _pet_skill_book_craft(ctx: Ctx, state, action: str, op_id: str) -> dict:
     """
     book_name = str(_pet_skill_param(ctx, "book_name", "bookName", "book") or "").strip()
     books = _skill_book_map()
+    book_name = _canon_skill_book_name(book_name) or book_name
     key = books.get(book_name)
     if not key:
         return fail("未知技能书：%s" % (book_name or "（空）"))
@@ -2042,6 +2767,7 @@ def pet_skill_action(ctx: Ctx) -> dict:
         book_name = str(_pet_skill_param(ctx, "book_name", "bookName", "book", default="") or "").strip()
         if not book_name:
             return fail("缺少技能书名称")
+        book_name = _canon_skill_book_name(book_name) or book_name
         ops = state.meta.get("petSkillOps")
         if not isinstance(ops, dict):
             ops = {}
@@ -2056,7 +2782,7 @@ def pet_skill_action(ctx: Ctx) -> dict:
         ok_flag, message, extra = _pet_learn_book(state, pet, book_name)
         if not ok_flag:
             return fail(message)
-        state.take_item(book_name, 1)
+        _pet_skill_book_take(state, book_name, 1)
         state.bump()
         slots = _pet_slots(pet)
         if op_id:
@@ -2501,7 +3227,7 @@ EQUIP_GRANT_SETS = {
     "新手锦囊": {"value": 50, "prefix": "新手", "rarity": "rare"},
     "先锋锦囊": {"value": 100, "prefix": "内测先锋·", "rarity": "legendary"},
     "新人扶持锦囊": {"value": 100, "prefix": "新人扶持·", "rarity": "legendary"},
-    "开荒锦囊": {"value": 400, "prefix": "开荒·", "rarity": "legendary"},
+    "开荒礼包": {"value": 400, "prefix": "开荒·", "rarity": "legendary"},
 }
 EQUIP_SET_SLOTS = [
     ("weapon", "武器", "attack"),
@@ -2608,27 +3334,194 @@ def equipment_retrieve(ctx: Ctx) -> dict:
 @route("POST", "/equipment/dismantle-suit")
 def equipment_dismantle_suit(ctx: Ctx) -> dict:
     state = ctx.state
-    state.add_item("解封石", 1, "material")
+    state.add_item("普通解封石", 1, "material")
     state.bump()
-    return ok(items=[{"name": "解封石", "count": 1}])
+    return ok(items=[{"name": "普通解封石", "count": 1}])
 
 
 @route("POST", "/equipment/unseal-suit")
 def equipment_unseal_suit(ctx: Ctx) -> dict:
     state = ctx.state
-    if not state.take_item("解封石", 1):
-        return fail("解封石不足")
+    if not state.take_item("普通解封石", 1):
+        return fail("普通解封石不足")
     state.bump()
     return ok(unsealed=True)
+
+
+# ---------------------------------------------------------------- 套装转换
+#
+# 客户端 `ui/city/crafting_hall.gd` 的规则（界面上写死的说明文字）：
+#   放入 **3 件同名、已解封、未强化、未锁定、未穿戴** 的套装 → 消耗这 3 件，
+#   随机获得 1 件同名套装（部位随机，数值为该部位基础值的 90%～110%）。
+#
+# 老实现完全没看 `equipmentIds`：只扣一颗客户端根本不存在的「套装转换石」，
+# 然后回一个 `converted=True`。等于玩家点一次什么都不发生，转换次数还白扣。
+#
+# 套装数值表由 `tools/gen_suit_stats.py` 从客户端 suit_database_detailed.gd 抽出，
+# 落在 data/suit-stats.json —— 客户端改了套装数值就要重跑那个脚本并一起部署。
+
+SUIT_SLOT_STAT = {"weapon": "attack", "helmet": "hp", "armor": "defense",
+                  "boots": "agility", "accessory": "mp"}
+SUIT_SLOT_NAMES = {"weapon": "武器", "helmet": "头盔", "armor": "衣服",
+                   "boots": "鞋子", "accessory": "饰品"}
+SUIT_CONVERT_COST = 3          # 需要消耗几件
+SUIT_STAT_MIN, SUIT_STAT_MAX = 0.9, 1.1
+
+_SUIT_STATS: dict | None = None
+
+
+def suit_stats_table() -> dict:
+    """data/suit-stats.json 的 suits 段：{ "1": {"name":…, "slot_stats": {slot: {attr: v}}} }。"""
+    global _SUIT_STATS
+    if _SUIT_STATS is None:
+        raw = load_json(DATA / "suit-stats.json", {}) or {}
+        table = raw.get("suits") if isinstance(raw, dict) else None
+        _SUIT_STATS = table if isinstance(table, dict) else {}
+    return _SUIT_STATS
+
+
+def _suit_piece_reject_reason(item) -> str:
+    """能不能当转换材料；返回空串表示可以。判定顺序与客户端一致。"""
+    if not isinstance(item, dict):
+        return "装备数据异常"
+    if not bool(item.get("is_suit")):
+        return "不是套装"
+    if bool(item.get("is_sealed")):
+        return "【%s】还没解封" % str(item.get("name", "该装备"))
+    if bool(item.get("is_pet_equipment")):
+        return "宠物装备不能转换"
+    if bool(item.get("locked")):
+        return "【%s】已锁定" % str(item.get("name", "该装备"))
+    if bool(item.get("equipped")):
+        return "【%s】正穿戴在身上" % str(item.get("name", "该装备"))
+    if int(item.get("suit_enhance_level", 0) or 0) != 0:
+        return "【%s】已强化过" % str(item.get("name", "该装备"))
+    rolls = item.get("suit_enhance_rolls")
+    if isinstance(rolls, list) and rolls:
+        return "【%s】有强化词条" % str(item.get("name", "该装备"))
+    if int(item.get("suit_id", 0) or 0) <= 0:
+        return "【%s】不是有效套装" % str(item.get("name", "该装备"))
+    if not str(item.get("id", "")).strip():
+        return "装备缺少 id"
+    return ""
+
+
+def _make_suit_piece(suit_id: int, slot: str, fallback_value: int = 0) -> dict:
+    """按客户端 Equipment.to_dict() 的字段造一件套装装备（数值 roll 0.9~1.1）。"""
+    table = suit_stats_table().get(str(int(suit_id))) or {}
+    base_stats = (table.get("slot_stats") or {}).get(slot) or {}
+    stat = SUIT_SLOT_STAT.get(slot, "attack")
+    base_value = int(base_stats.get(stat, 0) or 0)
+    if base_value <= 0:
+        # 数值表里没有这个套装（客户端加了新套装但没重跑 gen_suit_stats）：
+        # 用三件材料里同名属性的最大值兜底，至少不让功能直接报错。
+        base_value = max(0, int(fallback_value or 0))
+    roll = random.uniform(SUIT_STAT_MIN, SUIT_STAT_MAX)
+    value = max(1, int(round(base_value * roll)))
+    item = {
+        "id": rnd_id("eq_"),
+        "name": "%s·%s" % (str(table.get("name", "套装")), SUIT_SLOT_NAMES.get(slot, "装备")),
+        "slot": slot,
+        "rarity": "suit",
+        "attack": 0, "defense": 0, "hp": 0, "mp": 0, "agility": 0,
+        "cultivation_req": int(table.get("required_cultivation", 0) or 0),
+        "base_cultivation_req": int(table.get("required_cultivation", 0) or 0),
+        "forge_count": 0,
+        "forge_attr_counts": {},
+        "equipped": False,
+        "locked": False,
+        "is_suit": True,
+        "suit_id": int(suit_id),
+        "suit_slot": slot,
+        "is_sealed": False,
+        "sealed_data": {},
+        "is_pet_equipment": False,
+        "pet_enhance_level": 0,
+        "suit_enhance_level": 0,
+        "suit_enhance_rolls": [],
+        "pet_loot_source": "",
+        "pet_chest_tier": 0,
+    }
+    item[stat] = value
+    return item
 
 
 @route("POST", "/equipment/suit-convert")
 def equipment_suit_convert(ctx: Ctx) -> dict:
     state = ctx.state
-    if not state.take_item("套装转换石", 1):
-        return fail("套装转换石不足")
+    raw_ids = ctx.body.get("equipmentIds")
+    if not isinstance(raw_ids, list):
+        raw_ids = []
+    ids = [str(x).strip() for x in raw_ids if str(x).strip()]
+    op_id = ctx.s("operationId")
+
+    # 幂等：客户端超时会重发同一个 operationId，绝不能转两次
+    ops = state.meta.get("suitConvertOps")
+    if not isinstance(ops, dict):
+        ops = {}
+    if op_id and isinstance(ops.get(op_id), dict):
+        memo = ops[op_id]
+        return ok(duplicate=True,
+                  message=str(memo.get("message", "转换请求已处理过")),
+                  result=memo.get("result", {}),
+                  saveData=_authority_save(state), saveRevision=state.revision)
+
+    if len(ids) != SUIT_CONVERT_COST:
+        return fail("需要放入 %d 件套装才能转换（当前 %d 件）" % (SUIT_CONVERT_COST, len(ids)))
+    if len(set(ids)) != len(ids):
+        return fail("同一件装备被放了两次")
+
+    pool = state.equipment.setdefault("inventory", [])
+    pieces: list[dict] = []
+    for item_id in ids:
+        item = None
+        for row in pool:
+            if isinstance(row, dict) and str(row.get("id", "")) == item_id:
+                item = row
+                break
+        if item is None:
+            return fail("装备不在背包里（可能已穿戴或已丢弃），请重新选择")
+        reason = _suit_piece_reject_reason(item)
+        if reason:
+            return fail(reason)
+        pieces.append(item)
+
+    suit_id = int(pieces[0].get("suit_id", 0) or 0)
+    for item in pieces[1:]:
+        if int(item.get("suit_id", 0) or 0) != suit_id:
+            return fail("三件必须属于同一套装")
+    table = suit_stats_table().get(str(suit_id))
+    if table is None:
+        return fail("套装数值表里没有这套装备（id=%d），请更新客户端后再试" % suit_id)
+
+    # 兜底数值：三件材料里同名属性的最大值（正常情况下用不到，见 _make_suit_piece）
+    fallback = 0
+    for item in pieces:
+        for stat in SUIT_SLOT_STAT.values():
+            fallback = max(fallback, int(item.get(stat, 0) or 0))
+
+    for item in pieces:
+        pool.remove(item)
+
+    slot = random.choice(list(SUIT_SLOT_STAT.keys()))
+    new_item = _make_suit_piece(suit_id, slot, fallback)
+    pool.append(new_item)
     state.bump()
-    return ok(converted=True)
+
+    stat_name = {"attack": "攻击", "defense": "防御", "hp": "生命", "mp": "内力", "agility": "敏捷"}[
+        SUIT_SLOT_STAT[slot]]
+    stat_value = int(new_item.get(SUIT_SLOT_STAT[slot], 0) or 0)
+    message = "转换成功：获得【%s】（%s %d）" % (new_item["name"], stat_name, stat_value)
+    result = {"equipment": new_item, "suitId": suit_id, "slot": slot,
+              "statName": stat_name, "statValue": stat_value}
+    if op_id:
+        ops[op_id] = {"at": iso(now()), "message": message, "result": result}
+        if len(ops) > 40:
+            for stale in sorted(ops, key=lambda k: str(ops[k].get("at", "")))[:-40]:
+                ops.pop(stale, None)
+        state.meta["suitConvertOps"] = ops
+    return ok(duplicate=False, message=message, result=result,
+              saveData=_authority_save(state), saveRevision=state.revision)
 
 
 # ---- 宠物装备 -------------------------------------------------------
@@ -2812,8 +3705,63 @@ def pet_equipment_unequip(ctx: Ctx) -> dict:
     )
 
 
+# ---------------------------------------------------------------- 宠装强化规则
+# 权威在客户端 scripts/pet_equipment/pet_equipment_enhance.gd，这里逐条对齐，
+# 不要各写一套：分解出碎片 → 10 碎片合 1 颗强化石 → 按等级吃强化石提强化等级。
+PET_ENHANCE_MAX_LEVEL = 9
+PET_ENHANCE_FRAGMENTS_PER_STONE = 10
+PET_ENHANCE_FRAGMENT_ITEM = "宠装碎片"
+PET_ENHANCE_STONE_ITEM = "宠装强化石"
+# +0 → +9 的属性倍率增量（ENHANCE_BONUS_BY_LEVEL）；客户端按等级算属性，服务端只存等级
+PET_ENHANCE_BONUS_BY_LEVEL = [0.0, 0.04, 0.09, 0.15, 0.23, 0.33, 0.46, 0.62, 0.8, 1.0]
+
+
+def _pet_enhance_level(item: dict) -> int:
+    """强化等级。客户端字段是 pet_enhance_level，老服务端写过 enhance_level，两个都认。"""
+    try:
+        lv = int(item.get("pet_enhance_level", item.get("enhance_level", 0)) or 0)
+    except (TypeError, ValueError):
+        lv = 0
+    return max(0, min(PET_ENHANCE_MAX_LEVEL, lv))
+
+
+def _pet_enhance_stone_cost(current_level: int) -> int:
+    """+N → +(N+1) 需要 N+1 颗强化石（+1 要 1 颗 … +9 要 9 颗）。"""
+    if current_level < 0 or current_level >= PET_ENHANCE_MAX_LEVEL:
+        return 0
+    return current_level + 1
+
+
+def _pet_enhance_success_rate(current_level: int) -> float:
+    """成功率：+0→+1 是 100%，每一级线性下滑，+8→+9 是 30%。"""
+    if current_level < 0 or current_level >= PET_ENHANCE_MAX_LEVEL:
+        return 0.0
+    target = current_level + 1
+    t = float(target - 1) / float(PET_ENHANCE_MAX_LEVEL - 1)
+    return 1.0 + (0.3 - 1.0) * t
+
+
+def _pet_equip_fragment_count(item: dict) -> int:
+    """分解产出碎片数：青铜 1 / 白银 2 / 黄金 3，按 tier → quality → rarity 逐级回退。"""
+    for field in ("pet_chest_tier", "quality", "chest_type"):
+        raw = str(item.get(field, "") or "").strip().lower()
+        if raw in ("bronze", "青铜"):
+            return 1
+        if raw in ("silver", "白银"):
+            return 2
+        if raw in ("gold", "黄金"):
+            return 3
+    rarity = str(item.get("rarity", "") or "").strip().lower()
+    return {"common": 1, "rare": 2, "epic": 3}.get(rarity, 1)
+
+
 @route("POST", "/pet-equipment/enhance")
 def pet_equipment_enhance(ctx: Ctx) -> dict:
+    """宠装强化：消耗「宠装强化石」提升强化等级（最高 +9），有成功率。
+
+    旧实现只扣 10 万金币、必成功、不消耗强化石，还把等级写进 `enhance_level`
+    —— 客户端读的是 `pet_enhance_level`，所以玩家看到的就是「花了钱什么也没变」。
+    """
     state = ctx.state
     item_id = ctx.s("equipmentId") or ctx.s("id")
     worn = _pet_equip_worn(state)
@@ -2828,18 +3776,37 @@ def pet_equipment_enhance(ctx: Ctx) -> dict:
                 break
     if not isinstance(item, dict) or str(item.get("id", "")) != item_id:
         return fail("宠装不存在")
-    cost = 100000
-    if state.gold() < cost:
-        return fail("金币不足")
-    state.add_gold(-cost)
-    level = int(item.get("enhance_level", 0) or 0) + 1
-    item["enhance_level"] = level
+
+    level = _pet_enhance_level(item)
+    if level >= PET_ENHANCE_MAX_LEVEL:
+        return fail("已达最高强化等级 +%d" % PET_ENHANCE_MAX_LEVEL)
+    cost = _pet_enhance_stone_cost(level)
+    if cost <= 0:
+        return fail("该宠装已无法继续强化")
+    if state.item_count(PET_ENHANCE_STONE_ITEM) < cost:
+        return fail("宠装强化石不足（需要%d个）" % cost)
+    # 先扣料再掷骰：失败也要吃材料（原版规则），扣不掉就别往下走。
+    if not state.take_item(PET_ENHANCE_STONE_ITEM, cost):
+        return fail("宠装强化石不足（需要%d个）" % cost)
+
+    rate = _pet_enhance_success_rate(level)
+    succeeded = random.random() <= rate
+    if succeeded:
+        item["pet_enhance_level"] = level + 1
+        item["enhance_level"] = level + 1   # 老字段一并写，避免旧客户端读不到
+        message = "强化成功！当前 +%d" % (level + 1)
+    else:
+        message = "强化失败（成功率 %.0f%%），强化石已消耗" % (rate * 100.0)
     state.bump()
     return ok(
-        level=level,
+        success=succeeded,
+        level=_pet_enhance_level(item),
+        prevLevel=level,
+        successRate=round(rate, 4),
+        stoneCost=cost,
+        stonesLeft=state.item_count(PET_ENHANCE_STONE_ITEM),
         item=item,
-        newGold=state.gold(),
-        message="强化成功，当前 +%d" % level,
+        message=message,
         saveData=_authority_save(state),
         saveRevision=state.revision,
     )
@@ -2847,47 +3814,56 @@ def pet_equipment_enhance(ctx: Ctx) -> dict:
 
 @route("POST", "/pet-equipment/dismantle")
 def pet_equipment_dismantle(ctx: Ctx) -> dict:
+    """分解宠装换碎片：青铜 1 / 白银 2 / 黄金 3（原版按宝箱档次给）。"""
     state = ctx.state
     item_id = ctx.s("equipmentId") or ctx.s("id")
     bag = _pet_equip_bag(state)
     item = _find_pet_equip(bag, item_id)
     if item is None:
         return fail("宠装不存在")
+    frag = _pet_equip_fragment_count(item)
     bag.remove(item)
-    state.add_item("宠装碎片", 1, "material")
+    state.add_item(PET_ENHANCE_FRAGMENT_ITEM, frag, "material")
     state.bump()
     return ok(
-        items=[{"name": "宠装碎片", "count": 1}],
-        message="分解成功，获得宠装碎片×1",
-        saveData=_authority_save(state),
+        items=[{"name": PET_ENHANCE_FRAGMENT_ITEM, "count": frag}],
+        fragmentCount=frag,
+        message="分解成功，获得%s×%d" % (PET_ENHANCE_FRAGMENT_ITEM, frag),
+        saveData=_authority_save(state, removed_pet_equip_ids=[item_id]),
         saveRevision=state.revision,
     )
 
 
 @route("POST", "/pet-equipment/synthesize-fragments")
 def pet_equipment_synthesize(ctx: Ctx) -> dict:
+    """10 个宠装碎片 → 1 颗宠装强化石。
+
+    旧实现扣了 10 片碎片却随机发一件传说宠装（`合成·xxx（宠）`），
+    玩家点了「10碎片合成1强化石」，背包里却多出一件装备 —— 这就是
+    「宠装强化怎么变成合成装备了」的来源。
+    """
     state = ctx.state
-    if not state.take_item("宠装碎片", 10):
-        return fail("碎片不足")
-    bag = _pet_equip_bag(state)
-    slot, _label, stat = random.choice(PET_EQUIP_GRANT_SLOTS)
-    item = {
-        "id": "peq_%d_syn" % int(random.random() * 1e9),
-        "name": "合成·%s（宠）" % _label,
-        "slot": slot,
-        "rarity": "legendary",
-        "attack": 0, "defense": 0, "hp": 0, "mp": 0, "agility": 0,
-        "enhance_level": 0,
-        "equipped": False,
-        "is_pet_equipment": True,
-    }
-    item[stat] = 500
-    bag.append(item)
+    need = PET_ENHANCE_FRAGMENTS_PER_STONE
+    try:
+        batch = int(ctx.i("batchCount", 1) or 1)
+    except (TypeError, ValueError):
+        batch = 1
+    batch = max(1, min(50, batch))
+    have = state.item_count(PET_ENHANCE_FRAGMENT_ITEM)
+    can = min(batch, have // need)
+    if can <= 0:
+        return fail("%s不足（合成 1 颗需要 %d 个）" % (PET_ENHANCE_FRAGMENT_ITEM, need))
+    take = can * need
+    if not state.take_item(PET_ENHANCE_FRAGMENT_ITEM, take):
+        return fail("%s不足（合成 %d 颗需要 %d 个）" % (PET_ENHANCE_FRAGMENT_ITEM, can, take))
+    state.add_item(PET_ENHANCE_STONE_ITEM, can, "material")
     state.bump()
     return ok(
-        items=[{"name": item["name"], "count": 1}],
-        item=item,
-        message="合成成功：获得【%s】" % item["name"],
+        items=[{"name": PET_ENHANCE_STONE_ITEM, "count": can}],
+        stoneCount=can,
+        fragmentCost=take,
+        stonesLeft=state.item_count(PET_ENHANCE_STONE_ITEM),
+        message="消耗 %d 个%s，合成%s×%d" % (take, PET_ENHANCE_FRAGMENT_ITEM, PET_ENHANCE_STONE_ITEM, can),
         saveData=_authority_save(state),
         saveRevision=state.revision,
     )
@@ -3176,9 +4152,17 @@ def realm_transition(ctx: Ctx) -> dict:
             p[key] = pd[key]
     p["realm"] = realm
     p["level"] = level
+    if transition == "ascend" and realm == _DALUO_REALM:
+        # 飞上大罗金仙 = 五行图鉴已凑齐（客户端 can_ascend 才会放行）。
+        # 图鉴是永久收集、投胎不清，所以记下这个账号级标志：以后投胎重练
+        # 回天仙，离线结算也能自动飞这一步，不用再等在线手动飞一次。
+        p[_DALUO_UNLOCK_KEY] = True
     if transition == "reincarnate":
         # 投胎重开：塔层回 1（转生次数以客户端快照为准，客户端已 +1，不重复加）
         p["tower_floor"] = 1
+        # 标记在账号级 meta 里，不会被客户端整包存档覆盖；
+        # /tower/update 收到真实的 currentFloor 后会解除。
+        state.meta["towerFloorResetPending"] = True
 
     state.bump()
     if op_id:
@@ -3320,10 +4304,32 @@ def martial_info(ctx: Ctx) -> dict:
         "dailyLimit": limit,
         "remaining": max(0, limit - used),
         "isToday": True,
-        "serverSuccessRate": float(RULES.v("martial_create", "serverSuccessRate", 0.4) or 0.4),
-        "nobleBonus": 0,
-        "baseSuccessRate": float(RULES.v("martial_create", "serverSuccessRate", 0.4) or 0.4),
+        "serverSuccessRate": _martial_rate(state)["rate"],
+        "nobleBonus": _martial_rate(state)["nobleBonus"],
+        "baseSuccessRate": _martial_rate(state)["base"],
     }
+
+
+def _martial_rate(state) -> dict:
+    """自创成功率 = 基础 + 贵族加成（百分点）。
+
+    界面（`ui/city/settings_hall.gd` 贵族权益、`martial_hall` 的成功率文案）
+    一直写着「自创武功成功率 +X%」，表就在 `State.NOBLE_MARTIAL_BONUS`
+    （和客户端 `noble_benefits.gd` 同表）。以前服务端恒发 0.4 / nobleBonus=0，
+    贵族玩家点一次自创，界面上写着 +50%，实际还是 40%。
+
+    基础值取 0.3（30%）：原版客户端 `scripts/martial_arts_manager.gd` 三处默认
+    参数 `server_success_rate: float = 0.3` 都是这个数——服务端不发时界面就按
+    30% 显示，说明原版服务端的基准值就是 30%，不是我们之前写的 40%。
+    现在补了 `runtime-config.json` 的 `martial_create.serverSuccessRate`，
+    改数值不用再动代码。
+    """
+    base = float(RULES.v("martial_create", "serverSuccessRate", 0.3) or 0.3)
+    lv = state.noble_level() if hasattr(state, "noble_level") else 0
+    table = state.NOBLE_MARTIAL_BONUS
+    bonus = int(table[max(0, min(len(table) - 1, int(lv)))])
+    return {"base": base, "nobleBonus": bonus,
+            "rate": round(max(0.0, min(0.95, base + bonus / 100.0)), 4)}
 
 
 _MARTIAL_POOL: dict | None = None
@@ -3347,6 +4353,20 @@ def martial_pool() -> dict:
     return _MARTIAL_POOL
 
 
+# data/martial-arts.json 没随包上传时的兜底（线上曾经就是缺这个文件：判定成功，
+# 但抽到的是「自创武学 / 全属性 +1% / 空描述」，玩家看到一条废武功）。
+# 数值按六境界的基准走，和 martial-arts.json 里各池第一条对齐。
+_FALLBACK_MARTIAL_BASE = {"凡人": 2, "散仙": 4, "地仙": 6, "天仙": 9,
+                          "大罗金仙": 12, "幻灵天神": 15}
+
+
+def _fallback_martial(realm_name: str) -> dict:
+    base = int(_FALLBACK_MARTIAL_BASE.get(realm_name, 2))
+    return {"name": "自创武学·%s" % realm_name, "effect_type": "all_stats",
+            "base_value": base, "desc": "自创武学，全属性 +%d%%" % base,
+            "realm": realm_name}
+
+
 def roll_martial_art(realm: str, owned: set) -> dict:
     """按境界抽一条武学，避开该玩家已拥有的同名条目。
 
@@ -3360,104 +4380,233 @@ def roll_martial_art(realm: str, owned: set) -> dict:
     if not pool:
         pool = pools.get("凡人") or []
     if not pool:
-        return {"name": "自创武学", "effect_type": "all_stats", "base_value": 1, "desc": ""}
+        row = _fallback_martial(realm_name)
+        row["layer"] = 1
+        row["level"] = 1
+        return row
 
     fresh = [row for row in pool if str(row.get("name", "")) not in owned]
     row = dict(random.choice(fresh or pool))
     row.setdefault("realm", realm_name)
+    row.setdefault("desc", "")
     row["layer"] = 1
     row["level"] = 1
     return row
 
 
+MARTIAL_MAX_ARTS = 15
+
+
+def _martial_save_payload(state) -> dict:
+    """带武学存档的权威切片（只给「服务端刚产出一条武学」的接口用）。
+
+    为什么不直接把 martialArtsData 塞进 `_authority_save`：那份切片是所有经济
+    接口共用的，客户端 `apply_cloud_save` 见到 martialArtsData 会走「本地条数 vs
+    云端条数」的合并分支 —— 老账号服务端那份是空的（武学一直存在客户端），
+    整块下发反而可能把玩家本地武功顶掉。自创 / 技能书这两条路径下，
+    服务端刚刚往 martialArtsData 里追加了一条，这份就是权威，客户端
+    `authoritative_martial_arts` 分支才会 `from_dict` 覆盖本地。
+    """
+    payload = _authority_save(state)
+    data = state.save.get("martialArtsData")
+    payload["martialArtsData"] = data if isinstance(data, dict) else {}
+    return payload
+
+
 @route("POST", "/martial/create")
 def martial_create(ctx: Ctx) -> dict:
-    """自创武功：每日次数按 VIP（3/4/5/6 次），每次 100 万金币，失败也扣次数与金币。"""
+    """自创武功：每日次数按 VIP（3/4/5/6 次），每次 100 万金币，失败也扣次数与金币。
+
+    **回包契约（2026-11-04 报障「自创武功一直失败」）**：
+    客户端 `martial_arts_manager.gd:218-250` 在 rolledSuccess=true 之后还要：
+
+        payload      = net.last_martial_create_payload   # 整个回包
+        save_data    = payload.get("saveData")
+        art_raw      = payload.get("art")
+        use_server_art = bool(payload.get("serverAuthority", false)) and (art 或 saveData)
+
+    以前这里只回了 `martialArt`，没有 `serverAuthority` / `art` / `saveData`，
+    于是**服务端判定成功、客户端一律弹「参悟失败 / 服务端未返回武功数据」**，
+    金币和次数照扣，武功一条都进不了背包。原版服务端就是按这条契约回的。
+    """
     state = ctx.state
+    # runtime-config 里曾同时存在 martialCreate 和 martial_create 两段，
+    # Rules 把段名统一 snake_case 后互相覆盖，serverAuthorityEnabled 永远读不到。
+    # 现在合并成一段并在这里真实消费：万一被关掉，明确报错而不是静默回退到
+    # 客户端自己掷骰子（那正是「自创武功一直失败」的老 bug）。
+    if not bool(RULES.v("martial_create", "serverAuthorityEnabled", True)):
+        return fail("自创武功服务端裁定未启用，请联系客服")
     data = state.save.setdefault("martialArtsData", {})
+    if not isinstance(data, dict):
+        data = {}
+        state.save["martialArtsData"] = data
     if str(data.get("date", "")) != today():
         data["date"] = today()
         data["daily_create_count"] = 0
     limit = int(state.VIP_MARTIAL_DAILY[state.vip_tier()])
     used = int(data.get("daily_create_count", 0) or 0)
+    mrate = _martial_rate(state)
+    rate = mrate["rate"]
+
+    # ---- 幂等：同 operationId 重放不再扣钱扣次数（客户端超时重试很常见）
+    op_id = ctx.s("operationId")
+    ops = state.meta.get("martialCreateOps")
+    if not isinstance(ops, dict):
+        ops = {}
+        state.meta["martialCreateOps"] = ops
+    if op_id and isinstance(ops.get(op_id), dict):
+        memo = ops[op_id]
+        art = memo.get("art") if isinstance(memo.get("art"), dict) else None
+        return ok(
+            duplicate=True,
+            createCount=int(data.get("daily_create_count", 0) or 0),
+            remaining=max(0, limit - int(data.get("daily_create_count", 0) or 0)),
+            isToday=True, serverSuccessRate=rate, nobleBonus=mrate["nobleBonus"],
+            baseSuccessRate=mrate["base"],
+            rolledSuccess=bool(memo.get("rolledSuccess", False)),
+            serverAuthority=True, art=art, martialArt=art,
+            martialArts=data.get("martial_arts", []),
+            newGold=state.gold(), cost=0,
+            saveData=_martial_save_payload(state), saveRevision=state.revision,
+        )
+
     if used >= limit:
         return fail("今日自创次数已用完（%d/%d）" % (used, limit))
     cost = int(RULES.v("martial_create", "goldCost", 1000000) or 1000000)
     if state.gold() < cost:
         return fail("金币不足（自创武功需要 %d 金币）" % cost)
-    rate = float(RULES.v("martial_create", "serverSuccessRate", 0.4) or 0.4)
+    # 客户端 MartialArtsManager.MAX_MARTIAL_ARTS = 15，服务端同口径
+    if len(data.get("martial_arts") or []) >= MARTIAL_MAX_ARTS:
+        return fail("武功栏已满（%d/%d）" % (len(data.get("martial_arts") or []), MARTIAL_MAX_ARTS))
 
     state.add_gold(-cost)
     data["daily_create_count"] = used + 1
     rolled = random.random() <= rate
     art = None
     if rolled:
-        owned = {str(a.get("name", "")) for a in data.get("martial_arts", []) if isinstance(a, dict)}
+        arts = data.get("martial_arts")
+        if not isinstance(arts, list):
+            arts = []
+            data["martial_arts"] = arts
+        owned = {str(a.get("name", "")) for a in arts if isinstance(a, dict)}
         art = {"id": "martial_%d" % int(random.random() * 1e9)}
         art.update(roll_martial_art(str(state.player.get("realm", "凡人") or "凡人"), owned))
-        data.setdefault("martial_arts", []).append(art)
+        arts.append(art)
     state.bump()
+    if op_id:
+        ops[op_id] = {"at": iso(now()), "rolledSuccess": rolled, "art": art,
+                      "createCount": int(data["daily_create_count"])}
+        if len(ops) > 40:
+            for stale in sorted(ops, key=lambda k: str(ops[k].get("at", "")))[:-40]:
+                ops.pop(stale, None)
     return ok(
         createCount=int(data["daily_create_count"]),
         remaining=max(0, limit - int(data["daily_create_count"])),
         isToday=True,
         serverSuccessRate=rate,
-        nobleBonus=0,
+        nobleBonus=mrate["nobleBonus"],
+        baseSuccessRate=mrate["base"],
         rolledSuccess=rolled,
+        # 客户端只认这两个键，martialArt 保留给旧包/调试
+        serverAuthority=True,
+        art=art,
         martialArt=art,
         martialArts=data.get("martial_arts", []),
         newGold=state.gold(),
         cost=cost,
+        saveData=_martial_save_payload(state),
         saveRevision=state.revision,
     )
 
 
 @route("POST", "/martial/skill_book_use")
 def martial_skill_book_use(ctx: Ctx) -> dict:
+    """使用人物技能书 → 领悟一条主动武学。
+
+    客户端 `martial_skill_manager.gd` 同自创一样：只认回包里的 `saveData`
+    （`apply_cloud_save(..., authoritative_martial_arts)`）和 `art`（用于播公告）。
+    原来只回 `martialArt`，表现是「书被扣了、武功没进列表、也没有播报」。
+    另外模板里缺 `name`，客户端 `MartialArt.from_dict` 读不到名字会是空串。
+    """
     state = ctx.state
-    book = ctx.s("itemName") or ctx.s("bookName")
-    if book and not state.take_item(book, 1):
-        return fail("技能书不足")
     data = state.save.setdefault("martialArtsData", {})
-    book_key = str(ctx.s("bookName") or ctx.s("skillName") or book or "")
+    if not isinstance(data, dict):
+        data = {}
+        state.save["martialArtsData"] = data
+    book_key = str(ctx.s("bookName") or ctx.s("skillName") or ctx.s("itemName") or "").strip()
+    if not book_key:
+        return fail("缺少技能书名称")
+
     books = martial_pool()["skill_books"]
     tpl = books.get(book_key)
     if tpl is None:
-        # 客户端传过来的是书名，按名字反查模板；查不到就按三目标技处理
-        tpl = books.get("一击三伤")
+        return fail("未知技能书：%s" % book_key)
+    if not state.take_item(book_key, 1):
+        return fail("技能书不足")
+
+    arts = data.get("martial_arts")
+    if not isinstance(arts, list):
+        arts = []
+        data["martial_arts"] = arts
     art = {"id": "skill_%d" % int(random.random() * 1e9)}
     art.update(dict(tpl or {}))
-    art["layer"] = max(1, min(9, ctx.i("layer", 1)))
+    art.setdefault("name", book_key)
+    art.setdefault("realm", "技能书")
+    # 原版说明是「使用后随机领悟 1-9 层」；客户端不传 layer 时要自己摇
+    layer = ctx.i("layer", 0)
+    art["layer"] = max(1, min(9, layer if layer else random.randint(1, 9)))
     art["level"] = art["layer"]
-    data.setdefault("martial_arts", []).append(art)
+    arts.append(art)
     state.bump()
-    return ok(martialArt=art, martialArts=data["martial_arts"])
+    return ok(serverAuthority=True, art=art, martialArt=art,
+              martialArts=arts, saveData=_martial_save_payload(state),
+              saveRevision=state.revision)
 
 
 @route("POST", "/martial/forget")
 def martial_forget(ctx: Ctx) -> dict:
     state = ctx.state
     data = state.save.setdefault("martialArtsData", {})
-    art_id = ctx.s("martialId") or ctx.s("id")
-    data["martial_arts"] = [a for a in data.get("martial_arts", []) if str(a.get("id", "")) != art_id]
+    # 客户端 network.gd marital_forget 发的字段是 artId（不是 martialId/id）
+    art_id = ctx.s("artId") or ctx.s("martialId") or ctx.s("id")
+    if not art_id:
+        return fail("缺少武功 id")
+    # 已装备的不许遗忘（客户端 get_equip_reject_reason 同口径）
+    equipped = data.get("equipped_ids") if isinstance(data.get("equipped_ids"), list) else []
+    if art_id in [str(x) for x in equipped]:
+        return fail("请先卸下该武功")
+    arts = data.get("martial_arts") if isinstance(data.get("martial_arts"), list) else []
+    data["martial_arts"] = [a for a in arts if str(a.get("id", "")) != art_id]
     state.bump()
-    return ok(martialArts=data["martial_arts"])
+    return ok(martialArts=data["martial_arts"], saveData=_martial_save_payload(state))
 
 
 @route("POST", "/martial/sync-layout")
 def martial_sync_layout(ctx: Ctx) -> dict:
+    """装备/卸下布局同步。
+
+    客户端发的体是 `{"martialArtsData": {martial_arts, equipped_ids}, ...}`，
+    原来读的是顶层 `equippedIds` —— 永远取不到，于是每次同步都把
+    `equipped_ids` 写成空数组，云端装备状态全丢。
+    """
     state = ctx.state
     data = state.save.setdefault("martialArtsData", {})
-    data["equipped_ids"] = ctx.body.get("equippedIds", data.get("equipped_ids", []))
+    nested = ctx.body.get("martialArtsData") if isinstance(ctx.body.get("martialArtsData"), dict) else {}
+    incoming = nested.get("equippedIds", nested.get("equipped_ids", None))
+    if incoming is None:
+        incoming = ctx.body.get("equippedIds", data.get("equipped_ids", []))
+    if isinstance(incoming, list):
+        data["equipped_ids"] = [str(x) for x in incoming if str(x).strip()]
     state.bump()
-    return ok(equippedIds=data["equipped_ids"])
+    return ok(equippedIds=data.get("equipped_ids", []),
+              saveData=_martial_save_payload(state))
 
 
 # ================================================================ 打造 / 炼制
 
 @route("POST", "/forge/preview")
 def forge_preview(ctx: Ctx) -> dict:
-    return ok(cost={"gold": 1000000}, possible=["极限装备", "封印套装"], successRate=0.3)
+    return ok(cost={"gold": 1000000}, possible=["极限装备礼包"], successRate=0.3)
 
 
 @route("POST", "/forge/execute")
@@ -3470,21 +4619,127 @@ def forge_execute(ctx: Ctx) -> dict:
     success = random.random() < 0.3
     items = []
     if success:
-        state.add_item("极限装备", 1, "equipment")
-        items.append({"name": "极限装备", "count": 1})
+        state.add_item("极限装备礼包", 1, "gift")
+        items.append({"name": "极限装备礼包", "count": 1})
     state.bump()
     return ok(success=success, items=items, newGold=state.gold())
+
+
+# ---------------------------------------------------------------- 丹药炼制
+#
+# 客户端 `network.gd request_pill_craft` 的请求体只有
+# `{recipeKey, batchCount, operationId}` —— **从来不传 pillName**。
+# 老实现按 `ctx.s("pillName") or "定神丹"` 取名字，于是：
+#   · 名字永远是那个兜底值（还是旧名「定神丹」，客户端道具表里根本没有 → 未知物品）
+#   · 材料永远是「灵草 ×3」，跟选的丹方没关系
+#   · 没有成功率、没有境界门槛、没有批量
+# 现在按 recipeKey 查客户端 game_data.gd CRAFTING_RECIPES 的同一条丹方结算。
+
+PILL_RECIPES = {
+    "juling_pill": {
+        "result": "聚灵丹", "materials": {"灵草": 5, "灵芝": 1},
+        "realm": "凡人", "successRate": 0.9,
+    },
+    "ningshen_pill": {
+        "result": "凝神丹", "materials": {"灵芝": 3, "天山雪莲": 1},
+        "realm": "散仙", "successRate": 0.9,
+    },
+    "wudao_pill": {
+        "result": "悟道仙丹", "materials": {"天山雪莲": 3, "九转还魂草": 1, "龙涎草": 1},
+        "realm": "地仙", "successRate": 0.9,
+    },
+}
+MAX_PILL_BATCH = 99
+
+
+def _realm_rank(realm) -> int:
+    try:
+        return _REALMS.index(str(realm or "凡人"))
+    except ValueError:
+        return 0
+
+
+def _pill_material_shortfall(state, recipe: dict) -> str:
+    """返回缺哪个材料（够用回空串）。"""
+    for name in recipe["materials"]:
+        if state.item_count(name) <= 0:
+            return name
+    return ""
 
 
 @route("POST", "/crafting/pill-craft")
 def pill_craft(ctx: Ctx) -> dict:
     state = ctx.state
-    name = ctx.s("pillName") or "定神丹"
-    if not state.take_item("墨草", 3):
-        return fail("墨草不足")
-    state.add_item(name, 1, "item")
+    recipe_key = (ctx.s("recipeKey") or ctx.s("recipe_key") or ctx.s("pillName")).strip()
+    recipe = PILL_RECIPES.get(recipe_key)
+    if recipe is None:
+        return fail("未知丹方：%s" % (recipe_key or "未提供 recipeKey"))
+
+    need_rank = _realm_rank(recipe["realm"])
+    if _realm_rank(state.player.get("realm", "凡人")) < need_rank:
+        return fail("境界不足：炼制【%s】需要达到%s" % (recipe["result"], recipe["realm"]))
+
+    op_id = ctx.s("operationId")
+    ops = state.meta.get("pillCraftOps")
+    if not isinstance(ops, dict):
+        ops = {}
+    # 幂等：客户端请求超时会拿同一个 operationId 重发，不拦就会白送丹药
+    if op_id and isinstance(ops.get(op_id), dict):
+        memo = ops[op_id]
+        return ok(duplicate=True, message=str(memo.get("message", "炼制请求已处理过")),
+                  result=memo.get("result", {}),
+                  saveData=_authority_save(state), saveRevision=state.revision)
+
+    batch = max(1, min(MAX_PILL_BATCH, ctx.i("batchCount", 1)))
+    # 按材料上限收缩批量：客户端已经算过一次，这里防改包/竞态
+    possible = batch
+    for name, cost in recipe["materials"].items():
+        possible = min(possible, state.item_count(name) // max(1, int(cost)))
+    if possible <= 0:
+        short = _pill_material_shortfall(state, recipe)
+        if short:
+            return fail("材料不足：还差【%s】" % short)
+        need_text = "、".join("%s×%d" % (n, c) for n, c in recipe["materials"].items())
+        return fail("材料不足：炼制【%s】需要 %s" % (recipe["result"], need_text))
+
+    for name, cost in recipe["materials"].items():
+        if not state.take_item(name, int(cost) * possible):
+            return fail("材料不足：%s" % name)
+
+    rate = float(recipe.get("successRate", 0.9) or 0.9)
+    crafted = 0
+    for _ in range(possible):
+        if random.random() < rate:
+            crafted += 1
+    failed = possible - crafted
+    if crafted:
+        state.add_item(recipe["result"], crafted, "item")
     state.bump()
-    return ok(items=[{"name": name, "count": 1}])
+
+    if crafted and failed:
+        message = "炼制完成：【%s】×%d，失败 %d 次（材料已消耗）" % (recipe["result"], crafted, failed)
+    elif crafted:
+        message = "炼制成功：【%s】×%d" % (recipe["result"], crafted)
+    else:
+        message = "炼制失败 %d 次，材料已消耗" % failed
+
+    result = {
+        "recipeKey": recipe_key,
+        "resultItemName": recipe["result"],
+        "crafted": crafted,
+        "failed": failed,
+        "total": possible,
+        "materials": {n: int(c) * possible for n, c in recipe["materials"].items()},
+    }
+    if op_id:
+        ops[op_id] = {"at": iso(now()), "message": message, "result": result}
+        if len(ops) > 60:
+            for stale in sorted(ops, key=lambda k: str(ops[k].get("at", "")))[:-60]:
+                ops.pop(stale, None)
+        state.meta["pillCraftOps"] = ops
+    return ok(duplicate=False, message=message, result=result,
+              items=([{"name": recipe["result"], "count": crafted}] if crafted else []),
+              saveData=_authority_save(state), saveRevision=state.revision)
 
 
 # ================================================================ 背包 / 礼包
@@ -3522,17 +4777,17 @@ def inventory_drop(ctx: Ctx) -> dict:
 @route("POST", "/inventory/synthesize-seal-stone")
 def synthesize_seal_stone(ctx: Ctx) -> dict:
     state = ctx.state
-    state.add_item("解封石", 1, "material")
+    state.add_item("普通解封石", 1, "material")
     state.bump()
-    return ok(items=[{"name": "解封石", "count": 1}])
+    return ok(items=[{"name": "普通解封石", "count": 1}])
 
 
 @route("POST", "/gift/frontier/use")
 def gift_frontier_use(ctx: Ctx) -> dict:
-    """开荒锦囊：5 亿金币 + 7 只成长 6.0 的赤翅蛾 + 一套单属性 +400 装备。
+    """开荒礼包：5 亿金币 + 7 只成长 6.0 的赤翅蛾 + 一套单属性 +400 装备。
 
     原实现是往背包塞一个「边境礼包」的占位桩：客户端开了礼包只拿到一个查不到
-    图鉴的道具，金币/宠物/装备全没有，开荒锦囊本身也不扣（「使用成功但礼包还在」）。
+    图鉴的道具，金币/宠物/装备全没有，开荒礼包本身也不扣（「使用成功但礼包还在」）。
     """
     state = ctx.state
     op_id = ctx.s("operationId")
@@ -3547,9 +4802,9 @@ def gift_frontier_use(ctx: Ctx) -> dict:
                   saveData=_authority_save(state), saveRevision=state.revision,
                   newGold=state.gold())
 
-    if state.item_count("开荒锦囊") <= 0:
-        return fail("背包里没有【开荒锦囊】")
-    state.take_item("开荒锦囊", 1)
+    if state.item_count("开荒礼包") <= 0:
+        return fail("背包里没有【开荒礼包】")
+    state.take_item("开荒礼包", 1)
 
     bag: dict = {"gold": 0, "pets": [], "items": [], "lines": []}
     bag["gold"] = 500000000
@@ -3729,18 +4984,21 @@ def _make_pet_from_catalog(state, pet_id: str, data: dict, growth: float, mutati
 
 
 def _add_pet_to_state(state, pet: dict) -> str:
-    """入包：宠物栏 → 灵兽袋 → 邮件。返回值对应客户端的 mailed 标记。"""
+    """入包：只进宠物栏；栏满直接邮件补发。返回值对应客户端的 mailed 标记。
+
+    宠物袋是**玩家手动存**暂存宠的仓库。系统发放（开礼包 / 签到 / 活动）
+    一律不进袋 —— 以前这里是「宠物栏 → 灵兽袋 → 邮件」，主战栏一满就顺手
+    塞袋，玩家开完礼包发现宠物「跑到宠物袋里去了」。现在栏满只走邮件补发，
+    腾出栏位后自己领。
+    """
     pets = state.pets
     if len(pets) < MAX_PETS_HELD:
         pets.append(pet)
         return "pets"
-    bag = state.pet_bag
-    if len(bag) < MAX_PETS_BAG:
-        bag.append(pet)
-        return "bag"
     state.send_mail(
         "宠物礼包补发",
-        "宠物栏已满，为您补发【%s】（成长%.3f）" % (pet.get("name", "灵兽"), float(pet.get("total_growth", 0) or 0)),
+        "宠物栏已满，为您补发【%s】（成长%.3f）。\n腾出宠物栏位后可在邮件领取。"
+        % (pet.get("name", "灵兽"), float(pet.get("total_growth", 0) or 0)),
         attachments={"pets": [pet]},
     )
     return "mail"
@@ -3892,7 +5150,7 @@ def _gift_pool_pick(pool: str) -> dict | None:
 
 
 def _grant_pets_by_spec(state, spec: dict, bag: dict, times: int = 1) -> bool:
-    """按 spec 发 `times` 只宠，入宠物栏 → 灵兽袋 → 邮件。"""
+    """按 spec 发 `times` 只宠，入宠物栏；栏满邮件补发（不进宠物袋）。"""
     granted = False
     for _ in range(max(1, int(times))):
         rolled = _roll_pet_for_spec(spec)
@@ -4071,7 +5329,7 @@ def _pet_reward_spec(item_name: str) -> dict | None:
         pool = "evolution" if m.group(3) == "可进化" else "non_evolution"
         return {"growth": (float(m.group(1)), float(m.group(2)) + 0.9),
                 "pool": pool, "mutation": 1}
-    if name == "离线宠物锦囊":
+    if name == "离线宠物礼包":
         # 原版 desc：「打开可获得一只极品宠物，宠物来自离线挂机地图」
         # 成长取普通捕捉区间（宠物池由离线地图决定，客户端另行处理）。
         return {"growth": (5.0, 6.0), "pool": "any"}

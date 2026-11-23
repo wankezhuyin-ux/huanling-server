@@ -2,7 +2,7 @@
  "success": true,
  "events": {
   "mayday_2026": {
-   "gift_name": "五一锦囊",
+   "gift_name": "五一活动礼包",
    "created_by_admin": false,
    "shop_sale": {
     "banner_text": "五一限时：元宝商店全场8折",
@@ -19,7 +19,7 @@
    "battle_gift_drop_rate": 1
   },
   "duanwu_2026": {
-   "gift_name": "端午锦囊",
+   "gift_name": "端午节礼包",
    "created_by_admin": false,
    "shop_sale": {
     "banner_text": "端午限时：元宝商店全场8折",
@@ -36,7 +36,7 @@
    "battle_gift_drop_rate": 1
   },
   "qixi_2026": {
-   "gift_name": "七夕锦囊",
+   "gift_name": "七夕节礼包",
    "created_by_admin": false,
    "shop_sale": {
     "banner_text": "七夕限时：元宝商店全场8折",

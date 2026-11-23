@@ -64,16 +64,27 @@ class Admin:
         self.fails: dict[str, list[float]] = {}
         self.cred = load_json(GM_FILE, {}) or {}
         if not self.cred.get("hash"):
-            password = os.environ.get("GM_PASSWORD", "").strip() or "lingyun-gm"
-            self.set_password(password)
-            print("[GM] 首次启动，已初始化 GM 密码（来源：%s）" % (
-                "环境变量 GM_PASSWORD" if os.environ.get("GM_PASSWORD") else "默认值 lingyun-gm"))
+            env_password = os.environ.get("GM_PASSWORD", "").strip()
+            if env_password:
+                password = env_password
+                print("[GM] 首次启动，已用环境变量 GM_PASSWORD 初始化口令")
+            else:
+                # 源码一旦公开，写死在代码里的默认口令就等于公布后台密码。
+                # 未显式指定时随机生成，只在本进程启动日志里打印一次。
+                password = secrets.token_urlsafe(18)
+                print("[GM] 未设置 GM_PASSWORD，已生成随机初始口令（仅打印这一次）")
+                print("[GM] 初始口令：%s" % password)
+                print("[GM] 请立即登录 /gm 修改；部署时也可用环境变量 GM_PASSWORD 指定")
+            self.set_password(password, generated=not bool(env_password))
         self.ensure_default_password()
 
     # -- 密码
-    def set_password(self, password: str) -> None:
+    def set_password(self, password: str, generated: bool = False) -> None:
         salt = secrets.token_hex(8)
         self.cred = {"salt": salt, "hash": _hash(password, salt), "updatedAt": iso(now())}
+        # 只有「首次自动生成、尚未修改」才带这个标记，改过密码后自然消失。
+        if generated:
+            self.cred["generated"] = True
         dump_json(GM_FILE, self.cred)
 
     def verify(self, password: str, ip: str) -> tuple[bool, str]:
@@ -94,9 +105,9 @@ class Admin:
         return ok, "" if ok else "密码错误"
 
     def ensure_default_password(self) -> None:
-        """默认密码提醒：仍然用 lingyun-gm 就在日志里喊一声。"""
-        if secrets.compare_digest(self.cred.get("hash", ""), _hash("lingyun-gm", self.cred.get("salt", ""))):
-            print("[GM] 警告：GM 后台还在用默认密码 lingyun-gm，请立刻登录改掉")
+        """初始口令提醒：首次自动生成的口令还没改过就喊一声。"""
+        if self.cred.get("generated"):
+            print("[GM] 警告：GM 后台仍在用首次自动生成的初始口令，请立刻登录 /gm 修改")
 
     # -- 令牌
     def issue(self) -> str:
@@ -464,19 +475,30 @@ def gm_api(ctx) -> dict:
             return {"success": False, "message": "图鉴里没有这个宠物：%s" % pid}
         level = int(ctx.body.get("level", 1) or 1)
         elite = bool(ctx.body.get("elite", False))
-        to_team = bool(ctx.body.get("toTeam", False))
+        # 默认发到宠物栏（出战栏）。要进宠物袋必须 GM 明确勾 toBag ——
+        # 宠物袋只放玩家自己手动存进去的宠，系统发放不能顺手塞袋。
+        to_bag = bool(ctx.body.get("toBag", False))
         pet = make_pet(pid, level, elite)
         with state.lock:
             team = state.pets
-            bag = state.pet_bag
-            if to_team and len(team) < 10:
-                team.append(pet)
-                where = "出战"
-            else:
+            if to_bag:
+                bag = state.pet_bag
                 if len(bag) >= 60:
-                    return {"success": False, "message": "宠物背包已满（60），先清理或勾选「放入出战」"}
+                    return {"success": False, "message": "宠物袋已满（60），先清理"}
                 bag.append(pet)
-                where = "背包"
+                where = "宠物袋"
+            elif len(team) < 10:
+                team.append(pet)
+                where = "宠物栏"
+            else:
+                # 宠物栏满 → 邮件补发，绝不落袋（与 handlers_growth._add_pet_to_state 同口径）
+                state.send_mail(
+                    "GM 补发灵兽",
+                    "宠物栏已满（10/10），【%s】已邮件补发，腾出栏位后可领取。"
+                    % pet.get("name", "灵兽"),
+                    attachments={"pets": [pet]},
+                )
+                where = "邮件"
             state.bump()
             state.flush()
         audit("add_pet", username, {"pet_id": pid, "name": pet["name"], "level": pet["level"],
@@ -624,8 +646,17 @@ def gm_api(ctx) -> dict:
             state.add_yuanbao(10000)
             lvl = set_player_level(state, max(int(state.player.get("level", 1)), 30))
             pet = make_pet("tongbao", 30, False) if "tongbao" in PETS else None
-            if pet and len(state.pet_bag) < 60:
-                state.pet_bag.append(pet)
+            if pet:
+                # 系统发放一律先宠物栏；栏满邮件补发。GM 发宠也不能写宠物袋。
+                if len(state.pets) < 10:   # = handlers_growth.MAX_PETS_HELD
+                    state.pets.append(pet)
+                else:
+                    state.send_mail(
+                        "新手锦囊 · 灵兽补发",
+                        "宠物栏已满，新手锦囊的【%s】已邮件补发，腾出栏位后可领取。"
+                        % pet.get("name", "灵兽"),
+                        attachments={"pets": [pet]},
+                    )
             state.bump()
             state.flush()
         audit("starter_pack", username, lvl, ip)
@@ -636,8 +667,8 @@ def gm_api(ctx) -> dict:
 
 
 def _is_default_password() -> bool:
-    cred = ADMIN.cred
-    return secrets.compare_digest(cred.get("hash", ""), _hash("lingyun-gm", cred.get("salt", "")))
+    """是否仍在使用「首次自动生成、尚未修改」的初始口令。"""
+    return bool(ADMIN.cred.get("generated"))
 
 
 GM_HTML = r"""<!DOCTYPE html>
@@ -810,7 +841,7 @@ th{color:var(--dim);font-weight:500}
             <div style="flex:2"><label>选择宠物（可输入名字搜索）</label><input id="petSearch" list="petList" placeholder="例如：通宝"><datalist id="petList"></datalist></div>
             <div><label>等级</label><input id="petLv" type="number" value="100"></div>
             <div style="flex:0 0 auto"><label>&nbsp;</label><label style="display:flex;gap:6px;align-items:center;color:var(--txt)"><input type="checkbox" id="petElite" style="width:auto">精英</label></div>
-            <div style="flex:0 0 auto"><label>&nbsp;</label><label style="display:flex;gap:6px;align-items:center;color:var(--txt)"><input type="checkbox" id="petTeam" style="width:auto">出战</label></div>
+            <div style="flex:0 0 auto"><label>&nbsp;</label><label style="display:flex;gap:6px;align-items:center;color:var(--txt)"><input type="checkbox" id="petBag" style="width:auto">放进宠物袋</label></div>
             <button onclick="addPet()">发放</button>
           </div>
           <div class="tblwrap" style="margin-top:10px"><table id="petTbl"></table></div>
@@ -900,7 +931,7 @@ function login(){
     T = d.token; localStorage.setItem('gmToken', T);
     showApp();
     if(d.defaultPassword){ document.getElementById('pwBanner').innerHTML =
-      '<div class="banner">还在用默认密码 <b>lingyun-gm</b>，任何人知道地址都能进。点右上角「改密码」换掉。</div>'; }
+      '<div class="banner">还在用首次自动生成的初始口令，建议点右上角「改密码」换掉。</div>'; }
   }).catch(function(e){ document.getElementById('loginMsg').textContent='网络错误'; });
 }
 
@@ -1054,7 +1085,7 @@ function addPet(){
   var found = CATALOG.pets.some(function(p){ return p.id===pid; });
   if(!found){ toast('图鉴里没有「'+key+'」','err'); return; }
   after(api('add_pet',{username:CUR, pet_id:pid, level:intval('petLv'),
-    elite: document.getElementById('petElite').checked, toTeam: document.getElementById('petTeam').checked}));
+    elite: document.getElementById('petElite').checked, toBag: document.getElementById('petBag').checked}));
 }
 function petLevel(uid){
   after(api('pet_level',{username:CUR, pet_id:uid, level:1500}));

@@ -1,4466 +1,4610 @@
 {
-  "tongbao": {
-    "name": "通宝",
-    "type": "防敏型",
-    "element": "金",
-    "attack": 4.8,
-    "defense": 6.4,
-    "agility": 4.8,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      30.0,
-      40.0,
-      30.0
-    ]
-  },
-  "yuanbao": {
-    "name": "元宝",
-    "type": "防敏型",
-    "element": "金",
-    "attack": 4.0,
-    "defense": 7.2,
-    "agility": 4.8,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      25.0,
-      45.0,
-      30.0
-    ]
-  },
-  "tianbao": {
-    "name": "天宝",
-    "type": "防敏型",
-    "element": "金",
-    "attack": 4.0,
-    "defense": 6.4,
-    "agility": 5.6,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      25.0,
-      40.0,
-      35.0
-    ]
-  },
-  "bianyianu": {
-    "name": "变异阿努",
-    "type": "平均型",
-    "element": "火",
-    "attack": 9.0,
-    "defense": 9.0,
-    "agility": 9.0,
-    "hp": 65.0,
-    "growth": 3.5,
-    "hp_growth": 3.5,
-    "ratio": [
-      33.0,
-      33.0,
-      34.0
-    ]
-  },
-  "feicuilong": {
-    "name": "翡翠龙",
-    "type": "平均型",
-    "element": "水",
-    "attack": 8.0,
-    "defense": 6.0,
-    "agility": 8.0,
-    "hp": 50.0,
-    "growth": 3.6,
-    "hp_growth": 3.6,
-    "ratio": [
-      35.0,
-      30.0,
-      35.0
-    ]
-  },
-  "qixitu": {
-    "name": "七夕兔",
-    "type": "平均型",
-    "element": "土",
-    "attack": 8.0,
-    "defense": 6.0,
-    "agility": 8.0,
-    "hp": 50.0,
-    "growth": 3.6,
-    "hp_growth": 3.6,
-    "ratio": [
-      35.0,
-      30.0,
-      35.0
-    ]
-  },
-  "zhongqiujinhu": {
-    "name": "中秋金虎",
-    "type": "平均型",
-    "element": "金",
-    "attack": 8.0,
-    "defense": 6.0,
-    "agility": 8.0,
-    "hp": 50.0,
-    "growth": 3.6,
-    "hp_growth": 3.6,
-    "ratio": [
-      35.0,
-      30.0,
-      35.0
-    ]
-  },
-  "nezha": {
-    "name": "哪吒",
-    "type": "平均型",
-    "element": "火",
-    "attack": 10.0,
-    "defense": 10.0,
-    "agility": 10.0,
-    "hp": 70.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      35.0,
-      30.0,
-      35.0
-    ]
-  },
-  "huangyidaonan": {
-    "name": "刀男",
-    "type": "防攻型",
-    "element": "木",
-    "attack": 13.0,
-    "defense": 16.0,
-    "agility": 1.0,
-    "hp": 80.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      44.0,
-      55.0,
-      1.0
-    ]
-  },
-  "maiduo": {
-    "name": "麦朵",
-    "type": "防攻型",
-    "element": "木",
-    "attack": 13.0,
-    "defense": 16.0,
-    "agility": 1.0,
-    "hp": 80.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      44.0,
-      55.0,
-      1.0
-    ]
-  },
-  "shuangyanzhan": {
-    "name": "双炎斩",
-    "type": "攻防型",
-    "element": "土",
-    "attack": 12.0,
-    "defense": 18.0,
-    "agility": 1.0,
-    "hp": 80.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      39.0,
-      60.0,
-      1.0
-    ]
-  },
-  "heicaishen": {
-    "name": "黑财神",
-    "type": "攻防型",
-    "element": "天",
-    "attack": 13.0,
-    "defense": 16.0,
-    "agility": 1.0,
-    "hp": 80.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      45.0,
-      54.0,
-      1.0
-    ]
-  },
-  "lianyugulong": {
-    "name": "炼狱骨龙",
-    "type": "攻敏型",
-    "element": "土",
-    "attack": 14.0,
-    "defense": 1.0,
-    "agility": 15.0,
-    "hp": 80.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      45.0,
-      1.0,
-      54.0
-    ]
-  },
-  "zhusisi": {
-    "name": "猪丝丝",
-    "type": "防御型",
-    "element": "木",
-    "attack": 1.0,
-    "defense": 28.0,
-    "agility": 1.0,
-    "hp": 80.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      1.0,
-      98.0,
-      1.0
-    ]
-  },
-  "shizizuo": {
-    "name": "狮子座",
-    "type": "攻敏型",
-    "element": "土",
-    "attack": 17.0,
-    "defense": 1.0,
-    "agility": 12.0,
-    "hp": 80.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      58.0,
-      1.0,
-      41.0
-    ]
-  },
-  "yuzu": {
-    "name": "狱卒",
-    "type": "防攻型",
-    "element": "土",
-    "attack": 13.0,
-    "defense": 16.0,
-    "agility": 1.0,
-    "hp": 80.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      45.0,
-      54.0,
-      1.0
-    ]
-  },
-  "yizhanmafu": {
-    "name": "驿站马夫",
-    "type": "攻击型",
-    "element": "金",
-    "attack": 26.0,
-    "defense": 1.0,
-    "agility": 3.0,
-    "hp": 80.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      90.0,
-      1.0,
-      9.0
-    ]
-  },
-  "kezhanmeimei": {
-    "name": "客栈妹妹",
-    "type": "防御型",
-    "element": "水",
-    "attack": 1.0,
-    "defense": 28.0,
-    "agility": 1.0,
-    "hp": 80.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      1.0,
-      98.0,
-      1.0
-    ]
-  },
-  "shaiziwangwu": {
-    "name": "骰子王五",
-    "type": "防御型",
-    "element": "火",
-    "attack": 1.0,
-    "defense": 28.0,
-    "agility": 1.0,
-    "hp": 80.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      1.0,
-      98.0,
-      1.0
-    ]
-  },
-  "songbukuai": {
-    "name": "宋捕快",
-    "type": "防御型",
-    "element": "金",
-    "attack": 1.0,
-    "defense": 28.0,
-    "agility": 1.0,
-    "hp": 80.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      1.0,
-      98.0,
-      1.0
-    ]
-  },
-  "cailin": {
-    "name": "彩鳞",
-    "type": "防攻型",
-    "element": "土",
-    "attack": 13.0,
-    "defense": 16.0,
-    "agility": 1.0,
-    "hp": 80.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      45.0,
-      54.0,
-      1.0
-    ]
-  },
-  "goumang": {
-    "name": "句芒",
-    "type": "防攻型",
-    "element": "木",
-    "attack": 13.0,
-    "defense": 16.0,
-    "agility": 1.0,
-    "hp": 80.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      44.0,
-      55.0,
-      1.0
-    ]
-  },
-  "qingqiujiuwei": {
-    "name": "青丘九尾",
-    "type": "攻敏型",
-    "element": "土",
-    "attack": 20.0,
-    "defense": 1.0,
-    "agility": 9.0,
-    "hp": 80.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      66.0,
-      1.0,
-      33.0
-    ]
-  },
-  "longzhanjiang": {
-    "name": "龙战将",
-    "type": "防攻型",
-    "element": "木",
-    "attack": 13.0,
-    "defense": 16.0,
-    "agility": 1.0,
-    "hp": 80.0,
-    "growth": 6.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      44.0,
-      55.0,
-      1.0
-    ]
-  },
-  "chulong": {
-    "name": "雏龙",
-    "type": "攻敏型",
-    "element": "火",
-    "attack": 12.0,
-    "defense": 6.0,
-    "agility": 12.0,
-    "hp": 56.0,
-    "growth": 3.6,
-    "hp_growth": 6.0,
-    "ratio": [
-      42.0,
-      16.0,
-      42.0
-    ]
-  },
-  "shalongzhiren": {
-    "name": "杀龙之刃",
-    "type": "攻敏型",
-    "element": "金",
-    "attack": 12.0,
-    "defense": 6.0,
-    "agility": 12.0,
-    "hp": 56.0,
-    "growth": 3.6,
-    "hp_growth": 6.0,
-    "ratio": [
-      42.0,
-      16.0,
-      42.0
-    ]
-  },
-  "xianrenzhang": {
-    "name": "仙人掌",
-    "type": "攻敏型",
-    "element": "木",
-    "attack": 12.0,
-    "defense": 6.0,
-    "agility": 12.0,
-    "hp": 56.0,
-    "growth": 3.6,
-    "hp_growth": 6.0,
-    "ratio": [
-      42.0,
-      16.0,
-      42.0
-    ]
-  },
-  "yinying": {
-    "name": "阴影",
-    "type": "攻敏型",
-    "element": "水",
-    "attack": 12.0,
-    "defense": 6.0,
-    "agility": 12.0,
-    "hp": 56.0,
-    "growth": 3.6,
-    "hp_growth": 6.0,
-    "ratio": [
-      42.0,
-      16.0,
-      42.0
-    ]
-  },
-  "shitouren": {
-    "name": "石头人",
-    "type": "防御型",
-    "element": "土",
-    "attack": 11.0,
-    "defense": 15.0,
-    "agility": 4.0,
-    "hp": 56.0,
-    "growth": 3.6,
-    "hp_growth": 6.0,
-    "ratio": [
-      38.0,
-      50.0,
-      12.0
-    ]
-  },
-  "huozhiyizhi": {
-    "name": "火之意志",
-    "type": "防攻型",
-    "element": "火",
-    "attack": 9.0,
-    "defense": 12.0,
-    "agility": 3.0,
-    "hp": 60.0,
-    "growth": 4.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      30.0,
-      60.0,
-      10.0
-    ]
-  },
-  "jinzhizhuzai": {
-    "name": "金之主宰",
-    "type": "防攻型",
-    "element": "金",
-    "attack": 9.0,
-    "defense": 12.0,
-    "agility": 3.0,
-    "hp": 60.0,
-    "growth": 4.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      30.0,
-      60.0,
-      10.0
-    ]
-  },
-  "muzhiguize": {
-    "name": "木之规则",
-    "type": "防攻型",
-    "element": "木",
-    "attack": 9.0,
-    "defense": 12.0,
-    "agility": 3.0,
-    "hp": 60.0,
-    "growth": 4.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      30.0,
-      60.0,
-      10.0
-    ]
-  },
-  "tuzhixianjie": {
-    "name": "土之限界",
-    "type": "防攻型",
-    "element": "土",
-    "attack": 9.0,
-    "defense": 12.0,
-    "agility": 3.0,
-    "hp": 60.0,
-    "growth": 4.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      30.0,
-      60.0,
-      10.0
-    ]
-  },
-  "shuizhizhangkong": {
-    "name": "水之掌控",
-    "type": "防攻型",
-    "element": "水",
-    "attack": 9.0,
-    "defense": 12.0,
-    "agility": 3.0,
-    "hp": 60.0,
-    "growth": 4.0,
-    "hp_growth": 6.0,
-    "ratio": [
-      30.0,
-      60.0,
-      10.0
-    ]
-  },
-  "wudidan": {
-    "name": "无敌蛋",
-    "type": "防御型",
-    "element": "金",
-    "attack": 5.6,
-    "defense": 8.0,
-    "agility": 2.4,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      35.0,
-      50.0,
-      15.0
-    ]
-  },
-  "tianshidan": {
-    "name": "天使蛋",
-    "type": "防御型",
-    "element": "金",
-    "attack": 4.8,
-    "defense": 8.8,
-    "agility": 2.4,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      55.0,
-      15.0
-    ]
-  },
-  "yaogundan": {
-    "name": "摇滚蛋",
-    "type": "防御型",
-    "element": "金",
-    "attack": 4.8,
-    "defense": 8.0,
-    "agility": 3.2,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      50.0,
-      20.0
-    ]
-  },
-  "chuanshanshou": {
-    "name": "穿山兽",
-    "type": "防攻型",
-    "element": "金",
-    "attack": 6.08,
-    "defense": 7.2,
-    "agility": 2.72,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      38.0,
-      45.0,
-      17.0
-    ]
-  },
-  "chuandishou": {
-    "name": "穿地兽",
-    "type": "防攻型",
-    "element": "金",
-    "attack": 5.28,
-    "defense": 8.0,
-    "agility": 2.72,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      50.0,
-      17.0
-    ]
-  },
-  "chuanlinshou": {
-    "name": "穿林兽",
-    "type": "防攻型",
-    "element": "金",
-    "attack": 5.28,
-    "defense": 7.2,
-    "agility": 3.52,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      45.0,
-      22.0
-    ]
-  },
-  "shenjia": {
-    "name": "神甲",
-    "type": "防御型",
-    "element": "金",
-    "attack": 5.6,
-    "defense": 8.0,
-    "agility": 2.4,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      35.0,
-      50.0,
-      15.0
-    ]
-  },
-  "mojia": {
-    "name": "魔甲",
-    "type": "防御型",
-    "element": "金",
-    "attack": 4.8,
-    "defense": 8.0,
-    "agility": 3.2,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      50.0,
-      20.0
-    ]
-  },
-  "guguai": {
-    "name": "古怪",
-    "type": "攻防型",
-    "element": "金",
-    "attack": 8.0,
-    "defense": 5.28,
-    "agility": 2.72,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      50.0,
-      33.0,
-      17.0
-    ]
-  },
-  "shenqi": {
-    "name": "神气",
-    "type": "攻防型",
-    "element": "金",
-    "attack": 7.2,
-    "defense": 6.08,
-    "agility": 2.72,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      38.0,
-      17.0
-    ]
-  },
-  "haha": {
-    "name": "哈哈",
-    "type": "攻防型",
-    "element": "金",
-    "attack": 7.2,
-    "defense": 5.28,
-    "agility": 3.52,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      33.0,
-      22.0
-    ]
-  },
-  "lingyilong": {
-    "name": "灵翼龙",
-    "type": "敏攻型",
-    "element": "金",
-    "attack": 6.08,
-    "defense": 2.72,
-    "agility": 7.2,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      38.0,
-      17.0,
-      45.0
-    ]
-  },
-  "fengyilong": {
-    "name": "风翼龙",
-    "type": "敏攻型",
-    "element": "金",
-    "attack": 5.28,
-    "defense": 3.52,
-    "agility": 7.2,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      33.0,
-      22.0,
-      45.0
-    ]
-  },
-  "qingyilong": {
-    "name": "轻翼龙",
-    "type": "敏攻型",
-    "element": "金",
-    "attack": 5.28,
-    "defense": 2.72,
-    "agility": 8.0,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      33.0,
-      17.0,
-      50.0
-    ]
-  },
-  "xiaoleigong": {
-    "name": "小雷公",
-    "type": "防御型",
-    "element": "金",
-    "attack": 5.6,
-    "defense": 8.0,
-    "agility": 2.4,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      35.0,
-      50.0,
-      15.0
-    ]
-  },
-  "xiaoleishen": {
-    "name": "小雷神",
-    "type": "防御型",
-    "element": "金",
-    "attack": 4.8,
-    "defense": 8.8,
-    "agility": 2.4,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      55.0,
-      15.0
-    ]
-  },
-  "xiaopili": {
-    "name": "小霹雳",
-    "type": "防御型",
-    "element": "金",
-    "attack": 4.8,
-    "defense": 8.0,
-    "agility": 3.2,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      50.0,
-      20.0
-    ]
-  },
-  "shuijinger": {
-    "name": "水晶儿",
-    "type": "防御型",
-    "element": "金",
-    "attack": 4.9,
-    "defense": 7.0,
-    "agility": 2.1,
-    "hp": 19.0,
-    "growth": 3.7,
-    "hp_growth": 2.3,
-    "ratio": [
-      35.0,
-      50.0,
-      15.0
-    ]
-  },
-  "jingtianshi": {
-    "name": "晶天使",
-    "type": "防攻型",
-    "element": "金",
-    "attack": 6.84,
-    "defense": 8.1,
-    "agility": 3.06,
-    "hp": 37.5,
-    "growth": 3.9,
-    "hp_growth": 3.0,
-    "ratio": [
-      38.0,
-      45.0,
-      17.0
-    ]
-  },
-  "mengjingling": {
-    "name": "梦晶灵",
-    "type": "平均型",
-    "element": "金",
-    "attack": 6.0,
-    "defense": 6.0,
-    "agility": 6.0,
-    "hp": 30.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      33.0,
-      33.0,
-      34.0
-    ]
-  },
-  "huanjinggang": {
-    "name": "幻晶刚",
-    "type": "防攻型",
-    "element": "金",
-    "attack": 5.0,
-    "defense": 8.0,
-    "agility": 3.0,
-    "hp": 30.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      35.0,
-      48.0,
-      17.0
-    ]
-  },
-  "abuluo": {
-    "name": "阿波罗",
-    "type": "攻防型",
-    "element": "木",
-    "attack": 8.0,
-    "defense": 5.28,
-    "agility": 2.72,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      50.0,
-      33.0,
-      17.0
-    ]
-  },
-  "qiuzhang": {
-    "name": "酋长",
-    "type": "攻防型",
-    "element": "木",
-    "attack": 7.2,
-    "defense": 6.08,
-    "agility": 2.72,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      38.0,
-      17.0
-    ]
-  },
-  "nawahuo": {
-    "name": "纳瓦霍",
-    "type": "攻防型",
-    "element": "木",
-    "attack": 7.2,
-    "defense": 5.28,
-    "agility": 3.52,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      33.0,
-      22.0
-    ]
-  },
-  "huahua": {
-    "name": "花花",
-    "type": "平均型",
-    "element": "木",
-    "attack": 6.24,
-    "defense": 4.8,
-    "agility": 4.96,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      39.0,
-      30.0,
-      31.0
-    ]
-  },
-  "caicai": {
-    "name": "采采",
-    "type": "平均型",
-    "element": "木",
-    "attack": 5.44,
-    "defense": 5.6,
-    "agility": 4.96,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      34.0,
-      35.0,
-      31.0
-    ]
-  },
-  "diandian": {
-    "name": "点点",
-    "type": "平均型",
-    "element": "木",
-    "attack": 5.44,
-    "defense": 4.8,
-    "agility": 5.76,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      34.0,
-      30.0,
-      36.0
-    ]
-  },
-  "quanshi": {
-    "name": "拳师",
-    "type": "攻击型",
-    "element": "木",
-    "attack": 8.8,
-    "defense": 3.52,
-    "agility": 3.68,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      55.0,
-      22.0,
-      23.0
-    ]
-  },
-  "wushi": {
-    "name": "武师",
-    "type": "攻击型",
-    "element": "木",
-    "attack": 8.0,
-    "defense": 4.32,
-    "agility": 3.68,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      50.0,
-      27.0,
-      23.0
-    ]
-  },
-  "biaoshi": {
-    "name": "镖师",
-    "type": "攻击型",
-    "element": "木",
-    "attack": 8.0,
-    "defense": 3.52,
-    "agility": 4.48,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      50.0,
-      22.0,
-      28.0
-    ]
-  },
-  "shuyao": {
-    "name": "树妖",
-    "type": "防御型",
-    "element": "木",
-    "attack": 5.6,
-    "defense": 8.0,
-    "agility": 2.4,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      35.0,
-      50.0,
-      15.0
-    ]
-  },
-  "shujing": {
-    "name": "树精",
-    "type": "防御型",
-    "element": "木",
-    "attack": 4.8,
-    "defense": 8.8,
-    "agility": 2.4,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      55.0,
-      15.0
-    ]
-  },
-  "shuguai": {
-    "name": "树怪",
-    "type": "防御型",
-    "element": "木",
-    "attack": 4.8,
-    "defense": 8.0,
-    "agility": 3.2,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      50.0,
-      20.0
-    ]
-  },
-  "tianwenfeng": {
-    "name": "天纹蜂",
-    "type": "敏攻型",
-    "element": "木",
-    "attack": 6.08,
-    "defense": 2.72,
-    "agility": 7.2,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      38.0,
-      17.0,
-      45.0
-    ]
-  },
-  "boluomi": {
-    "name": "菠萝蜜",
-    "type": "敏攻型",
-    "element": "木",
-    "attack": 5.28,
-    "defense": 3.52,
-    "agility": 7.2,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      33.0,
-      22.0,
-      45.0
-    ]
-  },
-  "dumangfeng": {
-    "name": "毒芒蜂",
-    "type": "敏攻型",
-    "element": "木",
-    "attack": 5.28,
-    "defense": 2.72,
-    "agility": 8.0,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      33.0,
-      17.0,
-      50.0
-    ]
-  },
-  "shuntian": {
-    "name": "瞬天",
-    "type": "敏捷型",
-    "element": "木",
-    "attack": 5.6,
-    "defense": 2.4,
-    "agility": 8.0,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      35.0,
-      15.0,
-      50.0
-    ]
-  },
-  "shundi": {
-    "name": "瞬地",
-    "type": "敏捷型",
-    "element": "木",
-    "attack": 4.8,
-    "defense": 3.2,
-    "agility": 8.0,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      20.0,
-      50.0
-    ]
-  },
-  "shunfeng": {
-    "name": "瞬风",
-    "type": "敏捷型",
-    "element": "木",
-    "attack": 4.8,
-    "defense": 2.4,
-    "agility": 8.8,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      15.0,
-      55.0
-    ]
-  },
-  "qiangdao": {
-    "name": "强盗",
-    "type": "攻防型",
-    "element": "木",
-    "attack": 8.0,
-    "defense": 5.28,
-    "agility": 2.72,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      50.0,
-      33.0,
-      17.0
-    ]
-  },
-  "tufei": {
-    "name": "土匪",
-    "type": "攻防型",
-    "element": "木",
-    "attack": 7.2,
-    "defense": 6.08,
-    "agility": 2.72,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      38.0,
-      17.0
-    ]
-  },
-  "shanzei": {
-    "name": "山贼",
-    "type": "攻防型",
-    "element": "木",
-    "attack": 7.2,
-    "defense": 5.28,
-    "agility": 3.52,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      33.0,
-      22.0
-    ]
-  },
-  "jifengju": {
-    "name": "疾风驹",
-    "type": "敏捷型",
-    "element": "木",
-    "attack": 5.6,
-    "defense": 2.4,
-    "agility": 8.0,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      35.0,
-      15.0,
-      50.0
-    ]
-  },
-  "zhuidianju": {
-    "name": "追电驹",
-    "type": "敏捷型",
-    "element": "木",
-    "attack": 4.8,
-    "defense": 3.2,
-    "agility": 8.0,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      20.0,
-      50.0
-    ]
-  },
-  "xunleiju": {
-    "name": "迅雷驹",
-    "type": "敏捷型",
-    "element": "木",
-    "attack": 4.8,
-    "defense": 2.4,
-    "agility": 8.8,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      15.0,
-      55.0
-    ]
-  },
-  "tiaopizai": {
-    "name": "调皮仔",
-    "type": "敏防型",
-    "element": "水",
-    "attack": 4.8,
-    "defense": 4.8,
-    "agility": 6.4,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      30.0,
-      30.0,
-      40.0
-    ]
-  },
-  "kaixinzai": {
-    "name": "开心仔",
-    "type": "敏防型",
-    "element": "水",
-    "attack": 4.0,
-    "defense": 5.6,
-    "agility": 6.4,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      25.0,
-      35.0,
-      40.0
-    ]
-  },
-  "huopozai": {
-    "name": "活泼仔",
-    "type": "敏防型",
-    "element": "水",
-    "attack": 4.0,
-    "defense": 4.8,
-    "agility": 7.2,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      25.0,
-      30.0,
-      45.0
-    ]
-  },
-  "ciluo": {
-    "name": "刺螺",
-    "type": "防攻型",
-    "element": "水",
-    "attack": 6.08,
-    "defense": 7.2,
-    "agility": 2.72,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      38.0,
-      45.0,
-      17.0
-    ]
-  },
-  "kuiluo": {
-    "name": "盔螺",
-    "type": "防攻型",
-    "element": "水",
-    "attack": 5.28,
-    "defense": 8.0,
-    "agility": 2.72,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      50.0,
-      17.0
-    ]
-  },
-  "hailuo": {
-    "name": "海螺",
-    "type": "防攻型",
-    "element": "水",
-    "attack": 5.28,
-    "defense": 7.2,
-    "agility": 3.52,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      45.0,
-      22.0
-    ]
-  },
-  "tailang": {
-    "name": "太郎",
-    "type": "平均型",
-    "element": "水",
-    "attack": 6.24,
-    "defense": 4.8,
-    "agility": 4.96,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      39.0,
-      30.0,
-      31.0
-    ]
-  },
-  "cilang": {
-    "name": "次郎",
-    "type": "平均型",
-    "element": "水",
-    "attack": 5.44,
-    "defense": 5.6,
-    "agility": 4.96,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      34.0,
-      35.0,
-      31.0
-    ]
-  },
-  "sanlang": {
-    "name": "三郎",
-    "type": "平均型",
-    "element": "水",
-    "attack": 5.44,
-    "defense": 4.8,
-    "agility": 5.76,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      34.0,
-      30.0,
-      36.0
-    ]
-  },
-  "paopaotun": {
-    "name": "泡泡豚",
-    "type": "敏捷型",
-    "element": "水",
-    "attack": 5.6,
-    "defense": 2.4,
-    "agility": 8.0,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      35.0,
-      15.0,
-      50.0
-    ]
-  },
-  "kukutun": {
-    "name": "苦苦豚",
-    "type": "敏捷型",
-    "element": "水",
-    "attack": 4.8,
-    "defense": 3.2,
-    "agility": 8.0,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      20.0,
-      50.0
-    ]
-  },
-  "xuanxuantun": {
-    "name": "玄玄豚",
-    "type": "敏捷型",
-    "element": "水",
-    "attack": 4.8,
-    "defense": 2.4,
-    "agility": 8.8,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      15.0,
-      55.0
-    ]
-  },
-  "lijian": {
-    "name": "利箭",
-    "type": "攻敏型",
-    "element": "水",
-    "attack": 8.0,
-    "defense": 2.72,
-    "agility": 5.28,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      50.0,
-      17.0,
-      33.0
-    ]
-  },
-  "zhongjian": {
-    "name": "重箭",
-    "type": "攻敏型",
-    "element": "水",
-    "attack": 7.2,
-    "defense": 3.52,
-    "agility": 5.28,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      22.0,
-      33.0
-    ]
-  },
-  "feijian": {
-    "name": "飞箭",
-    "type": "攻敏型",
-    "element": "水",
-    "attack": 7.2,
-    "defense": 2.72,
-    "agility": 6.08,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      17.0,
-      38.0
-    ]
-  },
-  "changmei": {
-    "name": "长眉",
-    "type": "防敏型",
-    "element": "水",
-    "attack": 4.8,
-    "defense": 6.4,
-    "agility": 4.8,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      30.0,
-      40.0,
-      30.0
-    ]
-  },
-  "zhimei": {
-    "name": "智眉",
-    "type": "防敏型",
-    "element": "水",
-    "attack": 4.0,
-    "defense": 7.2,
-    "agility": 4.8,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      25.0,
-      45.0,
-      30.0
-    ]
-  },
-  "shoumei": {
-    "name": "寿眉",
-    "type": "防敏型",
-    "element": "水",
-    "attack": 4.0,
-    "defense": 6.4,
-    "agility": 5.6,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      25.0,
-      40.0,
-      35.0
-    ]
-  },
-  "doudouyu": {
-    "name": "斗斗鱼",
-    "type": "敏攻型",
-    "element": "水",
-    "attack": 6.08,
-    "defense": 2.72,
-    "agility": 7.2,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      38.0,
-      17.0,
-      45.0
-    ]
-  },
-  "fandouyu": {
-    "name": "反斗鱼",
-    "type": "敏攻型",
-    "element": "水",
-    "attack": 5.28,
-    "defense": 3.52,
-    "agility": 7.2,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      33.0,
-      22.0,
-      45.0
-    ]
-  },
-  "xiudouyu": {
-    "name": "秀斗鱼",
-    "type": "敏攻型",
-    "element": "水",
-    "attack": 5.28,
-    "defense": 2.72,
-    "agility": 8.0,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      33.0,
-      17.0,
-      50.0
-    ]
-  },
-  "shangguhuangshou": {
-    "name": "上古荒兽",
-    "type": "防敏型",
-    "element": "水",
-    "attack": 4.8,
-    "defense": 6.4,
-    "agility": 4.8,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      30.0,
-      40.0,
-      30.0
-    ]
-  },
-  "taiguhuangshou": {
-    "name": "太古荒兽",
-    "type": "防敏型",
-    "element": "水",
-    "attack": 4.0,
-    "defense": 7.2,
-    "agility": 4.8,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      25.0,
-      45.0,
-      30.0
-    ]
-  },
-  "yuanguhuangshou": {
-    "name": "远古荒兽",
-    "type": "防敏型",
-    "element": "水",
-    "attack": 4.0,
-    "defense": 6.4,
-    "agility": 5.6,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      25.0,
-      40.0,
-      35.0
-    ]
-  },
-  "xingyunxing": {
-    "name": "幸运星",
-    "type": "敏防型",
-    "element": "水",
-    "attack": 4.8,
-    "defense": 4.8,
-    "agility": 6.4,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      30.0,
-      30.0,
-      40.0
-    ]
-  },
-  "jixiangxing": {
-    "name": "吉祥星",
-    "type": "敏防型",
-    "element": "水",
-    "attack": 4.0,
-    "defense": 5.6,
-    "agility": 6.4,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      25.0,
-      35.0,
-      40.0
-    ]
-  },
-  "shouhuxing": {
-    "name": "守护星",
-    "type": "敏防型",
-    "element": "水",
-    "attack": 4.0,
-    "defense": 4.8,
-    "agility": 7.2,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      25.0,
-      30.0,
-      45.0
-    ]
-  },
-  "moguiyu": {
-    "name": "魔鬼鱼",
-    "type": "敏防型",
-    "element": "水",
-    "attack": 4.8,
-    "defense": 4.8,
-    "agility": 6.4,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      30.0,
-      30.0,
-      40.0
-    ]
-  },
-  "micaiyu": {
-    "name": "迷彩鱼",
-    "type": "敏防型",
-    "element": "水",
-    "attack": 4.0,
-    "defense": 5.6,
-    "agility": 6.4,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      25.0,
-      35.0,
-      40.0
-    ]
-  },
-  "shenxianyu": {
-    "name": "神仙鱼",
-    "type": "敏防型",
-    "element": "水",
-    "attack": 4.0,
-    "defense": 4.8,
-    "agility": 7.2,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      25.0,
-      30.0,
-      45.0
-    ]
-  },
-  "bajiaozi": {
-    "name": "八脚仔",
-    "type": "敏捷型",
-    "element": "水",
-    "attack": 5.6,
-    "defense": 2.4,
-    "agility": 8.0,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      35.0,
-      15.0,
-      50.0
-    ]
-  },
-  "modoubao": {
-    "name": "墨斗宝",
-    "type": "敏捷型",
-    "element": "水",
-    "attack": 4.8,
-    "defense": 3.2,
-    "agility": 8.0,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      20.0,
-      50.0
-    ]
-  },
-  "wuyenzi": {
-    "name": "乌鱼子",
-    "type": "敏捷型",
-    "element": "水",
-    "attack": 4.8,
-    "defense": 2.4,
-    "agility": 8.8,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      15.0,
-      55.0
-    ]
-  },
-  "yezixiong": {
-    "name": "椰子熊",
-    "type": "防攻型",
-    "element": "火",
-    "attack": 6.08,
-    "defense": 7.2,
-    "agility": 2.72,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      38.0,
-      45.0,
-      17.0
-    ]
-  },
-  "bianzixiong": {
-    "name": "辫子熊",
-    "type": "防攻型",
-    "element": "火",
-    "attack": 5.28,
-    "defense": 8.0,
-    "agility": 2.72,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      50.0,
-      17.0
-    ]
-  },
-  "daizixiong": {
-    "name": "带子熊",
-    "type": "防攻型",
-    "element": "火",
-    "attack": 5.28,
-    "defense": 7.2,
-    "agility": 3.52,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      45.0,
-      22.0
-    ]
-  },
-  "dianqiubaobao": {
-    "name": "电球宝宝",
-    "type": "攻防型",
-    "element": "火",
-    "attack": 8.0,
-    "defense": 5.28,
-    "agility": 2.72,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      50.0,
-      33.0,
-      17.0
-    ]
-  },
-  "pilibaobao": {
-    "name": "霹雳宝宝",
-    "type": "攻防型",
-    "element": "火",
-    "attack": 7.2,
-    "defense": 6.08,
-    "agility": 2.72,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      38.0,
-      17.0
-    ]
-  },
-  "shandianbaobao": {
-    "name": "闪电宝宝",
-    "type": "攻防型",
-    "element": "火",
-    "attack": 7.2,
-    "defense": 5.28,
-    "agility": 3.52,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      33.0,
-      22.0
-    ]
-  },
-  "guihuojun": {
-    "name": "鬼火君",
-    "type": "攻血型",
-    "element": "火",
-    "attack": 8.8,
-    "defense": 3.52,
-    "agility": 3.68,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      55.0,
-      22.0,
-      23.0
-    ]
-  },
-  "lieyanjun": {
-    "name": "烈焰君",
-    "type": "攻血型",
-    "element": "火",
-    "attack": 8.0,
-    "defense": 4.32,
-    "agility": 3.68,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      50.0,
-      27.0,
-      23.0
-    ]
-  },
-  "yaolinjun": {
-    "name": "妖磷君",
-    "type": "攻血型",
-    "element": "火",
-    "attack": 8.0,
-    "defense": 3.52,
-    "agility": 4.48,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      50.0,
-      22.0,
-      28.0
-    ]
-  },
-  "kaolaxiong": {
-    "name": "考拉熊",
-    "type": "攻敏型",
-    "element": "火",
-    "attack": 8.0,
-    "defense": 2.72,
-    "agility": 5.28,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      50.0,
-      17.0,
-      33.0
-    ]
-  },
-  "xiaolanxiong": {
-    "name": "小懒熊",
-    "type": "攻敏型",
-    "element": "火",
-    "attack": 7.2,
-    "defense": 3.52,
-    "agility": 5.28,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      22.0,
-      33.0
-    ]
-  },
-  "bunixiong": {
-    "name": "布尼熊",
-    "type": "攻敏型",
-    "element": "火",
-    "attack": 7.2,
-    "defense": 2.72,
-    "agility": 6.08,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      17.0,
-      38.0
-    ]
-  },
-  "keke": {
-    "name": "可可",
-    "type": "攻防型",
-    "element": "火",
-    "attack": 8.0,
-    "defense": 5.28,
-    "agility": 2.72,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      50.0,
-      33.0,
-      17.0
-    ]
-  },
-  "doudou": {
-    "name": "豆豆",
-    "type": "攻防型",
-    "element": "火",
-    "attack": 7.2,
-    "defense": 6.08,
-    "agility": 2.72,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      38.0,
-      17.0
-    ]
-  },
-  "shuaishuai": {
-    "name": "帅帅",
-    "type": "攻防型",
-    "element": "火",
-    "attack": 7.2,
-    "defense": 5.28,
-    "agility": 3.52,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      33.0,
-      22.0
-    ]
-  },
-  "shanling": {
-    "name": "闪灵",
-    "type": "防攻型",
-    "element": "火",
-    "attack": 6.08,
-    "defense": 7.2,
-    "agility": 2.72,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      38.0,
-      45.0,
-      17.0
-    ]
-  },
-  "jingling": {
-    "name": "精灵",
-    "type": "防攻型",
-    "element": "火",
-    "attack": 5.28,
-    "defense": 8.0,
-    "agility": 2.72,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      50.0,
-      17.0
-    ]
-  },
-  "youling": {
-    "name": "幽灵",
-    "type": "防攻型",
-    "element": "火",
-    "attack": 5.28,
-    "defense": 7.2,
-    "agility": 3.52,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      45.0,
-      22.0
-    ]
-  },
-  "pilihuhu": {
-    "name": "霹雳虎",
-    "type": "防攻型",
-    "element": "火",
-    "attack": 6.08,
-    "defense": 7.2,
-    "agility": 2.72,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      38.0,
-      45.0,
-      17.0
-    ]
-  },
-  "banbanhu": {
-    "name": "斑斑虎",
-    "type": "防攻型",
-    "element": "火",
-    "attack": 5.28,
-    "defense": 8.0,
-    "agility": 2.72,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      50.0,
-      17.0
-    ]
-  },
-  "guaiguaihu": {
-    "name": "乖乖虎",
-    "type": "防攻型",
-    "element": "火",
-    "attack": 5.28,
-    "defense": 7.2,
-    "agility": 3.52,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      45.0,
-      22.0
-    ]
-  },
-  "linghu": {
-    "name": "灵狐",
-    "type": "平均型",
-    "element": "火",
-    "attack": 6.24,
-    "defense": 4.8,
-    "agility": 4.96,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      39.0,
-      30.0,
-      31.0
-    ]
-  },
-  "yuehu": {
-    "name": "月狐",
-    "type": "平均型",
-    "element": "火",
-    "attack": 5.44,
-    "defense": 5.6,
-    "agility": 4.96,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      34.0,
-      35.0,
-      31.0
-    ]
-  },
-  "yunhu": {
-    "name": "云狐",
-    "type": "平均型",
-    "element": "火",
-    "attack": 5.44,
-    "defense": 4.8,
-    "agility": 5.76,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      34.0,
-      30.0,
-      36.0
-    ]
-  },
-  "baiguzhanshi": {
-    "name": "白骨战士",
-    "type": "攻血型",
-    "element": "火",
-    "attack": 7.7,
-    "defense": 3.08,
-    "agility": 3.22,
-    "hp": 31.0,
-    "growth": 3.5,
-    "hp_growth": 3.1,
-    "ratio": [
-      55.0,
-      22.0,
-      23.0
-    ]
-  },
-  "kulouzhanshi": {
-    "name": "骷髅战士",
-    "type": "攻血型",
-    "element": "火",
-    "attack": 7.0,
-    "defense": 3.78,
-    "agility": 3.22,
-    "hp": 31.0,
-    "growth": 3.5,
-    "hp_growth": 3.1,
-    "ratio": [
-      50.0,
-      27.0,
-      23.0
-    ]
-  },
-  "chongshengzhanshi": {
-    "name": "重生战士",
-    "type": "攻血型",
-    "element": "火",
-    "attack": 7.0,
-    "defense": 3.08,
-    "agility": 3.92,
-    "hp": 31.0,
-    "growth": 3.5,
-    "hp_growth": 3.1,
-    "ratio": [
-      50.0,
-      22.0,
-      28.0
-    ]
-  },
-  "wanglingwushi": {
-    "name": "亡灵武士",
-    "type": "防攻型",
-    "element": "火",
-    "attack": 6.84,
-    "defense": 8.1,
-    "agility": 3.06,
-    "hp": 37.5,
-    "growth": 3.9,
-    "hp_growth": 3.0,
-    "ratio": [
-      38.0,
-      45.0,
-      17.0
-    ]
-  },
-  "silingwushi": {
-    "name": "死灵武士",
-    "type": "防攻型",
-    "element": "火",
-    "attack": 5.94,
-    "defense": 9.0,
-    "agility": 3.06,
-    "hp": 37.5,
-    "growth": 3.9,
-    "hp_growth": 3.0,
-    "ratio": [
-      33.0,
-      50.0,
-      17.0
-    ]
-  },
-  "zhonglingwushi": {
-    "name": "忠灵武士",
-    "type": "防攻型",
-    "element": "火",
-    "attack": 5.94,
-    "defense": 8.1,
-    "agility": 3.96,
-    "hp": 37.5,
-    "growth": 3.9,
-    "hp_growth": 3.0,
-    "ratio": [
-      33.0,
-      45.0,
-      22.0
-    ]
-  },
-  "zhaohunshizhe": {
-    "name": "招魂使者",
-    "type": "攻防型",
-    "element": "火",
-    "attack": 12.5,
-    "defense": 8.25,
-    "agility": 4.25,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      50.0,
-      33.0,
-      17.0
-    ]
-  },
-  "gouhunshizhe": {
-    "name": "勾魂使者",
-    "type": "攻防型",
-    "element": "火",
-    "attack": 11.25,
-    "defense": 9.5,
-    "agility": 4.25,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      45.0,
-      38.0,
-      17.0
-    ]
-  },
-  "shehunshizhe": {
-    "name": "摄魂使者",
-    "type": "攻防型",
-    "element": "火",
-    "attack": 11.25,
-    "defense": 8.25,
-    "agility": 5.5,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      45.0,
-      33.0,
-      22.0
-    ]
-  },
-  "xiaowushi": {
-    "name": "小巫师",
-    "type": "敏防型",
-    "element": "火",
-    "attack": 9.0,
-    "defense": 9.0,
-    "agility": 12.0,
-    "hp": 69.0,
-    "growth": 5.0,
-    "hp_growth": 3.5,
-    "ratio": [
-      30.0,
-      30.0,
-      40.0
-    ]
-  },
-  "xiaomoshi": {
-    "name": "小魔师",
-    "type": "敏防型",
-    "element": "火",
-    "attack": 7.5,
-    "defense": 10.5,
-    "agility": 12.0,
-    "hp": 69.0,
-    "growth": 5.0,
-    "hp_growth": 3.5,
-    "ratio": [
-      25.0,
-      35.0,
-      40.0
-    ]
-  },
-  "xiaofashi": {
-    "name": "小法师",
-    "type": "敏防型",
-    "element": "火",
-    "attack": 7.5,
-    "defense": 9.0,
-    "agility": 13.5,
-    "hp": 69.0,
-    "growth": 5.0,
-    "hp_growth": 3.5,
-    "ratio": [
-      25.0,
-      30.0,
-      45.0
-    ]
-  },
-  "xiaojiangshi": {
-    "name": "小僵尸",
-    "type": "攻防型",
-    "element": "土",
-    "attack": 8.0,
-    "defense": 5.28,
-    "agility": 2.72,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      50.0,
-      33.0,
-      17.0
-    ]
-  },
-  "tiaotiaogui": {
-    "name": "跳跳鬼",
-    "type": "攻防型",
-    "element": "土",
-    "attack": 7.2,
-    "defense": 6.08,
-    "agility": 2.72,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      38.0,
-      17.0
-    ]
-  },
-  "munaibi": {
-    "name": "木乃伊",
-    "type": "攻防型",
-    "element": "土",
-    "attack": 7.2,
-    "defense": 5.28,
-    "agility": 3.52,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      33.0,
-      22.0
-    ]
-  },
-  "wudi": {
-    "name": "巫帝",
-    "type": "防攻型",
-    "element": "土",
-    "attack": 6.08,
-    "defense": 7.2,
-    "agility": 2.72,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      38.0,
-      45.0,
-      17.0
-    ]
-  },
-  "fadi": {
-    "name": "法帝",
-    "type": "防攻型",
-    "element": "土",
-    "attack": 5.28,
-    "defense": 8.0,
-    "agility": 2.72,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      50.0,
-      17.0
-    ]
-  },
-  "modi": {
-    "name": "魔帝",
-    "type": "防攻型",
-    "element": "土",
-    "attack": 5.28,
-    "defense": 7.2,
-    "agility": 3.52,
-    "hp": 38.0,
-    "growth": 3.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      45.0,
-      22.0
-    ]
-  },
-  "fengjingzhu": {
-    "name": "风经蛛",
-    "type": "攻敏型",
-    "element": "土",
-    "attack": 8.0,
-    "defense": 2.72,
-    "agility": 5.28,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      50.0,
-      17.0,
-      33.0
-    ]
-  },
-  "diwenzhu": {
-    "name": "地纹蛛",
-    "type": "攻敏型",
-    "element": "土",
-    "attack": 7.2,
-    "defense": 3.52,
-    "agility": 5.28,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      22.0,
-      33.0
-    ]
-  },
-  "xuanweizhu": {
-    "name": "玄纬蛛",
-    "type": "攻敏型",
-    "element": "土",
-    "attack": 7.2,
-    "defense": 2.72,
-    "agility": 6.08,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      17.0,
-      38.0
-    ]
-  },
-  "chushane": {
-    "name": "出山鳄",
-    "type": "防御型",
-    "element": "土",
-    "attack": 5.6,
-    "defense": 8.0,
-    "agility": 2.4,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      35.0,
-      50.0,
-      15.0
-    ]
-  },
-  "fudie": {
-    "name": "伏地鳄",
-    "type": "防御型",
-    "element": "土",
-    "attack": 4.8,
-    "defense": 8.8,
-    "agility": 2.4,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      55.0,
-      15.0
-    ]
-  },
-  "guoxuee": {
-    "name": "过穴鳄",
-    "type": "防御型",
-    "element": "土",
-    "attack": 4.8,
-    "defense": 8.0,
-    "agility": 3.2,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      50.0,
-      20.0
-    ]
-  },
-  "fushuiqilin": {
-    "name": "伏水麒麟",
-    "type": "攻防型",
-    "element": "土",
-    "attack": 8.0,
-    "defense": 5.28,
-    "agility": 2.72,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      50.0,
-      33.0,
-      17.0
-    ]
-  },
-  "jinshuiqilin": {
-    "name": "禁水麒麟",
-    "type": "攻防型",
-    "element": "土",
-    "attack": 7.2,
-    "defense": 6.08,
-    "agility": 2.72,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      38.0,
-      17.0
-    ]
-  },
-  "zhenshuiqilin": {
-    "name": "镇水麒麟",
-    "type": "攻防型",
-    "element": "土",
-    "attack": 7.2,
-    "defense": 5.28,
-    "agility": 3.52,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      33.0,
-      22.0
-    ]
-  },
-  "chongbaobao": {
-    "name": "虫宝宝",
-    "type": "平均型",
-    "element": "土",
-    "attack": 6.24,
-    "defense": 4.8,
-    "agility": 4.96,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      39.0,
-      30.0,
-      31.0
-    ]
-  },
-  "chongbeibei": {
-    "name": "虫贝贝",
-    "type": "平均型",
-    "element": "土",
-    "attack": 5.44,
-    "defense": 5.6,
-    "agility": 4.96,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      34.0,
-      35.0,
-      31.0
-    ]
-  },
-  "xiaochong": {
-    "name": "小虫",
-    "type": "平均型",
-    "element": "土",
-    "attack": 5.44,
-    "defense": 4.8,
-    "agility": 5.76,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      34.0,
-      30.0,
-      36.0
-    ]
-  },
-  "xiaozhubite": {
-    "name": "小猪比特",
-    "type": "平均型",
-    "element": "土",
-    "attack": 5.46,
-    "defense": 4.2,
-    "agility": 4.34,
-    "hp": 25.0,
-    "growth": 3.5,
-    "hp_growth": 2.7,
-    "ratio": [
-      39.0,
-      30.0,
-      31.0
-    ]
-  },
-  "xiaozhuanante": {
-    "name": "小猪安特",
-    "type": "平均型",
-    "element": "土",
-    "attack": 4.76,
-    "defense": 4.9,
-    "agility": 4.34,
-    "hp": 25.0,
-    "growth": 3.5,
-    "hp_growth": 2.7,
-    "ratio": [
-      34.0,
-      35.0,
-      31.0
-    ]
-  },
-  "xiaozhufente": {
-    "name": "小猪芬特",
-    "type": "平均型",
-    "element": "土",
-    "attack": 4.76,
-    "defense": 4.2,
-    "agility": 5.04,
-    "hp": 25.0,
-    "growth": 3.5,
-    "hp_growth": 2.7,
-    "ratio": [
-      34.0,
-      30.0,
-      36.0
-    ]
-  },
-  "zhongshanzhu": {
-    "name": "中山猪",
-    "type": "防攻型",
-    "element": "土",
-    "attack": 6.84,
-    "defense": 8.1,
-    "agility": 3.06,
-    "hp": 37.5,
-    "growth": 3.9,
-    "hp_growth": 3.0,
-    "ratio": [
-      38.0,
-      45.0,
-      17.0
-    ]
-  },
-  "ximenzhu": {
-    "name": "西门猪",
-    "type": "防攻型",
-    "element": "土",
-    "attack": 5.94,
-    "defense": 9.0,
-    "agility": 3.06,
-    "hp": 37.5,
-    "growth": 3.9,
-    "hp_growth": 3.0,
-    "ratio": [
-      33.0,
-      50.0,
-      17.0
-    ]
-  },
-  "nangongzhu": {
-    "name": "南宫猪",
-    "type": "防攻型",
-    "element": "土",
-    "attack": 5.94,
-    "defense": 8.1,
-    "agility": 3.96,
-    "hp": 37.5,
-    "growth": 3.9,
-    "hp_growth": 3.0,
-    "ratio": [
-      33.0,
-      45.0,
-      22.0
-    ]
-  },
-  "beibatian": {
-    "name": "北霸天",
-    "type": "攻防型",
-    "element": "土",
-    "attack": 12.5,
-    "defense": 8.25,
-    "agility": 4.25,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      50.0,
-      33.0,
-      17.0
-    ]
-  },
-  "nanbatian": {
-    "name": "南霸天",
-    "type": "攻防型",
-    "element": "土",
-    "attack": 11.25,
-    "defense": 9.5,
-    "agility": 4.25,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      45.0,
-      38.0,
-      17.0
-    ]
-  },
-  "xiaobawang": {
-    "name": "小霸王",
-    "type": "攻防型",
-    "element": "土",
-    "attack": 11.25,
-    "defense": 8.25,
-    "agility": 5.5,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      45.0,
-      33.0,
-      22.0
-    ]
-  },
-  "yijie": {
-    "name": "一戒",
-    "type": "敏防型",
-    "element": "土",
-    "attack": 9.0,
-    "defense": 9.0,
-    "agility": 12.0,
-    "hp": 69.0,
-    "growth": 5.0,
-    "hp_growth": 3.5,
-    "ratio": [
-      30.0,
-      30.0,
-      40.0
-    ]
-  },
-  "bajie": {
-    "name": "八戒",
-    "type": "敏防型",
-    "element": "土",
-    "attack": 7.5,
-    "defense": 10.5,
-    "agility": 12.0,
-    "hp": 69.0,
-    "growth": 5.0,
-    "hp_growth": 3.5,
-    "ratio": [
-      25.0,
-      35.0,
-      40.0
-    ]
-  },
-  "bujie": {
-    "name": "不戒",
-    "type": "敏防型",
-    "element": "土",
-    "attack": 7.5,
-    "defense": 9.0,
-    "agility": 13.5,
-    "hp": 69.0,
-    "growth": 5.0,
-    "hp_growth": 3.5,
-    "ratio": [
-      25.0,
-      30.0,
-      45.0
-    ]
-  },
-  "kucitou": {
-    "name": "酷刺头",
-    "type": "防御型",
-    "element": "金",
-    "attack": 5.6,
-    "defense": 8.0,
-    "agility": 2.4,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      35.0,
-      50.0,
-      15.0
-    ]
-  },
-  "zhaicitou": {
-    "name": "拽刺头",
-    "type": "防御型",
-    "element": "金",
-    "attack": 4.8,
-    "defense": 8.8,
-    "agility": 2.4,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      55.0,
-      15.0
-    ]
-  },
-  "daicitou": {
-    "name": "呆刺头",
-    "type": "防御型",
-    "element": "金",
-    "attack": 4.8,
-    "defense": 8.0,
-    "agility": 3.2,
-    "hp": 26.0,
-    "growth": 4.0,
-    "hp_growth": 2.5,
-    "ratio": [
-      30.0,
-      50.0,
-      20.0
-    ]
-  },
-  "fengwu": {
-    "name": "风舞",
-    "type": "敏攻型",
-    "element": "金",
-    "attack": 6.1,
-    "defense": 2.7,
-    "agility": 7.2,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      38.0,
-      17.0,
-      45.0
-    ]
-  },
-  "duxing": {
-    "name": "铁嘴鸦",
-    "type": "敏攻型",
-    "element": "金",
-    "attack": 5.3,
-    "defense": 3.5,
-    "agility": 7.2,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      33.0,
-      22.0,
-      45.0
-    ]
-  },
-  "lanmengmeng": {
-    "name": "兰萌萌",
-    "type": "敏攻型",
-    "element": "金",
-    "attack": 5.3,
-    "defense": 2.7,
-    "agility": 8.0,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      33.0,
-      17.0,
-      50.0
-    ]
-  },
-  "baidazui": {
-    "name": "白大嘴",
-    "type": "敏攻型",
-    "element": "金",
-    "attack": 6.08,
-    "defense": 2.72,
-    "agility": 7.2,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      38.0,
-      17.0,
-      45.0
-    ]
-  },
-  "landazui": {
-    "name": "蓝大嘴",
-    "type": "敏攻型",
-    "element": "金",
-    "attack": 5.28,
-    "defense": 3.52,
-    "agility": 7.2,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      33.0,
-      22.0,
-      45.0
-    ]
-  },
-  "hongdazui": {
-    "name": "红大嘴",
-    "type": "敏攻型",
-    "element": "金",
-    "attack": 5.28,
-    "defense": 2.72,
-    "agility": 8.0,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      33.0,
-      17.0,
-      50.0
-    ]
-  },
-  "xiaojingwei": {
-    "name": "小精卫",
-    "type": "敏攻型",
-    "element": "金",
-    "attack": 5.25,
-    "defense": 2.25,
-    "agility": 7.5,
-    "hp": 21.0,
-    "growth": 3.9,
-    "hp_growth": 2.3,
-    "ratio": [
-      35.0,
-      15.0,
-      50.0
-    ]
-  },
-  "luluniao": {
-    "name": "露露鸟",
-    "type": "平均型",
-    "element": "金",
-    "attack": 5.5,
-    "defense": 4.2,
-    "agility": 4.3,
-    "hp": 25.0,
-    "growth": 3.5,
-    "hp_growth": 2.7,
-    "ratio": [
-      39.0,
-      30.0,
-      31.0
-    ]
-  },
-  "nununiao": {
-    "name": "努努鸟",
-    "type": "平均型",
-    "element": "金",
-    "attack": 4.8,
-    "defense": 4.9,
-    "agility": 4.3,
-    "hp": 25.0,
-    "growth": 3.5,
-    "hp_growth": 2.7,
-    "ratio": [
-      34.0,
-      35.0,
-      31.0
-    ]
-  },
-  "duduniao": {
-    "name": "嘟嘟鸟",
-    "type": "平均型",
-    "element": "金",
-    "attack": 4.8,
-    "defense": 4.2,
-    "agility": 5.0,
-    "hp": 25.0,
-    "growth": 3.5,
-    "hp_growth": 2.7,
-    "ratio": [
-      34.0,
-      30.0,
-      36.0
-    ]
-  },
-  "fuyejiu": {
-    "name": "拂叶鸠",
-    "type": "攻血型",
-    "element": "金",
-    "attack": 9.9,
-    "defense": 4.0,
-    "agility": 4.1,
-    "hp": 43.5,
-    "growth": 3.7,
-    "hp_growth": 3.4,
-    "ratio": [
-      55.0,
-      22.0,
-      23.0
-    ]
-  },
-  "yulujiu": {
-    "name": "浴露鸠",
-    "type": "攻血型",
-    "element": "金",
-    "attack": 9.0,
-    "defense": 4.9,
-    "agility": 4.1,
-    "hp": 43.5,
-    "growth": 3.7,
-    "hp_growth": 3.4,
-    "ratio": [
-      50.0,
-      27.0,
-      23.0
-    ]
-  },
-  "miwuju": {
-    "name": "觅雾鸠",
-    "type": "攻血型",
-    "element": "金",
-    "attack": 9.0,
-    "defense": 4.0,
-    "agility": 5.0,
-    "hp": 43.5,
-    "growth": 3.7,
-    "hp_growth": 3.4,
-    "ratio": [
-      50.0,
-      22.0,
-      28.0
-    ]
-  },
-  "xuefenghuang": {
-    "name": "雪凤凰",
-    "type": "敏攻型",
-    "element": "金",
-    "attack": 9.5,
-    "defense": 4.3,
-    "agility": 11.3,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      38.0,
-      17.0,
-      45.0
-    ]
-  },
-  "huofenghuang": {
-    "name": "火凤凰",
-    "type": "敏攻型",
-    "element": "金",
-    "attack": 8.3,
-    "defense": 5.5,
-    "agility": 11.3,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      22.0,
-      45.0
-    ]
-  },
-  "lanfenghuang": {
-    "name": "蓝凤凰",
-    "type": "敏攻型",
-    "element": "金",
-    "attack": 8.3,
-    "defense": 4.3,
-    "agility": 12.5,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      17.0,
-      50.0
-    ]
-  },
-  "feitianshu": {
-    "name": "飞天鼠",
-    "type": "敏攻型",
-    "element": "金",
-    "attack": 6.84,
-    "defense": 3.06,
-    "agility": 8.1,
-    "hp": 42.0,
-    "growth": 4.2,
-    "hp_growth": 3.3,
-    "ratio": [
-      38.0,
-      17.0,
-      45.0
-    ]
-  },
-  "qingyishu": {
-    "name": "青翼鼠",
-    "type": "敏攻型",
-    "element": "金",
-    "attack": 5.94,
-    "defense": 3.96,
-    "agility": 8.1,
-    "hp": 42.0,
-    "growth": 4.2,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      22.0,
-      45.0
-    ]
-  },
-  "fuyishu": {
-    "name": "蝠翼鼠",
-    "type": "敏攻型",
-    "element": "金",
-    "attack": 5.94,
-    "defense": 3.06,
-    "agility": 9.0,
-    "hp": 42.0,
-    "growth": 4.2,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      17.0,
-      50.0
-    ]
-  },
-  "chilong": {
-    "name": "赤龙",
-    "type": "防攻型",
-    "element": "金",
-    "attack": 11.4,
-    "defense": 13.5,
-    "agility": 5.1,
-    "hp": 69.0,
-    "growth": 5.0,
-    "hp_growth": 3.5,
-    "ratio": [
-      38.0,
-      45.0,
-      17.0
-    ]
-  },
-  "jinxielong": {
-    "name": "金蝎龙",
-    "type": "防攻型",
-    "element": "金",
-    "attack": 9.9,
-    "defense": 15.0,
-    "agility": 5.1,
-    "hp": 69.0,
-    "growth": 5.0,
-    "hp_growth": 3.5,
-    "ratio": [
-      33.0,
-      50.0,
-      17.0
-    ]
-  },
-  "lanmiaolong": {
-    "name": "蓝鸟龙",
-    "type": "防攻型",
-    "element": "金",
-    "attack": 9.9,
-    "defense": 13.5,
-    "agility": 6.6,
-    "hp": 69.0,
-    "growth": 5.0,
-    "hp_growth": 3.5,
-    "ratio": [
-      33.0,
-      45.0,
-      22.0
-    ]
-  },
-  "kubixiang": {
-    "name": "酷毙象",
-    "type": "防血型",
-    "element": "木",
-    "attack": 5.6,
-    "defense": 8.0,
-    "agility": 2.4,
-    "hp": 38.0,
-    "growth": 3.6,
-    "hp_growth": 3.3,
-    "ratio": [
-      35.0,
-      50.0,
-      15.0
-    ]
-  },
-  "shuaidaixiang": {
-    "name": "衰呆象",
-    "type": "防血型",
-    "element": "木",
-    "attack": 4.8,
-    "defense": 8.8,
-    "agility": 2.4,
-    "hp": 38.0,
-    "growth": 3.6,
-    "hp_growth": 3.3,
-    "ratio": [
-      30.0,
-      55.0,
-      15.0
-    ]
-  },
-  "minixiang": {
-    "name": "迷你象",
-    "type": "防血型",
-    "element": "木",
-    "attack": 4.8,
-    "defense": 8.0,
-    "agility": 3.2,
-    "hp": 38.0,
-    "growth": 3.6,
-    "hp_growth": 3.3,
-    "ratio": [
-      30.0,
-      50.0,
-      20.0
-    ]
-  },
-  "hongfenxiang": {
-    "name": "红粉象",
-    "type": "防攻型",
-    "element": "木",
-    "attack": 6.1,
-    "defense": 7.2,
-    "agility": 2.7,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      38.0,
-      45.0,
-      17.0
-    ]
-  },
-  "aoririquan": {
-    "name": "嗷日犬",
-    "type": "敏攻型",
-    "element": "火",
-    "attack": 8.3,
-    "defense": 5.5,
-    "agility": 11.3,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      22.0,
-      45.0
-    ]
-  },
-  "zhuiyingquan": {
-    "name": "追影犬",
-    "type": "敏攻型",
-    "element": "火",
-    "attack": 9.5,
-    "defense": 4.3,
-    "agility": 11.3,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      38.0,
-      17.0,
-      45.0
-    ]
-  },
-  "niefengquan": {
-    "name": "啮风犬",
-    "type": "敏攻型",
-    "element": "火",
-    "attack": 8.3,
-    "defense": 4.3,
-    "agility": 12.5,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      17.0,
-      50.0
-    ]
-  },
-  "duoluotianlang": {
-    "name": "堕落天狼",
-    "type": "攻击型",
-    "element": "火",
-    "attack": 13.8,
-    "defense": 5.5,
-    "agility": 5.8,
-    "hp": 50.0,
-    "growth": 4.7,
-    "hp_growth": 2.9,
-    "ratio": [
-      55.0,
-      22.0,
-      23.0
-    ]
-  },
-  "qibiantianlang": {
-    "name": "奇变天狼",
-    "type": "敏攻型",
-    "element": "火",
-    "attack": 9.5,
-    "defense": 4.3,
-    "agility": 11.3,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      38.0,
-      17.0,
-      45.0
-    ]
-  },
-  "huanbiantianlang": {
-    "name": "幻变天狼",
-    "type": "攻击型",
-    "element": "火",
-    "attack": 8.3,
-    "defense": 4.3,
-    "agility": 12.5,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      33.0,
-      17.0,
-      50.0
-    ]
-  },
-  "ouou": {
-    "name": "欧欧",
-    "type": "平均型",
-    "element": "水",
-    "attack": 5.4,
-    "defense": 4.8,
-    "agility": 5.8,
-    "hp": 32.0,
-    "growth": 3.8,
-    "hp_growth": 2.9,
-    "ratio": [
-      34.0,
-      30.0,
-      36.0
-    ]
-  },
-  "yingying": {
-    "name": "盈盈",
-    "type": "平均型",
-    "element": "水",
-    "attack": 4.8,
-    "defense": 4.9,
-    "agility": 4.3,
-    "hp": 25.0,
-    "growth": 3.5,
-    "hp_growth": 2.7,
-    "ratio": [
-      34.0,
-      35.0,
-      31.0
-    ]
-  },
-  "linlin": {
-    "name": "赤翅蛾",
-    "type": "平均型",
-    "element": "水",
-    "attack": 4.8,
-    "defense": 4.9,
-    "agility": 4.3,
-    "hp": 25.0,
-    "growth": 3.5,
-    "hp_growth": 2.7,
-    "ratio": [
-      34.0,
-      35.0,
-      31.0
-    ]
-  },
-  "zhenzhen": {
-    "name": "珍珍",
-    "type": "平均型",
-    "element": "水",
-    "attack": 4.8,
-    "defense": 4.2,
-    "agility": 5.0,
-    "hp": 25.0,
-    "growth": 3.5,
-    "hp_growth": 2.7,
-    "ratio": [
-      34.0,
-      30.0,
-      36.0
-    ]
-  },
-  "lu_lu": {
-    "name": "鲁鲁",
-    "type": "敏捷型",
-    "element": "木",
-    "attack": 4.9,
-    "defense": 2.1,
-    "agility": 7.0,
-    "hp": 19.0,
-    "growth": 3.7,
-    "hp_growth": 2.3,
-    "ratio": [
-      35.0,
-      15.0,
-      50.0
-    ]
-  },
-  "tao_tao": {
-    "name": "淘淘",
-    "type": "敏捷型",
-    "element": "木",
-    "attack": 4.2,
-    "defense": 2.8,
-    "agility": 7.0,
-    "hp": 19.0,
-    "growth": 3.7,
-    "hp_growth": 2.3,
-    "ratio": [
-      30.0,
-      20.0,
-      50.0
-    ]
-  },
-  "meng_meng": {
-    "name": "蒙蒙",
-    "type": "敏捷型",
-    "element": "木",
-    "attack": 4.2,
-    "defense": 2.1,
-    "agility": 7.7,
-    "hp": 19.0,
-    "growth": 3.7,
-    "hp_growth": 2.3,
-    "ratio": [
-      30.0,
-      15.0,
-      55.0
-    ]
-  },
-  "gang_lei_fei": {
-    "name": "刚雷狒",
-    "type": "敏捷型",
-    "element": "木",
-    "attack": 5.9,
-    "defense": 3.1,
-    "agility": 9.0,
-    "hp": 37.5,
-    "growth": 3.9,
-    "hp_growth": 3.0,
-    "ratio": [
-      33.0,
-      17.0,
-      50.0
-    ]
-  },
-  "hou_lei_fei": {
-    "name": "吼雷狒",
-    "type": "敏捷型",
-    "element": "木",
-    "attack": 5.9,
-    "defense": 4.0,
-    "agility": 8.1,
-    "hp": 37.5,
-    "growth": 3.9,
-    "hp_growth": 3.0,
-    "ratio": [
-      33.0,
-      22.0,
-      45.0
-    ]
-  },
-  "ben_lei_fei": {
-    "name": "奔雷狒",
-    "type": "敏捷型",
-    "element": "木",
-    "attack": 6.8,
-    "defense": 3.1,
-    "agility": 8.1,
-    "hp": 37.5,
-    "growth": 3.9,
-    "hp_growth": 3.0,
-    "ratio": [
-      38.0,
-      17.0,
-      45.0
-    ]
-  },
-  "zhong_yue_shen_yuan": {
-    "name": "中岳神猿",
-    "type": "攻敏型",
-    "element": "木",
-    "attack": 12.5,
-    "defense": 4.3,
-    "agility": 8.3,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      50.0,
-      17.0,
-      33.0
-    ]
-  },
-  "xi_yue_shen_yuan": {
-    "name": "西岳神猿",
-    "type": "攻敏型",
-    "element": "木",
-    "attack": 11.3,
-    "defense": 5.5,
-    "agility": 8.3,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      45.0,
-      22.0,
-      33.0
-    ]
-  },
-  "dong_yue_shen_yuan": {
-    "name": "东岳神猿",
-    "type": "攻敏型",
-    "element": "木",
-    "attack": 11.3,
-    "defense": 4.3,
-    "agility": 9.5,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      45.0,
-      17.0,
-      38.0
-    ]
-  },
-  "zhi_zun_bao": {
-    "name": "至尊宝",
-    "type": "平均型",
-    "element": "木",
-    "attack": 12.1,
-    "defense": 9.3,
-    "agility": 9.6,
-    "hp": 71.0,
-    "growth": 5.1,
-    "hp_growth": 3.5,
-    "ratio": [
-      39.0,
-      30.0,
-      31.0
-    ]
-  },
-  "zhi_zun_cao": {
-    "name": "至尊草",
-    "type": "平均型",
-    "element": "木",
-    "attack": 10.5,
-    "defense": 10.9,
-    "agility": 9.6,
-    "hp": 71.0,
-    "growth": 5.1,
-    "hp_growth": 3.5,
-    "ratio": [
-      34.0,
-      35.0,
-      31.0
-    ]
-  },
-  "zhi_zun_lin": {
-    "name": "至尊林",
-    "type": "平均型",
-    "element": "木",
-    "attack": 10.5,
-    "defense": 9.3,
-    "agility": 11.2,
-    "hp": 71.0,
-    "growth": 5.1,
-    "hp_growth": 3.5,
-    "ratio": [
-      34.0,
-      30.0,
-      36.0
-    ]
-  },
-  "yu_yi": {
-    "name": "羽衣",
-    "type": "平均型",
-    "element": "水",
-    "attack": 7.0,
-    "defense": 5.4,
-    "agility": 5.6,
-    "hp": 37.5,
-    "growth": 3.9,
-    "hp_growth": 3.0,
-    "ratio": [
-      39.0,
-      30.0,
-      31.0
-    ]
-  },
-  "ni_chang": {
-    "name": "霓裳",
-    "type": "平均型",
-    "element": "水",
-    "attack": 6.1,
-    "defense": 6.3,
-    "agility": 5.6,
-    "hp": 37.5,
-    "growth": 3.9,
-    "hp_growth": 3.0,
-    "ratio": [
-      34.0,
-      35.0,
-      31.0
-    ]
-  },
-  "ling_shan": {
-    "name": "灵衫",
-    "type": "平均型",
-    "element": "水",
-    "attack": 6.1,
-    "defense": 5.4,
-    "agility": 6.5,
-    "hp": 37.5,
-    "growth": 3.9,
-    "hp_growth": 3.0,
-    "ratio": [
-      34.0,
-      30.0,
-      36.0
-    ]
-  },
-  "fen_yi_xian_zi": {
-    "name": "粉衣仙子",
-    "type": "敏捷型",
-    "element": "水",
-    "attack": 8.8,
-    "defense": 3.8,
-    "agility": 12.5,
-    "hp": 50.0,
-    "growth": 4.7,
-    "hp_growth": 2.9,
-    "ratio": [
-      35.0,
-      15.0,
-      50.0
-    ]
-  },
-  "lv_yi_xian_zi": {
-    "name": "绿衣仙子",
-    "type": "敏捷型",
-    "element": "水",
-    "attack": 7.5,
-    "defense": 5.0,
-    "agility": 12.5,
-    "hp": 50.0,
-    "growth": 4.7,
-    "hp_growth": 2.9,
-    "ratio": [
-      30.0,
-      20.0,
-      50.0
-    ]
-  },
-  "bai_yi_xian_zi": {
-    "name": "白衣仙子",
-    "type": "敏捷型",
-    "element": "水",
-    "attack": 7.5,
-    "defense": 3.8,
-    "agility": 13.8,
-    "hp": 50.0,
-    "growth": 4.7,
-    "hp_growth": 2.9,
-    "ratio": [
-      30.0,
-      15.0,
-      55.0
-    ]
-  },
-  "dan_dan_yu": {
-    "name": "蛋蛋鱼",
-    "type": "敏捷型",
-    "element": "水",
-    "attack": 5.3,
-    "defense": 2.3,
-    "agility": 7.5,
-    "hp": 21.0,
-    "growth": 3.7,
-    "hp_growth": 2.3,
-    "ratio": [
-      35.0,
-      15.0,
-      50.0
-    ]
-  },
-  "wan_zi_yu": {
-    "name": "丸子鱼",
-    "type": "敏捷型",
-    "element": "水",
-    "attack": 4.5,
-    "defense": 3.0,
-    "agility": 7.5,
-    "hp": 21.0,
-    "growth": 3.7,
-    "hp_growth": 2.3,
-    "ratio": [
-      30.0,
-      20.0,
-      50.0
-    ]
-  },
-  "ping_pang_yu": {
-    "name": "乒乓鱼",
-    "type": "敏捷型",
-    "element": "水",
-    "attack": 4.5,
-    "defense": 2.3,
-    "agility": 8.3,
-    "hp": 21.0,
-    "growth": 3.7,
-    "hp_growth": 2.3,
-    "ratio": [
-      30.0,
-      15.0,
-      55.0
-    ]
-  },
-  "yu_wa_wa": {
-    "name": "鱼娃娃",
-    "type": "敏攻型",
-    "element": "水",
-    "attack": 6.8,
-    "defense": 3.1,
-    "agility": 8.1,
-    "hp": 36.0,
-    "growth": 3.9,
-    "hp_growth": 2.9,
-    "ratio": [
-      38.0,
-      17.0,
-      45.0
-    ]
-  },
-  "yu_niu_niu": {
-    "name": "鱼妞妞",
-    "type": "敏攻型",
-    "element": "水",
-    "attack": 5.9,
-    "defense": 4.0,
-    "agility": 8.1,
-    "hp": 36.0,
-    "growth": 3.9,
-    "hp_growth": 2.9,
-    "ratio": [
-      33.0,
-      22.0,
-      45.0
-    ]
-  },
-  "yu_mei_mei": {
-    "name": "鱼妹妹",
-    "type": "敏攻型",
-    "element": "水",
-    "attack": 5.9,
-    "defense": 3.1,
-    "agility": 9.0,
-    "hp": 36.0,
-    "growth": 3.9,
-    "hp_growth": 2.9,
-    "ratio": [
-      33.0,
-      17.0,
-      50.0
-    ]
-  },
-  "ling_bo_xian_zi": {
-    "name": "凌波仙子",
-    "type": "攻敏型",
-    "element": "水",
-    "attack": 12.5,
-    "defense": 4.3,
-    "agility": 8.3,
-    "hp": 50.0,
-    "growth": 4.5,
-    "hp_growth": 2.9,
-    "ratio": [
-      50.0,
-      17.0,
-      33.0
-    ]
-  },
-  "xi_shui_xian_zi": {
-    "name": "戏水仙子",
-    "type": "攻敏型",
-    "element": "水",
-    "attack": 11.3,
-    "defense": 5.5,
-    "agility": 8.3,
-    "hp": 50.0,
-    "growth": 4.5,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      22.0,
-      33.0
-    ]
-  },
-  "zhu_lang_xian_zi": {
-    "name": "逐浪仙子",
-    "type": "攻敏型",
-    "element": "水",
-    "attack": 11.3,
-    "defense": 4.3,
-    "agility": 9.5,
-    "hp": 50.0,
-    "growth": 4.5,
-    "hp_growth": 2.9,
-    "ratio": [
-      45.0,
-      17.0,
-      38.0
-    ]
-  },
-  "huan_yun_shou": {
-    "name": "幻云兽",
-    "type": "敏攻型",
-    "element": "水",
-    "attack": 11.4,
-    "defense": 5.1,
-    "agility": 13.5,
-    "hp": 69.0,
-    "growth": 5.0,
-    "hp_growth": 3.5,
-    "ratio": [
-      38.0,
-      17.0,
-      45.0
-    ]
-  },
-  "di_cang_shou": {
-    "name": "地藏兽",
-    "type": "敏捷型",
-    "element": "水",
-    "attack": 9.9,
-    "defense": 6.6,
-    "agility": 13.5,
-    "hp": 69.0,
-    "growth": 5.0,
-    "hp_growth": 3.5,
-    "ratio": [
-      33.0,
-      22.0,
-      45.0
-    ]
-  },
-  "ao_xue_shou": {
-    "name": "敖雪兽",
-    "type": "敏捷型",
-    "element": "水",
-    "attack": 9.9,
-    "defense": 5.1,
-    "agility": 15.0,
-    "hp": 69.0,
-    "growth": 5.0,
-    "hp_growth": 3.5,
-    "ratio": [
-      33.0,
-      17.0,
-      50.0
-    ]
-  },
-  "cong_cong": {
-    "name": "匆匆",
-    "type": "防敏型",
-    "element": "火",
-    "attack": 4.2,
-    "defense": 5.6,
-    "agility": 4.2,
-    "hp": 25.0,
-    "growth": 3.5,
-    "hp_growth": 2.7,
-    "ratio": [
-      30.0,
-      40.0,
-      30.0
-    ]
-  },
-  "xi_pi": {
-    "name": "西皮",
-    "type": "防敏型",
-    "element": "火",
-    "attack": 3.5,
-    "defense": 6.3,
-    "agility": 4.2,
-    "hp": 25.0,
-    "growth": 3.5,
-    "hp_growth": 2.7,
-    "ratio": [
-      25.0,
-      45.0,
-      30.0
-    ]
-  },
-  "wang_wang": {
-    "name": "旺旺",
-    "type": "防敏型",
-    "element": "火",
-    "attack": 3.5,
-    "defense": 5.6,
-    "agility": 4.9,
-    "hp": 25.0,
-    "growth": 3.5,
-    "hp_growth": 2.7,
-    "ratio": [
-      25.0,
-      40.0,
-      35.0
-    ]
-  },
-  "a_di_da_si": {
-    "name": "阿弟达斯",
-    "type": "防敏型",
-    "element": "火",
-    "attack": 4.8,
-    "defense": 6.4,
-    "agility": 4.8,
-    "hp": 29.0,
-    "growth": 3.5,
-    "hp_growth": 2.7,
-    "ratio": [
-      30.0,
-      40.0,
-      30.0
-    ]
-  },
-  "a_ge_liu_si": {
-    "name": "阿格留斯",
-    "type": "平均型",
-    "element": "火",
-    "attack": 7.0,
-    "defense": 5.4,
-    "agility": 5.6,
-    "hp": 36.0,
-    "growth": 3.9,
-    "hp_growth": 2.9,
-    "ratio": [
-      39.0,
-      30.0,
-      31.0
-    ]
-  },
-  "a_nu_bi_si": {
-    "name": "阿努比斯",
-    "type": "攻防型",
-    "element": "火",
-    "attack": 12.5,
-    "defense": 8.3,
-    "agility": 4.3,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      50.0,
-      33.0,
-      17.0
-    ]
-  },
-  "huo_yao_jing": {
-    "name": "火妖精",
-    "type": "攻击型",
-    "element": "火",
-    "attack": 16.5,
-    "defense": 6.6,
-    "agility": 6.9,
-    "hp": 69.0,
-    "growth": 5.0,
-    "hp_growth": 3.5,
-    "ratio": [
-      55.0,
-      22.0,
-      23.0
-    ]
-  },
-  "lv_yao": {
-    "name": "绿妖",
-    "type": "攻击型",
-    "element": "火",
-    "attack": 15.0,
-    "defense": 8.1,
-    "agility": 6.9,
-    "hp": 69.0,
-    "growth": 5.0,
-    "hp_growth": 3.5,
-    "ratio": [
-      50.0,
-      27.0,
-      23.0
-    ]
-  },
-  "zi_yi": {
-    "name": "紫衣",
-    "type": "攻击型",
-    "element": "火",
-    "attack": 15.0,
-    "defense": 6.6,
-    "agility": 8.4,
-    "hp": 69.0,
-    "growth": 5.0,
-    "hp_growth": 3.5,
-    "ratio": [
-      50.0,
-      22.0,
-      28.0
-    ]
-  },
-  "fu_di_long": {
-    "name": "伏地龙",
-    "type": "攻血型",
-    "element": "土",
-    "attack": 7.7,
-    "defense": 3.1,
-    "agility": 3.2,
-    "hp": 31.0,
-    "growth": 3.3,
-    "hp_growth": 3.1,
-    "ratio": [
-      55.0,
-      22.0,
-      23.0
-    ]
-  },
-  "wen_di_long": {
-    "name": "纹地龙",
-    "type": "攻血型",
-    "element": "土",
-    "attack": 7.0,
-    "defense": 3.8,
-    "agility": 3.2,
-    "hp": 31.0,
-    "growth": 3.3,
-    "hp_growth": 3.1,
-    "ratio": [
-      50.0,
-      27.0,
-      23.0
-    ]
-  },
-  "shun_di_long": {
-    "name": "瞬地龙",
-    "type": "攻血型",
-    "element": "土",
-    "attack": 7.0,
-    "defense": 3.1,
-    "agility": 3.9,
-    "hp": 31.0,
-    "growth": 3.3,
-    "hp_growth": 3.1,
-    "ratio": [
-      50.0,
-      22.0,
-      28.0
-    ]
-  },
-  "wu_qi_long": {
-    "name": "乌漆龙",
-    "type": "攻击型",
-    "element": "土",
-    "attack": 9.9,
-    "defense": 4.0,
-    "agility": 4.1,
-    "hp": 31.5,
-    "growth": 4.1,
-    "hp_growth": 2.6,
-    "ratio": [
-      55.0,
-      22.0,
-      23.0
-    ]
-  },
-  "bao_lan_long": {
-    "name": "暴蓝龙",
-    "type": "攻击型",
-    "element": "土",
-    "attack": 9.0,
-    "defense": 4.0,
-    "agility": 5.0,
-    "hp": 31.5,
-    "growth": 4.1,
-    "hp_growth": 2.6,
-    "ratio": [
-      50.0,
-      22.0,
-      28.0
-    ]
-  },
-  "hei_long_shi": {
-    "name": "黑龙使",
-    "type": "攻血型",
-    "element": "土",
-    "attack": 13.8,
-    "defense": 5.5,
-    "agility": 5.8,
-    "hp": 62.0,
-    "growth": 4.3,
-    "hp_growth": 3.7,
-    "ratio": [
-      55.0,
-      22.0,
-      23.0
-    ]
-  },
-  "huang_jin_long": {
-    "name": "黄金龙",
-    "type": "攻击型",
-    "element": "土",
-    "attack": 9.0,
-    "defense": 4.9,
-    "agility": 4.1,
-    "hp": 31.5,
-    "growth": 4.1,
-    "hp_growth": 2.6,
-    "ratio": [
-      50.0,
-      27.0,
-      23.0
-    ]
-  },
-  "huang_long_shi": {
-    "name": "黄龙使",
-    "type": "攻血型",
-    "element": "土",
-    "attack": 12.5,
-    "defense": 6.8,
-    "agility": 5.8,
-    "hp": 62.0,
-    "growth": 4.3,
-    "hp_growth": 3.7,
-    "ratio": [
-      50.0,
-      27.0,
-      23.0
-    ]
-  },
-  "qing_long_shi": {
-    "name": "青龙使",
-    "type": "攻血型",
-    "element": "土",
-    "attack": 12.5,
-    "defense": 5.5,
-    "agility": 7.0,
-    "hp": 62.0,
-    "growth": 4.3,
-    "hp_growth": 3.7,
-    "ratio": [
-      50.0,
-      22.0,
-      28.0
-    ]
-  },
-  "huo_lin_yi": {
-    "name": "火鳞蜴",
-    "type": "攻防型",
-    "element": "土",
-    "attack": 12.5,
-    "defense": 8.3,
-    "agility": 4.3,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      50.0,
-      33.0,
-      17.0
-    ]
-  },
-  "chi_ji_yi": {
-    "name": "赤脊蜴",
-    "type": "攻防型",
-    "element": "土",
-    "attack": 11.3,
-    "defense": 9.5,
-    "agility": 4.3,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      45.0,
-      38.0,
-      17.0
-    ]
-  },
-  "jin_jia_yi": {
-    "name": "金甲蜴",
-    "type": "攻防型",
-    "element": "土",
-    "attack": 11.3,
-    "defense": 8.3,
-    "agility": 5.5,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      45.0,
-      33.0,
-      22.0
-    ]
-  },
-  "bai_fa_she_ji": {
-    "name": "白发蛇姬",
-    "type": "攻血型",
-    "element": "土",
-    "attack": 16.5,
-    "defense": 6.6,
-    "agility": 6.9,
-    "hp": 75.0,
-    "growth": 4.9,
-    "hp_growth": 3.9,
-    "ratio": [
-      55.0,
-      22.0,
-      23.0
-    ]
-  },
-  "hong_fa_yao_ji": {
-    "name": "红发妖姬",
-    "type": "攻血型",
-    "element": "土",
-    "attack": 15.0,
-    "defense": 8.1,
-    "agility": 6.9,
-    "hp": 75.0,
-    "growth": 4.9,
-    "hp_growth": 3.9,
-    "ratio": [
-      50.0,
-      27.0,
-      23.0
-    ]
-  },
-  "lan_fa_mo_ji": {
-    "name": "蓝发魔姬",
-    "type": "攻血型",
-    "element": "土",
-    "attack": 15.0,
-    "defense": 6.6,
-    "agility": 8.4,
-    "hp": 75.0,
-    "growth": 4.9,
-    "hp_growth": 3.9,
-    "ratio": [
-      50.0,
-      22.0,
-      28.0
-    ]
-  },
-  "cang_ming_shen_nv": {
-    "name": "沧溟神女",
-    "type": "攻敏型",
-    "element": "水",
-    "attack": 15.0,
-    "defense": 5.2,
-    "agility": 9.0,
-    "hp": 62.0,
-    "growth": 4.8,
-    "hp_growth": 3.2,
-    "ratio": [
-      52.0,
-      18.0,
-      30.0
-    ]
-  },
-  "yao_shui_ling_zun": {
-    "name": "瑶水灵尊",
-    "type": "攻敏型",
-    "element": "水",
-    "attack": 14.0,
-    "defense": 6.5,
-    "agility": 8.5,
-    "hp": 65.0,
-    "growth": 4.8,
-    "hp_growth": 3.3,
-    "ratio": [
-      48.0,
-      22.0,
-      30.0
-    ]
-  },
-  "han_hai_xian_ji": {
-    "name": "瀚海仙姬",
-    "type": "攻敏型",
-    "element": "水",
-    "attack": 14.5,
-    "defense": 4.8,
-    "agility": 9.8,
-    "hp": 60.0,
-    "growth": 4.8,
-    "hp_growth": 3.1,
-    "ratio": [
-      50.0,
-      16.0,
-      34.0
-    ]
-  },
-  "chao_ji_a_nu": {
-    "name": "超级阿努",
-    "type": "攻防型",
-    "element": "火",
-    "attack": 12.5,
-    "defense": 8.3,
-    "agility": 4.3,
-    "hp": 56.0,
-    "growth": 4.5,
-    "hp_growth": 3.3,
-    "ratio": [
-      50.0,
-      33.0,
-      17.0
-    ]
-  },
-  "mengjinger": {
-    "name": "梦晶儿",
-    "type": "攻击型",
-    "element": "金",
-    "attack": 9.0,
-    "defense": 4.0,
-    "agility": 4.0,
-    "hp": 48.0,
-    "growth": 3.4,
-    "hp_growth": 3.1,
-    "ratio": [
-      52.0,
-      24.0,
-      24.0
-    ]
-  },
-  "mengtianshi": {
-    "name": "梦天使",
-    "type": "攻击型",
-    "element": "金",
-    "attack": 8.0,
-    "defense": 4.0,
-    "agility": 3.0,
-    "hp": 31.0,
-    "growth": 3.3,
-    "hp_growth": 3.4,
-    "ratio": [
-      53.0,
-      26.0,
-      21.0
-    ]
-  },
-  "mengjinggang": {
-    "name": "梦晶刚",
-    "type": "攻击型",
-    "element": "金",
-    "attack": 12.0,
-    "defense": 6.0,
-    "agility": 5.0,
-    "hp": 62.0,
-    "growth": 3.9,
-    "hp_growth": 4.0,
-    "ratio": [
-      50.0,
-      26.0,
-      24.0
-    ]
-  },
-  "liuyitianshi": {
-    "name": "六翼天使",
-    "type": "攻击型",
-    "element": "金",
-    "attack": 15.0,
-    "defense": 7.0,
-    "agility": 5.0,
-    "hp": 75.0,
-    "growth": 4.8,
-    "hp_growth": 4.3,
-    "ratio": [
-      45.0,
-      40.0,
-      15.0
-    ]
-  }
+ "tongbao": {
+  "name": "通宝",
+  "type": "防敏型",
+  "element": "金",
+  "attack": 4.8,
+  "defense": 6.4,
+  "agility": 4.8,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   30.0,
+   40.0,
+   30.0
+  ]
+ },
+ "yuanbao": {
+  "name": "元宝",
+  "type": "防敏型",
+  "element": "金",
+  "attack": 4.0,
+  "defense": 7.2,
+  "agility": 4.8,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   25.0,
+   45.0,
+   30.0
+  ]
+ },
+ "tianbao": {
+  "name": "天宝",
+  "type": "防敏型",
+  "element": "金",
+  "attack": 4.0,
+  "defense": 6.4,
+  "agility": 5.6,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   25.0,
+   40.0,
+   35.0
+  ]
+ },
+ "bianyianu": {
+  "name": "变异阿努",
+  "type": "平均型",
+  "element": "火",
+  "attack": 9.0,
+  "defense": 9.0,
+  "agility": 9.0,
+  "hp": 65.0,
+  "growth": 3.5,
+  "hp_growth": 3.5,
+  "ratio": [
+   33.0,
+   33.0,
+   34.0
+  ]
+ },
+ "feicuilong": {
+  "name": "翡翠龙",
+  "type": "平均型",
+  "element": "水",
+  "attack": 8.0,
+  "defense": 6.0,
+  "agility": 8.0,
+  "hp": 50.0,
+  "growth": 3.6,
+  "hp_growth": 3.6,
+  "ratio": [
+   35.0,
+   30.0,
+   35.0
+  ]
+ },
+ "qixitu": {
+  "name": "七夕兔",
+  "type": "平均型",
+  "element": "土",
+  "attack": 8.0,
+  "defense": 6.0,
+  "agility": 8.0,
+  "hp": 50.0,
+  "growth": 3.6,
+  "hp_growth": 3.6,
+  "ratio": [
+   35.0,
+   30.0,
+   35.0
+  ]
+ },
+ "zhongqiujinhu": {
+  "name": "中秋金虎",
+  "type": "平均型",
+  "element": "金",
+  "attack": 8.0,
+  "defense": 6.0,
+  "agility": 8.0,
+  "hp": 50.0,
+  "growth": 3.6,
+  "hp_growth": 3.6,
+  "ratio": [
+   35.0,
+   30.0,
+   35.0
+  ]
+ },
+ "ximenchuixue": {
+  "name": "西门吹雪",
+  "type": "攻防型",
+  "element": "火",
+  "attack": 15.0,
+  "defense": 14.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   51.0,
+   48.0,
+   1.0
+  ]
+ },
+ "nezha": {
+  "name": "哪吒",
+  "type": "平均型",
+  "element": "火",
+  "attack": 10.0,
+  "defense": 10.0,
+  "agility": 10.0,
+  "hp": 70.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   35.0,
+   30.0,
+   35.0
+  ]
+ },
+ "huangyidaonan": {
+  "name": "刀男",
+  "type": "防攻型",
+  "element": "木",
+  "attack": 13.0,
+  "defense": 16.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   44.0,
+   55.0,
+   1.0
+  ]
+ },
+ "zuozhu": {
+  "name": "六道影忍",
+  "type": "防攻型",
+  "element": "火",
+  "attack": 12.0,
+  "defense": 17.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   40.0,
+   59.0,
+   1.0
+  ]
+ },
+ "henrendadi": {
+  "name": "绝情大帝",
+  "type": "攻敏型",
+  "element": "木",
+  "attack": 16.0,
+  "defense": 1.0,
+  "agility": 13.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   55.0,
+   1.0,
+   44.0
+  ]
+ },
+ "liushen": {
+  "name": "青柳仙尊",
+  "type": "攻敏型",
+  "element": "木",
+  "attack": 13.0,
+  "defense": 16.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   45.0,
+   54.0,
+   1.0
+  ]
+ },
+ "maiduo": {
+  "name": "麦朵",
+  "type": "防攻型",
+  "element": "木",
+  "attack": 13.0,
+  "defense": 16.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   44.0,
+   55.0,
+   1.0
+  ]
+ },
+ "shuangyanzhan": {
+  "name": "双炎斩",
+  "type": "攻防型",
+  "element": "土",
+  "attack": 12.0,
+  "defense": 18.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   39.0,
+   60.0,
+   1.0
+  ]
+ },
+ "jiulama": {
+  "name": "九尾炎狐",
+  "type": "攻防型",
+  "element": "土",
+  "attack": 13.0,
+  "defense": 16.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   45.0,
+   53.0,
+   2.0
+  ]
+ },
+ "heicaishen": {
+  "name": "黑财神",
+  "type": "攻防型",
+  "element": "天",
+  "attack": 13.0,
+  "defense": 16.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   45.0,
+   54.0,
+   1.0
+  ]
+ },
+ "lianyugulong": {
+  "name": "炼狱骨龙",
+  "type": "攻敏型",
+  "element": "土",
+  "attack": 14.0,
+  "defense": 1.0,
+  "agility": 15.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   45.0,
+   1.0,
+   54.0
+  ]
+ },
+ "babata": {
+  "name": "星塔智灵",
+  "type": "攻敏型",
+  "element": "土",
+  "attack": 15.0,
+  "defense": 1.0,
+  "agility": 14.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   50.0,
+   1.0,
+   49.0
+  ]
+ },
+ "zhusisi": {
+  "name": "猪丝丝",
+  "type": "防御型",
+  "element": "木",
+  "attack": 1.0,
+  "defense": 28.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   1.0,
+   98.0,
+   1.0
+  ]
+ },
+ "bashen": {
+  "name": "八岐炎君",
+  "type": "攻敏型",
+  "element": "土",
+  "attack": 16.0,
+  "defense": 1.0,
+  "agility": 13.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   55.0,
+   1.0,
+   44.0
+  ]
+ },
+ "shizizuo": {
+  "name": "狮子座",
+  "type": "攻敏型",
+  "element": "土",
+  "attack": 17.0,
+  "defense": 1.0,
+  "agility": 12.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   58.0,
+   1.0,
+   41.0
+  ]
+ },
+ "yuzu": {
+  "name": "狱卒",
+  "type": "防攻型",
+  "element": "土",
+  "attack": 13.0,
+  "defense": 16.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   45.0,
+   54.0,
+   1.0
+  ]
+ },
+ "yizhanmafu": {
+  "name": "驿站马夫",
+  "type": "攻击型",
+  "element": "金",
+  "attack": 26.0,
+  "defense": 1.0,
+  "agility": 3.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   90.0,
+   1.0,
+   9.0
+  ]
+ },
+ "kezhanmeimei": {
+  "name": "客栈妹妹",
+  "type": "防御型",
+  "element": "水",
+  "attack": 1.0,
+  "defense": 28.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   1.0,
+   98.0,
+   1.0
+  ]
+ },
+ "shaiziwangwu": {
+  "name": "骰子王五",
+  "type": "防御型",
+  "element": "火",
+  "attack": 1.0,
+  "defense": 28.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   1.0,
+   98.0,
+   1.0
+  ]
+ },
+ "songbukuai": {
+  "name": "宋捕快",
+  "type": "防御型",
+  "element": "金",
+  "attack": 1.0,
+  "defense": 28.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   1.0,
+   98.0,
+   1.0
+  ]
+ },
+ "buzhihuowu": {
+  "name": "火舞姬",
+  "type": "攻敏型",
+  "element": "火",
+  "attack": 15.0,
+  "defense": 1.0,
+  "agility": 14.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   50.0,
+   1.0,
+   49.0
+  ]
+ },
+ "cailin": {
+  "name": "彩鳞",
+  "type": "防攻型",
+  "element": "土",
+  "attack": 13.0,
+  "defense": 16.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   45.0,
+   54.0,
+   1.0
+  ]
+ },
+ "youerha": {
+  "name": "白刃机娘",
+  "type": "防攻型",
+  "element": "木",
+  "attack": 14.0,
+  "defense": 16.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   47.0,
+   52.0,
+   1.0
+  ]
+ },
+ "goumang": {
+  "name": "句芒",
+  "type": "防攻型",
+  "element": "木",
+  "attack": 13.0,
+  "defense": 16.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   44.0,
+   55.0,
+   1.0
+  ]
+ },
+ "qingqiujiuwei": {
+  "name": "青丘九尾",
+  "type": "攻敏型",
+  "element": "土",
+  "attack": 20.0,
+  "defense": 1.0,
+  "agility": 9.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   66.0,
+   1.0,
+   33.0
+  ]
+ },
+ "longzhanjiang": {
+  "name": "龙战将",
+  "type": "防攻型",
+  "element": "木",
+  "attack": 13.0,
+  "defense": 16.0,
+  "agility": 1.0,
+  "hp": 80.0,
+  "growth": 6.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   44.0,
+   55.0,
+   1.0
+  ]
+ },
+ "chulong": {
+  "name": "雏龙",
+  "type": "攻敏型",
+  "element": "火",
+  "attack": 12.0,
+  "defense": 6.0,
+  "agility": 12.0,
+  "hp": 56.0,
+  "growth": 3.6,
+  "hp_growth": 6.0,
+  "ratio": [
+   42.0,
+   16.0,
+   42.0
+  ]
+ },
+ "shalongzhiren": {
+  "name": "杀龙之刃",
+  "type": "攻敏型",
+  "element": "金",
+  "attack": 12.0,
+  "defense": 6.0,
+  "agility": 12.0,
+  "hp": 56.0,
+  "growth": 3.6,
+  "hp_growth": 6.0,
+  "ratio": [
+   42.0,
+   16.0,
+   42.0
+  ]
+ },
+ "xianrenzhang": {
+  "name": "仙人掌",
+  "type": "攻敏型",
+  "element": "木",
+  "attack": 12.0,
+  "defense": 6.0,
+  "agility": 12.0,
+  "hp": 56.0,
+  "growth": 3.6,
+  "hp_growth": 6.0,
+  "ratio": [
+   42.0,
+   16.0,
+   42.0
+  ]
+ },
+ "yinying": {
+  "name": "阴影",
+  "type": "攻敏型",
+  "element": "水",
+  "attack": 12.0,
+  "defense": 6.0,
+  "agility": 12.0,
+  "hp": 56.0,
+  "growth": 3.6,
+  "hp_growth": 6.0,
+  "ratio": [
+   42.0,
+   16.0,
+   42.0
+  ]
+ },
+ "shitouren": {
+  "name": "石头人",
+  "type": "防御型",
+  "element": "土",
+  "attack": 11.0,
+  "defense": 15.0,
+  "agility": 4.0,
+  "hp": 56.0,
+  "growth": 3.6,
+  "hp_growth": 6.0,
+  "ratio": [
+   38.0,
+   50.0,
+   12.0
+  ]
+ },
+ "huozhiyizhi": {
+  "name": "火之意志",
+  "type": "防攻型",
+  "element": "火",
+  "attack": 9.0,
+  "defense": 12.0,
+  "agility": 3.0,
+  "hp": 60.0,
+  "growth": 4.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   30.0,
+   60.0,
+   10.0
+  ]
+ },
+ "jinzhizhuzai": {
+  "name": "金之主宰",
+  "type": "防攻型",
+  "element": "金",
+  "attack": 9.0,
+  "defense": 12.0,
+  "agility": 3.0,
+  "hp": 60.0,
+  "growth": 4.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   30.0,
+   60.0,
+   10.0
+  ]
+ },
+ "muzhiguize": {
+  "name": "木之规则",
+  "type": "防攻型",
+  "element": "木",
+  "attack": 9.0,
+  "defense": 12.0,
+  "agility": 3.0,
+  "hp": 60.0,
+  "growth": 4.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   30.0,
+   60.0,
+   10.0
+  ]
+ },
+ "tuzhixianjie": {
+  "name": "土之限界",
+  "type": "防攻型",
+  "element": "土",
+  "attack": 9.0,
+  "defense": 12.0,
+  "agility": 3.0,
+  "hp": 60.0,
+  "growth": 4.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   30.0,
+   60.0,
+   10.0
+  ]
+ },
+ "shuizhizhangkong": {
+  "name": "水之掌控",
+  "type": "防攻型",
+  "element": "水",
+  "attack": 9.0,
+  "defense": 12.0,
+  "agility": 3.0,
+  "hp": 60.0,
+  "growth": 4.0,
+  "hp_growth": 6.0,
+  "ratio": [
+   30.0,
+   60.0,
+   10.0
+  ]
+ },
+ "wudidan": {
+  "name": "无敌蛋",
+  "type": "防御型",
+  "element": "金",
+  "attack": 5.6,
+  "defense": 8.0,
+  "agility": 2.4,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   35.0,
+   50.0,
+   15.0
+  ]
+ },
+ "tianshidan": {
+  "name": "天使蛋",
+  "type": "防御型",
+  "element": "金",
+  "attack": 4.8,
+  "defense": 8.8,
+  "agility": 2.4,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   55.0,
+   15.0
+  ]
+ },
+ "yaogundan": {
+  "name": "摇滚蛋",
+  "type": "防御型",
+  "element": "金",
+  "attack": 4.8,
+  "defense": 8.0,
+  "agility": 3.2,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   50.0,
+   20.0
+  ]
+ },
+ "chuanshanshou": {
+  "name": "穿山兽",
+  "type": "防攻型",
+  "element": "金",
+  "attack": 6.08,
+  "defense": 7.2,
+  "agility": 2.72,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   38.0,
+   45.0,
+   17.0
+  ]
+ },
+ "chuandishou": {
+  "name": "穿地兽",
+  "type": "防攻型",
+  "element": "金",
+  "attack": 5.28,
+  "defense": 8.0,
+  "agility": 2.72,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   50.0,
+   17.0
+  ]
+ },
+ "chuanlinshou": {
+  "name": "穿林兽",
+  "type": "防攻型",
+  "element": "金",
+  "attack": 5.28,
+  "defense": 7.2,
+  "agility": 3.52,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   45.0,
+   22.0
+  ]
+ },
+ "shenjia": {
+  "name": "神甲",
+  "type": "防御型",
+  "element": "金",
+  "attack": 5.6,
+  "defense": 8.0,
+  "agility": 2.4,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   35.0,
+   50.0,
+   15.0
+  ]
+ },
+ "mojia": {
+  "name": "魔甲",
+  "type": "防御型",
+  "element": "金",
+  "attack": 4.8,
+  "defense": 8.0,
+  "agility": 3.2,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   50.0,
+   20.0
+  ]
+ },
+ "guguai": {
+  "name": "古怪",
+  "type": "攻防型",
+  "element": "金",
+  "attack": 8.0,
+  "defense": 5.28,
+  "agility": 2.72,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   50.0,
+   33.0,
+   17.0
+  ]
+ },
+ "shenqi": {
+  "name": "神气",
+  "type": "攻防型",
+  "element": "金",
+  "attack": 7.2,
+  "defense": 6.08,
+  "agility": 2.72,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   38.0,
+   17.0
+  ]
+ },
+ "haha": {
+  "name": "哈哈",
+  "type": "攻防型",
+  "element": "金",
+  "attack": 7.2,
+  "defense": 5.28,
+  "agility": 3.52,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   33.0,
+   22.0
+  ]
+ },
+ "lingyilong": {
+  "name": "灵翼龙",
+  "type": "敏攻型",
+  "element": "金",
+  "attack": 6.08,
+  "defense": 2.72,
+  "agility": 7.2,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   38.0,
+   17.0,
+   45.0
+  ]
+ },
+ "fengyilong": {
+  "name": "风翼龙",
+  "type": "敏攻型",
+  "element": "金",
+  "attack": 5.28,
+  "defense": 3.52,
+  "agility": 7.2,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   33.0,
+   22.0,
+   45.0
+  ]
+ },
+ "qingyilong": {
+  "name": "轻翼龙",
+  "type": "敏攻型",
+  "element": "金",
+  "attack": 5.28,
+  "defense": 2.72,
+  "agility": 8.0,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   33.0,
+   17.0,
+   50.0
+  ]
+ },
+ "xiaoleigong": {
+  "name": "小雷公",
+  "type": "防御型",
+  "element": "金",
+  "attack": 5.6,
+  "defense": 8.0,
+  "agility": 2.4,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   35.0,
+   50.0,
+   15.0
+  ]
+ },
+ "xiaoleishen": {
+  "name": "小雷神",
+  "type": "防御型",
+  "element": "金",
+  "attack": 4.8,
+  "defense": 8.8,
+  "agility": 2.4,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   55.0,
+   15.0
+  ]
+ },
+ "xiaopili": {
+  "name": "小霹雳",
+  "type": "防御型",
+  "element": "金",
+  "attack": 4.8,
+  "defense": 8.0,
+  "agility": 3.2,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   50.0,
+   20.0
+  ]
+ },
+ "shuijinger": {
+  "name": "水晶儿",
+  "type": "防御型",
+  "element": "金",
+  "attack": 4.9,
+  "defense": 7.0,
+  "agility": 2.1,
+  "hp": 19.0,
+  "growth": 3.7,
+  "hp_growth": 2.3,
+  "ratio": [
+   35.0,
+   50.0,
+   15.0
+  ]
+ },
+ "jingtianshi": {
+  "name": "晶天使",
+  "type": "防攻型",
+  "element": "金",
+  "attack": 6.84,
+  "defense": 8.1,
+  "agility": 3.06,
+  "hp": 37.5,
+  "growth": 3.9,
+  "hp_growth": 3.0,
+  "ratio": [
+   38.0,
+   45.0,
+   17.0
+  ]
+ },
+ "mengjingling": {
+  "name": "梦晶灵",
+  "type": "平均型",
+  "element": "金",
+  "attack": 6.0,
+  "defense": 6.0,
+  "agility": 6.0,
+  "hp": 30.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   33.0,
+   33.0,
+   34.0
+  ]
+ },
+ "huanjinggang": {
+  "name": "幻晶刚",
+  "type": "防攻型",
+  "element": "金",
+  "attack": 5.0,
+  "defense": 8.0,
+  "agility": 3.0,
+  "hp": 30.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   35.0,
+   48.0,
+   17.0
+  ]
+ },
+ "abuluo": {
+  "name": "阿波罗",
+  "type": "攻防型",
+  "element": "木",
+  "attack": 8.0,
+  "defense": 5.28,
+  "agility": 2.72,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   50.0,
+   33.0,
+   17.0
+  ]
+ },
+ "qiuzhang": {
+  "name": "酋长",
+  "type": "攻防型",
+  "element": "木",
+  "attack": 7.2,
+  "defense": 6.08,
+  "agility": 2.72,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   38.0,
+   17.0
+  ]
+ },
+ "nawahuo": {
+  "name": "纳瓦霍",
+  "type": "攻防型",
+  "element": "木",
+  "attack": 7.2,
+  "defense": 5.28,
+  "agility": 3.52,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   33.0,
+   22.0
+  ]
+ },
+ "huahua": {
+  "name": "花花",
+  "type": "平均型",
+  "element": "木",
+  "attack": 6.24,
+  "defense": 4.8,
+  "agility": 4.96,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   39.0,
+   30.0,
+   31.0
+  ]
+ },
+ "caicai": {
+  "name": "采采",
+  "type": "平均型",
+  "element": "木",
+  "attack": 5.44,
+  "defense": 5.6,
+  "agility": 4.96,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   34.0,
+   35.0,
+   31.0
+  ]
+ },
+ "diandian": {
+  "name": "点点",
+  "type": "平均型",
+  "element": "木",
+  "attack": 5.44,
+  "defense": 4.8,
+  "agility": 5.76,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   34.0,
+   30.0,
+   36.0
+  ]
+ },
+ "quanshi": {
+  "name": "拳师",
+  "type": "攻击型",
+  "element": "木",
+  "attack": 8.8,
+  "defense": 3.52,
+  "agility": 3.68,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   55.0,
+   22.0,
+   23.0
+  ]
+ },
+ "wushi": {
+  "name": "武师",
+  "type": "攻击型",
+  "element": "木",
+  "attack": 8.0,
+  "defense": 4.32,
+  "agility": 3.68,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   50.0,
+   27.0,
+   23.0
+  ]
+ },
+ "biaoshi": {
+  "name": "镖师",
+  "type": "攻击型",
+  "element": "木",
+  "attack": 8.0,
+  "defense": 3.52,
+  "agility": 4.48,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   50.0,
+   22.0,
+   28.0
+  ]
+ },
+ "shuyao": {
+  "name": "树妖",
+  "type": "防御型",
+  "element": "木",
+  "attack": 5.6,
+  "defense": 8.0,
+  "agility": 2.4,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   35.0,
+   50.0,
+   15.0
+  ]
+ },
+ "shujing": {
+  "name": "树精",
+  "type": "防御型",
+  "element": "木",
+  "attack": 4.8,
+  "defense": 8.8,
+  "agility": 2.4,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   55.0,
+   15.0
+  ]
+ },
+ "shuguai": {
+  "name": "树怪",
+  "type": "防御型",
+  "element": "木",
+  "attack": 4.8,
+  "defense": 8.0,
+  "agility": 3.2,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   50.0,
+   20.0
+  ]
+ },
+ "tianwenfeng": {
+  "name": "天纹蜂",
+  "type": "敏攻型",
+  "element": "木",
+  "attack": 6.08,
+  "defense": 2.72,
+  "agility": 7.2,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   38.0,
+   17.0,
+   45.0
+  ]
+ },
+ "boluomi": {
+  "name": "菠萝蜜",
+  "type": "敏攻型",
+  "element": "木",
+  "attack": 5.28,
+  "defense": 3.52,
+  "agility": 7.2,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   33.0,
+   22.0,
+   45.0
+  ]
+ },
+ "dumangfeng": {
+  "name": "毒芒蜂",
+  "type": "敏攻型",
+  "element": "木",
+  "attack": 5.28,
+  "defense": 2.72,
+  "agility": 8.0,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   33.0,
+   17.0,
+   50.0
+  ]
+ },
+ "shuntian": {
+  "name": "瞬天",
+  "type": "敏捷型",
+  "element": "木",
+  "attack": 5.6,
+  "defense": 2.4,
+  "agility": 8.0,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   35.0,
+   15.0,
+   50.0
+  ]
+ },
+ "shundi": {
+  "name": "瞬地",
+  "type": "敏捷型",
+  "element": "木",
+  "attack": 4.8,
+  "defense": 3.2,
+  "agility": 8.0,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   20.0,
+   50.0
+  ]
+ },
+ "shunfeng": {
+  "name": "瞬风",
+  "type": "敏捷型",
+  "element": "木",
+  "attack": 4.8,
+  "defense": 2.4,
+  "agility": 8.8,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   15.0,
+   55.0
+  ]
+ },
+ "qiangdao": {
+  "name": "强盗",
+  "type": "攻防型",
+  "element": "木",
+  "attack": 8.0,
+  "defense": 5.28,
+  "agility": 2.72,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   50.0,
+   33.0,
+   17.0
+  ]
+ },
+ "tufei": {
+  "name": "土匪",
+  "type": "攻防型",
+  "element": "木",
+  "attack": 7.2,
+  "defense": 6.08,
+  "agility": 2.72,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   38.0,
+   17.0
+  ]
+ },
+ "shanzei": {
+  "name": "山贼",
+  "type": "攻防型",
+  "element": "木",
+  "attack": 7.2,
+  "defense": 5.28,
+  "agility": 3.52,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   33.0,
+   22.0
+  ]
+ },
+ "jifengju": {
+  "name": "疾风驹",
+  "type": "敏捷型",
+  "element": "木",
+  "attack": 5.6,
+  "defense": 2.4,
+  "agility": 8.0,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   35.0,
+   15.0,
+   50.0
+  ]
+ },
+ "zhuidianju": {
+  "name": "追电驹",
+  "type": "敏捷型",
+  "element": "木",
+  "attack": 4.8,
+  "defense": 3.2,
+  "agility": 8.0,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   20.0,
+   50.0
+  ]
+ },
+ "xunleiju": {
+  "name": "迅雷驹",
+  "type": "敏捷型",
+  "element": "木",
+  "attack": 4.8,
+  "defense": 2.4,
+  "agility": 8.8,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   15.0,
+   55.0
+  ]
+ },
+ "tiaopizai": {
+  "name": "调皮仔",
+  "type": "敏防型",
+  "element": "水",
+  "attack": 4.8,
+  "defense": 4.8,
+  "agility": 6.4,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   30.0,
+   30.0,
+   40.0
+  ]
+ },
+ "kaixinzai": {
+  "name": "开心仔",
+  "type": "敏防型",
+  "element": "水",
+  "attack": 4.0,
+  "defense": 5.6,
+  "agility": 6.4,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   25.0,
+   35.0,
+   40.0
+  ]
+ },
+ "huopozai": {
+  "name": "活泼仔",
+  "type": "敏防型",
+  "element": "水",
+  "attack": 4.0,
+  "defense": 4.8,
+  "agility": 7.2,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   25.0,
+   30.0,
+   45.0
+  ]
+ },
+ "ciluo": {
+  "name": "刺螺",
+  "type": "防攻型",
+  "element": "水",
+  "attack": 6.08,
+  "defense": 7.2,
+  "agility": 2.72,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   38.0,
+   45.0,
+   17.0
+  ]
+ },
+ "kuiluo": {
+  "name": "盔螺",
+  "type": "防攻型",
+  "element": "水",
+  "attack": 5.28,
+  "defense": 8.0,
+  "agility": 2.72,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   50.0,
+   17.0
+  ]
+ },
+ "hailuo": {
+  "name": "海螺",
+  "type": "防攻型",
+  "element": "水",
+  "attack": 5.28,
+  "defense": 7.2,
+  "agility": 3.52,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   45.0,
+   22.0
+  ]
+ },
+ "tailang": {
+  "name": "太郎",
+  "type": "平均型",
+  "element": "水",
+  "attack": 6.24,
+  "defense": 4.8,
+  "agility": 4.96,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   39.0,
+   30.0,
+   31.0
+  ]
+ },
+ "cilang": {
+  "name": "次郎",
+  "type": "平均型",
+  "element": "水",
+  "attack": 5.44,
+  "defense": 5.6,
+  "agility": 4.96,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   34.0,
+   35.0,
+   31.0
+  ]
+ },
+ "sanlang": {
+  "name": "三郎",
+  "type": "平均型",
+  "element": "水",
+  "attack": 5.44,
+  "defense": 4.8,
+  "agility": 5.76,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   34.0,
+   30.0,
+   36.0
+  ]
+ },
+ "paopaotun": {
+  "name": "泡泡豚",
+  "type": "敏捷型",
+  "element": "水",
+  "attack": 5.6,
+  "defense": 2.4,
+  "agility": 8.0,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   35.0,
+   15.0,
+   50.0
+  ]
+ },
+ "kukutun": {
+  "name": "苦苦豚",
+  "type": "敏捷型",
+  "element": "水",
+  "attack": 4.8,
+  "defense": 3.2,
+  "agility": 8.0,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   20.0,
+   50.0
+  ]
+ },
+ "xuanxuantun": {
+  "name": "玄玄豚",
+  "type": "敏捷型",
+  "element": "水",
+  "attack": 4.8,
+  "defense": 2.4,
+  "agility": 8.8,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   15.0,
+   55.0
+  ]
+ },
+ "lijian": {
+  "name": "利箭",
+  "type": "攻敏型",
+  "element": "水",
+  "attack": 8.0,
+  "defense": 2.72,
+  "agility": 5.28,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   50.0,
+   17.0,
+   33.0
+  ]
+ },
+ "zhongjian": {
+  "name": "重箭",
+  "type": "攻敏型",
+  "element": "水",
+  "attack": 7.2,
+  "defense": 3.52,
+  "agility": 5.28,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   22.0,
+   33.0
+  ]
+ },
+ "feijian": {
+  "name": "飞箭",
+  "type": "攻敏型",
+  "element": "水",
+  "attack": 7.2,
+  "defense": 2.72,
+  "agility": 6.08,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   17.0,
+   38.0
+  ]
+ },
+ "changmei": {
+  "name": "长眉",
+  "type": "防敏型",
+  "element": "水",
+  "attack": 4.8,
+  "defense": 6.4,
+  "agility": 4.8,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   30.0,
+   40.0,
+   30.0
+  ]
+ },
+ "zhimei": {
+  "name": "智眉",
+  "type": "防敏型",
+  "element": "水",
+  "attack": 4.0,
+  "defense": 7.2,
+  "agility": 4.8,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   25.0,
+   45.0,
+   30.0
+  ]
+ },
+ "shoumei": {
+  "name": "寿眉",
+  "type": "防敏型",
+  "element": "水",
+  "attack": 4.0,
+  "defense": 6.4,
+  "agility": 5.6,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   25.0,
+   40.0,
+   35.0
+  ]
+ },
+ "doudouyu": {
+  "name": "斗斗鱼",
+  "type": "敏攻型",
+  "element": "水",
+  "attack": 6.08,
+  "defense": 2.72,
+  "agility": 7.2,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   38.0,
+   17.0,
+   45.0
+  ]
+ },
+ "fandouyu": {
+  "name": "反斗鱼",
+  "type": "敏攻型",
+  "element": "水",
+  "attack": 5.28,
+  "defense": 3.52,
+  "agility": 7.2,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   33.0,
+   22.0,
+   45.0
+  ]
+ },
+ "xiudouyu": {
+  "name": "秀斗鱼",
+  "type": "敏攻型",
+  "element": "水",
+  "attack": 5.28,
+  "defense": 2.72,
+  "agility": 8.0,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   33.0,
+   17.0,
+   50.0
+  ]
+ },
+ "shangguhuangshou": {
+  "name": "上古荒兽",
+  "type": "防敏型",
+  "element": "水",
+  "attack": 4.8,
+  "defense": 6.4,
+  "agility": 4.8,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   30.0,
+   40.0,
+   30.0
+  ]
+ },
+ "taiguhuangshou": {
+  "name": "太古荒兽",
+  "type": "防敏型",
+  "element": "水",
+  "attack": 4.0,
+  "defense": 7.2,
+  "agility": 4.8,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   25.0,
+   45.0,
+   30.0
+  ]
+ },
+ "yuanguhuangshou": {
+  "name": "远古荒兽",
+  "type": "防敏型",
+  "element": "水",
+  "attack": 4.0,
+  "defense": 6.4,
+  "agility": 5.6,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   25.0,
+   40.0,
+   35.0
+  ]
+ },
+ "xingyunxing": {
+  "name": "幸运星",
+  "type": "敏防型",
+  "element": "水",
+  "attack": 4.8,
+  "defense": 4.8,
+  "agility": 6.4,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   30.0,
+   30.0,
+   40.0
+  ]
+ },
+ "jixiangxing": {
+  "name": "吉祥星",
+  "type": "敏防型",
+  "element": "水",
+  "attack": 4.0,
+  "defense": 5.6,
+  "agility": 6.4,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   25.0,
+   35.0,
+   40.0
+  ]
+ },
+ "shouhuxing": {
+  "name": "守护星",
+  "type": "敏防型",
+  "element": "水",
+  "attack": 4.0,
+  "defense": 4.8,
+  "agility": 7.2,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   25.0,
+   30.0,
+   45.0
+  ]
+ },
+ "moguiyu": {
+  "name": "魔鬼鱼",
+  "type": "敏防型",
+  "element": "水",
+  "attack": 4.8,
+  "defense": 4.8,
+  "agility": 6.4,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   30.0,
+   30.0,
+   40.0
+  ]
+ },
+ "micaiyu": {
+  "name": "迷彩鱼",
+  "type": "敏防型",
+  "element": "水",
+  "attack": 4.0,
+  "defense": 5.6,
+  "agility": 6.4,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   25.0,
+   35.0,
+   40.0
+  ]
+ },
+ "shenxianyu": {
+  "name": "神仙鱼",
+  "type": "敏防型",
+  "element": "水",
+  "attack": 4.0,
+  "defense": 4.8,
+  "agility": 7.2,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   25.0,
+   30.0,
+   45.0
+  ]
+ },
+ "bajiaozi": {
+  "name": "八脚仔",
+  "type": "敏捷型",
+  "element": "水",
+  "attack": 5.6,
+  "defense": 2.4,
+  "agility": 8.0,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   35.0,
+   15.0,
+   50.0
+  ]
+ },
+ "modoubao": {
+  "name": "墨斗宝",
+  "type": "敏捷型",
+  "element": "水",
+  "attack": 4.8,
+  "defense": 3.2,
+  "agility": 8.0,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   20.0,
+   50.0
+  ]
+ },
+ "wuyenzi": {
+  "name": "乌鱼子",
+  "type": "敏捷型",
+  "element": "水",
+  "attack": 4.8,
+  "defense": 2.4,
+  "agility": 8.8,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   15.0,
+   55.0
+  ]
+ },
+ "yezixiong": {
+  "name": "椰子熊",
+  "type": "防攻型",
+  "element": "火",
+  "attack": 6.08,
+  "defense": 7.2,
+  "agility": 2.72,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   38.0,
+   45.0,
+   17.0
+  ]
+ },
+ "bianzixiong": {
+  "name": "辫子熊",
+  "type": "防攻型",
+  "element": "火",
+  "attack": 5.28,
+  "defense": 8.0,
+  "agility": 2.72,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   50.0,
+   17.0
+  ]
+ },
+ "daizixiong": {
+  "name": "带子熊",
+  "type": "防攻型",
+  "element": "火",
+  "attack": 5.28,
+  "defense": 7.2,
+  "agility": 3.52,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   45.0,
+   22.0
+  ]
+ },
+ "dianqiubaobao": {
+  "name": "电球宝宝",
+  "type": "攻防型",
+  "element": "火",
+  "attack": 8.0,
+  "defense": 5.28,
+  "agility": 2.72,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   50.0,
+   33.0,
+   17.0
+  ]
+ },
+ "pilibaobao": {
+  "name": "霹雳宝宝",
+  "type": "攻防型",
+  "element": "火",
+  "attack": 7.2,
+  "defense": 6.08,
+  "agility": 2.72,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   38.0,
+   17.0
+  ]
+ },
+ "shandianbaobao": {
+  "name": "闪电宝宝",
+  "type": "攻防型",
+  "element": "火",
+  "attack": 7.2,
+  "defense": 5.28,
+  "agility": 3.52,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   33.0,
+   22.0
+  ]
+ },
+ "guihuojun": {
+  "name": "鬼火君",
+  "type": "攻血型",
+  "element": "火",
+  "attack": 8.8,
+  "defense": 3.52,
+  "agility": 3.68,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   55.0,
+   22.0,
+   23.0
+  ]
+ },
+ "lieyanjun": {
+  "name": "烈焰君",
+  "type": "攻血型",
+  "element": "火",
+  "attack": 8.0,
+  "defense": 4.32,
+  "agility": 3.68,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   50.0,
+   27.0,
+   23.0
+  ]
+ },
+ "yaolinjun": {
+  "name": "妖磷君",
+  "type": "攻血型",
+  "element": "火",
+  "attack": 8.0,
+  "defense": 3.52,
+  "agility": 4.48,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   50.0,
+   22.0,
+   28.0
+  ]
+ },
+ "kaolaxiong": {
+  "name": "考拉熊",
+  "type": "攻敏型",
+  "element": "火",
+  "attack": 8.0,
+  "defense": 2.72,
+  "agility": 5.28,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   50.0,
+   17.0,
+   33.0
+  ]
+ },
+ "xiaolanxiong": {
+  "name": "小懒熊",
+  "type": "攻敏型",
+  "element": "火",
+  "attack": 7.2,
+  "defense": 3.52,
+  "agility": 5.28,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   22.0,
+   33.0
+  ]
+ },
+ "bunixiong": {
+  "name": "布尼熊",
+  "type": "攻敏型",
+  "element": "火",
+  "attack": 7.2,
+  "defense": 2.72,
+  "agility": 6.08,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   17.0,
+   38.0
+  ]
+ },
+ "keke": {
+  "name": "可可",
+  "type": "攻防型",
+  "element": "火",
+  "attack": 8.0,
+  "defense": 5.28,
+  "agility": 2.72,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   50.0,
+   33.0,
+   17.0
+  ]
+ },
+ "doudou": {
+  "name": "豆豆",
+  "type": "攻防型",
+  "element": "火",
+  "attack": 7.2,
+  "defense": 6.08,
+  "agility": 2.72,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   38.0,
+   17.0
+  ]
+ },
+ "shuaishuai": {
+  "name": "帅帅",
+  "type": "攻防型",
+  "element": "火",
+  "attack": 7.2,
+  "defense": 5.28,
+  "agility": 3.52,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   33.0,
+   22.0
+  ]
+ },
+ "shanling": {
+  "name": "闪灵",
+  "type": "防攻型",
+  "element": "火",
+  "attack": 6.08,
+  "defense": 7.2,
+  "agility": 2.72,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   38.0,
+   45.0,
+   17.0
+  ]
+ },
+ "jingling": {
+  "name": "精灵",
+  "type": "防攻型",
+  "element": "火",
+  "attack": 5.28,
+  "defense": 8.0,
+  "agility": 2.72,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   50.0,
+   17.0
+  ]
+ },
+ "youling": {
+  "name": "幽灵",
+  "type": "防攻型",
+  "element": "火",
+  "attack": 5.28,
+  "defense": 7.2,
+  "agility": 3.52,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   45.0,
+   22.0
+  ]
+ },
+ "pilihuhu": {
+  "name": "霹雳虎",
+  "type": "防攻型",
+  "element": "火",
+  "attack": 6.08,
+  "defense": 7.2,
+  "agility": 2.72,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   38.0,
+   45.0,
+   17.0
+  ]
+ },
+ "banbanhu": {
+  "name": "斑斑虎",
+  "type": "防攻型",
+  "element": "火",
+  "attack": 5.28,
+  "defense": 8.0,
+  "agility": 2.72,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   50.0,
+   17.0
+  ]
+ },
+ "guaiguaihu": {
+  "name": "乖乖虎",
+  "type": "防攻型",
+  "element": "火",
+  "attack": 5.28,
+  "defense": 7.2,
+  "agility": 3.52,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   45.0,
+   22.0
+  ]
+ },
+ "linghu": {
+  "name": "灵狐",
+  "type": "平均型",
+  "element": "火",
+  "attack": 6.24,
+  "defense": 4.8,
+  "agility": 4.96,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   39.0,
+   30.0,
+   31.0
+  ]
+ },
+ "yuehu": {
+  "name": "月狐",
+  "type": "平均型",
+  "element": "火",
+  "attack": 5.44,
+  "defense": 5.6,
+  "agility": 4.96,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   34.0,
+   35.0,
+   31.0
+  ]
+ },
+ "yunhu": {
+  "name": "云狐",
+  "type": "平均型",
+  "element": "火",
+  "attack": 5.44,
+  "defense": 4.8,
+  "agility": 5.76,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   34.0,
+   30.0,
+   36.0
+  ]
+ },
+ "baiguzhanshi": {
+  "name": "白骨战士",
+  "type": "攻血型",
+  "element": "火",
+  "attack": 7.7,
+  "defense": 3.08,
+  "agility": 3.22,
+  "hp": 31.0,
+  "growth": 3.5,
+  "hp_growth": 3.1,
+  "ratio": [
+   55.0,
+   22.0,
+   23.0
+  ]
+ },
+ "kulouzhanshi": {
+  "name": "骷髅战士",
+  "type": "攻血型",
+  "element": "火",
+  "attack": 7.0,
+  "defense": 3.78,
+  "agility": 3.22,
+  "hp": 31.0,
+  "growth": 3.5,
+  "hp_growth": 3.1,
+  "ratio": [
+   50.0,
+   27.0,
+   23.0
+  ]
+ },
+ "chongshengzhanshi": {
+  "name": "重生战士",
+  "type": "攻血型",
+  "element": "火",
+  "attack": 7.0,
+  "defense": 3.08,
+  "agility": 3.92,
+  "hp": 31.0,
+  "growth": 3.5,
+  "hp_growth": 3.1,
+  "ratio": [
+   50.0,
+   22.0,
+   28.0
+  ]
+ },
+ "wanglingwushi": {
+  "name": "亡灵武士",
+  "type": "防攻型",
+  "element": "火",
+  "attack": 6.84,
+  "defense": 8.1,
+  "agility": 3.06,
+  "hp": 37.5,
+  "growth": 3.9,
+  "hp_growth": 3.0,
+  "ratio": [
+   38.0,
+   45.0,
+   17.0
+  ]
+ },
+ "silingwushi": {
+  "name": "死灵武士",
+  "type": "防攻型",
+  "element": "火",
+  "attack": 5.94,
+  "defense": 9.0,
+  "agility": 3.06,
+  "hp": 37.5,
+  "growth": 3.9,
+  "hp_growth": 3.0,
+  "ratio": [
+   33.0,
+   50.0,
+   17.0
+  ]
+ },
+ "zhonglingwushi": {
+  "name": "忠灵武士",
+  "type": "防攻型",
+  "element": "火",
+  "attack": 5.94,
+  "defense": 8.1,
+  "agility": 3.96,
+  "hp": 37.5,
+  "growth": 3.9,
+  "hp_growth": 3.0,
+  "ratio": [
+   33.0,
+   45.0,
+   22.0
+  ]
+ },
+ "zhaohunshizhe": {
+  "name": "招魂使者",
+  "type": "攻防型",
+  "element": "火",
+  "attack": 12.5,
+  "defense": 8.25,
+  "agility": 4.25,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   50.0,
+   33.0,
+   17.0
+  ]
+ },
+ "gouhunshizhe": {
+  "name": "勾魂使者",
+  "type": "攻防型",
+  "element": "火",
+  "attack": 11.25,
+  "defense": 9.5,
+  "agility": 4.25,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   45.0,
+   38.0,
+   17.0
+  ]
+ },
+ "shehunshizhe": {
+  "name": "摄魂使者",
+  "type": "攻防型",
+  "element": "火",
+  "attack": 11.25,
+  "defense": 8.25,
+  "agility": 5.5,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   45.0,
+   33.0,
+   22.0
+  ]
+ },
+ "xiaowushi": {
+  "name": "小巫师",
+  "type": "敏防型",
+  "element": "火",
+  "attack": 9.0,
+  "defense": 9.0,
+  "agility": 12.0,
+  "hp": 69.0,
+  "growth": 5.0,
+  "hp_growth": 3.5,
+  "ratio": [
+   30.0,
+   30.0,
+   40.0
+  ]
+ },
+ "xiaomoshi": {
+  "name": "小魔师",
+  "type": "敏防型",
+  "element": "火",
+  "attack": 7.5,
+  "defense": 10.5,
+  "agility": 12.0,
+  "hp": 69.0,
+  "growth": 5.0,
+  "hp_growth": 3.5,
+  "ratio": [
+   25.0,
+   35.0,
+   40.0
+  ]
+ },
+ "xiaofashi": {
+  "name": "小法师",
+  "type": "敏防型",
+  "element": "火",
+  "attack": 7.5,
+  "defense": 9.0,
+  "agility": 13.5,
+  "hp": 69.0,
+  "growth": 5.0,
+  "hp_growth": 3.5,
+  "ratio": [
+   25.0,
+   30.0,
+   45.0
+  ]
+ },
+ "xiaojiangshi": {
+  "name": "小僵尸",
+  "type": "攻防型",
+  "element": "土",
+  "attack": 8.0,
+  "defense": 5.28,
+  "agility": 2.72,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   50.0,
+   33.0,
+   17.0
+  ]
+ },
+ "tiaotiaogui": {
+  "name": "跳跳鬼",
+  "type": "攻防型",
+  "element": "土",
+  "attack": 7.2,
+  "defense": 6.08,
+  "agility": 2.72,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   38.0,
+   17.0
+  ]
+ },
+ "munaibi": {
+  "name": "木乃伊",
+  "type": "攻防型",
+  "element": "土",
+  "attack": 7.2,
+  "defense": 5.28,
+  "agility": 3.52,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   33.0,
+   22.0
+  ]
+ },
+ "wudi": {
+  "name": "巫帝",
+  "type": "防攻型",
+  "element": "土",
+  "attack": 6.08,
+  "defense": 7.2,
+  "agility": 2.72,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   38.0,
+   45.0,
+   17.0
+  ]
+ },
+ "fadi": {
+  "name": "法帝",
+  "type": "防攻型",
+  "element": "土",
+  "attack": 5.28,
+  "defense": 8.0,
+  "agility": 2.72,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   50.0,
+   17.0
+  ]
+ },
+ "modi": {
+  "name": "魔帝",
+  "type": "防攻型",
+  "element": "土",
+  "attack": 5.28,
+  "defense": 7.2,
+  "agility": 3.52,
+  "hp": 38.0,
+  "growth": 3.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   45.0,
+   22.0
+  ]
+ },
+ "fengjingzhu": {
+  "name": "风经蛛",
+  "type": "攻敏型",
+  "element": "土",
+  "attack": 8.0,
+  "defense": 2.72,
+  "agility": 5.28,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   50.0,
+   17.0,
+   33.0
+  ]
+ },
+ "diwenzhu": {
+  "name": "地纹蛛",
+  "type": "攻敏型",
+  "element": "土",
+  "attack": 7.2,
+  "defense": 3.52,
+  "agility": 5.28,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   22.0,
+   33.0
+  ]
+ },
+ "xuanweizhu": {
+  "name": "玄纬蛛",
+  "type": "攻敏型",
+  "element": "土",
+  "attack": 7.2,
+  "defense": 2.72,
+  "agility": 6.08,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   17.0,
+   38.0
+  ]
+ },
+ "chushane": {
+  "name": "出山鳄",
+  "type": "防御型",
+  "element": "土",
+  "attack": 5.6,
+  "defense": 8.0,
+  "agility": 2.4,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   35.0,
+   50.0,
+   15.0
+  ]
+ },
+ "fudie": {
+  "name": "伏地鳄",
+  "type": "防御型",
+  "element": "土",
+  "attack": 4.8,
+  "defense": 8.8,
+  "agility": 2.4,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   55.0,
+   15.0
+  ]
+ },
+ "guoxuee": {
+  "name": "过穴鳄",
+  "type": "防御型",
+  "element": "土",
+  "attack": 4.8,
+  "defense": 8.0,
+  "agility": 3.2,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   50.0,
+   20.0
+  ]
+ },
+ "fushuiqilin": {
+  "name": "伏水麒麟",
+  "type": "攻防型",
+  "element": "土",
+  "attack": 8.0,
+  "defense": 5.28,
+  "agility": 2.72,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   50.0,
+   33.0,
+   17.0
+  ]
+ },
+ "jinshuiqilin": {
+  "name": "禁水麒麟",
+  "type": "攻防型",
+  "element": "土",
+  "attack": 7.2,
+  "defense": 6.08,
+  "agility": 2.72,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   38.0,
+   17.0
+  ]
+ },
+ "zhenshuiqilin": {
+  "name": "镇水麒麟",
+  "type": "攻防型",
+  "element": "土",
+  "attack": 7.2,
+  "defense": 5.28,
+  "agility": 3.52,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   33.0,
+   22.0
+  ]
+ },
+ "chongbaobao": {
+  "name": "虫宝宝",
+  "type": "平均型",
+  "element": "土",
+  "attack": 6.24,
+  "defense": 4.8,
+  "agility": 4.96,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   39.0,
+   30.0,
+   31.0
+  ]
+ },
+ "chongbeibei": {
+  "name": "虫贝贝",
+  "type": "平均型",
+  "element": "土",
+  "attack": 5.44,
+  "defense": 5.6,
+  "agility": 4.96,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   34.0,
+   35.0,
+   31.0
+  ]
+ },
+ "xiaochong": {
+  "name": "小虫",
+  "type": "平均型",
+  "element": "土",
+  "attack": 5.44,
+  "defense": 4.8,
+  "agility": 5.76,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   34.0,
+   30.0,
+   36.0
+  ]
+ },
+ "xiaozhubite": {
+  "name": "小猪比特",
+  "type": "平均型",
+  "element": "土",
+  "attack": 5.46,
+  "defense": 4.2,
+  "agility": 4.34,
+  "hp": 25.0,
+  "growth": 3.5,
+  "hp_growth": 2.7,
+  "ratio": [
+   39.0,
+   30.0,
+   31.0
+  ]
+ },
+ "xiaozhuanante": {
+  "name": "小猪安特",
+  "type": "平均型",
+  "element": "土",
+  "attack": 4.76,
+  "defense": 4.9,
+  "agility": 4.34,
+  "hp": 25.0,
+  "growth": 3.5,
+  "hp_growth": 2.7,
+  "ratio": [
+   34.0,
+   35.0,
+   31.0
+  ]
+ },
+ "xiaozhufente": {
+  "name": "小猪芬特",
+  "type": "平均型",
+  "element": "土",
+  "attack": 4.76,
+  "defense": 4.2,
+  "agility": 5.04,
+  "hp": 25.0,
+  "growth": 3.5,
+  "hp_growth": 2.7,
+  "ratio": [
+   34.0,
+   30.0,
+   36.0
+  ]
+ },
+ "zhongshanzhu": {
+  "name": "中山猪",
+  "type": "防攻型",
+  "element": "土",
+  "attack": 6.84,
+  "defense": 8.1,
+  "agility": 3.06,
+  "hp": 37.5,
+  "growth": 3.9,
+  "hp_growth": 3.0,
+  "ratio": [
+   38.0,
+   45.0,
+   17.0
+  ]
+ },
+ "ximenzhu": {
+  "name": "西门猪",
+  "type": "防攻型",
+  "element": "土",
+  "attack": 5.94,
+  "defense": 9.0,
+  "agility": 3.06,
+  "hp": 37.5,
+  "growth": 3.9,
+  "hp_growth": 3.0,
+  "ratio": [
+   33.0,
+   50.0,
+   17.0
+  ]
+ },
+ "nangongzhu": {
+  "name": "南宫猪",
+  "type": "防攻型",
+  "element": "土",
+  "attack": 5.94,
+  "defense": 8.1,
+  "agility": 3.96,
+  "hp": 37.5,
+  "growth": 3.9,
+  "hp_growth": 3.0,
+  "ratio": [
+   33.0,
+   45.0,
+   22.0
+  ]
+ },
+ "beibatian": {
+  "name": "北霸天",
+  "type": "攻防型",
+  "element": "土",
+  "attack": 12.5,
+  "defense": 8.25,
+  "agility": 4.25,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   50.0,
+   33.0,
+   17.0
+  ]
+ },
+ "nanbatian": {
+  "name": "南霸天",
+  "type": "攻防型",
+  "element": "土",
+  "attack": 11.25,
+  "defense": 9.5,
+  "agility": 4.25,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   45.0,
+   38.0,
+   17.0
+  ]
+ },
+ "xiaobawang": {
+  "name": "小霸王",
+  "type": "攻防型",
+  "element": "土",
+  "attack": 11.25,
+  "defense": 8.25,
+  "agility": 5.5,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   45.0,
+   33.0,
+   22.0
+  ]
+ },
+ "yijie": {
+  "name": "一戒",
+  "type": "敏防型",
+  "element": "土",
+  "attack": 9.0,
+  "defense": 9.0,
+  "agility": 12.0,
+  "hp": 69.0,
+  "growth": 5.0,
+  "hp_growth": 3.5,
+  "ratio": [
+   30.0,
+   30.0,
+   40.0
+  ]
+ },
+ "bajie": {
+  "name": "八戒",
+  "type": "敏防型",
+  "element": "土",
+  "attack": 7.5,
+  "defense": 10.5,
+  "agility": 12.0,
+  "hp": 69.0,
+  "growth": 5.0,
+  "hp_growth": 3.5,
+  "ratio": [
+   25.0,
+   35.0,
+   40.0
+  ]
+ },
+ "bujie": {
+  "name": "不戒",
+  "type": "敏防型",
+  "element": "土",
+  "attack": 7.5,
+  "defense": 9.0,
+  "agility": 13.5,
+  "hp": 69.0,
+  "growth": 5.0,
+  "hp_growth": 3.5,
+  "ratio": [
+   25.0,
+   30.0,
+   45.0
+  ]
+ },
+ "kucitou": {
+  "name": "酷刺头",
+  "type": "防御型",
+  "element": "金",
+  "attack": 5.6,
+  "defense": 8.0,
+  "agility": 2.4,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   35.0,
+   50.0,
+   15.0
+  ]
+ },
+ "zhaicitou": {
+  "name": "拽刺头",
+  "type": "防御型",
+  "element": "金",
+  "attack": 4.8,
+  "defense": 8.8,
+  "agility": 2.4,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   55.0,
+   15.0
+  ]
+ },
+ "daicitou": {
+  "name": "呆刺头",
+  "type": "防御型",
+  "element": "金",
+  "attack": 4.8,
+  "defense": 8.0,
+  "agility": 3.2,
+  "hp": 26.0,
+  "growth": 4.0,
+  "hp_growth": 2.5,
+  "ratio": [
+   30.0,
+   50.0,
+   20.0
+  ]
+ },
+ "fengwu": {
+  "name": "风舞",
+  "type": "敏攻型",
+  "element": "金",
+  "attack": 6.1,
+  "defense": 2.7,
+  "agility": 7.2,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   38.0,
+   17.0,
+   45.0
+  ]
+ },
+ "duxing": {
+  "name": "独行",
+  "type": "敏攻型",
+  "element": "金",
+  "attack": 5.3,
+  "defense": 3.5,
+  "agility": 7.2,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   33.0,
+   22.0,
+   45.0
+  ]
+ },
+ "lanmengmeng": {
+  "name": "兰萌萌",
+  "type": "敏攻型",
+  "element": "金",
+  "attack": 5.3,
+  "defense": 2.7,
+  "agility": 8.0,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   33.0,
+   17.0,
+   50.0
+  ]
+ },
+ "baidazui": {
+  "name": "白大嘴",
+  "type": "敏攻型",
+  "element": "金",
+  "attack": 6.08,
+  "defense": 2.72,
+  "agility": 7.2,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   38.0,
+   17.0,
+   45.0
+  ]
+ },
+ "landazui": {
+  "name": "蓝大嘴",
+  "type": "敏攻型",
+  "element": "金",
+  "attack": 5.28,
+  "defense": 3.52,
+  "agility": 7.2,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   33.0,
+   22.0,
+   45.0
+  ]
+ },
+ "hongdazui": {
+  "name": "红大嘴",
+  "type": "敏攻型",
+  "element": "金",
+  "attack": 5.28,
+  "defense": 2.72,
+  "agility": 8.0,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   33.0,
+   17.0,
+   50.0
+  ]
+ },
+ "xiaojingwei": {
+  "name": "小精卫",
+  "type": "敏攻型",
+  "element": "金",
+  "attack": 5.25,
+  "defense": 2.25,
+  "agility": 7.5,
+  "hp": 21.0,
+  "growth": 3.9,
+  "hp_growth": 2.3,
+  "ratio": [
+   35.0,
+   15.0,
+   50.0
+  ]
+ },
+ "luluniao": {
+  "name": "露露鸟",
+  "type": "平均型",
+  "element": "金",
+  "attack": 5.5,
+  "defense": 4.2,
+  "agility": 4.3,
+  "hp": 25.0,
+  "growth": 3.5,
+  "hp_growth": 2.7,
+  "ratio": [
+   39.0,
+   30.0,
+   31.0
+  ]
+ },
+ "nununiao": {
+  "name": "努努鸟",
+  "type": "平均型",
+  "element": "金",
+  "attack": 4.8,
+  "defense": 4.9,
+  "agility": 4.3,
+  "hp": 25.0,
+  "growth": 3.5,
+  "hp_growth": 2.7,
+  "ratio": [
+   34.0,
+   35.0,
+   31.0
+  ]
+ },
+ "duduniao": {
+  "name": "嘟嘟鸟",
+  "type": "平均型",
+  "element": "金",
+  "attack": 4.8,
+  "defense": 4.2,
+  "agility": 5.0,
+  "hp": 25.0,
+  "growth": 3.5,
+  "hp_growth": 2.7,
+  "ratio": [
+   34.0,
+   30.0,
+   36.0
+  ]
+ },
+ "fuyejiu": {
+  "name": "拂叶鸠",
+  "type": "攻血型",
+  "element": "金",
+  "attack": 9.9,
+  "defense": 4.0,
+  "agility": 4.1,
+  "hp": 43.5,
+  "growth": 3.7,
+  "hp_growth": 3.4,
+  "ratio": [
+   55.0,
+   22.0,
+   23.0
+  ]
+ },
+ "yulujiu": {
+  "name": "浴露鸠",
+  "type": "攻血型",
+  "element": "金",
+  "attack": 9.0,
+  "defense": 4.9,
+  "agility": 4.1,
+  "hp": 43.5,
+  "growth": 3.7,
+  "hp_growth": 3.4,
+  "ratio": [
+   50.0,
+   27.0,
+   23.0
+  ]
+ },
+ "miwuju": {
+  "name": "觅雾鸠",
+  "type": "攻血型",
+  "element": "金",
+  "attack": 9.0,
+  "defense": 4.0,
+  "agility": 5.0,
+  "hp": 43.5,
+  "growth": 3.7,
+  "hp_growth": 3.4,
+  "ratio": [
+   50.0,
+   22.0,
+   28.0
+  ]
+ },
+ "xuefenghuang": {
+  "name": "雪凤凰",
+  "type": "敏攻型",
+  "element": "金",
+  "attack": 9.5,
+  "defense": 4.3,
+  "agility": 11.3,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   38.0,
+   17.0,
+   45.0
+  ]
+ },
+ "huofenghuang": {
+  "name": "火凤凰",
+  "type": "敏攻型",
+  "element": "金",
+  "attack": 8.3,
+  "defense": 5.5,
+  "agility": 11.3,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   22.0,
+   45.0
+  ]
+ },
+ "lanfenghuang": {
+  "name": "蓝凤凰",
+  "type": "敏攻型",
+  "element": "金",
+  "attack": 8.3,
+  "defense": 4.3,
+  "agility": 12.5,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   17.0,
+   50.0
+  ]
+ },
+ "feitianshu": {
+  "name": "飞天鼠",
+  "type": "敏攻型",
+  "element": "金",
+  "attack": 6.84,
+  "defense": 3.06,
+  "agility": 8.1,
+  "hp": 42.0,
+  "growth": 4.2,
+  "hp_growth": 3.3,
+  "ratio": [
+   38.0,
+   17.0,
+   45.0
+  ]
+ },
+ "qingyishu": {
+  "name": "青翼鼠",
+  "type": "敏攻型",
+  "element": "金",
+  "attack": 5.94,
+  "defense": 3.96,
+  "agility": 8.1,
+  "hp": 42.0,
+  "growth": 4.2,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   22.0,
+   45.0
+  ]
+ },
+ "fuyishu": {
+  "name": "蝠翼鼠",
+  "type": "敏攻型",
+  "element": "金",
+  "attack": 5.94,
+  "defense": 3.06,
+  "agility": 9.0,
+  "hp": 42.0,
+  "growth": 4.2,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   17.0,
+   50.0
+  ]
+ },
+ "chilong": {
+  "name": "赤龙",
+  "type": "防攻型",
+  "element": "金",
+  "attack": 11.4,
+  "defense": 13.5,
+  "agility": 5.1,
+  "hp": 69.0,
+  "growth": 5.0,
+  "hp_growth": 3.5,
+  "ratio": [
+   38.0,
+   45.0,
+   17.0
+  ]
+ },
+ "jinxielong": {
+  "name": "金蝎龙",
+  "type": "防攻型",
+  "element": "金",
+  "attack": 9.9,
+  "defense": 15.0,
+  "agility": 5.1,
+  "hp": 69.0,
+  "growth": 5.0,
+  "hp_growth": 3.5,
+  "ratio": [
+   33.0,
+   50.0,
+   17.0
+  ]
+ },
+ "lanmiaolong": {
+  "name": "蓝鸟龙",
+  "type": "防攻型",
+  "element": "金",
+  "attack": 9.9,
+  "defense": 13.5,
+  "agility": 6.6,
+  "hp": 69.0,
+  "growth": 5.0,
+  "hp_growth": 3.5,
+  "ratio": [
+   33.0,
+   45.0,
+   22.0
+  ]
+ },
+ "kubixiang": {
+  "name": "酷毙象",
+  "type": "防血型",
+  "element": "木",
+  "attack": 5.6,
+  "defense": 8.0,
+  "agility": 2.4,
+  "hp": 38.0,
+  "growth": 3.6,
+  "hp_growth": 3.3,
+  "ratio": [
+   35.0,
+   50.0,
+   15.0
+  ]
+ },
+ "shuaidaixiang": {
+  "name": "衰呆象",
+  "type": "防血型",
+  "element": "木",
+  "attack": 4.8,
+  "defense": 8.8,
+  "agility": 2.4,
+  "hp": 38.0,
+  "growth": 3.6,
+  "hp_growth": 3.3,
+  "ratio": [
+   30.0,
+   55.0,
+   15.0
+  ]
+ },
+ "minixiang": {
+  "name": "迷你象",
+  "type": "防血型",
+  "element": "木",
+  "attack": 4.8,
+  "defense": 8.0,
+  "agility": 3.2,
+  "hp": 38.0,
+  "growth": 3.6,
+  "hp_growth": 3.3,
+  "ratio": [
+   30.0,
+   50.0,
+   20.0
+  ]
+ },
+ "hongfenxiang": {
+  "name": "红粉象",
+  "type": "防攻型",
+  "element": "木",
+  "attack": 6.1,
+  "defense": 7.2,
+  "agility": 2.7,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   38.0,
+   45.0,
+   17.0
+  ]
+ },
+ "aoririquan": {
+  "name": "嗷日犬",
+  "type": "敏攻型",
+  "element": "火",
+  "attack": 8.3,
+  "defense": 5.5,
+  "agility": 11.3,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   22.0,
+   45.0
+  ]
+ },
+ "zhuiyingquan": {
+  "name": "追影犬",
+  "type": "敏攻型",
+  "element": "火",
+  "attack": 9.5,
+  "defense": 4.3,
+  "agility": 11.3,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   38.0,
+   17.0,
+   45.0
+  ]
+ },
+ "niefengquan": {
+  "name": "啮风犬",
+  "type": "敏攻型",
+  "element": "火",
+  "attack": 8.3,
+  "defense": 4.3,
+  "agility": 12.5,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   17.0,
+   50.0
+  ]
+ },
+ "duoluotianlang": {
+  "name": "堕落天狼",
+  "type": "攻击型",
+  "element": "火",
+  "attack": 13.8,
+  "defense": 5.5,
+  "agility": 5.8,
+  "hp": 50.0,
+  "growth": 4.7,
+  "hp_growth": 2.9,
+  "ratio": [
+   55.0,
+   22.0,
+   23.0
+  ]
+ },
+ "qibiantianlang": {
+  "name": "奇变天狼",
+  "type": "敏攻型",
+  "element": "火",
+  "attack": 9.5,
+  "defense": 4.3,
+  "agility": 11.3,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   38.0,
+   17.0,
+   45.0
+  ]
+ },
+ "huanbiantianlang": {
+  "name": "幻变天狼",
+  "type": "攻击型",
+  "element": "火",
+  "attack": 8.3,
+  "defense": 4.3,
+  "agility": 12.5,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   33.0,
+   17.0,
+   50.0
+  ]
+ },
+ "ouou": {
+  "name": "欧欧",
+  "type": "平均型",
+  "element": "水",
+  "attack": 5.4,
+  "defense": 4.8,
+  "agility": 5.8,
+  "hp": 32.0,
+  "growth": 3.8,
+  "hp_growth": 2.9,
+  "ratio": [
+   34.0,
+   30.0,
+   36.0
+  ]
+ },
+ "yingying": {
+  "name": "盈盈",
+  "type": "平均型",
+  "element": "水",
+  "attack": 4.8,
+  "defense": 4.9,
+  "agility": 4.3,
+  "hp": 25.0,
+  "growth": 3.5,
+  "hp_growth": 2.7,
+  "ratio": [
+   34.0,
+   35.0,
+   31.0
+  ]
+ },
+ "linlin": {
+  "name": "琳琳",
+  "type": "平均型",
+  "element": "水",
+  "attack": 4.8,
+  "defense": 4.9,
+  "agility": 4.3,
+  "hp": 25.0,
+  "growth": 3.5,
+  "hp_growth": 2.7,
+  "ratio": [
+   34.0,
+   35.0,
+   31.0
+  ]
+ },
+ "zhenzhen": {
+  "name": "珍珍",
+  "type": "平均型",
+  "element": "水",
+  "attack": 4.8,
+  "defense": 4.2,
+  "agility": 5.0,
+  "hp": 25.0,
+  "growth": 3.5,
+  "hp_growth": 2.7,
+  "ratio": [
+   34.0,
+   30.0,
+   36.0
+  ]
+ },
+ "lu_lu": {
+  "name": "鲁鲁",
+  "type": "敏捷型",
+  "element": "木",
+  "attack": 4.9,
+  "defense": 2.1,
+  "agility": 7.0,
+  "hp": 19.0,
+  "growth": 3.7,
+  "hp_growth": 2.3,
+  "ratio": [
+   35.0,
+   15.0,
+   50.0
+  ]
+ },
+ "tao_tao": {
+  "name": "淘淘",
+  "type": "敏捷型",
+  "element": "木",
+  "attack": 4.2,
+  "defense": 2.8,
+  "agility": 7.0,
+  "hp": 19.0,
+  "growth": 3.7,
+  "hp_growth": 2.3,
+  "ratio": [
+   30.0,
+   20.0,
+   50.0
+  ]
+ },
+ "meng_meng": {
+  "name": "蒙蒙",
+  "type": "敏捷型",
+  "element": "木",
+  "attack": 4.2,
+  "defense": 2.1,
+  "agility": 7.7,
+  "hp": 19.0,
+  "growth": 3.7,
+  "hp_growth": 2.3,
+  "ratio": [
+   30.0,
+   15.0,
+   55.0
+  ]
+ },
+ "gang_lei_fei": {
+  "name": "刚雷狒",
+  "type": "敏捷型",
+  "element": "木",
+  "attack": 5.9,
+  "defense": 3.1,
+  "agility": 9.0,
+  "hp": 37.5,
+  "growth": 3.9,
+  "hp_growth": 3.0,
+  "ratio": [
+   33.0,
+   17.0,
+   50.0
+  ]
+ },
+ "hou_lei_fei": {
+  "name": "吼雷狒",
+  "type": "敏捷型",
+  "element": "木",
+  "attack": 5.9,
+  "defense": 4.0,
+  "agility": 8.1,
+  "hp": 37.5,
+  "growth": 3.9,
+  "hp_growth": 3.0,
+  "ratio": [
+   33.0,
+   22.0,
+   45.0
+  ]
+ },
+ "ben_lei_fei": {
+  "name": "奔雷狒",
+  "type": "敏捷型",
+  "element": "木",
+  "attack": 6.8,
+  "defense": 3.1,
+  "agility": 8.1,
+  "hp": 37.5,
+  "growth": 3.9,
+  "hp_growth": 3.0,
+  "ratio": [
+   38.0,
+   17.0,
+   45.0
+  ]
+ },
+ "zhong_yue_shen_yuan": {
+  "name": "中岳神猿",
+  "type": "攻敏型",
+  "element": "木",
+  "attack": 12.5,
+  "defense": 4.3,
+  "agility": 8.3,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   50.0,
+   17.0,
+   33.0
+  ]
+ },
+ "xi_yue_shen_yuan": {
+  "name": "西岳神猿",
+  "type": "攻敏型",
+  "element": "木",
+  "attack": 11.3,
+  "defense": 5.5,
+  "agility": 8.3,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   45.0,
+   22.0,
+   33.0
+  ]
+ },
+ "dong_yue_shen_yuan": {
+  "name": "东岳神猿",
+  "type": "攻敏型",
+  "element": "木",
+  "attack": 11.3,
+  "defense": 4.3,
+  "agility": 9.5,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   45.0,
+   17.0,
+   38.0
+  ]
+ },
+ "zhi_zun_bao": {
+  "name": "齐天宝",
+  "type": "平均型",
+  "element": "木",
+  "attack": 12.1,
+  "defense": 9.3,
+  "agility": 9.6,
+  "hp": 71.0,
+  "growth": 5.1,
+  "hp_growth": 3.5,
+  "ratio": [
+   39.0,
+   30.0,
+   31.0
+  ]
+ },
+ "zhi_zun_cao": {
+  "name": "至尊草",
+  "type": "平均型",
+  "element": "木",
+  "attack": 10.5,
+  "defense": 10.9,
+  "agility": 9.6,
+  "hp": 71.0,
+  "growth": 5.1,
+  "hp_growth": 3.5,
+  "ratio": [
+   34.0,
+   35.0,
+   31.0
+  ]
+ },
+ "zhi_zun_lin": {
+  "name": "至尊林",
+  "type": "平均型",
+  "element": "木",
+  "attack": 10.5,
+  "defense": 9.3,
+  "agility": 11.2,
+  "hp": 71.0,
+  "growth": 5.1,
+  "hp_growth": 3.5,
+  "ratio": [
+   34.0,
+   30.0,
+   36.0
+  ]
+ },
+ "yu_yi": {
+  "name": "羽衣",
+  "type": "平均型",
+  "element": "水",
+  "attack": 7.0,
+  "defense": 5.4,
+  "agility": 5.6,
+  "hp": 37.5,
+  "growth": 3.9,
+  "hp_growth": 3.0,
+  "ratio": [
+   39.0,
+   30.0,
+   31.0
+  ]
+ },
+ "ni_chang": {
+  "name": "霓裳",
+  "type": "平均型",
+  "element": "水",
+  "attack": 6.1,
+  "defense": 6.3,
+  "agility": 5.6,
+  "hp": 37.5,
+  "growth": 3.9,
+  "hp_growth": 3.0,
+  "ratio": [
+   34.0,
+   35.0,
+   31.0
+  ]
+ },
+ "ling_shan": {
+  "name": "灵衫",
+  "type": "平均型",
+  "element": "水",
+  "attack": 6.1,
+  "defense": 5.4,
+  "agility": 6.5,
+  "hp": 37.5,
+  "growth": 3.9,
+  "hp_growth": 3.0,
+  "ratio": [
+   34.0,
+   30.0,
+   36.0
+  ]
+ },
+ "fen_yi_xian_zi": {
+  "name": "粉衣仙子",
+  "type": "敏捷型",
+  "element": "水",
+  "attack": 8.8,
+  "defense": 3.8,
+  "agility": 12.5,
+  "hp": 50.0,
+  "growth": 4.7,
+  "hp_growth": 2.9,
+  "ratio": [
+   35.0,
+   15.0,
+   50.0
+  ]
+ },
+ "lv_yi_xian_zi": {
+  "name": "绿衣仙子",
+  "type": "敏捷型",
+  "element": "水",
+  "attack": 7.5,
+  "defense": 5.0,
+  "agility": 12.5,
+  "hp": 50.0,
+  "growth": 4.7,
+  "hp_growth": 2.9,
+  "ratio": [
+   30.0,
+   20.0,
+   50.0
+  ]
+ },
+ "bai_yi_xian_zi": {
+  "name": "白衣仙子",
+  "type": "敏捷型",
+  "element": "水",
+  "attack": 7.5,
+  "defense": 3.8,
+  "agility": 13.8,
+  "hp": 50.0,
+  "growth": 4.7,
+  "hp_growth": 2.9,
+  "ratio": [
+   30.0,
+   15.0,
+   55.0
+  ]
+ },
+ "dan_dan_yu": {
+  "name": "蛋蛋鱼",
+  "type": "敏捷型",
+  "element": "水",
+  "attack": 5.3,
+  "defense": 2.3,
+  "agility": 7.5,
+  "hp": 21.0,
+  "growth": 3.7,
+  "hp_growth": 2.3,
+  "ratio": [
+   35.0,
+   15.0,
+   50.0
+  ]
+ },
+ "wan_zi_yu": {
+  "name": "丸子鱼",
+  "type": "敏捷型",
+  "element": "水",
+  "attack": 4.5,
+  "defense": 3.0,
+  "agility": 7.5,
+  "hp": 21.0,
+  "growth": 3.7,
+  "hp_growth": 2.3,
+  "ratio": [
+   30.0,
+   20.0,
+   50.0
+  ]
+ },
+ "ping_pang_yu": {
+  "name": "乒乓鱼",
+  "type": "敏捷型",
+  "element": "水",
+  "attack": 4.5,
+  "defense": 2.3,
+  "agility": 8.3,
+  "hp": 21.0,
+  "growth": 3.7,
+  "hp_growth": 2.3,
+  "ratio": [
+   30.0,
+   15.0,
+   55.0
+  ]
+ },
+ "yu_wa_wa": {
+  "name": "鱼娃娃",
+  "type": "敏攻型",
+  "element": "水",
+  "attack": 6.8,
+  "defense": 3.1,
+  "agility": 8.1,
+  "hp": 36.0,
+  "growth": 3.9,
+  "hp_growth": 2.9,
+  "ratio": [
+   38.0,
+   17.0,
+   45.0
+  ]
+ },
+ "yu_niu_niu": {
+  "name": "鱼妞妞",
+  "type": "敏攻型",
+  "element": "水",
+  "attack": 5.9,
+  "defense": 4.0,
+  "agility": 8.1,
+  "hp": 36.0,
+  "growth": 3.9,
+  "hp_growth": 2.9,
+  "ratio": [
+   33.0,
+   22.0,
+   45.0
+  ]
+ },
+ "yu_mei_mei": {
+  "name": "鱼妹妹",
+  "type": "敏攻型",
+  "element": "水",
+  "attack": 5.9,
+  "defense": 3.1,
+  "agility": 9.0,
+  "hp": 36.0,
+  "growth": 3.9,
+  "hp_growth": 2.9,
+  "ratio": [
+   33.0,
+   17.0,
+   50.0
+  ]
+ },
+ "ling_bo_xian_zi": {
+  "name": "凌波仙子",
+  "type": "攻敏型",
+  "element": "水",
+  "attack": 12.5,
+  "defense": 4.3,
+  "agility": 8.3,
+  "hp": 50.0,
+  "growth": 4.5,
+  "hp_growth": 2.9,
+  "ratio": [
+   50.0,
+   17.0,
+   33.0
+  ]
+ },
+ "xi_shui_xian_zi": {
+  "name": "戏水仙子",
+  "type": "攻敏型",
+  "element": "水",
+  "attack": 11.3,
+  "defense": 5.5,
+  "agility": 8.3,
+  "hp": 50.0,
+  "growth": 4.5,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   22.0,
+   33.0
+  ]
+ },
+ "zhu_lang_xian_zi": {
+  "name": "逐浪仙子",
+  "type": "攻敏型",
+  "element": "水",
+  "attack": 11.3,
+  "defense": 4.3,
+  "agility": 9.5,
+  "hp": 50.0,
+  "growth": 4.5,
+  "hp_growth": 2.9,
+  "ratio": [
+   45.0,
+   17.0,
+   38.0
+  ]
+ },
+ "huan_yun_shou": {
+  "name": "幻云兽",
+  "type": "敏攻型",
+  "element": "水",
+  "attack": 11.4,
+  "defense": 5.1,
+  "agility": 13.5,
+  "hp": 69.0,
+  "growth": 5.0,
+  "hp_growth": 3.5,
+  "ratio": [
+   38.0,
+   17.0,
+   45.0
+  ]
+ },
+ "di_cang_shou": {
+  "name": "地藏兽",
+  "type": "敏捷型",
+  "element": "水",
+  "attack": 9.9,
+  "defense": 6.6,
+  "agility": 13.5,
+  "hp": 69.0,
+  "growth": 5.0,
+  "hp_growth": 3.5,
+  "ratio": [
+   33.0,
+   22.0,
+   45.0
+  ]
+ },
+ "ao_xue_shou": {
+  "name": "敖雪兽",
+  "type": "敏捷型",
+  "element": "水",
+  "attack": 9.9,
+  "defense": 5.1,
+  "agility": 15.0,
+  "hp": 69.0,
+  "growth": 5.0,
+  "hp_growth": 3.5,
+  "ratio": [
+   33.0,
+   17.0,
+   50.0
+  ]
+ },
+ "cong_cong": {
+  "name": "匆匆",
+  "type": "防敏型",
+  "element": "火",
+  "attack": 4.2,
+  "defense": 5.6,
+  "agility": 4.2,
+  "hp": 25.0,
+  "growth": 3.5,
+  "hp_growth": 2.7,
+  "ratio": [
+   30.0,
+   40.0,
+   30.0
+  ]
+ },
+ "xi_pi": {
+  "name": "西皮",
+  "type": "防敏型",
+  "element": "火",
+  "attack": 3.5,
+  "defense": 6.3,
+  "agility": 4.2,
+  "hp": 25.0,
+  "growth": 3.5,
+  "hp_growth": 2.7,
+  "ratio": [
+   25.0,
+   45.0,
+   30.0
+  ]
+ },
+ "wang_wang": {
+  "name": "旺旺",
+  "type": "防敏型",
+  "element": "火",
+  "attack": 3.5,
+  "defense": 5.6,
+  "agility": 4.9,
+  "hp": 25.0,
+  "growth": 3.5,
+  "hp_growth": 2.7,
+  "ratio": [
+   25.0,
+   40.0,
+   35.0
+  ]
+ },
+ "a_di_da_si": {
+  "name": "冥狼崽",
+  "type": "防敏型",
+  "element": "火",
+  "attack": 4.8,
+  "defense": 6.4,
+  "agility": 4.8,
+  "hp": 29.0,
+  "growth": 3.5,
+  "hp_growth": 2.7,
+  "ratio": [
+   30.0,
+   40.0,
+   30.0
+  ]
+ },
+ "a_ge_liu_si": {
+  "name": "阿格留斯",
+  "type": "平均型",
+  "element": "火",
+  "attack": 7.0,
+  "defense": 5.4,
+  "agility": 5.6,
+  "hp": 36.0,
+  "growth": 3.9,
+  "hp_growth": 2.9,
+  "ratio": [
+   39.0,
+   30.0,
+   31.0
+  ]
+ },
+ "a_nu_bi_si": {
+  "name": "阿努比斯",
+  "type": "攻防型",
+  "element": "火",
+  "attack": 12.5,
+  "defense": 8.3,
+  "agility": 4.3,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   50.0,
+   33.0,
+   17.0
+  ]
+ },
+ "huo_yao_jing": {
+  "name": "火妖精",
+  "type": "攻击型",
+  "element": "火",
+  "attack": 16.5,
+  "defense": 6.6,
+  "agility": 6.9,
+  "hp": 69.0,
+  "growth": 5.0,
+  "hp_growth": 3.5,
+  "ratio": [
+   55.0,
+   22.0,
+   23.0
+  ]
+ },
+ "lv_yao": {
+  "name": "绿妖",
+  "type": "攻击型",
+  "element": "火",
+  "attack": 15.0,
+  "defense": 8.1,
+  "agility": 6.9,
+  "hp": 69.0,
+  "growth": 5.0,
+  "hp_growth": 3.5,
+  "ratio": [
+   50.0,
+   27.0,
+   23.0
+  ]
+ },
+ "zi_yi": {
+  "name": "紫衣",
+  "type": "攻击型",
+  "element": "火",
+  "attack": 15.0,
+  "defense": 6.6,
+  "agility": 8.4,
+  "hp": 69.0,
+  "growth": 5.0,
+  "hp_growth": 3.5,
+  "ratio": [
+   50.0,
+   22.0,
+   28.0
+  ]
+ },
+ "fu_di_long": {
+  "name": "伏地龙",
+  "type": "攻血型",
+  "element": "土",
+  "attack": 7.7,
+  "defense": 3.1,
+  "agility": 3.2,
+  "hp": 31.0,
+  "growth": 3.3,
+  "hp_growth": 3.1,
+  "ratio": [
+   55.0,
+   22.0,
+   23.0
+  ]
+ },
+ "wen_di_long": {
+  "name": "纹地龙",
+  "type": "攻血型",
+  "element": "土",
+  "attack": 7.0,
+  "defense": 3.8,
+  "agility": 3.2,
+  "hp": 31.0,
+  "growth": 3.3,
+  "hp_growth": 3.1,
+  "ratio": [
+   50.0,
+   27.0,
+   23.0
+  ]
+ },
+ "shun_di_long": {
+  "name": "瞬地龙",
+  "type": "攻血型",
+  "element": "土",
+  "attack": 7.0,
+  "defense": 3.1,
+  "agility": 3.9,
+  "hp": 31.0,
+  "growth": 3.3,
+  "hp_growth": 3.1,
+  "ratio": [
+   50.0,
+   22.0,
+   28.0
+  ]
+ },
+ "wu_qi_long": {
+  "name": "乌漆龙",
+  "type": "攻击型",
+  "element": "土",
+  "attack": 9.9,
+  "defense": 4.0,
+  "agility": 4.1,
+  "hp": 31.5,
+  "growth": 4.1,
+  "hp_growth": 2.6,
+  "ratio": [
+   55.0,
+   22.0,
+   23.0
+  ]
+ },
+ "bao_lan_long": {
+  "name": "暴蓝龙",
+  "type": "攻击型",
+  "element": "土",
+  "attack": 9.0,
+  "defense": 4.0,
+  "agility": 5.0,
+  "hp": 31.5,
+  "growth": 4.1,
+  "hp_growth": 2.6,
+  "ratio": [
+   50.0,
+   22.0,
+   28.0
+  ]
+ },
+ "hei_long_shi": {
+  "name": "黑龙使",
+  "type": "攻血型",
+  "element": "土",
+  "attack": 13.8,
+  "defense": 5.5,
+  "agility": 5.8,
+  "hp": 62.0,
+  "growth": 4.3,
+  "hp_growth": 3.7,
+  "ratio": [
+   55.0,
+   22.0,
+   23.0
+  ]
+ },
+ "huang_jin_long": {
+  "name": "黄金龙",
+  "type": "攻击型",
+  "element": "土",
+  "attack": 9.0,
+  "defense": 4.9,
+  "agility": 4.1,
+  "hp": 31.5,
+  "growth": 4.1,
+  "hp_growth": 2.6,
+  "ratio": [
+   50.0,
+   27.0,
+   23.0
+  ]
+ },
+ "huang_long_shi": {
+  "name": "黄龙使",
+  "type": "攻血型",
+  "element": "土",
+  "attack": 12.5,
+  "defense": 6.8,
+  "agility": 5.8,
+  "hp": 62.0,
+  "growth": 4.3,
+  "hp_growth": 3.7,
+  "ratio": [
+   50.0,
+   27.0,
+   23.0
+  ]
+ },
+ "qing_long_shi": {
+  "name": "青龙使",
+  "type": "攻血型",
+  "element": "土",
+  "attack": 12.5,
+  "defense": 5.5,
+  "agility": 7.0,
+  "hp": 62.0,
+  "growth": 4.3,
+  "hp_growth": 3.7,
+  "ratio": [
+   50.0,
+   22.0,
+   28.0
+  ]
+ },
+ "huo_lin_yi": {
+  "name": "火鳞蜴",
+  "type": "攻防型",
+  "element": "土",
+  "attack": 12.5,
+  "defense": 8.3,
+  "agility": 4.3,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   50.0,
+   33.0,
+   17.0
+  ]
+ },
+ "chi_ji_yi": {
+  "name": "赤脊蜴",
+  "type": "攻防型",
+  "element": "土",
+  "attack": 11.3,
+  "defense": 9.5,
+  "agility": 4.3,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   45.0,
+   38.0,
+   17.0
+  ]
+ },
+ "jin_jia_yi": {
+  "name": "金甲蜴",
+  "type": "攻防型",
+  "element": "土",
+  "attack": 11.3,
+  "defense": 8.3,
+  "agility": 5.5,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   45.0,
+   33.0,
+   22.0
+  ]
+ },
+ "bai_fa_she_ji": {
+  "name": "白发蛇姬",
+  "type": "攻血型",
+  "element": "土",
+  "attack": 16.5,
+  "defense": 6.6,
+  "agility": 6.9,
+  "hp": 75.0,
+  "growth": 4.9,
+  "hp_growth": 3.9,
+  "ratio": [
+   55.0,
+   22.0,
+   23.0
+  ]
+ },
+ "hong_fa_yao_ji": {
+  "name": "红发妖姬",
+  "type": "攻血型",
+  "element": "土",
+  "attack": 15.0,
+  "defense": 8.1,
+  "agility": 6.9,
+  "hp": 75.0,
+  "growth": 4.9,
+  "hp_growth": 3.9,
+  "ratio": [
+   50.0,
+   27.0,
+   23.0
+  ]
+ },
+ "lan_fa_mo_ji": {
+  "name": "蓝发魔姬",
+  "type": "攻血型",
+  "element": "土",
+  "attack": 15.0,
+  "defense": 6.6,
+  "agility": 8.4,
+  "hp": 75.0,
+  "growth": 4.9,
+  "hp_growth": 3.9,
+  "ratio": [
+   50.0,
+   22.0,
+   28.0
+  ]
+ },
+ "cang_ming_shen_nv": {
+  "name": "沧溟神女",
+  "type": "攻敏型",
+  "element": "水",
+  "attack": 15.0,
+  "defense": 5.2,
+  "agility": 9.0,
+  "hp": 62.0,
+  "growth": 4.8,
+  "hp_growth": 3.2,
+  "ratio": [
+   52.0,
+   18.0,
+   30.0
+  ]
+ },
+ "yao_shui_ling_zun": {
+  "name": "瑶水灵尊",
+  "type": "攻敏型",
+  "element": "水",
+  "attack": 14.0,
+  "defense": 6.5,
+  "agility": 8.5,
+  "hp": 65.0,
+  "growth": 4.8,
+  "hp_growth": 3.3,
+  "ratio": [
+   48.0,
+   22.0,
+   30.0
+  ]
+ },
+ "han_hai_xian_ji": {
+  "name": "瀚海仙姬",
+  "type": "攻敏型",
+  "element": "水",
+  "attack": 14.5,
+  "defense": 4.8,
+  "agility": 9.8,
+  "hp": 60.0,
+  "growth": 4.8,
+  "hp_growth": 3.1,
+  "ratio": [
+   50.0,
+   16.0,
+   34.0
+  ]
+ },
+ "chao_ji_a_nu": {
+  "name": "超级阿努",
+  "type": "攻防型",
+  "element": "火",
+  "attack": 12.5,
+  "defense": 8.3,
+  "agility": 4.3,
+  "hp": 56.0,
+  "growth": 4.5,
+  "hp_growth": 3.3,
+  "ratio": [
+   50.0,
+   33.0,
+   17.0
+  ]
+ },
+ "mengjinger": {
+  "name": "梦晶儿",
+  "type": "攻击型",
+  "element": "金",
+  "attack": 9.0,
+  "defense": 4.0,
+  "agility": 4.0,
+  "hp": 48.0,
+  "growth": 3.4,
+  "hp_growth": 3.1,
+  "ratio": [
+   52.0,
+   24.0,
+   24.0
+  ]
+ },
+ "mengtianshi": {
+  "name": "梦天使",
+  "type": "攻击型",
+  "element": "金",
+  "attack": 8.0,
+  "defense": 4.0,
+  "agility": 3.0,
+  "hp": 31.0,
+  "growth": 3.3,
+  "hp_growth": 3.4,
+  "ratio": [
+   53.0,
+   26.0,
+   21.0
+  ]
+ },
+ "mengjinggang": {
+  "name": "梦晶刚",
+  "type": "攻击型",
+  "element": "金",
+  "attack": 12.0,
+  "defense": 6.0,
+  "agility": 5.0,
+  "hp": 62.0,
+  "growth": 3.9,
+  "hp_growth": 4.0,
+  "ratio": [
+   50.0,
+   26.0,
+   24.0
+  ]
+ },
+ "liuyitianshi": {
+  "name": "六翼天使",
+  "type": "攻击型",
+  "element": "金",
+  "attack": 15.0,
+  "defense": 7.0,
+  "agility": 5.0,
+  "hp": 75.0,
+  "growth": 4.8,
+  "hp_growth": 4.3,
+  "ratio": [
+   45.0,
+   40.0,
+   15.0
+  ]
+ }
 }

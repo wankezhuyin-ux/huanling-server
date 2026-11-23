@@ -1,0 +1,884 @@
+{
+ "note": "由 tools/gen_suit_stats.py 从客户端 suit_database_detailed.gd 生成，勿手改",
+ "variation": {
+  "min": 0.9,
+  "max": 1.1
+ },
+ "slots": [
+  "weapon",
+  "helmet",
+  "armor",
+  "boots",
+  "accessory"
+ ],
+ "slot_names": {
+  "weapon": "武器",
+  "helmet": "头盔",
+  "armor": "衣服",
+  "boots": "鞋子",
+  "accessory": "饰品"
+ },
+ "suits": {
+  "1": {
+   "name": "青云套装",
+   "required_cultivation": 5000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 420,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 770,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 420,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 385
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 420,
+     "agility": 0
+    }
+   }
+  },
+  "2": {
+   "name": "玄灵套装",
+   "required_cultivation": 50000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 665,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 1785,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 595,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 560
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 595,
+     "agility": 0
+    }
+   }
+  },
+  "3": {
+   "name": "地脉套装",
+   "required_cultivation": 100000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 875,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 2048,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 700,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 630
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 700,
+     "agility": 0
+    }
+   }
+  },
+  "4": {
+   "name": "天羽套装",
+   "required_cultivation": 150000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 1155,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 3063,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 840,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 700
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 840,
+     "agility": 0
+    }
+   }
+  },
+  "5": {
+   "name": "金罡套装",
+   "required_cultivation": 200000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 1645,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 4988,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 1085,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 840
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 1085,
+     "agility": 0
+    }
+   }
+  },
+  "6": {
+   "name": "大罗套装",
+   "required_cultivation": 250000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 2310,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 6913,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 1400,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 1050
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 1400,
+     "agility": 0
+    }
+   }
+  },
+  "7": {
+   "name": "神威套装",
+   "required_cultivation": 300000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 3220,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 10133,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 1855,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 1330
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 1855,
+     "agility": 0
+    }
+   }
+  },
+  "8": {
+   "name": "至尊套装",
+   "required_cultivation": 350000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 4445,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 13335,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 2485,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 1680
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 2485,
+     "agility": 0
+    }
+   }
+  },
+  "9": {
+   "name": "混沌套装",
+   "required_cultivation": 400000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 5635,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 17833,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 3080,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 2065
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 3080,
+     "agility": 0
+    }
+   }
+  },
+  "10": {
+   "name": "无极套装",
+   "required_cultivation": 450000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 6685,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 22313,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 3605,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 2345
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 3605,
+     "agility": 0
+    }
+   }
+  },
+  "11": {
+   "name": "太虚套装",
+   "required_cultivation": 500000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 7700,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 26163,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 4095,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 2660
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 4095,
+     "agility": 0
+    }
+   }
+  },
+  "12": {
+   "name": "玄黄套装",
+   "required_cultivation": 550000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 8995,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 30660,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 4760,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 3045
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 4760,
+     "agility": 0
+    }
+   }
+  },
+  "13": {
+   "name": "盘古套装",
+   "required_cultivation": 600000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 10255,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 35158,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 5390,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 3430
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 5390,
+     "agility": 0
+    }
+   }
+  },
+  "14": {
+   "name": "女娲套装",
+   "required_cultivation": 650000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 11305,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 39008,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 5915,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 3745
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 5915,
+     "agility": 0
+    }
+   }
+  },
+  "15": {
+   "name": "伏羲套装",
+   "required_cultivation": 700000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 12565,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 45413,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 6545,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 4130
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 6545,
+     "agility": 0
+    }
+   }
+  },
+  "16": {
+   "name": "轩辕套装",
+   "required_cultivation": 750000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 14385,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 51835,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 7455,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 4655
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 7455,
+     "agility": 0
+    }
+   }
+  },
+  "17": {
+   "name": "蚩尤套装",
+   "required_cultivation": 800000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 15925,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 58258,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 8225,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 5145
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 8225,
+     "agility": 0
+    }
+   }
+  },
+  "18": {
+   "name": "刑天套装",
+   "required_cultivation": 850000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 17710,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 64663,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 9100,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 5670
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 9100,
+     "agility": 0
+    }
+   }
+  },
+  "19": {
+   "name": "共工套装",
+   "required_cultivation": 900000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 19495,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 71085,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 10010,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 6195
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 10010,
+     "agility": 0
+    }
+   }
+  },
+  "20": {
+   "name": "永恒套装",
+   "required_cultivation": 950000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 22085,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 77508,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 11305,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 6965
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 11305,
+     "agility": 0
+    }
+   }
+  },
+  "21": {
+   "name": "无上套装",
+   "required_cultivation": 1000000,
+   "slot_stats": {
+    "weapon": {
+     "attack": 26000,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "helmet": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 90000,
+     "mp": 0,
+     "agility": 0
+    },
+    "armor": {
+     "attack": 0,
+     "defense": 13500,
+     "hp": 0,
+     "mp": 0,
+     "agility": 0
+    },
+    "boots": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 0,
+     "agility": 8300
+    },
+    "accessory": {
+     "attack": 0,
+     "defense": 0,
+     "hp": 0,
+     "mp": 13500,
+     "agility": 0
+    }
+   }
+  }
+ }
+}

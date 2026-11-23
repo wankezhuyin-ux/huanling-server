@@ -243,37 +243,55 @@ def _pick_winner(candidates: list[dict]) -> dict:
     return random.choices(candidates, weights=weights, k=1)[0]
 
 
+def _chest_attachment(token: str, round_id: int, chest_no: int) -> dict:
+    """藏宝箱邮件附件（客户端按 `treasure_token` 认箱子）。
+
+    客户端 mail_manager._add_attachments_to_game 里有一条：
+      `if item_name == "藏宝箱" and item_data.has("treasure_token")` → 写进
+      inventory 的 custom_data，之后 /treasure/chest/open 才能按 token 核销。
+    """
+    return {
+        "name": "藏宝箱",
+        "count": 1,
+        "item_type": "treasure_chest",
+        "treasure_token": token,
+        "custom_data": {
+            "treasure_token": token,
+            "treasure_round": int(round_id or 0),
+            "treasure_chest_no": int(chest_no or 0),
+        },
+    }
+
+
 def _grant_chest(account: str, round_index: int, chest_no: int,
                  round_id: int = 0) -> dict | None:
-    """把藏宝匣塞进获胜者背包（每个箱子独立 token，开箱时按 token 核销）。"""
+    """把藏宝箱作为**邮件附件**发给获胜者（玩家点「领取附件」才进背包）。
+
+    以前这里直接把箱子 append 进 st.items，邮件是纯通知、没有附件：
+    玩家点开邮件只看到一行字，既没有东西也不能领取（2026-11-04 报障）。
+    改成附件后走客户端本地入包，邮件里有东西、可领，也不会重复发
+    （服务端不再同时写 items）。
+    """
     try:
         st = STORE.get(account)
     except Exception:
         return None
     token = "tc_" + rnd_id("")
-    st.items.append({
-        "id": rnd_id("i"),
-        "name": "藏宝匣",
-        "count": 1,
-        "item_type": "treasure_chest",
-        # round_id / chest_no 只用于「这箱子发过没」的核对，开箱仍按 token
-        "custom_data": {"treasure_token": token,
-                        "treasure_round": int(round_id or 0),
-                        "treasure_chest_no": int(chest_no or 0)},
-    })
     mail = st.send_mail(
         "藏宝洞夺宝所得",
-        "恭喜你在藏宝洞今日第%d轮夺得%d号秘箱，藏宝匣已放入背包，使用即可开奖。"
-        % (round_index, chest_no),
+        "恭喜你在藏宝洞今日第%d轮夺得%d号秘箱，藏宝箱已在附件中，"
+        "领取后到背包使用即可开奖。" % (round_index, chest_no),
+        items=[_chest_attachment(token, round_id, chest_no)],
     )
     st.bump()
     # 结算跑在调度线程里，没有请求收尾去落盘 —— 这里必须自己 flush，
-    # 否则服务一重启，赢家的藏宝匣和邮件就只在内存里蒸发了。
+    # 否则服务一重启，赢家的邮件就只在内存里蒸发了。
     st.flush()
     return mail
 
 
 def _has_grant(account: str, round_id: int, chest_no: int) -> bool:
+    """这口箱子到底发过没：背包里有（已领取）或邮件附件里还在（待领取）。"""
     if not account or not round_id:
         return False
     try:
@@ -287,6 +305,21 @@ def _has_grant(account: str, round_id: int, chest_no: int) -> bool:
         if (int(custom.get("treasure_round", 0) or 0) == int(round_id)
                 and int(custom.get("treasure_chest_no", 0) or 0) == int(chest_no)):
             return True
+    # 邮件已发但玩家还没领：附件里的 custom_data 同样能证明「发过了」
+    for mail in (st.meta.get("mails") or []):
+        if not isinstance(mail, dict):
+            continue
+        attach = mail.get("attachments")
+        rows = attach.get("items") if isinstance(attach, dict) else None
+        for row in (rows or []):
+            if not isinstance(row, dict):
+                continue
+            custom = row.get("custom_data")
+            if not isinstance(custom, dict):
+                continue
+            if (int(custom.get("treasure_round", 0) or 0) == int(round_id)
+                    and int(custom.get("treasure_chest_no", 0) or 0) == int(chest_no)):
+                return True
     return False
 
 
@@ -314,7 +347,7 @@ def _ensure_grants(rnd: dict) -> bool:
             mail = _grant_chest(account, index, no, rid)
             if isinstance(mail, dict):
                 chest["reward_mail_id"] = int(mail.get("id", 0) or 0)
-            _log(rnd, "【补发】%d号秘箱奖励已补发至【%s】背包。" % (no, chest.get("winner_name")))
+            _log(rnd, "【补发】%d号秘箱奖励已补发至【%s】邮件。" % (no, chest.get("winner_name")))
             changed = True
         except Exception:
             traceback.print_exc()

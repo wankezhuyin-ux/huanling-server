@@ -1,0 +1,872 @@
+{
+  "slots": {
+    "accessory": "饰品",
+    "armor": "衣服",
+    "boots": "鞋子",
+    "helmet": "头盔",
+    "weapon": "武器"
+  },
+  "suits": {
+    "1": {
+      "element": "金",
+      "name": "青云套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 420
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 420,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 385,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 770,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 420,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "10": {
+      "element": "土",
+      "name": "无极套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 3605
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 3605,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 2345,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 22313,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 6685,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "11": {
+      "element": "金",
+      "name": "太虚套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 4095
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 4095,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 2660,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 26163,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 7700,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "12": {
+      "element": "木",
+      "name": "玄黄套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 4760
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 4760,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 3045,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 30660,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 8995,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "13": {
+      "element": "水",
+      "name": "盘古套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 5390
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 5390,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 3430,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 35158,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 10255,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "14": {
+      "element": "火",
+      "name": "女娲套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 5915
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 5915,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 3745,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 39008,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 11305,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "15": {
+      "element": "土",
+      "name": "伏羲套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 6545
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 6545,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 4130,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 45413,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 12565,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "16": {
+      "element": "金",
+      "name": "轩辕套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 7455
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 7455,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 4655,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 51835,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 14385,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "17": {
+      "element": "木",
+      "name": "蚩尤套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 8225
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 8225,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 5145,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 58258,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 15925,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "18": {
+      "element": "水",
+      "name": "刑天套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 9100
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 9100,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 5670,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 64663,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 17710,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "19": {
+      "element": "火",
+      "name": "共工套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 10010
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 10010,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 6195,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 71085,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 19495,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "2": {
+      "element": "木",
+      "name": "玄灵套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 595
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 595,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 560,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 1785,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 665,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "20": {
+      "element": "土",
+      "name": "永恒套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 11305
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 11305,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 6965,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 77508,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 22085,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "21": {
+      "element": "金",
+      "name": "无上套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 13500
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 13500,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 8300,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 90000,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 26000,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "3": {
+      "element": "水",
+      "name": "地脉套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 700
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 700,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 630,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 2048,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 875,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "4": {
+      "element": "火",
+      "name": "天羽套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 840
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 840,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 700,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 3063,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 1155,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "5": {
+      "element": "土",
+      "name": "金罡套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 1085
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 1085,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 840,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 4988,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 1645,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "6": {
+      "element": "金",
+      "name": "大罗套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 1400
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 1400,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 1050,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 6913,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 2310,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "7": {
+      "element": "木",
+      "name": "神威套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 1855
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 1855,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 1330,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 10133,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 3220,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "8": {
+      "element": "水",
+      "name": "至尊套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 2485
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 2485,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 1680,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 13335,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 4445,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    },
+    "9": {
+      "element": "火",
+      "name": "混沌套装",
+      "piece_stats": {
+        "accessory": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 3080
+        },
+        "armor": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 3080,
+          "hp": 0,
+          "mp": 0
+        },
+        "boots": {
+          "agility": 2065,
+          "attack": 0,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        },
+        "helmet": {
+          "agility": 0,
+          "attack": 0,
+          "defense": 0,
+          "hp": 17833,
+          "mp": 0
+        },
+        "weapon": {
+          "agility": 0,
+          "attack": 5635,
+          "defense": 0,
+          "hp": 0,
+          "mp": 0
+        }
+      }
+    }
+  }
+}

@@ -9,26 +9,99 @@ from __future__ import annotations
 
 import json
 import random
+import re
 import threading
 import time
 from datetime import timedelta
 
-from core import Ctx, RULES, STATE_DIR, STORE, fail, in_window, iso, now, ok, route, today
+from core import Ctx, DATA, RULES, STATE_DIR, STORE, fail, in_window, iso, load_json, now, ok, route, today
 from core import capture_wild_pet
 from handlers_battle import active_pet, combat_options, player_fighter, pet_fighter
 import combat
+import bt_session as bt
 
 
 # ================================================================ 无限天关
+#
+# 天关扫荡次数：原版 scripts/vip_benefits.gd 的 tower_sweep_limit = [1,2,2,3]
+# （VIP 特权表「天关扫荡/日 1 / 2 / 2 / 3」），客户端 tower_ui.gd 一直按这张表
+# 做本地拦截。但服务端此前从没接过 VIP_TOWER_SWEEPS：/tower/sweep 与
+# /economy/tower-sweep-reward 都不限次数，sweepCount 还是「历史累计」而非今日
+# 已用，跨天也不归零 —— 玩家累计扫过 1 次后，客户端 remaining = 1 - 累计值
+# 永远是负数，界面从此一直弹「今日扫荡次数已用完！请明日再来」。
+#
+# 口径统一为「今日已用次数」：
+#   tower_sweep_count  今天已扫荡几次
+#   tower_sweep_date   这个数字属于哪一天，跨天自动归零（老账号无此键 = 直接回满）
+
+TOWER_SWEEP_DATE_KEY = "tower_sweep_date"
+
+
+def _tower_sweep_cap(state) -> int:
+    """天关每日扫荡上限：按 VIP 档位取原版 tower_sweep_limit 表。"""
+    table = state.VIP_TOWER_SWEEPS
+    tier = int(state.vip_tier())
+    return max(1, int(table[max(0, min(tier, len(table) - 1))]))
+
+
+def _tower_sweep_used(state) -> int:
+    """今日已扫荡次数（纯读，不写档）；跨天或老账号直接按 0 算。"""
+    p = state.player
+    if str(p.get(TOWER_SWEEP_DATE_KEY, "") or "") != today():
+        return 0
+    try:
+        return max(0, int(p.get("tower_sweep_count", 0) or 0))
+    except (TypeError, ValueError):
+        return 0
+
+
+def _tower_sweep_consume(state) -> int:
+    """扣 1 次天关扫荡；次数用满返回 -1，否则返回扣完后的今日已用次数。"""
+    cap = _tower_sweep_cap(state)
+    used = _tower_sweep_used(state)
+    if used >= cap:
+        return -1
+    p = state.player
+    p[TOWER_SWEEP_DATE_KEY] = today()
+    p["tower_sweep_count"] = used + 1
+    return used + 1
+
+
+def _tower_sweep_payload(state, **extra) -> dict:
+    """扫荡回包统一带次数三件套，客户端 tower_ui 读 sweepCount 更新本地计数。"""
+    cap = _tower_sweep_cap(state)
+    used = _tower_sweep_used(state)
+    payload = {
+        "success": True,
+        "sweepCount": used,
+        "sweepsLeft": max(0, cap - used),
+        "maxSweeps": cap,
+    }
+    payload.update(extra)
+    return payload
+
 
 @route("GET", "/tower/info")
 def tower_info(ctx: Ctx) -> dict:
     p = ctx.state.player
+    floor = int(p.get("tower_floor", 1) or 1)
+    highest = int(p.get("tower_highest", 0) or 0)
+    # 老账号自愈：旧版本只存 tower_highest，tower_floor 恒为 1。
+    # 只要不是「投胎重练」的合法归 1，就把当前层补到历史最高 + 1。
+    if floor <= 1 and highest > 0 and not ctx.state.meta.get("towerFloorResetPending"):
+        floor = highest + 1
+        p["tower_floor"] = floor
+        ctx.state.bump()
+    cap = _tower_sweep_cap(ctx.state)
+    used = _tower_sweep_used(ctx.state)
     return {
         "success": True,
-        "towerHighest": int(p.get("tower_highest", 0)),
-        "sweepCount": int(p.get("tower_sweep_count", 0)),
-        "towerFloor": int(p.get("tower_floor", 1)),
+        "towerHighest": highest,
+        # 今日已用次数（不是历史累计）：客户端 remaining = VIP上限 - sweepCount
+        "sweepCount": used,
+        "sweepsLeft": max(0, cap - used),
+        "maxSweeps": cap,
+        "towerFloor": floor,
         "openMaxFloor": int(RULES.v("tower", "openMaxFloor", 1899) or 1899),
         "openMaxFloorGlobal": int(RULES.v("tower", "openMaxFloorGlobal", 1899) or 1899),
         "openMaxFloorBypass": False,
@@ -38,28 +111,58 @@ def tower_info(ctx: Ctx) -> dict:
 
 @route("POST", "/tower/update")
 def tower_update(ctx: Ctx) -> dict:
+    """天关通关上报：历史最高层 + 当前层一起落库。
+
+    原版口径是「闯到多少层就一直保留进度」。旧实现只写 tower_highest，
+    从不写 tower_floor，于是 /tower/info 永远回 towerFloor=1；客户端每次
+    打开天关页都用这个值覆盖本地进度 —— 玩家打到 200 层，退出再进又从
+    第 1 关开始（线上 liu1 实测 highest=211 / floor=1）。
+
+    tower_floor 是服务端权威字段（见 handlers_account 的存档合并保护），
+    只允许通过本接口 / 扫荡 / 服务端战斗结算 / 投胎重置改动：
+      · currentFloor：热更后客户端上报的「通关后的下一层」，最准；
+      · 旧客户端只发 highestFloor：仅在刷新历史最高时推到 highest+1。
+        投胎重练时 highest 不变，不会把塔层错误地跳回历史最高。
+    """
     highest = ctx.i("highestFloor")
+    current = ctx.i("currentFloor")
     p = ctx.state.player
-    if highest > int(p.get("tower_highest", 0)):
+    old_highest = int(p.get("tower_highest", 0) or 0)
+    old_floor = int(p.get("tower_floor", 1) or 1)
+    if highest > old_highest:
         p["tower_highest"] = highest
-        ctx.state.bump()
-    return ok(towerHighest=int(p.get("tower_highest", 0)))
+    if current > 0:
+        p["tower_floor"] = max(old_floor, current)
+        # 玩家投胎重练后开始正常闯关，解除「塔层归 1」保护
+        ctx.state.meta.pop("towerFloorResetPending", None)
+    elif highest > old_highest:
+        p["tower_floor"] = max(old_floor, highest + 1)
+        ctx.state.meta.pop("towerFloorResetPending", None)
+    ctx.state.bump()
+    # 新号 / 老档可能没有 tower_highest 键；直接 p["tower_highest"] 会在
+    # 「空上报或旧客户端只传 currentFloor」时抛 KeyError → 接口 500。
+    return ok(towerHighest=int(p.get("tower_highest", 0) or 0),
+              towerFloor=int(p.get("tower_floor", 1) or 1))
 
 
 @route("POST", "/tower/sweep")
 def tower_sweep(ctx: Ctx) -> dict:
-    p = ctx.state.player
+    """遗留的天关扫荡入口（客户端 mark_tower_sweep）。次数口径与主入口一致。"""
+    state = ctx.state
+    p = state.player
     highest = int(p.get("tower_highest", 0))
     if highest <= 0:
         return fail("尚未通关任何层，无法扫荡")
+    used = _tower_sweep_consume(state)
+    if used < 0:
+        return fail("今日天关扫荡次数已用完，请明日再来")
     # 扫荡直接推到最高层，奖励按每 100 层走邮件
     p["tower_floor"] = max(int(p.get("tower_floor", 1)), highest + 1)
     packs = [{"name": "%d关礼包" % floor, "count": 1} for floor in range(100, highest + 1, 100)]
     if packs:
-        ctx.state.send_mail("天关扫荡 · 百关礼包", "您通过天关扫荡获得以下百关礼包，请查收附件。", packs)
-    p["tower_sweep_count"] = int(p.get("tower_sweep_count", 0)) + 1
-    ctx.state.bump()
-    return ok(towerFloor=int(p["tower_floor"]), sweepCount=int(p["tower_sweep_count"]), items=packs)
+        state.send_mail("天关扫荡 · 百关礼包", "您通过天关扫荡获得以下百关礼包，请查收附件。", packs)
+    state.bump()
+    return _tower_sweep_payload(state, towerFloor=int(p["tower_floor"]), items=packs)
 
 
 @route("GET", "/tower/ranking")
@@ -68,6 +171,24 @@ def tower_ranking(ctx: Ctx) -> dict:
 
 
 # ================================================================ 套装副本
+#
+# 扫荡次数口径统一为「今日**剩余**次数」（客户端 player.suit_dungeon_sweeps 默认 3，
+# 界面文案是「今日可扫荡: N 次」，扣一次减一）。历史实现把它当「已用次数」存，
+# 于是 /suit-dungeon/info 一进来就回 sweepsLeft=max(0, cap-used)，玩家刚登录
+# 看到的就是「次数已用完」，扫荡按钮点了也只会弹提示。
+#
+# 存档键：
+#   suit_dungeon_progress    已通关的最高层（客户端 is_cleared = level <= progress）
+#   suit_dungeon_sweeps      今日剩余次数
+#   suit_dungeon_sweeps_date 上面那个数字属于哪一天，跨天回满
+
+SUIT_DUNGEON_MAX_LEVEL = 21
+SUIT_SWEEP_DATE_KEY = "suit_dungeon_sweeps_date"
+
+
+def _suit_max_level() -> int:
+    return max(1, int(RULES.v("suit_dungeon", "maxLevel", SUIT_DUNGEON_MAX_LEVEL) or SUIT_DUNGEON_MAX_LEVEL))
+
 
 def _suit_sweep_cap(state) -> int:
     """套装副本每日扫荡上限：配置值与 VIP 表取大。
@@ -81,28 +202,254 @@ def _suit_sweep_cap(state) -> int:
     return max(base, int(table[max(0, min(tier, len(table) - 1))]))
 
 
+def _suit_progress(state) -> int:
+    try:
+        return max(0, int(state.player.get("suit_dungeon_progress", 0) or 0))
+    except (TypeError, ValueError):
+        return 0
+
+
+def _suit_progress_bump(state, level: int) -> int:
+    """通关 / 扫荡后推进进度条；只增不减，且不超过 maxLevel。"""
+    level = max(0, min(int(level or 0), _suit_max_level()))
+    p = state.player
+    cur = _suit_progress(state)
+    if level > cur:
+        p["suit_dungeon_progress"] = level
+        return level
+    return cur
+
+
+def _suit_sweeps_left(state) -> int:
+    """今日剩余扫荡次数（纯读，不写档）。跨天或从没写过 → 直接给满。"""
+    cap = _suit_sweep_cap(state)
+    p = state.player
+    if str(p.get(SUIT_SWEEP_DATE_KEY, "") or "") != today():
+        return cap
+    try:
+        left = int(p.get("suit_dungeon_sweeps", cap) or 0)
+    except (TypeError, ValueError):
+        left = cap
+    return max(0, min(cap, left))
+
+
+def _suit_sweeps_consume(state, count: int = 1) -> int:
+    """扣扫荡次数。次数不够返回 -1，够则返回扣完后的剩余次数。"""
+    count = max(1, int(count or 1))
+    left = _suit_sweeps_left(state)
+    if left < count:
+        return -1
+    p = state.player
+    p[SUIT_SWEEP_DATE_KEY] = today()
+    p["suit_dungeon_sweeps"] = left - count
+    return left - count
+
+
+def _suit_sweep_gold(level: int) -> int:
+    """扫荡金币：基础值 + 每层递增 × (层数-1)。"""
+    base = int(RULES.v("suit_dungeon", "sweepGoldBase", 0) or 0)
+    per = int(RULES.v("suit_dungeon", "sweepGoldPerLevel", 0) or 0)
+    return base + per * max(0, int(level or 1) - 1)
+
+
+SUIT_SLOTS = ("weapon", "helmet", "armor", "boots", "accessory")
+
+_SUIT_DB: dict | None = None
+
+
+def _suit_db() -> dict:
+    """服务端套装库（由客户端 suit_database_detailed.gd 导出，见 tools/dump_suit_db.gd）。
+
+    历史坑：旧注释写「客户端 ALL_ITEMS 里没有封印套装，发出去就是未知物品」，
+    于是套装掉落被整段换成了普通解封石 —— 二十一层副本一件套装都掉不出来。
+    实际上客户端 mail_manager._add_attachments_to_game 专门支持
+    `type == "sealed_suit"` 的附件（带 data 或按名字解析），可以正常入装备栏。
+    """
+    global _SUIT_DB
+    if _SUIT_DB is None:
+        try:
+            _SUIT_DB = load_json(DATA / "suit-database.json", {}) or {}
+        except Exception:  # noqa: BLE001
+            _SUIT_DB = {}
+    return _SUIT_DB
+
+
+def _suit_stone_name(level: int) -> str:
+    """1~10 层掉普通解封石，11~21 层掉高级解封石（客户端道具描述口径）。"""
+    return "高级解封石" if int(level or 0) >= 11 else "普通解封石"
+
+
+def _suit_sealed_drop(level: int, slot: str) -> dict | None:
+    """按层 + 部位生成一件「封印套装」邮件附件。
+
+    结构对齐客户端：`type == "sealed_suit"` 且带 `data`（suit_level / slot /
+    base_stats / element），客户端走 `_add_sealed_suit_from_mail` 逐件入装备栏。
+    """
+    db = _suit_db()
+    suits = db.get("suits") or {}
+    suit = suits.get(str(int(level or 0)))
+    if not isinstance(suit, dict):
+        return None
+    slot_cn = str((db.get("slots") or {}).get(slot, "") or "")
+    if not slot_cn:
+        return None
+    name = "%s%s（封印）" % (str(suit.get("name", "")), slot_cn)
+    piece = (suit.get("piece_stats") or {}).get(slot) or {}
+    return {
+        "name": name,
+        "count": 1,
+        "type": "sealed_suit",
+        "data": {
+            "name": name,
+            "suit_level": int(level),
+            "slot": slot,
+            "is_sealed": True,
+            "base_stats": piece,
+            "element": str(suit.get("element", "无")),
+        },
+    }
+
+
+def _suit_next_slot(state, level: int) -> str:
+    """按层取「本轮还没掉过」的部位，5 次正好凑齐一整套，然后开新一轮。
+
+    玩家口径（2026-11-06）：「改成 100% 会出套装部位，而且不重复，让玩家早点
+    凑齐套装」。池子存在 state.meta.suitDropCycle[层号]，所以：
+      · 打第 3 层就凑第 3 层那套，换层不会把两套的部位混在一起；
+      · 已掉部位不会再掉，5 场必齐 5 件；集齐后自动清空重来，可以再凑一套；
+      · 通关和扫荡共用同一个池子，混着打也不会重复。
+    state 为 None 时（大样本抽样测试）没有存档可写，退化为纯随机部位。
+    """
+    meta = getattr(state, "meta", None) if state is not None else None
+    if not isinstance(meta, dict):
+        return random.choice(list(SUIT_SLOTS))
+    cycle = meta.get("suitDropCycle")
+    if not isinstance(cycle, dict):
+        cycle = {}
+        meta["suitDropCycle"] = cycle
+    key = str(int(level or 1))
+    used = cycle.get(key)
+    if not isinstance(used, list):
+        used = []
+    remaining = [s for s in SUIT_SLOTS if s not in used]
+    if not remaining:
+        used = []           # 上一轮 5 件齐了，开新一轮
+        remaining = list(SUIT_SLOTS)
+    slot = random.choice(remaining)
+    used.append(slot)
+    cycle[key] = used
+    return slot
+
+
+def _suit_drop_roll(state, level: int = 1) -> list:
+    """掷套装副本掉落，只返回清单（不写背包；部位轮次写 state.meta）。
+
+    历史：最初两种掉落都被写死成「普通解封石」，一件套装都掉不出来；后来按
+    原版新手指引改成「每部位 5%、解封石 5%」（单场仅 22.62% 出套装，平均
+    0.25 件）。2026-11-06 玩家要求改成「100% 出套装部位且不重复，早点凑齐」。
+
+    现在 sealedSuitRate >= 1 时每场必出 1 件封印套装，uniqueSlotCycle 开启时
+    按层轮换部位（见 _suit_next_slot）；解封石仍按 sealedStoneRate 独立判定。
+    sealedSuitRate < 1 时保留原来的「每部位各掷一次」概率分支，便于调回。
+    """
+    rates = RULES.v("suit_dungeon", "dropRates", {}) or {}
+    suit_rate = float(rates.get("sealedSuitRate", 1.0) or 0.0)
+    stone_rate = float(rates.get("sealedStoneRate", 0.05) or 0.0)
+    unique = bool(rates.get("uniqueSlotCycle", True))
+    lv = int(level or 1)
+    drops: list = []
+    if suit_rate >= 1.0:
+        # 100% 保底：每场必有 1 件，部位按层轮转不重复，5 场凑齐一套
+        row = _suit_sealed_drop(lv, _suit_next_slot(state, lv) if unique
+                                else random.choice(list(SUIT_SLOTS)))
+        if row:
+            drops.append(row)
+    elif suit_rate > 0:
+        for slot in SUIT_SLOTS:
+            if random.random() < suit_rate:
+                row = _suit_sealed_drop(lv, slot)
+                if row:
+                    drops.append(row)
+    if stone_rate > 0 and random.random() < stone_rate:
+        drops.append({"name": _suit_stone_name(lv),
+                      "count": 1, "type": "stone"})
+    return drops
+
+
+def _suit_drop_mail(state, level: int, drops: list, title: str) -> dict | None:
+    """掉落一律走邮件。
+
+    封印套装不能写服务端 items：`add_item` 按名字合并 count，
+    两件同名套装会变成「count=2」的一行，客户端解析不出 data（等于白掉）。
+    走邮件后由客户端逐件 add_item("sealed_suit", 1, data)，每件都是独立装备。
+    """
+    if not drops:
+        return None
+    try:
+        return state.send_mail(
+            title,
+            "第 %d 层掉落已在附件中，请及时领取。" % int(level),
+            items=[dict(d) for d in drops],
+        )
+    except Exception:  # noqa: BLE001 - 邮件失败不影响金币/次数结算
+        return None
+
+
+def _suit_sweep_apply(state, level: int) -> dict:
+    """执行一次扫荡（调用方负责校验层数/次数），返回回包字段。
+
+    金币直接进背包；掉落走邮件（客户端 `_build_suit_sweep_result_message`
+    看到 suitDropMailSent 就会提示「掉落物品已由服务器发送到邮件」）。
+    """
+    gold = _suit_sweep_gold(level)
+    if gold:
+        state.add_gold(gold)
+    drops = _suit_drop_roll(state, level)
+    mail = _suit_drop_mail(state, level, drops, "套装副本扫荡 · 第%d层" % int(level))
+    mail_sent = mail is not None
+    state.bump()
+    return {
+        "goldGranted": gold,
+        "goldGained": gold,
+        "newGold": state.gold(),
+        "dropItems": drops,
+        "items": drops,
+        "suitDropMailSent": mail_sent,
+        "sweepsLeft": _suit_sweeps_left(state),
+        "suitDungeonProgress": _suit_progress(state),
+    }
+
+
 @route("GET", "/suit-dungeon/info")
 def suit_dungeon_info(ctx: Ctx) -> dict:
-    p = ctx.state.player
-    max_sweeps = _suit_sweep_cap(ctx.state)
-    used = int(p.get("suit_dungeon_sweeps", 0))
-    return {"success": True, "maxSweeps": max_sweeps, "sweepsLeft": max(0, max_sweeps - used)}
+    state = ctx.state
+    return {
+        "success": True,
+        "maxSweeps": _suit_sweep_cap(state),
+        "sweepsLeft": _suit_sweeps_left(state),
+        "suitDungeonProgress": _suit_progress(state),
+        "maxLevel": _suit_max_level(),
+    }
 
 
 @route("POST", "/suit-dungeon/sweep")
 def suit_dungeon_sweep(ctx: Ctx) -> dict:
+    """挑战通关过的层可直接扫荡，每天有次数上限（VIP 提升上限）。"""
     state = ctx.state
-    p = state.player
-    max_sweeps = _suit_sweep_cap(state)
-    used = int(p.get("suit_dungeon_sweeps", 0))
-    if used >= max_sweeps:
+    level = ctx.i("level") or _suit_progress(state)
+    progress = _suit_progress(state)
+    if progress <= 0:
+        return fail("尚未通关任何层，无法扫荡")
+    if level < 1 or level > _suit_max_level():
+        return fail("副本层数不合法")
+    if level > progress:
+        return fail("第%d层尚未通关，无法扫荡" % level)
+    left = _suit_sweeps_consume(state, 1)
+    if left < 0:
         return fail("今日扫荡次数已用完")
-    p["suit_dungeon_sweeps"] = used + 1
-    gold = int(RULES.v("suit_dungeon", "sweepGoldBase", 0) or 0)
-    if gold:
-        state.add_gold(gold)
-    state.bump()
-    return ok(sweepsLeft=max(0, max_sweeps - used - 1), newGold=state.gold())
+    payload = _suit_sweep_apply(state, level)
+    payload["level"] = level
+    return ok(**payload)
 
 
 @route("GET", "/suit-dungeon/ranking")
@@ -111,6 +458,34 @@ def suit_dungeon_ranking(ctx: Ctx) -> dict:
 
 
 # ================================================================ 五行副本
+#
+# 免费挑战次数：原版规则页「每日免费挑战次数有限，可消耗元宝购买额外次数」，
+# 配置 fiveElementsDungeon.dailyMax = 10。旧实现只累加 attempts、没写日期，
+# 于是 10 次打满后 remainingAttempts 永远为 0，跨天也不回满 —— 玩家第二天
+# 起就再也进不去五行副本。这里补日期键，与元宝次数（本来就有日期键）一致。
+
+FE_ATTEMPTS_DATE_KEY = "five_elements_dungeon_attempts_date"
+
+
+def _fe_attempts_used(state) -> int:
+    """今日已用免费次数（纯读，不写档）；跨天自动归零。"""
+    p = state.player
+    if str(p.get(FE_ATTEMPTS_DATE_KEY, "") or "") != today():
+        return 0
+    try:
+        return max(0, int(p.get("five_elements_dungeon_attempts", 0) or 0))
+    except (TypeError, ValueError):
+        return 0
+
+
+def _fe_attempts_consume(state) -> int:
+    """扣 1 次免费挑战，返回扣完后的今日已用次数。"""
+    used = _fe_attempts_used(state)
+    p = state.player
+    p[FE_ATTEMPTS_DATE_KEY] = today()
+    p["five_elements_dungeon_attempts"] = used + 1
+    return used + 1
+
 
 @route("GET", "/five-elements-dungeon/status")
 def fe_status(ctx: Ctx) -> dict:
@@ -118,7 +493,7 @@ def fe_status(ctx: Ctx) -> dict:
     p = state.player
     daily_max = int(RULES.v("five_elements_dungeon", "dailyMax", 10) or 10)
     yuanbao_max = int(RULES.v("five_elements_dungeon", "yuanbaoDailyMax", 1) or 1)
-    used = int(p.get("five_elements_dungeon_attempts", 0))
+    used = _fe_attempts_used(state)
     yb_used = int(p.get("fe_yuanbao_attempts", 0)) if str(p.get("fe_yuanbao_attempts_date", "")) == today() else 0
     return {
         "success": True,
@@ -133,28 +508,139 @@ def fe_status(ctx: Ctx) -> dict:
 @route("POST", "/five-elements-dungeon/start")
 def fe_start(ctx: Ctx) -> dict:
     state = ctx.state
-    p = state.player
     daily_max = int(RULES.v("five_elements_dungeon", "dailyMax", 10) or 10)
-    used = int(p.get("five_elements_dungeon_attempts", 0))
+    used = _fe_attempts_used(state)
     if used >= daily_max:
         return fail("今日五行副本次数已用完")
-    p["five_elements_dungeon_attempts"] = used + 1
+    _fe_attempts_consume(state)
     state.bump()
     return ok(remainingAttempts=max(0, daily_max - used - 1), waves=int(RULES.v("five_elements_dungeon", "monsters.waveCount", 10) or 10))
 
 
+# 五行副本掉落表是**按难度分组的 dict**（simple/normal/hard），每行 rate
+# 加起来正好 1，语义是「按权重抽一行奖励」。旧实现把它当列表遍历，
+# `for row in dict` 拿到的是字符串 key，`row.get(...)` 直接 AttributeError →
+# 接口 500，五行副本通关一次奖励都发不出来。
+_FE_GOLD_LABELS = {"10亿金币": 1_000_000_000, "5亿金币": 500_000_000}
+# 配置里的「之一」是占位族名，客户端 ALL_ITEMS 只认具体成员，发原样会
+# 在邮箱点领取时弹「未知物品」，奖励永久卡死（与抽奖同一个坑）。
+_FE_PLACEHOLDER_POOLS = {
+    "极限装备之一": ["极限武器", "极限衣服", "极限鞋子", "极限血佩", "极限内带"],
+    "五行属性宠物蛋": ["金属性宠物蛋", "木属性宠物蛋", "水属性宠物蛋",
+                       "火属性宠物蛋", "土属性宠物蛋"],
+    "普通技能书之一": ["自复lv1技能书", "轻身lv1技能书", "硬皮lv1技能书",
+                       "长命lv1技能书", "力壮lv1技能书", "凶性lv1技能书"],
+    "稀有技能书之一": ["溅墨lv1技能书", "反打lv1技能书", "护主lv1技能书",
+                       "连击lv1技能书", "饮血lv1技能书", "破防lv1技能书"],
+}
+
+
+def _fe_reward_pool(difficulty: str) -> list:
+    rewards = RULES.v("five_elements_dungeon", "rewards", {}) or {}
+    if not isinstance(rewards, dict):
+        return []
+    mapping = RULES.v("five_elements_dungeon", "difficultyMap", {}) or {}
+    key = str(difficulty or "").strip()
+    key = str(mapping.get(key, key) or key).lower()
+    pool = rewards.get(key)
+    return pool if isinstance(pool, list) else []
+
+
+def _fe_roll(pool: list) -> dict | None:
+    rows: list = []
+    total = 0.0
+    for row in pool:
+        if not isinstance(row, dict):
+            continue
+        try:
+            weight = max(0.0, float(row.get("rate", 0) or 0))
+        except (TypeError, ValueError):
+            continue
+        if weight > 0:
+            rows.append((row, weight))
+            total += weight
+    if not rows:
+        return None
+    x = random.random() * total
+    acc = 0.0
+    for row, weight in rows:
+        acc += weight
+        if x <= acc:
+            return row
+    return rows[-1][0]
+
+
+def _fe_resolve_reward(raw_name: str) -> tuple:
+    """返回 (kind, 展示/道具名, 金币数)。"""
+    gold = _FE_GOLD_LABELS.get(raw_name)
+    if gold is None:
+        m = re.match(r"^(\d+(?:\.\d+)?)亿金币$", raw_name)
+        if m:
+            gold = int(float(m.group(1)) * 100_000_000)
+    if gold:
+        return "gold", raw_name, gold
+    options = _FE_PLACEHOLDER_POOLS.get(raw_name)
+    if options:
+        return "item", random.choice(options), 0
+    return "item", raw_name, 0
+
+
 @route("POST", "/five-elements-dungeon/clear")
 def fe_clear(ctx: Ctx) -> dict:
+    """五行副本通关结算：金币直接入账，道具走邮件让玩家领取。
+
+    客户端 game_manager `_end_fe_dungeon_success` 只认
+    `reward{name,gold}` / `mailSent` / `duplicate` / `newGold`：
+      · reward.gold > 0 → 战报打「金币已入账」，并把 player.gold 对齐 newGold；
+      · mailSent=true   → 刷新邮件列表，战报提示「请查收邮件」。
+    旧实现回的是 items/rewards，字段全对不上，玩家啥也看不到。
+    """
     state = ctx.state
-    rewards = RULES.v("five_elements_dungeon", "rewards", []) or []
-    got = []
-    for row in rewards:
-        chance = float(row.get("rate", 0) or 0)
-        if random.random() < chance:
-            state.add_item(str(row.get("name", "五行奖励")), 1, "item")
-            got.append({"name": str(row.get("name", "")), "count": 1})
+    body = ctx.body or {}
+    element = str(body.get("element", "") or "").strip()
+    difficulty = str(body.get("difficulty", "") or "").strip()
+    op_id = str(body.get("operationId", "") or "").strip()
+    session_id = str(body.get("sessionId", "") or "").strip()
+
+    ops = state.meta.setdefault("feClearOps", {})
+    if not isinstance(ops, dict):
+        ops = {}
+        state.meta["feClearOps"] = ops
+    if op_id and isinstance(ops.get(op_id), dict):
+        memo = ops[op_id]
+        return ok(duplicate=True, reward=memo.get("reward", {}),
+                  mailSent=bool(memo.get("mailSent", False)),
+                  newGold=state.gold(), message="本次五行副本奖励已结算")
+
+    pool = _fe_reward_pool(difficulty)
+    if not pool:
+        return fail("五行副本难度或掉落配置缺失")
+    row = _fe_roll(pool)
+    if row is None:
+        return fail("五行副本掉落表为空")
+    kind, reward_name, gold = _fe_resolve_reward(str(row.get("name", "") or "").strip())
+    if kind == "gold":
+        state.add_gold(gold)
+        reward = {"name": reward_name, "gold": gold}
+        mail_sent = False
+    else:
+        # 原版口径：非金币奖励发到邮箱，玩家领取后入背包
+        state.send_mail(
+            "五行副本通关奖励",
+            "【%s·%s】通关奖励已放入附件，请在 7 天内领取。" % (element or "五行", difficulty or "副本"),
+            items=[{"name": reward_name, "count": 1}],
+        )
+        reward = {"name": reward_name, "gold": 0}
+        mail_sent = True
+    if op_id:
+        ops[op_id] = {"at": iso(now()), "session": session_id,
+                      "reward": reward, "mailSent": mail_sent}
+        if len(ops) > 60:
+            for stale in sorted(ops, key=lambda k: str(ops[k].get("at", "")))[:-60]:
+                ops.pop(stale, None)
     state.bump()
-    return ok(items=got, rewards=got, newGold=state.gold())
+    return ok(reward=reward, mailSent=mail_sent, newGold=state.gold(),
+              items=[{"name": reward_name, "count": 1}], rewards=[reward])
 
 
 # ================================================================ 图鉴副本
@@ -694,77 +1180,108 @@ def brother_status(ctx: Ctx) -> dict:
     cfg = RULES.m("brother_tower")
     box = state.meta.setdefault("brotherTower", {})
     p = state.player
+    clear_max, reward_max = bt.clear_limits(state)
+    uid = int(ctx.user.get("userId", 0) or 0)
+    my_room = bt.room_view(bt.my_room(state, uid), uid)
     return {
         "success": True,
         "dailyRewardCount": state.daily("bt_reward"),
-        "dailyRewardMax": int(cfg.get("dailyRewardMax", 1)),
+        "dailyRewardMax": reward_max,
         "dailyClearCount": state.daily("bt_clear"),
-        # 原版：基础次数 + 贵族每级 +N 次（brother_tower_ui.gd:419-424）
-        "dailyClearMax": int(cfg.get("dailyClearMax", 3))
-        + state.noble_level() * int(cfg.get("nobleClearBonusPerLevel", 1) or 0),
+        "dailyClearMax": clear_max,
         "friendshipPoints": state.friendship(),
         "reincarnation": int(p.get("reincarnation", 0)),
-        "myRoomId": box.get("joined"),
+        "myRoomId": bt.my_room_id(state, uid),
+        "myRoom": my_room,
+        "tokenName": bt.token_name(),
+        "tokenCount": state.item_count(bt.token_name()),
         "pinnedSnapshot": box.get("pinned") or {"hasPinned": False},
         "difficulties": cfg.get("difficulties", []),
+        "waveCount": bt.wave_count(),
     }
 
 
 @route("GET", "/brother-tower/list")
 def brother_list(ctx: Ctx) -> dict:
-    box = ctx.state.meta.setdefault("brotherTower", {})
-    return {"success": True, "rooms": box.get("rooms", []), "myRoom": box.get("joined"),
-            "myPendingApplicationRoomIds": []}
+    state = ctx.state
+    uid = int(ctx.user.get("userId", 0) or 0)
+    rooms = [bt.room_view(r, uid) for r in bt.all_rooms()]
+    return {"success": True, "rooms": rooms,
+            "myRoom": bt.room_view(bt.my_room(state, uid), uid),
+            "myPendingApplicationRoomIds": bt.pending_application_room_ids(state, uid)}
 
 
 @route("POST", "/brother-tower/create")
 def brother_create(ctx: Ctx) -> dict:
     state = ctx.state
-    box = state.meta.setdefault("brotherTower", {})
-    if box.get("joined"):
-        return fail("已在房间中")
-    room = {
-        "id": int(now().timestamp()) % 100000,
-        "owner": state.nickname(),
-        "difficulty": ctx.s("difficulty") or "easy",
-        "members": [state.nickname()],
-        "status": "waiting",
-        "createdAt": iso(now()),
-    }
-    box.setdefault("rooms", []).append(room)
-    box["joined"] = room["id"]
-    state.bump()
-    return ok(room=room, roomId=room["id"])
+    if not bt.has_token(state):
+        return fail("需要【%s】" % bt.token_name())
+    snapshot = ctx.body.get("localSnapshot") if isinstance(ctx.body.get("localSnapshot"), dict) else bt.box(state).get("pinned")
+    res = bt.create_room(ctx, ctx.s("difficulty") or "easy", ctx.s("joinMode") or "auto", snapshot)
+    if res.get("error"):
+        return fail(res["error"])
+    return ok(room=res["room"], roomId=res["roomId"])
 
 
 @route("POST", "/brother-tower/join")
 def brother_join(ctx: Ctx) -> dict:
-    state = ctx.state
-    box = state.meta.setdefault("brotherTower", {})
-    room_id = ctx.i("roomId")
-    for room in box.get("rooms", []):
-        if int(room.get("id", 0)) == room_id:
-            room.setdefault("members", []).append(state.nickname())
-            box["joined"] = room_id
-            state.bump()
-            return ok(room=room, roomId=room_id)
-    return fail("房间不存在")
+    snapshot = ctx.body.get("localSnapshot") if isinstance(ctx.body.get("localSnapshot"), dict) else None
+    res = bt.join_result(ctx, ctx.i("roomId"), snapshot)
+    if res.get("error"):
+        return fail(res["error"])
+    return ok(**res)
 
 
 @route("POST", "/brother-tower/leave")
 def brother_leave(ctx: Ctx) -> dict:
-    ctx.state.meta.setdefault("brotherTower", {})["joined"] = None
-    return ok()
+    res = bt.leave_result(ctx)
+    if res.get("error"):
+        return fail(res["error"])
+    return ok(**res)
 
 
 @route("POST", "/brother-tower/ready")
 def brother_ready(ctx: Ctx) -> dict:
-    return ok(ready=True)
+    res = bt.set_ready(ctx, True)
+    if res.get("error"):
+        return fail(res["error"])
+    return ok(**res)
 
 
 @route("POST", "/brother-tower/start")
 def brother_start(ctx: Ctx) -> dict:
-    return ok(session={"id": int(now().timestamp()) % 100000, "status": "in_battle", "wave": 1})
+    state = ctx.state
+    difficulty = ctx.s("difficulty") or "easy"
+    snapshot = ctx.body.get("snapshot") if isinstance(ctx.body.get("snapshot"), dict) else None
+    if snapshot is None:
+        snapshot = bt.box(state).get("pinned") or {}
+    sess = bt.current(state)
+    if sess and sess.get("status") == "in_battle":
+        view = bt.session_view(state)
+        return ok(**view, session=view, resumed=True)
+    # 房间难度优先（deploy 版保留房间语义）；房间已改为全局存储
+    uid = int(ctx.user.get("userId", 0) or 0)
+    room = bt.my_room(state, uid)
+    if room and room.get("difficulty"):
+        difficulty = str(room["difficulty"])
+    # 令牌门槛：队长开战消耗 1 个，operationId 幂等
+    op_id = ctx.s("operationId") or ctx.s("opId")
+    box = bt.box(state)
+    spent = box.setdefault("tokenSpentOps", [])
+    if not op_id or op_id not in spent:
+        if not bt.consume_token(state):
+            return fail("需要【%s】，队长开战时消耗 1 个" % bt.token_name())
+        spent.append(op_id)
+        box["tokenSpentOps"] = spent[-50:]
+    sess = bt.new_session(state, difficulty, snapshot)
+    state.bump()
+    view = bt.session_view(state)
+    return ok(
+        sessionId=sess["sessionId"], battleSeed=sess["battleSeed"],
+        currentWave=sess["currentWave"], waveCount=sess["waveCount"],
+        members=sess["members"], driverUserId=sess["driverUserId"],
+        role=sess["role"], status=sess["status"], session=view,
+    )
 
 
 @route("POST", "/brother-tower/complete")
@@ -773,36 +1290,57 @@ def brother_complete(ctx: Ctx) -> dict:
     cfg = RULES.m("brother_tower")
     box0 = state.meta.setdefault("brotherTower", {})
     op_id = ctx.s("operationId") or ctx.s("opId")
-    # 幂等：客户端 complete 队列会重试，重放不能重复发奖、也不能重复刷战报
+
+    # 幂等：客户端 complete 队列会重试，重放不重复发奖、也不重复刷战报
     if op_id and box0.get("lastCompleteOp") == op_id:
         return ok(**box0.get("lastCompleteResult", {}), duplicate=True)
-    state.daily_inc("bt_clear")
-    gold = 1000000
-    state.add_gold(gold)
-    points = int(cfg.get("friendshipPoints", 2) or 2)
-    state.add_friendship(points)
-    gift = str(cfg.get("giftItemName", ""))
-    items = []
-    if gift:
-        state.send_mail("兄弟天关通关礼包", "兄弟天关通关奖励，请查收附件。", [{"name": gift, "count": 1}])
-        items.append({"name": gift, "count": 1})
 
-    # 通关战报（原游戏 brother_tower_clear）：「情比金坚，风雨同舟！\n
-    # 恭喜【A】与【B】经过一番苦战联手通关【史诗】难度兄弟天关10层！」
-    # 层数取配置 waveCount（原版 10 层），难度取房间难度。
-    box = state.meta.setdefault("brotherTower", {})
-    room = {}
-    for r in box.get("rooms", []) or []:
-        if int(r.get("id", 0)) == int(box.get("joined") or 0):
-            room = r
-            break
-    members = [str(x) for x in (room.get("members") or []) if str(x).strip()]
+    sess = bt.current(state)
+    if not sess or sess.get("status") != "cleared":
+        return fail("战斗尚未通关，无法结算")
+
+    # 限流（含贵族加成）
+    clear_max, reward_max = bt.clear_limits(state)
+    if state.daily("bt_clear") >= clear_max:
+        return fail("今日通关次数已用完")
+    if state.daily("bt_reward") >= reward_max:
+        return fail("今日领奖次数已用完")
+
+    difficulty = str(sess.get("difficulty") or "easy")
+    state.daily_inc("bt_clear")
+    state.daily_inc("bt_reward")
+
+    points = bt.friendship_gain(difficulty)
+    state.add_friendship(points)
+    picks = bt.roll_gifts(difficulty)
+
+    gold = 0
+    mail_items = []
+    for p in picks:
+        if p.get("kind") == "gold":
+            amount = int(p.get("gold", 0))
+            state.add_gold(amount)
+            gold += amount
+        else:
+            mail_items.append({"name": p.get("name", ""), "count": 1})
+    if mail_items:
+        state.send_mail("兄弟天关通关礼包", "兄弟天关通关奖励，请查收附件。", mail_items)
+
+    # 通关战报（原游戏 brother_tower_clear）——保留 deploy 既有语义
+    # 房间已改为全局存储，按 userId 定位我所在房间
+    uid = int(ctx.user.get("userId", 0) or 0)
+    room = bt.my_room(state, uid) or {}
+    members = []
+    for m in (room.get("members") or []):
+        nm = str(m.get("name") or m.get("nickname") or "") if isinstance(m, dict) else str(m)
+        if nm.strip():
+            members.append(nm)
     if not members:
         members = [state.nickname()]
     members = members[:2]
-    difficulty = str(room.get("difficulty") or ctx.s("difficulty") or "easy")
-    label = {"easy": "简单", "normal": "普通", "hard": "困难", "epic": "史诗"}.get(difficulty, difficulty)
-    floors = int(cfg.get("waveCount", 10) or 10)
+    label_map = {"easy": "简单", "normal": "普通", "hard": "困难", "epic": "史诗"}
+    label = label_map.get(difficulty, difficulty)
+    floors = int(sess.get("waveCount", cfg.get("waveCount", 10)) or 10)
     if len(members) >= 2:
         body = "恭喜【%s】与【%s】经过一番苦战联手通关【%s】难度兄弟天关%d层！" % (
             members[0], members[1], label, floors)
@@ -814,30 +1352,42 @@ def brother_complete(ctx: Ctx) -> dict:
                        {"difficulty": difficulty, "difficultyLabel": label,
                         "playerNames": members, "floor": floors})
 
+    result = dict(
+        goldGained=gold, friendshipGain=points, friendshipPoints=state.friendship(),
+        items=picks, difficulty=difficulty,
+        dailyClearCount=state.daily("bt_clear"), dailyClearMax=clear_max,
+        dailyRewardCount=state.daily("bt_reward"), dailyRewardMax=reward_max,
+    )
+    bt.mark_result(state, result)
     state.bump()
-    out = ok(goldGained=gold, friendshipPoints=state.friendship(), items=items)
-    if op_id:
-        box0["lastCompleteOp"] = op_id
-        box0["lastCompleteResult"] = {"goldGained": gold, "friendshipPoints": state.friendship(),
-                                      "items": items}
-    return out
+    box0["lastCompleteOp"] = op_id
+    box0["lastCompleteResult"] = result
+    bt.invalidate(state)
+    return ok(**result)
 
 
 @route("POST", "/brother-tower/forfeit")
 def brother_forfeit(ctx: Ctx) -> dict:
-    return ok()
+    sess = bt.current(ctx.state)
+    if sess and sess.get("status") == "in_battle":
+        sess["status"] = "forfeit"
+        bt.box(ctx.state)["session"] = sess
+    return ok(status="forfeit")
 
 
 @route("GET", "/brother-tower/poll")
 def brother_poll(ctx: Ctx) -> dict:
-    box = ctx.state.meta.setdefault("brotherTower", {})
+    state = ctx.state
+    uid = int(ctx.user.get("userId", 0) or 0)
+    rooms = [bt.room_view(r, uid) for r in bt.all_rooms()]
     return {
         "success": True,
-        "rooms": box.get("rooms", []),
-        "myRoom": box.get("joined"),
-        "myPendingApplicationRoomIds": [],
+        "rooms": rooms,
+        "myRoom": bt.room_view(bt.my_room(state, uid), uid),
+        "myRoomId": bt.my_room_id(state, uid),
+        "myPendingApplicationRoomIds": bt.pending_application_room_ids(state, uid),
         "status": brother_status(ctx),
-        "session": {},
+        "session": bt.session_view(state),
     }
 
 
@@ -849,6 +1399,7 @@ def brother_pin(ctx: Ctx) -> dict:
     box["pinned"] = {
         "hasPinned": True,
         "pinnedAt": iso(now()),
+        "userId": ctx.i("userId", 0),
         "playerName": state.nickname(),
         "playerLevel": int(state.player.get("level", 1)),
         "playerRealm": str(state.player.get("realm", "")),
@@ -1028,7 +1579,12 @@ def _xianmo_settle_due() -> dict:
 
 
 def _xianmo_pay_week_reward(row: dict, winner: str, week: int) -> None:
-    """给单个玩家发上周奖励：称号直接进档，宝箱进仙魔宝箱栏，金币/丹药入账 + 邮件通知。"""
+    """给单个玩家发上周奖励。
+
+    称号 / 仙魔宝箱只能服务端直接入账（客户端邮件领取不支持这两种特殊结构）；
+    金币和悟道仙丹改成**邮件附件**，玩家点「领取附件」才到账 ——
+    以前全部直接发、邮件只有一行文字，点开没东西也领不了（2026-11-04 报障）。
+    """
     try:
         st = STORE.get(row["username"])
     except Exception:
@@ -1046,7 +1602,8 @@ def _xianmo_pay_week_reward(row: dict, winner: str, week: int) -> None:
                                        else _XIANMO_LOSE_REWARDS)[rank]
         title = _xianmo_grant_title(box, faction, rank, is_winner, week)
         if title:
-            lines.append("称号：%s（7天，四维 +%d）" % (title["title_name"], title["attack_bonus"]))
+            lines.append("称号：%s（7天，四维 +%d）——已直接激活"
+                         % (title["title_name"], title["attack_bonus"]))
     elif row["score"] > 0:
         chest, chest_n, gold, pills = _XIANMO_PARTICIPATION
     else:
@@ -1055,22 +1612,27 @@ def _xianmo_pay_week_reward(row: dict, winner: str, week: int) -> None:
         st.mark_dirty()
         return
 
+    attach_items: list[dict] = []
+    attach_gold = 0
     if gold:
-        st.add_gold(gold)
-        lines.append("金币：%d亿" % (gold // 100_000_000))
+        attach_gold = int(gold)
+        lines.append("金币：%d亿（附件领取）" % (gold // 100_000_000))
     if pills:
-        st.add_item("开悟丹", pills, "item")
-        lines.append("开悟丹 ×%d" % pills)
+        attach_items.append({"name": "悟道仙丹", "count": int(pills)})
+        lines.append("悟道仙丹 ×%d（附件领取）" % pills)
     if chest_n:
         for _ in range(chest_n):
             box.setdefault("chests", []).append(
                 {"type": chest, "count": 1, "at": iso(now())})
-        lines.append("%s宝箱 ×%d" % (_XIANMO_CHEST_LABEL.get(chest, chest), chest_n))
+        lines.append("%s宝箱 ×%d ——已存入仙魔宝箱栏" % (_XIANMO_CHEST_LABEL.get(chest, chest), chest_n))
 
     box["settlePaidWeek"] = week
     box["lastSettle"] = {"week": week, "rank": rank, "faction": faction,
                          "winner": winner, "score": row["score"], "at": iso(now())}
     if lines:
+        attach: dict = {}
+        if attach_gold:
+            attach["gold"] = attach_gold
         st.send_mail(
             "仙魔战场 · 第%d周结算" % week,
             "第%d周仙魔战场结算：%s阵营%s。\n你本周积分 %d，%s阵营第 %d 名。\n\n%s" % (
@@ -1078,6 +1640,8 @@ def _xianmo_pay_week_reward(row: dict, winner: str, week: int) -> None:
                 "获胜" if winner in ("xian", "mo") else "战平",
                 row["score"], "仙道" if faction == "xian" else "魔道", rank or 0,
                 "\n".join("· " + x for x in lines)),
+            items=attach_items,
+            attachments=attach or None,
         )
     st.bump()
     st.flush()
@@ -1198,13 +1762,16 @@ def _xianmo_pick_item(pool: list[str]) -> str:
 
 
 _XIANMO_RANDOM_ITEM_POOL = [
-    "开悟丹", "强化石", "宠装强化石", "双倍经验符",
+    "悟道仙丹", "强化石", "宠装强化石", "双倍经验丹",
     "反打lv1技能书", "自复lv1技能书", "轻身lv1技能书", "长命lv1技能书", "力壮lv1技能书",
 ]
+# 池子里的名字必须是客户端 ALL_ITEMS 的键：原来写的是原版名
+# （五阶宠物蛋 / 金纹蛋 / 金纹异蛋），客户端改成 5+宠物蛋 / 金变异宠物蛋 之后
+# 这些名字一个都认不出，只能靠 _xianmo_pick_item 的过滤兜底（等于白抽）。
+# 纹蛋、纹异蛋在原版是两个蛋种，客户端合并成了「变异宠物蛋」，这里按合并后写。
 _XIANMO_RARE_ITEM_POOL = [
-    "开悟丹", "五阶宠物蛋",
-    "金纹蛋", "木纹蛋", "水纹蛋", "火纹蛋", "土纹蛋",
-    "金纹异蛋", "木纹异蛋", "水纹异蛋", "火纹异蛋", "土纹异蛋",
+    "悟道仙丹", "5+宠物蛋",
+    "金变异宠物蛋", "木变异宠物蛋", "水变异宠物蛋", "火变异宠物蛋", "土变异宠物蛋",
 ]
 
 # 捕获灵兽 → 发「仙魔礼包」到邮箱（原版线上口径：mail_manager 对这四个礼包
@@ -1212,27 +1779,27 @@ _XIANMO_RARE_ITEM_POOL = [
 # 以前直接 append 到 state.pet_bag，客户端宠物列表读不到这批（pet_id=xianmo_pet
 # 没有模板），表现就是「提示捕获了灵兽，但哪儿都找不到」。
 _XIANMO_PET_GIFT_BY_EVENT = {
-    "spirit_beast": "仙魔灵兽锦囊",
-    "spirit_beast_cub": "仙魔野生锦囊",
-    "divine_beast_trace": "仙魔神兽锦囊",
-    "mutant_beast": "仙魔变异锦囊",
-    "spirit_beast_guardian": "仙魔灵兽锦囊",
-    "pet_recognition": "仙魔灵兽锦囊",
+    "spirit_beast": "仙魔灵兽礼包",
+    "spirit_beast_cub": "仙魔野生礼包",
+    "divine_beast_trace": "仙魔神兽礼包",
+    "mutant_beast": "仙魔变异礼包",
+    "spirit_beast_guardian": "仙魔灵兽礼包",
+    "pet_recognition": "仙魔灵兽礼包",
 }
 
 
 def _xianmo_pet_gift(event_id: str, cfg: dict, growth: float) -> str:
-    """按事件挑礼包；名字必须存在于客户端物品表，兜底用仙魔灵兽锦囊。"""
+    """按事件挑礼包；名字必须存在于客户端物品表，兜底用仙魔灵兽礼包。"""
     gift = str(cfg.get("giftName") or _XIANMO_PET_GIFT_BY_EVENT.get(event_id, ""))
     if not gift or not _client_has_item(gift):
-        gift = "仙魔灵兽锦囊"
+        gift = "仙魔灵兽礼包"
     # 成长档位和礼包区间差太多时换更贴的一个（神兽/变异礼包成长更高）
-    if growth >= 6.2 and _client_has_item("仙魔神兽锦囊"):
-        gift = "仙魔神兽锦囊"
-    elif growth >= 6.0 and _client_has_item("仙魔变异锦囊"):
-        gift = "仙魔变异锦囊"
-    elif growth < 5.0 and _client_has_item("仙魔野生锦囊"):
-        gift = "仙魔野生锦囊"
+    if growth >= 6.2 and _client_has_item("仙魔神兽礼包"):
+        gift = "仙魔神兽礼包"
+    elif growth >= 6.0 and _client_has_item("仙魔变异礼包"):
+        gift = "仙魔变异礼包"
+    elif growth < 5.0 and _client_has_item("仙魔野生礼包"):
+        gift = "仙魔野生礼包"
     return gift
 
 
@@ -1491,10 +2058,10 @@ def _xianmo_broadcast(state, event_id: str, cfg: dict, rewards: list,
             return
         g = float(growth or 0)
         if btype == "pet_recognition":
-            content = "【%s】在仙魔界触发灵兽认主，获得了【仙魔灵兽锦囊】！（可开出成长%.2f）" % (nick, g)
+            content = "【%s】在仙魔界触发灵兽认主，获得了【仙魔灵兽礼包】！（可开出成长%.2f）" % (nick, g)
         else:
             action = "发现灵兽幼崽" if event_id == "spirit_beast_cub" else "发现灵兽"
-            content = "【%s】在仙魔界%s，获得了【仙魔灵兽锦囊】！（可开出成长%.2f）" % (nick, action, g)
+            content = "【%s】在仙魔界%s，获得了【仙魔灵兽礼包】！（可开出成长%.2f）" % (nick, action, g)
         extra = {"type": btype, "growth": round(g, 2)}
     else:
         return
@@ -2318,11 +2885,21 @@ def xianmo_pet_exchange(ctx: Ctx) -> dict:
     cost = 100
     if int(box.get("score", 0)) < cost:
         return fail("积分不足")
+    gift = "仙魔灵兽礼包"
+    if not _client_has_item(gift):
+        return fail("仙魔灵兽礼包暂未配置，本次不扣积分，请联系客服")
+    # 和事件捕捉同一条链路：兑换到的灵兽封装成礼包走邮件，绝不写 state.pet_bag。
+    # 以前这里直接 append 到 pet_bag（pet_id=xianmo_pet 没有物种模板），
+    # 客户端宠物列表读不到，玩家却在宠物袋里凭空看到一只野生宠 ——
+    # 宠物袋只放玩家自己手动存进去的宠，系统产出不许进。
     box["score"] = int(box.get("score", 0)) - cost
-    state.pet_bag.append({"id": "xianmo_pet_%d" % int(random.random() * 1e9), "pet_id": "xianmo_pet",
-                          "name": "仙魔灵兽", "level": 1, "generation": 0})
+    state.send_mail(
+        "仙魔战场 · 灵兽兑换",
+        "你用 %d 积分兑换的灵兽已封装成【%s】寄给你，\n打开礼包即可获得一只仙魔灵兽。" % (cost, gift),
+        [{"name": gift, "count": 1, "growth": 5.0}],
+    )
     state.bump()
-    return ok(pet={"name": "仙魔灵兽"})
+    return ok(pet={"name": "仙魔灵兽"}, giftName=gift, mailed=True)
 
 
 # ================================================================ 七日签到
@@ -2335,14 +2912,22 @@ def xianmo_pet_exchange(ctx: Ctx) -> dict:
 #   * 奖励按真实表发放（金币/元宝/道具），数量与界面宣传一致
 #   * 老档乱数据（抢领过的 day=7、day=0/-3）读档时自动清洗
 SIGNIN7_REWARDS = [
-    {"day": 1, "name": "六阶可进化宠锦囊", "type": "item", "item_id": "六阶可进化宠锦囊", "amount": 1},
+    {"day": 1, "name": "6+可进化宠礼包", "type": "item", "item_id": "6+可进化宠礼包", "amount": 1},
     {"day": 2, "name": "金币1亿", "type": "gold", "item_id": "金币", "amount": 100000000},
     {"day": 3, "name": "五行属性宠物蛋", "type": "item", "item_id": "五行属性宠物蛋", "amount": 1},
-    {"day": 4, "name": "开悟丹", "type": "item", "item_id": "开悟丹", "amount": 1},
-    {"day": 5, "name": "法宝碎片*20", "type": "item", "item_id": "法宝碎片", "amount": 20},
+    {"day": 4, "name": "悟道仙丹", "type": "item", "item_id": "悟道仙丹", "amount": 1},
+    {"day": 5, "name": "普通法宝碎片*20", "type": "item", "item_id": "普通法宝碎片", "amount": 20},
     {"day": 6, "name": "元宝100", "type": "yuanbao", "item_id": "元宝", "amount": 100},
-    {"day": 7, "name": "十阶可进化宠锦囊", "type": "item", "item_id": "十阶可进化宠锦囊", "amount": 1},
+    {"day": 7, "name": "10+可进化宠礼包", "type": "item", "item_id": "10+可进化宠礼包", "amount": 1},
 ]
+
+# 客户端 ALL_ITEMS 里没有「五行属性宠物蛋」这种**族名**，只有具体成员
+# （金属性宠物蛋 / 木属性宠物蛋 / …）。签到表沿用族名当展示文案，
+# 真发货时随机落到一颗具体属性的蛋上，否则背包里就是「未知物品」。
+_SIGNIN7_ITEM_FAMILY = {
+    "五行属性宠物蛋": ("金属性宠物蛋", "木属性宠物蛋", "水属性宠物蛋",
+                        "火属性宠物蛋", "土属性宠物蛋"),
+}
 
 
 def _signin7_clean(box: dict) -> list:
@@ -2418,8 +3003,12 @@ def signin7_claim(ctx: Ctx) -> dict:
     elif reward["type"] == "yuanbao":
         state.add_yuanbao(int(reward["amount"]))
     else:
-        state.add_item(str(reward["item_id"]), int(reward["amount"]), "item")
-        granted.append({"name": str(reward["item_id"]), "count": int(reward["amount"])})
+        item_name = str(reward["item_id"])
+        family = _SIGNIN7_ITEM_FAMILY.get(item_name)
+        if family:
+            item_name = random.choice(list(family))
+        state.add_item(item_name, int(reward["amount"]), "item")
+        granted.append({"name": item_name, "count": int(reward["amount"])})
     box = st["box"]
     box["days"] = sorted(set(st["signed"]) | {day})
     box["lastDate"] = today()
@@ -2510,9 +3099,14 @@ def noble_claim(ctx: Ctx) -> dict:
     if key in claimed:
         return fail("今日已领取")
     claimed.append(key)
-    state.add_item("贵族礼包", 1, "item")
+    # 客户端 settings_hall 只有两种领取按钮：extreme_equip（按等级领极限装备）、
+    # special_pet_10（领十阶宠）。原来两种都发一个客户端道具表里根本没有的
+    # 「贵族礼包」→ 背包里是「未知物品」。现在按领取类型发客户端认识的礼包。
+    item_name = "10+可进化宠礼包" if claim_type == "special_pet_10" else "极限装备礼包"
+    state.add_item(item_name, 1, "gift")
     state.bump()
-    return ok(items=[{"name": "贵族礼包", "count": 1}])
+    return ok(items=[{"name": item_name, "count": 1}],
+              message="领取成功：%s ×1" % item_name)
 
 
 # ================================================================ 养宠赛

@@ -225,7 +225,11 @@
    "methods": [
     "POST"
    ],
-   "request_fields": [],
+   "request_fields": [
+    "roomId",
+    "userId",
+    "approve"
+   ],
    "callers": [
     "brother_tower_decide_application"
    ],
@@ -253,7 +257,10 @@
     "POST",
     "GET"
    ],
-   "request_fields": [],
+   "request_fields": [
+    "sinceSeq",
+    "events"
+   ],
    "callers": [
     "brother_tower_push_battle_events",
     "brother_tower_fetch_battle_events"
@@ -269,7 +276,9 @@
    "methods": [
     "POST"
    ],
-   "request_fields": [],
+   "request_fields": [
+    "operationId"
+   ],
    "callers": [
     "_pump_brother_tower_complete_dedicated"
    ],
@@ -284,7 +293,11 @@
    "methods": [
     "POST"
    ],
-   "request_fields": [],
+   "request_fields": [
+    "difficulty",
+    "joinMode",
+    "localSnapshot"
+   ],
    "callers": [
     "brother_tower_create"
    ],
@@ -368,7 +381,10 @@
    "methods": [
     "POST"
    ],
-   "request_fields": [],
+   "request_fields": [
+    "roomId",
+    "localSnapshot"
+   ],
    "callers": [
     "brother_tower_join"
    ],
@@ -447,7 +463,10 @@
    "methods": [
     "POST"
    ],
-   "request_fields": [],
+   "request_fields": [
+    "userId",
+    "localSnapshot"
+   ],
    "callers": [
     "brother_tower_pin_snapshot"
    ],
@@ -474,7 +493,9 @@
    "methods": [
     "GET"
    ],
-   "request_fields": [],
+   "request_fields": [
+    "sinceSeq"
+   ],
    "callers": [
     "get_brother_tower_poll"
    ],
@@ -542,7 +563,11 @@
    "methods": [
     "POST"
    ],
-   "request_fields": [],
+   "request_fields": [
+    "difficulty",
+    "operationId",
+    "snapshot"
+   ],
    "callers": [
     "_pump_brother_tower_start_dedicated"
    ],
@@ -580,7 +605,9 @@
    "methods": [
     "POST"
    ],
-   "request_fields": [],
+   "request_fields": [
+    "wave"
+   ],
    "callers": [
     "brother_tower_wave_cleared"
    ],

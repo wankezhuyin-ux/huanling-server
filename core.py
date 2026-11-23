@@ -182,7 +182,7 @@ def split_item_qty(text: str) -> tuple[str, int]:
         qty = max(1, int(hit.group(2)))
     except ValueError:
         return raw, 1
-    # 只有当「去掉后缀的名字」确实是个物品时才拆，避免误伤「双倍经验符·月」这类
+    # 只有当「去掉后缀的名字」确实是个物品时才拆，避免误伤「双倍经验丹(月)」这类
     if not name or (client_item_names() and name not in client_item_names()):
         return raw, 1
     return name, qty
@@ -275,12 +275,29 @@ def pet_hp_growth(pet: dict, combat_total: float) -> float:
 #
 # 第 5 条是重点：旧实现每场战斗按 5% 静默 append 一只模板宠进 pet_bag，
 # 挂机一晚宠物袋能堆到 67/50 —— 玩家看到的「宠物袋莫名多出很多宠物」。
-CAPTURE_RATE = 0.10
+CAPTURE_RATE = 0.10          # 配置缺失时的兜底；实际值见 capture_rate()
 ELITE_RATE = 0.005
 ELITE_RATE_VIP = 0.010
 CAPTURE_MAX_PETS = 10        # GameData.MAX_PETS：主战栏 10 格
 CAPTURE_MAX_PET_BAG = 50     # GameData.MAX_PET_BAG：宠物袋 50 格（捕获不写入）
 COLLECTION_MAX_PER_SPECIES = 50
+
+
+def capture_rate() -> float:
+    """野外捕捉基础概率。
+
+    以前这里写死用 CAPTURE_RATE 常量，runtime-config 里的
+    `atlasDungeon.captureRate` 从头到尾没有任何代码读取 —— 运营改配置
+    一点反应都没有。现在统一以配置为准，缺配置/非法值才回落常量。
+    测试可以直接覆盖本函数（core.capture_rate = lambda: 1.0）钉死概率。
+    """
+    try:
+        raw = RULES.v("atlas_dungeon", "captureRate", None)
+        if raw is not None:
+            return max(0.0, min(1.0, float(raw)))
+    except (TypeError, ValueError):
+        pass
+    return float(CAPTURE_RATE)
 
 # pet_collection_data.gd：图鉴每 +1 只按物种累计属性加成，
 # 属性类型 = BONUS_TYPES[abs(String.hash(pet_id)) % 4]。
@@ -543,7 +560,7 @@ def capture_wild_pet(state, pet_id: str, map_name: str = "", min_growth: float =
     if not str(pet_id or "").strip():
         out["reason"] = "not_capturable"
         return out
-    if random.random() >= CAPTURE_RATE:
+    if random.random() >= capture_rate():
         out["reason"] = "escaped"
         return out
 
@@ -671,6 +688,32 @@ COIN_BAG_LEGACY_NAMES = {
 }
 
 
+# ---------------------------------------------------------------- 帮派加成
+#
+# 帮会数据是全局的（state/gangs.json，一个帮会跨多个账号），和玩家存档分开。
+# core 里不能 import handlers_gang（handlers_gang 反过来 import core），所以这里
+# 直接按文件读，用 mtime 做缓存：一次请求里 exp_multiplier 可能被调好几次，
+# 不能每次都解析 JSON。
+GANG_EXP_PERCENT_PER_LEVEL = 2.5  # 与 handlers_gang.gang_buffs 的 expBonusPercent 同口径
+_GANG_CACHE = {"mtime": None, "gangs": {}}
+
+
+def gang_snapshot() -> dict:
+    path = STATE_DIR / "gangs.json"
+    try:
+        mtime = path.stat().st_mtime
+    except OSError:
+        _GANG_CACHE["mtime"] = None
+        _GANG_CACHE["gangs"] = {}
+        return {}
+    if _GANG_CACHE["mtime"] != mtime:
+        raw = load_json(path, {}) or {}
+        gangs = raw.get("gangs") if isinstance(raw, dict) else {}
+        _GANG_CACHE["gangs"] = gangs if isinstance(gangs, dict) else {}
+        _GANG_CACHE["mtime"] = mtime
+    return _GANG_CACHE["gangs"]
+
+
 class State:
     """单个玩家的存档 + 服务端侧状态（次数、活动进度）。
 
@@ -714,26 +757,67 @@ class State:
             self.flush()
 
     def _migrate_map_names(self) -> bool:
-        """地图改名：老存档里存的 mapId 换成新地名。
+        """地图改名：把老存档里所有 mapId 换成现用地名。
 
-        mapId 是「名字（x,y）」，换皮把名字全改了，但老存档里还留着旧名字。
-        不迁移的话，玩家下次登录会「地图数据加载失败」，位置回默认点。
+        mapId 是「名字（x,y）」，地名全改了但老存档里还留着旧名字，不迁移的话
+        玩家下次登录会「地图数据加载失败」，位置回默认点。
+
+        早年只迁移 gameSettings.current_map / previous_map，后来发现存档里还有
+        一堆以 mapId 为值或键的地方：playerData.recent_maps（最近地图）、
+        meta.arena.mirror.player.recent_maps（竞技场镜像）、meta.battles.*.mapId
+        （战斗记录）、petsData.*.capture_map（捕获地），以及 questData 里
+        kill_map_<mapId> 形式的击杀计数键。逐字段列举永远会漏，所以这里直接
+        递归遍历 save + meta 两棵树，对所有字符串值做 migrate_map_id()，并对
+        kill_map_ 前缀的键单独换名 + 合并计数。
+
+        migrate_map_id 只认「名字（x,y）」或恰好等于旧名的字符串，普通文案里
+        顺带提到地名不会被误改；mayday_event / refine / tower / gift 这类
+        非地名标识符原样返回。重复读档幂等。
         """
         if not map_rename_map():
             return False
-        gs = self.save.get("gameSettings")
-        if not isinstance(gs, dict):
-            return False
-        changed = False
-        for key in ("current_map", "previous_map"):
-            old = gs.get(key)
-            if not isinstance(old, str) or not old:
-                continue
-            new = migrate_map_id(old)
-            if new != old:
-                gs[key] = new
-                changed = True
-        return changed
+        dirty = [False]
+
+        def conv(text: str) -> str:
+            if not isinstance(text, str) or not text:
+                return text
+            new = migrate_map_id(text)
+            if new != text:
+                dirty[0] = True
+            return new
+
+        def walk(node) -> None:
+            if isinstance(node, dict):
+                for key in list(node.keys()):
+                    if isinstance(key, str) and key.startswith("kill_map_"):
+                        new_key = "kill_map_" + conv(key[len("kill_map_"):])
+                        if new_key != key:
+                            moved = node.pop(key)
+                            other = node.get(new_key)
+                            if isinstance(other, (int, float)) and isinstance(moved, (int, float)):
+                                node[new_key] = other + moved
+                            else:
+                                node[new_key] = moved
+                            dirty[0] = True
+                    value = node.get(key)
+                    if isinstance(value, str):
+                        new_value = conv(value)
+                        if new_value != value:
+                            node[key] = new_value
+                    elif isinstance(value, (dict, list)):
+                        walk(value)
+            elif isinstance(node, list):
+                for i, value in enumerate(node):
+                    if isinstance(value, str):
+                        new_value = conv(value)
+                        if new_value != value:
+                            node[i] = new_value
+                    elif isinstance(value, (dict, list)):
+                        walk(value)
+
+        walk(self.save)
+        walk(self.meta)
+        return dirty[0]
 
     def _migrate_item_names(self) -> bool:
         """道具改名：老存档里的旧物品名换成现用名。
@@ -1164,11 +1248,22 @@ class State:
     NOBLE_MARTIAL_BONUS = (0, 3, 7, 10, 13, 17, 20, 23, 27, 30, 33, 37, 40, 43, 47, 50)
     NOBLE_PET_DAMAGE = (0, 0, 0, 0, 0, 0, 3, 5, 7, 10, 13, 16, 19, 22, 25, 30)
     NOBLE_EXP_BONUS = NOBLE_PET_DAMAGE
-    # 三种双倍经验符的叠加通道与时长（客户端 game_data.gd 道具描述 + inventory_manager 的 consumeKey）
+    # 三种双倍经验丹的叠加通道与时长。
+    # 键必须是**原版道具名**（game_data.gd ITEMS：双倍经验丹 / (周) / (月)）：
+    # take_item / find_item 是按名字精确匹配的，写成「双倍经验符」时背包里的丹
+    # 永远找不到，玩家点使用只会收到「道具数量不足」。
     DOUBLE_EXP_CHANNELS = {
-        "双倍经验符": 24 * 3600,
-        "双倍经验符·周": 7 * 24 * 3600,
-        "双倍经验符·月": 30 * 24 * 3600,
+        "双倍经验丹": 24 * 3600,
+        "双倍经验丹(周)": 7 * 24 * 3600,
+        "双倍经验丹(月)": 30 * 24 * 3600,
+    }
+    # 历史遗留的「符」写法：旧存档通道键、旧配置里的商品名，读到一律归一到丹。
+    DOUBLE_EXP_ALIASES = {
+        "双倍经验符": "双倍经验丹",
+        "双倍经验符·周": "双倍经验丹(周)",
+        "双倍经验符·月": "双倍经验丹(月)",
+        "双倍经验符(周)": "双倍经验丹(周)",
+        "双倍经验符(月)": "双倍经验丹(月)",
     }
 
     def vip_tier(self) -> int:
@@ -1199,18 +1294,24 @@ class State:
         return max(0, min(3, level))
 
     def double_exp_channels(self) -> dict:
-        """三种双倍经验符各自的到期时间（服务端权威）。"""
+        """三种双倍经验丹各自的到期时间（服务端权威）。"""
         box = self.player.get("double_exp_channels")
         if not isinstance(box, dict):
             box = {}
         # 老存档：只有单个 double_exp_until 时，把它当成「日」通道
         legacy = int(self.player.get("double_exp_until", 0) or 0)
         if legacy > 0 and not box:
-            box = {"双倍经验符": legacy}
-        return box
+            box = {"双倍经验丹": legacy}
+        # 旧写法「双倍经验符 / ·周 / ·月」统一归一成原版道具名，
+        # 否则改名后旧档里那几条通道会变成「查不到的孤儿键」，加成直接失效。
+        merged: dict = {}
+        for key, value in box.items():
+            name = self.DOUBLE_EXP_ALIASES.get(str(key), str(key))
+            merged[name] = max(int(merged.get(name, 0) or 0), int(value or 0))
+        return merged
 
     def double_exp_active_count(self) -> int:
-        """当前生效的双倍经验符种类数（每多一种 +100% 经验）。"""
+        """当前生效的双倍经验丹种类数（每多一种 +100% 经验）。"""
         ts = int(time.time())
         box = self.double_exp_channels()
         return sum(1 for v in box.values() if int(v or 0) > ts)
@@ -1221,6 +1322,34 @@ class State:
         self.player["double_exp_channels"] = {k: int(v) for k, v in box.items() if int(v or 0) > 0}
         latest = max([int(v) for v in box.values() if int(v or 0) > 0] or [0])
         self.player["double_exp_until"] = latest
+
+    # ---- 宠物双倍经验丹（只加灵兽，不加人物）---------------------------
+    #
+    # 帮贡商店卖「宠物双倍经验丹」。原版里灵兽经验是独立结算的，这类道具
+    # 不该像「双倍经验丹」那样把人宠一起翻倍，所以单独一条通道：
+    # 到期时间放 meta（服务端私有），不塞进 playerData，避免被客户端存档盖掉。
+    PET_DOUBLE_EXP_SECONDS = 30 * 60
+
+    def pet_double_exp_until(self) -> int:
+        """宠物双倍经验的到期时间戳（0 = 没有 / 已过期）。"""
+        try:
+            until = int(self.meta.get("petDoubleExpUntil", 0) or 0)
+        except (TypeError, ValueError, AttributeError):
+            until = 0
+        return until if until > int(time.time()) else 0
+
+    def add_pet_double_exp(self, seconds: int = 0, stack: bool = True) -> int:
+        """开通 / 顺延宠物双倍经验，返回新的到期时间戳。"""
+        seconds = int(seconds or self.PET_DOUBLE_EXP_SECONDS)
+        now_ts = int(time.time())
+        base = self.pet_double_exp_until() if stack else now_ts
+        until = max(now_ts, base) + max(60, seconds)
+        self.meta["petDoubleExpUntil"] = until
+        return until
+
+    def pet_exp_multiplier(self) -> float:
+        """灵兽经验倍率：宠物双倍经验生效中就是 2.0。"""
+        return 2.0 if self.pet_double_exp_until() > 0 else 1.0
 
     NEWBIE_EXP_DAYS = 10
 
@@ -1345,15 +1474,43 @@ class State:
         usage = self.weekly_usage()
         usage[usage_key] = int(usage.get(usage_key, 0) or 0) + 1
 
+    def gang_level(self) -> int:
+        """本账号所在帮派的等级（不在帮里就是 0）。"""
+        gangs = gang_snapshot()
+        if not gangs:
+            return 0
+        me = str(self.username or "")
+        for gang in gangs.values():
+            if not isinstance(gang, dict):
+                continue
+            for member in gang.get("members") or []:
+                if isinstance(member, dict) and str(member.get("username", "")) == me:
+                    try:
+                        return max(0, min(10, int(gang.get("level", 1) or 0)))
+                    except (TypeError, ValueError):
+                        return 0
+        return 0
+
+    def gang_exp_bonus_percent(self) -> float:
+        """帮派等级经验加成（%）。
+
+        原版 game_manager.get_gang_exp_bonus_percent() → gang_manager.get_buff_percent("exp")，
+        加算进 get_total_exp_multiplier。本服 /gang/buffs 的 expBonusPercent 口径是
+        「帮派等级 × 2.5%」，以前只下发给客户端看、服务端算经验时没加，
+        帮里的人实际少拿了这部分（帮会 4 级 = 少 10%）。
+        """
+        return GANG_EXP_PERCENT_PER_LEVEL * float(self.gang_level())
+
     def exp_multiplier(self) -> float:
         """player.gd get_total_exp_multiplier 的服务端复刻。
 
-        = VIP 倍率 + 帮会加成 + 贵族加成 + 生效中的双倍经验符种类数
+        = VIP 倍率 + 帮会加成 + 贵族加成 + 生效中的双倍经验丹种类数
           + 新人 10 天 +100% + 周末野外 +100%
-          （原版多一种丹就多 +100%，三丹全开就是 +300%；各块全部加算）
-        本服帮会/贵族加成都未开放，取 0。
+          （本服双倍丹是「每多一种 +100%」，三丹全开 +300%，这是与原版的不同点）
         """
         total = float(self.VIP_EXP_MULT[self.vip_tier()] + self.double_exp_active_count())
+        # 帮派等级加成（原版 get_gang_exp_bonus_percent，加算）
+        total += self.gang_exp_bonus_percent() / 100.0
         # 贵族经验加成（game_manager.gd:9103 noble_bonus = exp_pct / 100.0，加算）
         lv = max(0, min(15, self.noble_level()))
         total += self.NOBLE_EXP_BONUS[lv] / 100.0
@@ -1864,6 +2021,27 @@ class State:
         count = int(count or 0) * qty
         if count <= 0:
             return {}
+        # 带自定义数据的物品（限量装备标记、藏宝箱 token、装备词条…）必须
+        # 一件一行。原来 find_item(name) 命中同名就只加 count，第二件的
+        # custom_data / item_type 会被整块丢掉，客户端拿到的是退化成普通
+        # 堆叠的一行 —— 限量判定、丢弃保护、开箱 token 全部失效。
+        # 完全相同 custom_data 的仍允许合并，避免把 20 个同名礼包拆成 20 行。
+        custom = dict(custom or {})
+        if custom:
+            for row in self.items:
+                if (str(row.get("name")) == name
+                        and (row.get("custom_data") or {}) == custom):
+                    row["count"] = int(row.get("count", 0)) + int(count)
+                    return row
+            item = {
+                "id": rnd_id("i"),
+                "name": name,
+                "count": int(count),
+                "item_type": item_type,
+                "custom_data": custom,
+            }
+            self.items.append(item)
+            return item
         item = self.find_item(name)
         if item is not None:
             item["count"] = int(item.get("count", 0)) + int(count)
@@ -1873,7 +2051,7 @@ class State:
             "name": name,
             "count": int(count),
             "item_type": item_type,
-            "custom_data": custom or {},
+            "custom_data": {},
         }
         self.items.append(item)
         return item
@@ -1976,6 +2154,53 @@ def _safe_name(name: str) -> str:
     """账号名转安全文件名（保留中文，其余替换为下划线）。"""
     cleaned = _SAFE.sub("_", str(name or "")).strip("_")
     return (cleaned or "player")[:40]
+
+
+# ---------------------------------------------------------------- 宠物榜口径
+
+# 可进化链上会出现过的形态文本。判断「这只宠能不能进化」只能认这几个，
+# 不能用「包含『进化』」——成体不可进化宠的 form 正好是「不可进化」。
+_EVOLVABLE_FORMS = ("幼年", "一进", "二进", "终极")
+
+
+def pet_is_evolution_pet(pet: dict) -> bool:
+    """这只宠是否属于可进化链。
+
+    存档里每只宠都带 is_evolution_pet（捕获/礼包/进化时写入），优先用它。
+    老存档万一缺字段，才退回看形态文本；「不可进化」必须先排除，否则
+    `"进化" in form` 会把它们全判成可进化（2026-11-01 修的线上 bug：
+    66 条可进化榜里 43 只其实不可进化，不可进化榜只剩 1 条）。
+    """
+    if "is_evolution_pet" in pet:
+        return bool(pet.get("is_evolution_pet"))
+    form = str(pet.get("form", "") or "")
+    if form == "不可进化":
+        return False
+    return form in _EVOLVABLE_FORMS or form.startswith("进化")
+
+
+def pet_total_growth(pet: dict) -> float:
+    """总成长 = 攻/防/敏成长之和（客户端 pet.gd 的口径，不含生命成长）。
+
+    旧实现读 pet["growth_rate"]，存档里根本没这个键，榜单上「总成长:」后面
+    一直是空白。
+    """
+    try:
+        value = float(pet.get("total_growth") or 0)
+    except (TypeError, ValueError):
+        value = 0.0
+    if value > 0:
+        return round(value, 3)
+    growth = pet.get("growth_rates")
+    if isinstance(growth, dict):
+        total = 0.0
+        for key in ("attack", "defense", "agility"):
+            try:
+                total += float(growth.get(key) or 0)
+            except (TypeError, ValueError):
+                pass
+        return round(total, 3)
+    return 0.0
 
 
 class AccountStore:
@@ -2269,6 +2494,16 @@ class AccountStore:
         return len(self.accounts)
 
     # -- 排行榜
+    def ranking_excluded_usernames(self) -> set:
+        """榜单排除名单（data/ranking-exclude.json）。
+
+        开发期建的测试号/探针号不该占着榜单前排（emutest 投胎 66 一直霸着玩家榜第一）。
+        只影响展示：账号、存档、其它玩法一律不动，名单随时可改，改完即时生效。
+        """
+        raw = load_json(DATA / "ranking-exclude.json", {}) or {}
+        names = raw.get("usernames") if isinstance(raw, dict) else raw
+        return {str(n).strip() for n in (names or []) if str(n).strip()}
+
     def rankings(self, kind: str = "all") -> list:
         """真实玩家榜单，全部由本服账号实时计算。
 
@@ -2299,7 +2534,10 @@ class AccountStore:
         pets_plain: list = []
         tower: list = []
         suit: list = []
+        excluded = self.ranking_excluded_usernames()
         for username in list(self.accounts.keys()):
+            if username in excluded:
+                continue
             try:
                 st = self.get(username)
             except Exception:
@@ -2330,7 +2568,7 @@ class AccountStore:
                              "suit_dungeon_progress": suit_progress})
             for pet in st.pets:
                 form = str(pet.get("form", "") or "")
-                is_evo = bool(pet.get("is_evolution_pet", False)) or ("进化" in form) or form == "终极"
+                is_evo = pet_is_evolution_pet(pet)
                 max_hp = int(pet.get("final_max_hp", pet.get("max_hp", 0)) or 0)
                 row = {
                     "id": int(pet.get("rank_id", 0) or 0),
@@ -2338,7 +2576,7 @@ class AccountStore:
                     "pet_id": str(pet.get("id", "") or pet.get("pet_id", "") or ""),
                     "pet_name": str(pet.get("name", "") or ""),
                     "level": int(pet.get("level", 1) or 1),
-                    "growth_rate": str(pet.get("growth_rate", "") or ""),
+                    "growth_rate": pet_total_growth(pet),
                     "form": form,
                     "generation": int(pet.get("generation", 0) or 0),
                     "element": str(pet.get("element", "") or ""),

@@ -2,6 +2,72 @@
  "success": true,
  "rankings": [
   {
+   "id": 72210435,
+   "user_id": 349,
+   "pet_id": "youerha_1790396970015_62757236",
+   "pet_name": "白刃机娘",
+   "level": 1500,
+   "growth_rate": "135.48",
+   "form": "不可进化",
+   "generation": 3,
+   "element": "木",
+   "hp": 203161,
+   "attack": 95545,
+   "defense": 105686,
+   "agility": 1880,
+   "updated_at": "2026-10-22T17:29:51.000Z",
+   "reincarnation_count": 0,
+   "is_evolution_pet": 0,
+   "mutation_count": 2,
+   "max_hp": 203161,
+   "nickname": "铭大大",
+   "username": "l9798817"
+  },
+  {
+   "id": 72207635,
+   "user_id": 61,
+   "pet_id": "ximenchuixue_1785499697128_33146887",
+   "pet_name": "西门吹雪",
+   "level": 1500,
+   "growth_rate": "123.30",
+   "form": "不可进化",
+   "generation": 3,
+   "element": "火",
+   "hp": 184912,
+   "attack": 94338,
+   "defense": 88823,
+   "agility": 1700,
+   "updated_at": "2026-10-22T17:29:48.000Z",
+   "reincarnation_count": 1,
+   "is_evolution_pet": 0,
+   "mutation_count": 2,
+   "max_hp": 184912,
+   "nickname": "你有格调",
+   "username": "element789"
+  },
+  {
+   "id": 72207295,
+   "user_id": 35,
+   "pet_id": "zuozhu_1790771050878_27366278",
+   "pet_name": "六道影忍",
+   "level": 1500,
+   "growth_rate": "122.38",
+   "form": "不可进化",
+   "generation": 3,
+   "element": "火",
+   "hp": 183527,
+   "attack": 73391,
+   "defense": 108250,
+   "agility": 1835,
+   "updated_at": "2026-10-22T17:29:48.000Z",
+   "reincarnation_count": 7,
+   "is_evolution_pet": 0,
+   "mutation_count": 2,
+   "max_hp": 183527,
+   "nickname": "醉里挑灯看剑丶",
+   "username": "wx8010"
+  },
+  {
    "id": 72208567,
    "user_id": 146,
    "pet_id": "shizizuo_1786966668284_40082751",
@@ -20,8 +86,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 191541,
-   "nickname": "墨尘",
-   "username": "u100000"
+   "nickname": "人间大炮",
+   "username": "18105050520"
   },
   {
    "id": 72207298,
@@ -42,8 +108,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 177741,
-   "nickname": "砚石",
-   "username": "u100001"
+   "nickname": "醉里挑灯看剑丶",
+   "username": "wx8010"
   },
   {
    "id": 72208488,
@@ -64,8 +130,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 188865,
-   "nickname": "松灯",
-   "username": "u100002"
+   "nickname": "我有理想。",
+   "username": "q6346171"
   },
   {
    "id": 72210183,
@@ -86,8 +152,30 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 176837,
-   "nickname": "竹渡",
-   "username": "u100003"
+   "nickname": "立羽",
+   "username": "095176"
+  },
+  {
+   "id": 72207081,
+   "user_id": 32,
+   "pet_id": "babata_1784737587872_75098146",
+   "pet_name": "星塔智灵",
+   "level": 1500,
+   "growth_rate": "114.43",
+   "form": "不可进化",
+   "generation": 3,
+   "element": "土",
+   "hp": 171612,
+   "attack": 85861,
+   "defense": 1561,
+   "agility": 84139,
+   "updated_at": "2026-10-22T17:29:48.000Z",
+   "reincarnation_count": 7,
+   "is_evolution_pet": 0,
+   "mutation_count": 2,
+   "max_hp": 171612,
+   "nickname": "摆烂的松哥",
+   "username": "xsaitong"
   },
   {
    "id": 72208568,
@@ -108,8 +196,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 170203,
-   "nickname": "云照",
-   "username": "u100004"
+   "nickname": "人间大炮",
+   "username": "18105050520"
   },
   {
    "id": 72207481,
@@ -130,8 +218,52 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 168132,
-   "nickname": "雪鹤",
-   "username": "u100005"
+   "nickname": "夜雨风歌",
+   "username": "oscaraj"
+  },
+  {
+   "id": 72208485,
+   "user_id": 141,
+   "pet_id": "bashen_1785418532442_53029728",
+   "pet_name": "八岐炎君",
+   "level": 1500,
+   "growth_rate": "111.89",
+   "form": "不可进化",
+   "generation": 3,
+   "element": "土",
+   "hp": 167803,
+   "attack": 92357,
+   "defense": 1522,
+   "agility": 73873,
+   "updated_at": "2026-10-22T17:29:50.000Z",
+   "reincarnation_count": 0,
+   "is_evolution_pet": 0,
+   "mutation_count": 2,
+   "max_hp": 167803,
+   "nickname": "我有理想。",
+   "username": "q6346171"
+  },
+  {
+   "id": 72207146,
+   "user_id": 32,
+   "pet_id": "liushen_1785421519215_8684125",
+   "pet_name": "青柳仙尊",
+   "level": 1500,
+   "growth_rate": "105.99",
+   "form": "不可进化",
+   "generation": 3,
+   "element": "木",
+   "hp": 158957,
+   "attack": 71573,
+   "defense": 85898,
+   "agility": 1435,
+   "updated_at": "2026-10-22T17:29:48.000Z",
+   "reincarnation_count": 0,
+   "is_evolution_pet": 0,
+   "mutation_count": 2,
+   "max_hp": 158957,
+   "nickname": "摆烂的松哥",
+   "username": "xsaitong"
   },
   {
    "id": 72210684,
@@ -152,8 +284,30 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 158879,
-   "nickname": "江苔",
-   "username": "u100006"
+   "nickname": "appy",
+   "username": "a290545"
+  },
+  {
+   "id": 72210683,
+   "user_id": 368,
+   "pet_id": "buzhihuowu_1787366433633_18621646",
+   "pet_name": "火舞姬",
+   "level": 1500,
+   "growth_rate": "104.95",
+   "form": "不可进化",
+   "generation": 3,
+   "element": "火",
+   "hp": 157397,
+   "attack": 78745,
+   "defense": 1426,
+   "agility": 77175,
+   "updated_at": "2026-10-22T17:29:52.000Z",
+   "reincarnation_count": 0,
+   "is_evolution_pet": 0,
+   "mutation_count": 2,
+   "max_hp": 157397,
+   "nickname": "appy",
+   "username": "a290545"
   },
   {
    "id": 72208630,
@@ -174,8 +328,30 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 156712,
-   "nickname": "山溪",
-   "username": "u100007"
+   "nickname": "搬砖的",
+   "username": "kstg2231"
+  },
+  {
+   "id": 72210433,
+   "user_id": 349,
+   "pet_id": "jiulama_1785600793462_67122294",
+   "pet_name": "九尾炎狐",
+   "level": 1500,
+   "growth_rate": "103.50",
+   "form": "不可进化",
+   "generation": 3,
+   "element": "土",
+   "hp": 155229,
+   "attack": 69966,
+   "defense": 82396,
+   "agility": 2816,
+   "updated_at": "2026-10-22T17:29:51.000Z",
+   "reincarnation_count": 0,
+   "is_evolution_pet": 0,
+   "mutation_count": 2,
+   "max_hp": 155229,
+   "nickname": "铭大大",
+   "username": "l9798817"
   },
   {
    "id": 72208593,
@@ -196,8 +372,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 154859,
-   "nickname": "石澜",
-   "username": "u100008"
+   "nickname": "搬砖的",
+   "username": "kstg2231"
   },
   {
    "id": 72208487,
@@ -218,8 +394,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 149220,
-   "nickname": "林书",
-   "username": "u100009"
+   "nickname": "我有理想。",
+   "username": "q6346171"
   },
   {
    "id": 72208291,
@@ -240,8 +416,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 156014,
-   "nickname": "野阙",
-   "username": "u100010"
+   "nickname": "橘子",
+   "username": "117495004"
   },
   {
    "id": 72211039,
@@ -262,8 +438,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 146187,
-   "nickname": "寒渠",
-   "username": "u100011"
+   "nickname": "人间无事人",
+   "username": "sts0102"
   },
   {
    "id": 72208628,
@@ -284,8 +460,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 143966,
-   "nickname": "青舟",
-   "username": "u100012"
+   "nickname": "搬砖的",
+   "username": "kstg2231"
   },
   {
    "id": 72207536,
@@ -306,8 +482,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 143397,
-   "nickname": "白篁",
-   "username": "u100013"
+   "nickname": "夜雨风歌",
+   "username": "oscaraj"
   },
   {
    "id": 72208483,
@@ -328,8 +504,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 142937,
-   "nickname": "玄渊",
-   "username": "u100014"
+   "nickname": "我有理想。",
+   "username": "q6346171"
   },
   {
    "id": 71923272,
@@ -350,8 +526,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 142485,
-   "nickname": "赤雪",
-   "username": "u100015"
+   "nickname": "何来生",
+   "username": "4342"
   },
   {
    "id": 72210181,
@@ -372,8 +548,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 142156,
-   "nickname": "孤砚",
-   "username": "u100016"
+   "nickname": "立羽",
+   "username": "095176"
   },
   {
    "id": 72211041,
@@ -394,8 +570,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 141820,
-   "nickname": "远痕",
-   "username": "u100017"
+   "nickname": "人间无事人",
+   "username": "sts0102"
   },
   {
    "id": 72210184,
@@ -416,8 +592,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 141578,
-   "nickname": "清叶",
-   "username": "u100018"
+   "nickname": "立羽",
+   "username": "095176"
   },
   {
    "id": 72208486,
@@ -438,8 +614,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 140948,
-   "nickname": "微笛",
-   "username": "u100019"
+   "nickname": "我有理想。",
+   "username": "q6346171"
   },
   {
    "id": 72206888,
@@ -460,8 +636,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 140959,
-   "nickname": "疏沙",
-   "username": "u100020"
+   "nickname": "思念",
+   "username": "savliuxin"
   },
   {
    "id": 72209250,
@@ -482,8 +658,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 139877,
-   "nickname": "浅岚",
-   "username": "u100021"
+   "nickname": "暗淡瞬间",
+   "username": "50740938"
   },
   {
    "id": 72210182,
@@ -504,8 +680,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 139484,
-   "nickname": "重松",
-   "username": "u100022"
+   "nickname": "立羽",
+   "username": "095176"
   },
   {
    "id": 72208484,
@@ -526,8 +702,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 138936,
-   "nickname": "淡池",
-   "username": "u100023"
+   "nickname": "我有理想。",
+   "username": "q6346171"
   },
   {
    "id": 72210419,
@@ -548,8 +724,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 137814,
-   "nickname": "墨溪",
-   "username": "u100024"
+   "nickname": "铭大大",
+   "username": "l9798817"
   },
   {
    "id": 72210434,
@@ -570,8 +746,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 137328,
-   "nickname": "砚澜",
-   "username": "u100025"
+   "nickname": "铭大大",
+   "username": "l9798817"
   },
   {
    "id": 72210601,
@@ -592,8 +768,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 135786,
-   "nickname": "松书",
-   "username": "u100026"
+   "nickname": "appy",
+   "username": "a290545"
   },
   {
    "id": 72208571,
@@ -614,8 +790,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 135681,
-   "nickname": "竹阙",
-   "username": "u100027"
+   "nickname": "人间大炮",
+   "username": "18105050520"
   },
   {
    "id": 72207535,
@@ -636,8 +812,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 135415,
-   "nickname": "云渠",
-   "username": "u100028"
+   "nickname": "夜雨风歌",
+   "username": "oscaraj"
   },
   {
    "id": 72207143,
@@ -658,8 +834,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 134897,
-   "nickname": "雪舟",
-   "username": "u100029"
+   "nickname": "摆烂的松哥",
+   "username": "xsaitong"
   },
   {
    "id": 72208565,
@@ -680,8 +856,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 134822,
-   "nickname": "江篁",
-   "username": "u100030"
+   "nickname": "人间大炮",
+   "username": "18105050520"
   },
   {
    "id": 72208290,
@@ -702,8 +878,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 134726,
-   "nickname": "山渊",
-   "username": "u100031"
+   "nickname": "橘子",
+   "username": "117495004"
   },
   {
    "id": 72208606,
@@ -724,8 +900,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 134357,
-   "nickname": "石雪",
-   "username": "u100032"
+   "nickname": "搬砖的",
+   "username": "kstg2231"
   },
   {
    "id": 71927610,
@@ -746,8 +922,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 134087,
-   "nickname": "林砚",
-   "username": "u100033"
+   "nickname": "逍遥哥哥",
+   "username": "cz0012100"
   },
   {
    "id": 72210432,
@@ -768,8 +944,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 133942,
-   "nickname": "野痕",
-   "username": "u100034"
+   "nickname": "铭大大",
+   "username": "l9798817"
   },
   {
    "id": 72211037,
@@ -790,8 +966,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 133699,
-   "nickname": "寒叶",
-   "username": "u100035"
+   "nickname": "人间无事人",
+   "username": "sts0102"
   },
   {
    "id": 72207144,
@@ -812,8 +988,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 133559,
-   "nickname": "青笛",
-   "username": "u100036"
+   "nickname": "摆烂的松哥",
+   "username": "xsaitong"
   },
   {
    "id": 71449272,
@@ -834,8 +1010,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 133459,
-   "nickname": "白沙",
-   "username": "u100037"
+   "nickname": "山雨",
+   "username": "shanyu"
   },
   {
    "id": 72208629,
@@ -856,8 +1032,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 133429,
-   "nickname": "玄岚",
-   "username": "u100038"
+   "nickname": "搬砖的",
+   "username": "kstg2231"
   },
   {
    "id": 72208598,
@@ -878,8 +1054,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 133080,
-   "nickname": "赤松",
-   "username": "u100039"
+   "nickname": "搬砖的",
+   "username": "kstg2231"
   },
   {
    "id": 72207297,
@@ -900,8 +1076,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 132955,
-   "nickname": "孤池",
-   "username": "u100040"
+   "nickname": "醉里挑灯看剑丶",
+   "username": "wx8010"
   },
   {
    "id": 72208570,
@@ -922,8 +1098,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 132883,
-   "nickname": "远尘",
-   "username": "u100041"
+   "nickname": "人间大炮",
+   "username": "18105050520"
   },
   {
    "id": 72208241,
@@ -944,8 +1120,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 132771,
-   "nickname": "清石",
-   "username": "u100042"
+   "nickname": "橘子",
+   "username": "117495004"
   },
   {
    "id": 72207145,
@@ -966,8 +1142,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 132729,
-   "nickname": "微灯",
-   "username": "u100043"
+   "nickname": "摆烂的松哥",
+   "username": "xsaitong"
   },
   {
    "id": 72208295,
@@ -988,8 +1164,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 132582,
-   "nickname": "疏渡",
-   "username": "u100044"
+   "nickname": "橘子",
+   "username": "117495004"
   },
   {
    "id": 72207537,
@@ -1010,8 +1186,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 132351,
-   "nickname": "浅照",
-   "username": "u100045"
+   "nickname": "夜雨风歌",
+   "username": "oscaraj"
   },
   {
    "id": 72210172,
@@ -1032,8 +1208,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 132327,
-   "nickname": "重鹤",
-   "username": "u100046"
+   "nickname": "立羽",
+   "username": "095176"
   },
   {
    "id": 72211005,
@@ -1054,8 +1230,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 132156,
-   "nickname": "淡苔",
-   "username": "u100047"
+   "nickname": "人间无事人",
+   "username": "sts0102"
   },
   {
    "id": 72207142,
@@ -1076,8 +1252,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 131997,
-   "nickname": "墨渊",
-   "username": "u100048"
+   "nickname": "摆烂的松哥",
+   "username": "xsaitong"
   },
   {
    "id": 71923241,
@@ -1098,8 +1274,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 2,
    "max_hp": 131992,
-   "nickname": "砚雪",
-   "username": "u100049"
+   "nickname": "何来生",
+   "username": "4342"
   },
   {
    "id": 72208569,
@@ -1120,8 +1296,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 131909,
-   "nickname": "松砚",
-   "username": "u100050"
+   "nickname": "人间大炮",
+   "username": "18105050520"
   },
   {
    "id": 72209210,
@@ -1142,8 +1318,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 131873,
-   "nickname": "竹痕",
-   "username": "u100051"
+   "nickname": "暗淡瞬间",
+   "username": "50740938"
   },
   {
    "id": 72208505,
@@ -1164,8 +1340,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 131383,
-   "nickname": "云叶",
-   "username": "u100052"
+   "nickname": "人间大炮",
+   "username": "18105050520"
   },
   {
    "id": 72210391,
@@ -1186,8 +1362,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 131249,
-   "nickname": "雪笛",
-   "username": "u100053"
+   "nickname": "铭大大",
+   "username": "l9798817"
   },
   {
    "id": 72207637,
@@ -1208,8 +1384,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 131204,
-   "nickname": "江沙",
-   "username": "u100054"
+   "nickname": "你有格调",
+   "username": "element789"
   },
   {
    "id": 72207147,
@@ -1230,8 +1406,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 131193,
-   "nickname": "山岚",
-   "username": "u100055"
+   "nickname": "摆烂的松哥",
+   "username": "xsaitong"
   },
   {
    "id": 72208627,
@@ -1252,8 +1428,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 131144,
-   "nickname": "石松",
-   "username": "u100056"
+   "nickname": "搬砖的",
+   "username": "kstg2231"
   },
   {
    "id": 72207300,
@@ -1274,8 +1450,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 131089,
-   "nickname": "林池",
-   "username": "u100057"
+   "nickname": "醉里挑灯看剑丶",
+   "username": "wx8010"
   },
   {
    "id": 72208292,
@@ -1296,8 +1472,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 130543,
-   "nickname": "野尘",
-   "username": "u100058"
+   "nickname": "橘子",
+   "username": "117495004"
   },
   {
    "id": 72207294,
@@ -1318,8 +1494,30 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 130335,
-   "nickname": "寒石",
-   "username": "u100059"
+   "nickname": "醉里挑灯看剑丶",
+   "username": "wx8010"
+  },
+  {
+   "id": 72207636,
+   "user_id": 61,
+   "pet_id": "henrendadi_1781959429062_54455615",
+   "pet_name": "绝情大帝",
+   "level": 1500,
+   "growth_rate": "86.81",
+   "form": "不可进化",
+   "generation": 3,
+   "element": "木",
+   "hp": 130214,
+   "attack": 71623,
+   "defense": 1219,
+   "agility": 57321,
+   "updated_at": "2026-10-22T17:29:48.000Z",
+   "reincarnation_count": 0,
+   "is_evolution_pet": 0,
+   "mutation_count": 0,
+   "max_hp": 130214,
+   "nickname": "你有格调",
+   "username": "element789"
   },
   {
    "id": 71449276,
@@ -1340,8 +1538,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 130074,
-   "nickname": "青灯",
-   "username": "u100060"
+   "nickname": "山雨",
+   "username": "shanyu"
   },
   {
    "id": 72209252,
@@ -1362,8 +1560,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 129984,
-   "nickname": "白渡",
-   "username": "u100061"
+   "nickname": "暗淡瞬间",
+   "username": "50740938"
   },
   {
    "id": 72209191,
@@ -1384,8 +1582,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 129882,
-   "nickname": "玄照",
-   "username": "u100062"
+   "nickname": "暗淡瞬间",
+   "username": "50740938"
   },
   {
    "id": 72208548,
@@ -1406,8 +1604,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 129761,
-   "nickname": "赤鹤",
-   "username": "u100063"
+   "nickname": "人间大炮",
+   "username": "18105050520"
   },
   {
    "id": 72208294,
@@ -1428,8 +1626,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 129741,
-   "nickname": "孤苔",
-   "username": "u100064"
+   "nickname": "橘子",
+   "username": "117495004"
   },
   {
    "id": 72207293,
@@ -1450,8 +1648,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 129679,
-   "nickname": "远溪",
-   "username": "u100065"
+   "nickname": "醉里挑灯看剑丶",
+   "username": "wx8010"
   },
   {
    "id": 64988932,
@@ -1472,8 +1670,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 129446,
-   "nickname": "清澜",
-   "username": "u100066"
+   "nickname": "惩罚者",
+   "username": "Cool007"
   },
   {
    "id": 71927715,
@@ -1494,8 +1692,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 129412,
-   "nickname": "微书",
-   "username": "u100067"
+   "nickname": "逍遥哥哥",
+   "username": "cz0012100"
   },
   {
    "id": 72208281,
@@ -1516,8 +1714,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 129151,
-   "nickname": "疏阙",
-   "username": "u100068"
+   "nickname": "橘子",
+   "username": "117495004"
   },
   {
    "id": 72208289,
@@ -1538,8 +1736,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 129160,
-   "nickname": "浅渠",
-   "username": "u100069"
+   "nickname": "橘子",
+   "username": "117495004"
   },
   {
    "id": 72207299,
@@ -1560,8 +1758,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 128778,
-   "nickname": "重舟",
-   "username": "u100070"
+   "nickname": "醉里挑灯看剑丶",
+   "username": "wx8010"
   },
   {
    "id": 72208525,
@@ -1582,8 +1780,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 125607,
-   "nickname": "淡篁",
-   "username": "u100071"
+   "nickname": "人间大炮",
+   "username": "18105050520"
   },
   {
    "id": 72207296,
@@ -1604,8 +1802,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 128605,
-   "nickname": "墨岚",
-   "username": "u100072"
+   "nickname": "醉里挑灯看剑丶",
+   "username": "wx8010"
   },
   {
    "id": 72211040,
@@ -1626,8 +1824,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 128556,
-   "nickname": "砚松",
-   "username": "u100073"
+   "nickname": "人间无事人",
+   "username": "sts0102"
   },
   {
    "id": 72207210,
@@ -1648,8 +1846,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 128520,
-   "nickname": "松池",
-   "username": "u100074"
+   "nickname": "醉里挑灯看剑丶",
+   "username": "wx8010"
   },
   {
    "id": 72209192,
@@ -1670,8 +1868,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 128397,
-   "nickname": "竹尘",
-   "username": "u100075"
+   "nickname": "暗淡瞬间",
+   "username": "50740938"
   },
   {
    "id": 72210185,
@@ -1692,8 +1890,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 128174,
-   "nickname": "云石",
-   "username": "u100076"
+   "nickname": "立羽",
+   "username": "095176"
   },
   {
    "id": 72208566,
@@ -1714,8 +1912,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 127778,
-   "nickname": "雪灯",
-   "username": "u100077"
+   "nickname": "人间大炮",
+   "username": "18105050520"
   },
   {
    "id": 72207148,
@@ -1736,8 +1934,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 127713,
-   "nickname": "江渡",
-   "username": "u100078"
+   "nickname": "摆烂的松哥",
+   "username": "xsaitong"
   },
   {
    "id": 72210407,
@@ -1758,8 +1956,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 127652,
-   "nickname": "山照",
-   "username": "u100079"
+   "nickname": "铭大大",
+   "username": "l9798817"
   },
   {
    "id": 72208543,
@@ -1780,8 +1978,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 127625,
-   "nickname": "石鹤",
-   "username": "u100080"
+   "nickname": "人间大炮",
+   "username": "18105050520"
   },
   {
    "id": 72210179,
@@ -1802,8 +2000,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 127571,
-   "nickname": "林苔",
-   "username": "u100081"
+   "nickname": "立羽",
+   "username": "095176"
   },
   {
    "id": 72210431,
@@ -1824,8 +2022,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 127162,
-   "nickname": "野溪",
-   "username": "u100082"
+   "nickname": "铭大大",
+   "username": "l9798817"
   },
   {
    "id": 71927717,
@@ -1846,8 +2044,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 127145,
-   "nickname": "寒澜",
-   "username": "u100083"
+   "nickname": "逍遥哥哥",
+   "username": "cz0012100"
   },
   {
    "id": 72208402,
@@ -1868,8 +2066,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 126636,
-   "nickname": "青书",
-   "username": "u100084"
+   "nickname": "我有理想。",
+   "username": "q6346171"
   },
   {
    "id": 72208589,
@@ -1890,8 +2088,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 126618,
-   "nickname": "白阙",
-   "username": "u100085"
+   "nickname": "搬砖的",
+   "username": "kstg2231"
   },
   {
    "id": 72208272,
@@ -1912,8 +2110,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 126453,
-   "nickname": "玄渠",
-   "username": "u100086"
+   "nickname": "橘子",
+   "username": "117495004"
   },
   {
    "id": 72208271,
@@ -1934,8 +2132,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 126331,
-   "nickname": "赤舟",
-   "username": "u100087"
+   "nickname": "橘子",
+   "username": "117495004"
   },
   {
    "id": 69317600,
@@ -1956,8 +2154,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 126187,
-   "nickname": "孤篁",
-   "username": "u100088"
+   "nickname": "可可脂",
+   "username": "qq694840"
   },
   {
    "id": 71927693,
@@ -1978,8 +2176,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 0,
    "max_hp": 126009,
-   "nickname": "远渊",
-   "username": "u100089"
+   "nickname": "逍遥哥哥",
+   "username": "cz0012100"
   },
   {
    "id": 70973410,
@@ -2000,8 +2198,8 @@
    "is_evolution_pet": 0,
    "mutation_count": 1,
    "max_hp": 125847,
-   "nickname": "清雪",
-   "username": "u100090"
+   "nickname": "雪翼青龙",
+   "username": "jawin0384"
   }
  ]
 }

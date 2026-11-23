@@ -41,18 +41,20 @@ for _lv in range(1, 11):
 
 # 帮贡商店：id / 名称 / 价格（帮贡）/ 周限购 / 解锁帮派等级
 SHOP_ITEMS = [
-    {"id": "gang_exp_pill", "itemName": "双倍经验符", "cost": 200, "weeklyLimit": 5,
+    # 道具名必须与客户端 game_data.gd 一致（原版名：双倍经验丹）。
+    # 这里原本写「双倍经验符」，客户端道具表里没有这个名字，买了也用不了。
+    {"id": "gang_exp_pill", "itemName": "双倍经验丹", "cost": 200, "weeklyLimit": 5,
      "minGangLevel": 1, "itemType": "consumable", "count": 1,
      "desc": "使用后获得 30 分钟双倍经验"},
     {"id": "gang_material", "itemName": "建设材料", "cost": 100, "weeklyLimit": 20,
      "minGangLevel": 1, "itemType": "material", "count": 1,
      "desc": "帮派建设材料，可捐献"},
-    {"id": "gang_pet_exp_pill", "itemName": "宠物双倍经验符", "cost": 300, "weeklyLimit": 5,
+    {"id": "gang_pet_exp_pill", "itemName": "宠物双倍经验丹", "cost": 300, "weeklyLimit": 5,
      "minGangLevel": 3, "itemType": "consumable", "count": 1,
-     "desc": "宠物 30 分钟双倍经验"},
-    {"id": "gang_cultivation_pill", "itemName": "修炼丹", "cost": 500, "weeklyLimit": 3,
+     "desc": "宠物 30 分钟双倍经验（只加灵兽，人物不受影响）"},
+    {"id": "gang_cultivation_pill", "itemName": "凝神丹", "cost": 500, "weeklyLimit": 3,
      "minGangLevel": 5, "itemType": "consumable", "count": 1,
-     "desc": "提升修炼进度"},
+     "desc": "增加200点修行值（每世限用5颗）"},
 ]
 
 CONFIG = {
@@ -352,6 +354,7 @@ def gang_ranking(ctx: Ctx) -> dict:
     data = _load()
     rows = []
     for gang in data["gangs"].values():
+        member_count = len(gang.get("members", []))
         rows.append({
             "gangId": int(gang.get("id", 0)),
             "id": int(gang.get("id", 0)),
@@ -359,7 +362,11 @@ def gang_ranking(ctx: Ctx) -> dict:
             "emblemId": int(gang.get("emblemId", 1)),
             "level": int(gang.get("level", 1)),
             "reputation": int(gang.get("reputation", 0)),
-            "memberCount": len(gang.get("members", [])),
+            "memberCount": member_count,
+            # 客户端 ranking_hall_panel.gd 读的是下划线命名，只给 memberCount
+            # 会让帮派榜的「成员」永远是 0（2026-11-01 修）。
+            "member_count": member_count,
+            "territory_count": len(gang.get("territories") or []),
             "funds": int(gang.get("funds", 0)),
             "leaderName": str(gang.get("leaderName", "")),
         })

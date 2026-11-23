@@ -56,8 +56,14 @@ class FakeState:
     def nickname(self) -> str:
         return self._name
 
-    def send_mail(self, title: str, body: str, **kw) -> dict:
-        row = {"id": 900000 + len(self.mails) + 1, "title": title, "body": body}
+    def send_mail(self, title: str, body: str, items=None, attachments=None, **kw) -> dict:
+        # 结构对齐 core.State.send_mail：附件是 {gold,items:[{name,count,...}]}
+        attach = dict(attachments or {})
+        if items:
+            attach.setdefault("items", []).extend(list(items))
+        attach.setdefault("items", [])
+        row = {"id": 900000 + len(self.mails) + 1, "title": title,
+               "body": body, "attachments": attach}
         self.mails.append(row)
         return row
 
@@ -181,8 +187,23 @@ def main() -> int:
     check("冠军唯一", len([m for m in m1 if m["bracket_round"] == max(x["bracket_round"] for x in m1)]) == 1)
 
     win1 = STORE.get(chest1["winner_user_id"])
-    check("冠军背包有藏宝箱", any(i.get("item_type") == "treasure_chest" for i in win1.items))
-    check("冠军收到邮件", bool(win1.mails))
+    # 2026-11-04 起藏宝箱走邮件附件（玩家点「领取附件」才进背包），
+    # 服务端不再直接写 items —— 邮件里没东西领过的问题就出在这。
+    chest_mails = [m for m in win1.mails
+                   if any(isinstance(r, dict) and r.get("treasure_token")
+                          for r in ((m.get("attachments") or {}).get("items") or []))]
+    check("冠军收到带藏宝箱附件的邮件", bool(chest_mails), str(len(chest_mails)))
+    if chest_mails:
+        row = [r for r in (chest_mails[0].get("attachments") or {}).get("items") or []
+               if isinstance(r, dict) and r.get("treasure_token")][0]
+        check("附件带 treasure_token", bool(row.get("treasure_token")), str(row)[:120])
+        check("附件带 round/chest 信息",
+              int((row.get("custom_data") or {}).get("treasure_chest_no", 0)) == 1,
+              str(row.get("custom_data")))
+        check("附件名是客户端认识的「藏宝箱」", str(row.get("name", "")) == "藏宝箱",
+              str(row.get("name")))
+    check("服务端不再直接塞背包（避免领了变两份）",
+          not any(i.get("item_type") == "treasure_chest" for i in win1.items))
 
     print("⑤ 战报接口（本轮）")
     got = tr.battle_log(int(chest1["id"]), 1, 3)

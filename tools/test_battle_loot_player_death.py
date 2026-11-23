@@ -27,7 +27,7 @@ core.STATE_DIR = Path(tempfile.mkdtemp(prefix="lylootdeath_"))
 
 import handlers_battle as hb  # noqa: E402  （import 即注册路由）
 
-MAP_ID = "徘徊林（0,0）"
+MAP_ID = "盘桓林（0,0）"
 PASS = 0
 FAIL = 0
 

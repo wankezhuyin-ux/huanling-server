@@ -3,7 +3,7 @@
  "items": [
   {
    "id": "bronze_chest",
-   "name": "青铜匣",
+   "name": "青铜宝箱",
    "description": "随机获得一件青铜套装部件（攻击/防御/生命/敏捷+300）",
    "cost": 150,
    "type": "chest",
@@ -11,7 +11,7 @@
   },
   {
    "id": "silver_chest",
-   "name": "白银匣",
+   "name": "白银宝箱",
    "description": "随机获得一件白银套装部件（攻击/防御/生命/敏捷+500）",
    "cost": 300,
    "type": "chest",
@@ -19,7 +19,7 @@
   },
   {
    "id": "gold_chest",
-   "name": "黄金匣",
+   "name": "黄金宝箱",
    "description": "随机获得一件黄金套装部件（攻击/防御/生命/敏捷+1000）",
    "cost": 450,
    "type": "chest",
@@ -28,7 +28,7 @@
   {
    "id": "fortify_lv1_book",
    "name": "挡伤lv1技能书",
-   "description": "宠物技能书，可学习挡伤lv1技能，受到的伤害降低（原「硬皮lv1」客户端物品表里不存在，领取会报未知物品）",
+   "description": "宠物技能书，可学习挡伤lv1技能，受到的伤害降低",
    "cost": 5000,
    "type": "item",
    "item_name": "挡伤lv1技能书",

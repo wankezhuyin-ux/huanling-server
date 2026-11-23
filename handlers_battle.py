@@ -16,7 +16,7 @@ import random
 import secrets
 
 import combat
-from core import Ctx, RULES, fail, load_json, ok, route
+from core import Ctx, RULES, fail, iso, load_json, now, ok, route
 from core import DATA
 from core import capture_wild_pet
 from core import pet_species_table
@@ -229,14 +229,22 @@ def combat_options(state, pet: dict | None = None) -> dict:
     }
 
 
+# 抓包时每张图只打了 3 场（handoff data/wild-maps.json: samplesPerMap=3），
+# 3 场估出来的分布全是噪声：同名地图的 97 组坐标里有 95 组互相对不上，
+# 而 279 图 × 3 场共 837 场汇总起来是干净的均匀 1~5（20.7/17.2/20.1/21.3/20.8%，均值 3.04）。
+# 所以样本量不够 20 场时不信每图的 spawnDist，直接走全局均匀分布。
+MIN_SAMPLES_FOR_DIST = 20
+
+
 def _roll_spawn_count(map_cfg: dict | None) -> int:
-    """按线上实测的刷怪数量分布加权抽取；没有样本时退回 wildBattle.spawnMin/Max。"""
+    """取样足够的图按实测分布加权；样本太少（3 场）时退回 wildBattle.spawnMin/Max 均匀分布。"""
     cfg = _wild_config()
     low = int(cfg.get("spawnMin", 1))
     high = max(low, int(cfg.get("spawnMax", 5)))
     dist = (map_cfg or {}).get("spawnDist") or {}
+    samples = int((map_cfg or {}).get("samples") or 0)
     pairs = [(int(k), int(v)) for k, v in dist.items() if str(k).isdigit() and int(v) > 0]
-    if pairs:
+    if pairs and samples >= MIN_SAMPLES_FOR_DIST:
         total = sum(w for _n, w in pairs)
         pick = random.uniform(0, total)
         acc = 0.0
@@ -333,7 +341,75 @@ def spawn_tower_monsters(floor: int) -> list[combat.Fighter]:
     return monsters
 
 
-_MAP_TIER_ALIASES = {"normal": 0, "easy": 0, "hard": 1, "nightmare": 2, "hell": 3, "special": 4}
+# 客户端 `FabaoConfig.TIER_IDS` = normal/hard/hell/epic/legend/supreme/chaos/wushang，
+# `map_exp_bonus_pct` = 档位序号 × 5%，即 0/5/10/15/20/25/30/35。
+# 这里必须**逐个对齐序号**：早期这张表把 hell 写成 3（照抄了「地狱难度」的字面感觉），
+# 实际 hell 在客户端是第 2 档；epic/legend/supreme/chaos/wushang 干脆没收录，
+# 玩家切到传说/无上时服务端认不出来，经验加成直接变 0。
+_MAP_TIER_ALIASES = {
+    "normal": 0, "easy": 0,
+    "hard": 1, "nightmare": 2,
+    "hell": 2, "epic": 3, "legend": 4,
+    "supreme": 5, "special": 5,
+    "chaos": 6, "wushang": 7,
+}
+# 客户端档位表，碎片按同名档位掉落
+FABAO_TIER_IDS = ("normal", "hard", "hell", "epic", "legend", "supreme", "chaos", "wushang")
+FABAO_TIER_NAMES = ("普通", "困难", "地狱", "史诗", "传说", "至尊", "混沌", "无上")
+
+
+def player_map_tier(state) -> str:
+    """玩家当前选的地图难度。
+
+    权威位置是 `save.fabao.current_difficulty`（`/fabao/set-difficulty` 写的），
+    重登后由 `gameSettings.current_map_difficulty` 兜底 —— 客户端 fabao_manager
+    的 `apply_from_game_settings` 读的就是后者。
+    """
+    for box, key in ((state.save.get("fabao"), "current_difficulty"),
+                     (state.save.get("gameSettings"), "current_map_difficulty")):
+        if not isinstance(box, dict):
+            continue
+        tier = str(box.get(key, "") or "").strip().lower()
+        if tier in _MAP_TIER_ALIASES:
+            return tier
+    return "normal"
+
+
+def _fabao_rules() -> dict:
+    payload = RULES.m("fabao")
+    return payload if isinstance(payload, dict) else {}
+
+
+def roll_fabao_fragment(state, map_cfg: dict | None) -> dict | None:
+    """法宝碎片掉落。
+
+    口径来自客户端 `game_data.gd` 的物品说明：
+    「仅 1000 级及以上野外地图、{难度}难度掉落，100 片可合成{难度}法宝」，
+    掉率取运行时配置 `fabao.dropDenom`（原服 2000），门槛取 `fabao.minMapLevel`（原服 1000）。
+
+    以前两个配置项只在 `FabaoConfig` 里躺着，服务端/客户端都没有任何掉落代码，
+    线上 22 个号 0 件法宝 —— 普通~无上法宝根本合不出来。
+    """
+    cfg = _fabao_rules()
+    try:
+        min_level = int(cfg.get("minMapLevel", 1000) or 1000)
+        denom = max(1, int(cfg.get("dropDenom", 2000) or 2000))
+    except (TypeError, ValueError):
+        min_level, denom = 1000, 2000
+    try:
+        level = int((map_cfg or {}).get("level", 0) or 0)
+    except (TypeError, ValueError):
+        level = 0
+    if level < min_level:
+        return None
+    tier = player_map_tier(state)
+    if tier not in FABAO_TIER_IDS:
+        return None
+    if random.random() >= 1.0 / float(denom):
+        return None
+    name = "%s法宝碎片" % FABAO_TIER_NAMES[FABAO_TIER_IDS.index(tier)]
+    state.add_item(name, 1, "material")
+    return {"name": name, "count": 1}
 
 
 def _martial_exp_pct(state) -> float:
@@ -403,7 +479,7 @@ def _fabao_exp_pct(state) -> float:
 def _map_exp_bonus_pct(map_cfg: dict | None, pending: dict | None = None, difficulty: str = "") -> int:
     """法宝难度地图经验加成（FabaoConfig.map_exp_bonus_pct = 难度档位 × 5%）。
 
-    1~5 档依次 +5%/+10%/+15%/+20%/+25%，普通图 0%。
+    8 档依次 +0/+5/+10/+15/+20/+25/+30/+35%（普通 0%，无上 +35%）。
     难度来源优先级：本次请求 > 开战时的记录 > 地图表里的档位。
     """
     tier = 0
@@ -417,7 +493,7 @@ def _map_exp_bonus_pct(map_cfg: dict | None, pending: dict | None = None, diffic
             tier = max(tier, int(text))
         elif text in _MAP_TIER_ALIASES:
             tier = max(tier, _MAP_TIER_ALIASES[text])
-    return max(0, min(5, tier)) * 5
+    return max(0, min(7, tier)) * 5
 
 
 def _store_battle(ctx: Ctx, payload: dict) -> str:
@@ -444,6 +520,8 @@ def _store_battle(ctx: Ctx, payload: dict) -> str:
 def wild_run(ctx: Ctx) -> dict:
     state = ctx.state
     map_id = ctx.s("mapId") or str(state.player.get("current_map", "未知地图"))
+    # 开战瞬间把难度记进票据：结算时客户端不会再传一遍，而且难度可能中途被改。
+    tier = player_map_tier(state)
     monsters = spawn_wild_monsters(map_id)
     player = player_fighter(ctx)
     pet_data = active_pet(ctx)
@@ -456,6 +534,7 @@ def wild_run(ctx: Ctx) -> dict:
         {
             "kind": "wild",
             "mapId": map_id,
+            "difficulty": tier,
             "victory": result["victory"],
             # 「人物阵亡但灵兽独战清完」也算胜利（victory=True），但原版人死了拿不到人物经验，
             # 所以结算时要知道这一场人物到底有没有站到最后。玩家存活只认服务端自己算的。
@@ -473,7 +552,7 @@ def wild_run(ctx: Ctx) -> dict:
         "battleLog": result["battleLog"],
         "playerName": player.name,
         "petName": pet.name if pet else "",
-        "mapDifficulty": "normal",
+        "mapDifficulty": tier,
         "jointCount": int(result.get("jointCount", 0) or 0),
         "splashHits": int(result.get("splashHits", 0) or 0),
     }
@@ -537,20 +616,28 @@ def battle_loot(ctx: Ctx) -> dict:
     # ---- 经验：复刻 game_manager._apply_field_battle_exp_multipliers + player.add_exp
     # 1) 基础经验 = Σ怪物 exp_reward × wildBattle.fieldExpMultiplier(0.5)
     # 2) 法宝难度地图加成：FabaoConfig.map_exp_bonus_pct = 难度档位 × 5%
-    # 3) 总倍率 = VIP倍率(1/1.3/1.6/2.0) + 生效中的双倍经验符种类数（每种 +100%）
+    # 3) 总倍率 = VIP倍率(1/1.3/1.6/2.0) + 生效中的双倍经验丹种类数（每种 +100%）
     #    客户端在线模式不自己算经验（直接吃服务端下发的 level/experience），
     #    所以倍率必须在这里乘，否则双倍丹只对离线经验生效、野外经验一点没变。
-    map_bonus_pct = _map_exp_bonus_pct(map_cfg, pending, ctx.s("difficulty") or ctx.s("mapDifficulty"))
+    map_bonus_pct = _map_exp_bonus_pct(
+        map_cfg, pending,
+        ctx.s("difficulty") or ctx.s("mapDifficulty") or player_map_tier(state),
+    )
     # 完整口径（对标 player.gd / game_manager.gd 的乘法顺序）：
     #   base * (1 + 心法exp%) * fieldExpMultiplier * (1 + 地图难度%) * 总倍率 * 法宝exp%
     # 总倍率 = VIP(1/1.3/1.6/2.0) + 生效中的双倍丹种类数
     martial_pct = _martial_exp_pct(state)
     fabao_pct = _fabao_exp_pct(state)
+    # 周末周常「野外战斗经验 +100%」：exp_multiplier() 内部已经加进去了，
+    # 这里单独取一份回传给客户端，只用于战斗日志打一行「周末双倍」提示。
+    # 客户端不能自己按本机星期判断（玩家改手机时间会误报），必须认服务端这个值。
+    weekend_bonus = state.weekly_field_exp_bonus()
+    exp_mult = state.exp_multiplier()
     total_exp = int(round(
         base_exp
         * (1.0 + map_bonus_pct / 100.0)
         * (1.0 + martial_pct / 100.0)
-        * state.exp_multiplier()
+        * exp_mult
         * (1.0 + fabao_pct / 100.0)
     ))
     total_exp = max(0, total_exp)
@@ -575,8 +662,11 @@ def battle_loot(ctx: Ctx) -> dict:
     level_ups = state.grant_player_exp(player_exp, field=True, max_level_ups=field_ups) if player_exp > 0 else 0
     pet_data = active_pet(ctx)
     pet_level_ups = 0
+    # 灵兽经验：默认和人物同一个 total_exp；吃了「宠物双倍经验丹」再 ×2（只加宠物）
+    pet_exp_mult = state.pet_exp_multiplier()
+    pet_exp = int(round(total_exp * pet_exp_mult))
     if pet_data is not None:
-        pet_level_ups = state.grant_pet_exp(pet_data, total_exp, field=True, max_level_ups=field_ups)
+        pet_level_ups = state.grant_pet_exp(pet_data, pet_exp, field=True, max_level_ups=field_ups)
 
     # 掉落：按真实掉率表逐只怪 roll
     drops: list[dict] = []
@@ -586,6 +676,13 @@ def battle_loot(ctx: Ctx) -> dict:
             if random.random() < float(rate):
                 state.add_item(str(name), 1, "equipment" if float(rate) >= 0.01 else "material")
                 drops.append({"name": str(name), "count": 1})
+
+    # 法宝碎片：1000 级以上地图按当前难度掉对应档位，每场 1/dropDenom
+    # （原服运行时配置 dropDenom=2000、minMapLevel=1000；以前这两个配置没有任何代码消费）
+    # 单独走 `fabaoItemGranted` 而不是混进 wildDrops —— 客户端
+    # game_manager._on_field_battle_loot 里专门有这一路（打「★ 获得物品 ★」日志），
+    # wildDrops 客户端根本不读。
+    frag = roll_fabao_fragment(state, map_cfg) or {}
 
     # 捕捉：按原版 pet_manager.capture_from_monster 口径
     #   10% 概率 → 造一只带完整成长资质的宠 → 低于玩家设定阈值投喂图鉴
@@ -646,11 +743,16 @@ def battle_loot(ctx: Ctx) -> dict:
         victory=True,
         goldGranted=total_gold,
         playerExpGranted=player_exp,
-        petExpGranted=total_exp,
+        petExpGranted=pet_exp,
+        # 宠物双倍经验丹生效时为 2.0，客户端用它决定要不要在战斗日志提一句
+        petExpMultiplier=float(pet_exp_mult),
         # 客户端据此在战报里补一句「人物阵亡，未获得人物经验」，避免玩家以为漏结算
         playerDied=bool(player_died),
         itemGranted=(first_drop or {}).get("name", ""),
         itemGrantedCount=int((first_drop or {}).get("count", 0)),
+        # 法宝碎片单独下发：客户端按这两个字段补一条「获得 困难法宝碎片」战斗日志
+        fabaoItemGranted=str(frag.get("name", "")),
+        fabaoItemGrantedCount=int(frag.get("count", 0)),
         wildDrops=drops,
         captured=bool(captured),
         capturedPet=captured,
@@ -658,6 +760,10 @@ def battle_loot(ctx: Ctx) -> dict:
         captureSkipDetail=capture_detail,
         grantedPets=granted_pets,
         authorityPhase="enforce",
+        # 客户端战斗日志据此打一行「周末双倍经验」（0.0 = 今天没有，1.0 = +100%）。
+        # expMultiplier 是总倍率，只用于日志里说明「本周共 +X%」，不参与结算。
+        weekendExpBonus=float(weekend_bonus),
+        expMultiplier=float(exp_mult),
         newGold=state.gold(),
         playerLevel=int(state.player.get("level", 1)),
         playerExperience=int(state.player.get("experience", 0)),
@@ -729,17 +835,69 @@ def tower_clear_reward(ctx: Ctx) -> dict:
 
 @route("POST", "/economy/tower-sweep-reward")
 def tower_sweep_reward(ctx: Ctx) -> dict:
-    """扫荡奖励：按距今最高层每 10 层发一次百关礼包（走邮件，和线上一致）。"""
+    """天关「一键扫荡」的真实结算入口（客户端 economy_tower_sweep_reward）。
+
+    次数按原版 VIP 表 [1,2,2,3] 每日限次，和 /tower/sweep 共用一份计数。
+    旧实现有三个洞：
+      · 完全不检查次数，客户端本地拦不住就能无限刷；
+      · 只有最高层 ≥100、有百关礼包时才计数，低层扫荡连次数都不涨；
+      · 不回 sweepCount，客户端 player.tower_sweep_count 永远停在旧值。
+    另外 operationId 之前没做幂等，网络重试会重复发百关礼包邮件。
+    """
+    # 延迟导入：handlers_play 顶部反过来 import 了本模块的战斗辅助函数
+    import handlers_play as hp
+
     state = ctx.state
+    body = ctx.body or {}
+    op_id = str(body.get("operationId", "") or "").strip()
+    ops = state.meta.setdefault("towerSweepOps", {})
+    if not isinstance(ops, dict):
+        ops = {}
+        state.meta["towerSweepOps"] = ops
+
+    def sweep_state(extra=None):
+        cap = hp._tower_sweep_cap(state)
+        used = hp._tower_sweep_used(state)
+        payload = {
+            "success": True,
+            "sweepCount": used,
+            "sweepsLeft": max(0, cap - used),
+            "maxSweeps": cap,
+            "newGold": state.gold(),
+        }
+        if extra:
+            payload.update(extra)
+        return payload
+
+    # 幂等：同一次一键扫荡重试只回缓存结果，不重复扣次数、不重复发邮件
+    if op_id and op_id in ops:
+        cached = ops.get(op_id) or {}
+        return sweep_state({
+            "duplicate": True,
+            "items": cached.get("items") or [],
+            "message": "本次扫荡已结算",
+        })
+
+    used = hp._tower_sweep_consume(state)
+    if used < 0:
+        return fail("今日天关扫荡次数已用完，请明日再来",
+                    sweepCount=hp._tower_sweep_used(state),
+                    sweepsLeft=0,
+                    maxSweeps=hp._tower_sweep_cap(state))
+
     highest = int(state.player.get("tower_highest", 0))
-    packs = []
-    for floor in range(100, highest + 1, 100):
-        packs.append({"name": "%d关礼包" % floor, "count": 1})
-    if not packs:
-        return ok()
-    state.send_mail("天关扫荡 · 百关礼包", "您通过天关扫荡获得以下百关礼包，请查收附件。", packs)
-    spent = state.daily("tower_sweep")
-    state.daily_set("tower_sweep", spent + 1)
-    state.player["tower_sweep_count"] = int(state.player.get("tower_sweep_count", 0)) + 1
+    packs = [{"name": "%d关礼包" % floor, "count": 1}
+             for floor in range(100, highest + 1, 100)]
+    if packs:
+        state.send_mail("天关扫荡 · 百关礼包",
+                        "您通过天关扫荡获得以下百关礼包，请查收附件。", packs)
+    state.daily_inc("tower_sweep")   # 保留原有每日统计，不参与限次判定
     state.bump()
-    return ok(items=packs, newGold=state.gold())
+    if op_id:
+        ops[op_id] = {"items": packs, "at": iso(now())}
+        # 只留最近 60 个，避免 meta 无限膨胀
+        if len(ops) > 60:
+            for k in sorted(ops.keys())[:len(ops) - 60]:
+                ops.pop(k, None)
+        state.mark_dirty()
+    return sweep_state({"duplicate": False, "items": packs})

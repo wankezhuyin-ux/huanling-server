@@ -21,7 +21,7 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from core import Ctx, fail, iso, now, ok, route
+from core import Ctx, fail, iso, now, ok, rnd_id, route
 
 MAX_MAIL = 200
 
@@ -78,6 +78,112 @@ def _attachments_of(mail: dict) -> dict:
             if isinstance(entry, dict):
                 return entry
     return {}
+
+
+def _mail_item_rows(mail: dict) -> list:
+    """把新旧两种附件结构统一成 [{name,count,type,data,custom_data}]。"""
+    attach = _attachments_of(mail)
+    rows: list = []
+    items = attach.get("items")
+    if isinstance(items, list):
+        rows.extend([r for r in items if isinstance(r, dict)])
+    # 老 GM / 线上历史邮件是平铺结构：{type:"item", item_id, quantity, ...}
+    if not rows and attach.get("type") and (attach.get("item_id") or attach.get("name")):
+        rows.append({
+            "name": attach.get("item_id") or attach.get("name"),
+            "count": attach.get("quantity", attach.get("count", 1)),
+            "type": attach.get("type", "item"),
+            "data": attach.get("data"),
+            "custom_data": attach.get("custom_data"),
+        })
+    return rows
+
+
+def _mail_needs_authority_save(mail: dict) -> bool:
+    """附件里是否含「客户端等服务端存档才能入装备栏」的装备。"""
+    for row in _mail_item_rows(mail):
+        if str(row.get("type") or row.get("item_type") or "") == "sealed_suit":
+            return True
+        if "·" in str(row.get("name") or ""):
+            return True
+    return False
+
+
+def _grant_mail_attachments(state, mail: dict, write_items: bool = True) -> dict:
+    """finalize 确认时把附件真正落到服务端存档，返回本次发放摘要。
+
+    原实现只把邮件打上 is_claimed，什么都不发：客户端领取时
+    `_add_attachments_to_game` 对封印套装是 `defer_sealed_suits_to_finalize=true`
+    （不在本地入包，等服务端回包），而 finalize 又「不回 saveData」——
+    两边互相等，装备永远领不到，UI 弹「领取确认失败，封印套装未同步到背包」。
+    套装副本通关/扫荡掉落的封印套装就卡死在这里。
+
+    修法：服务端在确认时按附件逐件写 inventoryData，并回一份**只含
+    inventoryData 的 saveData**（不带 petsData/equipmentData/playerData，
+    避免 apply_cloud_save 把客户端本地宠物/人物装备栏整块冲掉）。
+    """
+    out = {"equipment": False, "gold": 0, "yuanbao": 0}
+    attach = _attachments_of(mail)
+    if not attach:
+        return out
+    for row in _mail_item_rows(mail):
+        name = str(row.get("name") or row.get("item_id") or "").strip()
+        if not name:
+            continue
+        try:
+            count = max(1, int(row.get("count", row.get("quantity", 1)) or 1))
+        except (TypeError, ValueError):
+            count = 1
+        typ = str(row.get("type") or row.get("item_type") or "")
+        custom = dict(row.get("custom_data")) if isinstance(row.get("custom_data"), dict) else {}
+        # 藏宝箱等把 token 写在附件顶层的老邮件，入存档时要带进 custom_data，
+        # 否则云档里这口箱子会因为缺 token 打不开。
+        if row.get("treasure_token") and "treasure_token" not in custom:
+            custom["treasure_token"] = str(row.get("treasure_token"))
+        if not write_items:
+            continue
+        if typ == "sealed_suit":
+            # 封印套装必须一件一行：客户端按 item_type=="sealed_suit" 的**行数**
+            # 校验领取数量，同名合并成 count=2 的一行会被判定「少发一件」。
+            out["equipment"] = True
+            data = dict(row.get("data")) if isinstance(row.get("data"), dict) else custom
+            if not data.get("name"):
+                data["name"] = name
+            for i in range(count):
+                cd = dict(data)
+                cd["mailClaimId"] = "%d-%d-%s" % (int(mail.get("id", 0) or 0), i, rnd_id("s"))
+                state.items.append({
+                    "id": rnd_id("i"),
+                    "name": "sealed_suit",
+                    "count": 1,
+                    "item_type": "sealed_suit",
+                    "custom_data": cd,
+                })
+        elif "·" in name:
+            # 「XX套装·武器」这类成品装备由客户端 equipment_manager 直接进
+            # 人物装备栏，服务端不写背包；但仍要回 saveData 供领取确认。
+            out["equipment"] = True
+        elif typ not in ("gold", "yuanbao", "exp", "pet", "chest"):
+            state.add_item(name, count, typ or "item", custom)
+    # 客户端领取时 skip_server_currency=true，金币/元宝不加本地，必须服务端补发；
+    # exp 是客户端本地加的，这里绝不能再发一次。
+    try:
+        gold = int(attach.get("gold", 0) or 0)
+        if gold <= 0 and str(attach.get("type", "")) == "gold":
+            gold = int(attach.get("amount", 0) or 0)
+    except (TypeError, ValueError):
+        gold = 0
+    try:
+        yb = int(attach.get("yuanbao", 0) or 0)
+    except (TypeError, ValueError):
+        yb = 0
+    if gold > 0:
+        state.add_gold(gold)
+        out["gold"] = gold
+    if yb > 0:
+        state.add_yuanbao(yb)
+        out["yuanbao"] = yb
+    return out
 
 
 def _find_mail(state, mail_id: int):
@@ -189,18 +295,39 @@ def mail_finalize_claims(ctx: Ctx) -> dict:
     if not ids:
         return fail("邮件 ID 为空")
 
+    pending = [m for m in _mails(ctx.state)
+               if isinstance(m, dict) and int(m.get("id", 0) or 0) in ids
+               and not m.get("is_claimed")]
+    # 只有这一批里含装备附件时才走「服务端权威写背包 + 回 saveData」。
+    # 纯道具/宠物邮件保持原来的客户端本地入包流程，一行都不改，
+    # 避免它们被服务端存档整块覆盖。
+    has_equipment = any(_mail_needs_authority_save(m) for m in pending)
     updated = 0
-    for mail in _mails(ctx.state):
-        if not isinstance(mail, dict):
-            continue
-        if int(mail.get("id", 0) or 0) in ids and not mail.get("is_claimed"):
-            mail["is_claimed"] = True
-            mail["is_read"] = True
-            updated += 1
+    gold_granted = 0
+    yuanbao_granted = 0
+    for mail in pending:
+        # 先落地再打 claimed：写入失败就不会把邮件标记成已领取。
+        granted = _grant_mail_attachments(ctx.state, mail, write_items=has_equipment)
+        gold_granted += granted["gold"]
+        yuanbao_granted += granted["yuanbao"]
+        mail["is_claimed"] = True
+        mail["is_read"] = True
+        updated += 1
     if updated:
         ctx.state.bump()
-    # 不回 saveData：附件是客户端本地入包的，回传服务端存档会把本地入包结果冲掉
-    return ok(updated=updated, duplicate=updated == 0)
+    resp = ok(updated=updated, duplicate=updated == 0)
+    # 只有真的发了货币才回钱包字段，避免用落后快照把本地金币冲掉
+    if gold_granted > 0:
+        resp["newGold"] = ctx.state.gold()
+    if yuanbao_granted > 0:
+        resp["newYuanbao"] = int(ctx.state.player.get("yuanbao_currency", 0) or 0)
+    if has_equipment:
+        # 装备类附件：客户端 _reconcile_finalize_claim_save 要求回包带 saveData
+        # 且 inventoryData 里的封印套装行数 >= 本地原有 + 本次领取数，
+        # 拿到后 apply_cloud_save 才把装备显示到人物装备栏。只回背包切片，
+        # 不带 playerData/petsData/equipmentData，避免冲掉本地其它进度。
+        resp["saveData"] = {"inventoryData": ctx.state.inv}
+    return resp
 
 
 @route("POST", "/mail/delete-claimed")

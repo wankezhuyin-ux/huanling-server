@@ -184,6 +184,8 @@ print("== F. 身上装备可以强化（客户端不带 slot）==")
 st = new_state("f")
 st.save["petEquipmentData"] = {"equipped": {"pet_helmet": item("h1", "金鳞盔（宠）", slot="helmet")}}
 st.inv["pet_equipment_items"] = []
+# 强化按原版规则消耗「宠装强化石」（0→1 级 1 颗、成功率 100%），先备好料
+st.add_item("宠装强化石", 3, "material")
 st.flush(force=True)
 ctx = core.Ctx(st, {"equipmentId": "h1", "operationId": "enh1"}, {}, None, {})
 r = hg.pet_equipment_enhance(ctx)

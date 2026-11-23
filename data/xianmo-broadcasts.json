@@ -1,0 +1,205 @@
+{
+ "success": true,
+ "broadcasts": [
+  {
+   "id": 914502,
+   "user_id": 268,
+   "nickname": "陈陈陈",
+   "broadcast_type": "faction_confrontation",
+   "content": "【陈陈陈】在仙魔界击败了敌对阵营修士【仙道·玄真剑修】！",
+   "extra_data": {
+    "type": "faction_confrontation",
+    "opponent": "仙道·玄真剑修"
+   },
+   "week_number": 30,
+   "created_at": "2026-10-22T17:40:32.000Z"
+  },
+  {
+   "id": 914503,
+   "user_id": 41,
+   "nickname": "独孤求败",
+   "broadcast_type": "enlightenment",
+   "content": "【独孤求败】在仙魔界获得悟道机缘，修行值+100！",
+   "extra_data": {
+    "type": "enlightenment",
+    "amount": 100
+   },
+   "week_number": 30,
+   "created_at": "2026-10-22T17:40:33.000Z"
+  },
+  {
+   "id": 914504,
+   "user_id": 41,
+   "nickname": "独孤求败",
+   "broadcast_type": "pet_recognition",
+   "content": "【独孤求败】在仙魔界触发灵兽认主，获得了【仙魔灵兽礼包】！（可开出成长5.58）",
+   "extra_data": {
+    "type": "pet_recognition",
+    "growth": 5.58
+   },
+   "week_number": 30,
+   "created_at": "2026-10-22T17:40:38.000Z"
+  },
+  {
+   "id": 914505,
+   "user_id": 268,
+   "nickname": "陈陈陈",
+   "broadcast_type": "faction_confrontation",
+   "content": "【陈陈陈】在仙魔界击败了敌对阵营修士【不吃香菜】！",
+   "extra_data": {
+    "type": "faction_confrontation",
+    "opponent": "不吃香菜"
+   },
+   "week_number": 30,
+   "created_at": "2026-10-22T17:40:48.000Z"
+  },
+  {
+   "id": 914506,
+   "user_id": 340,
+   "nickname": "立羽",
+   "broadcast_type": "reincarnate",
+   "content": "★不破不灭，无生无死，唯气常存★\n【立羽】以无上法力辅以秘宝得以投胎转世，入凡重修。 转世次数:518",
+   "extra_data": {
+    "reincarnation_count": 518
+   },
+   "week_number": 30,
+   "created_at": "2026-10-22T17:40:52.000Z"
+  },
+  {
+   "id": 914507,
+   "user_id": 150,
+   "nickname": "搬砖的",
+   "broadcast_type": "ascend",
+   "content": "道，可道，非恒道。名，可名，非恒名。\n无名，天地之始；有名，万物之母。故常无欲，以观其妙；常有欲，以观其徼。此两者同出而异名，同谓之玄。玄之又玄，众妙之门。\n恭喜【搬砖的】得道飞升成仙！ 等级:1",
+   "extra_data": {
+    "level": 1,
+    "new_realm": "散仙",
+    "old_realm": "凡人"
+   },
+   "week_number": 30,
+   "created_at": "2026-10-22T17:40:53.000Z"
+  },
+  {
+   "id": 914508,
+   "user_id": 439,
+   "nickname": "一遇风云便化龍",
+   "broadcast_type": "faction_confrontation",
+   "content": "【一遇风云便化龍】在仙魔界击败了敌对阵营修士【魔道·血影门徒】！",
+   "extra_data": {
+    "type": "faction_confrontation",
+    "opponent": "魔道·血影门徒"
+   },
+   "week_number": 30,
+   "created_at": "2026-10-22T17:41:27.000Z"
+  },
+  {
+   "id": 914509,
+   "user_id": 439,
+   "nickname": "一遇风云便化龍",
+   "broadcast_type": "immortal_relic",
+   "content": "【一遇风云便化龍】在仙魔界发现了仙魔遗迹，获得了白银宝箱！",
+   "extra_data": {
+    "type": "immortal_relic",
+    "chestType": "silver"
+   },
+   "week_number": 30,
+   "created_at": "2026-10-22T17:41:32.000Z"
+  },
+  {
+   "id": 914510,
+   "user_id": 51,
+   "nickname": "夜雨风歌",
+   "broadcast_type": "ascend",
+   "content": "受天地之气，得日月之精，历岁久远，化而为人。\n放大智光明，照十方世界，地涌金莲华，丈六金身，能变能化，无大无不大，无通无不通，普度众生，号作地仙。\n恭喜【夜雨风歌】得道晋升地仙！ 等级:1",
+   "extra_data": {
+    "level": 1,
+    "new_realm": "地仙",
+    "old_realm": "散仙"
+   },
+   "week_number": 30,
+   "created_at": "2026-10-22T17:41:51.000Z"
+  },
+  {
+   "id": 914511,
+   "user_id": 14,
+   "nickname": "天云",
+   "broadcast_type": "ascend",
+   "content": "受天地之气，得日月之精，历岁久远，化而为人。\n放大智光明，照十方世界，地涌金莲华，丈六金身，能变能化，无大无不大，无通无不通，普度众生，号作地仙。\n恭喜【天云】得道晋升地仙！ 等级:1",
+   "extra_data": {
+    "level": 1,
+    "new_realm": "地仙",
+    "old_realm": "散仙"
+   },
+   "week_number": 30,
+   "created_at": "2026-10-22T17:42:40.000Z"
+  },
+  {
+   "id": 914512,
+   "user_id": 67,
+   "nickname": "坏蛋蛋",
+   "broadcast_type": "ascend",
+   "content": "夫唯不争，故天下莫能与之争。\n恭喜【坏蛋蛋】一心向武，从破中求立，终于突破自身极限，晋升幻灵天神。等级:1",
+   "extra_data": {
+    "level": 1,
+    "new_realm": "幻灵天神",
+    "old_realm": "大罗金仙"
+   },
+   "week_number": 30,
+   "created_at": "2026-10-22T17:43:00.000Z"
+  },
+  {
+   "id": 914513,
+   "user_id": 501,
+   "nickname": "琥珀的凝视",
+   "broadcast_type": "ascend",
+   "content": "克纯克纯，无地非天，常真真常，玄之又玄。\n绵绵密密，道无不圆，功造其极，我即佛仙。\n恭喜【琥珀的凝视】修为更上一层，晋升天仙！ 等级:1",
+   "extra_data": {
+    "level": 1,
+    "new_realm": "天仙",
+    "old_realm": "地仙"
+   },
+   "week_number": 30,
+   "created_at": "2026-10-22T17:46:27.000Z"
+  },
+  {
+   "id": 914514,
+   "user_id": 22,
+   "nickname": "思念",
+   "broadcast_type": "reincarnate",
+   "content": "★不破不灭，无生无死，唯气常存★\n【思念】以无上法力辅以秘宝得以投胎转世，入凡重修。 转世次数:539",
+   "extra_data": {
+    "reincarnation_count": 539
+   },
+   "week_number": 30,
+   "created_at": "2026-10-22T17:48:18.000Z"
+  },
+  {
+   "id": 914515,
+   "user_id": 371,
+   "nickname": "浪得虚名",
+   "broadcast_type": "ascend",
+   "content": "道，可道，非恒道。名，可名，非恒名。\n无名，天地之始；有名，万物之母。故常无欲，以观其妙；常有欲，以观其徼。此两者同出而异名，同谓之玄。玄之又玄，众妙之门。\n恭喜【浪得虚名】得道飞升成仙！ 等级:1",
+   "extra_data": {
+    "level": 1,
+    "new_realm": "散仙",
+    "old_realm": "凡人"
+   },
+   "week_number": 30,
+   "created_at": "2026-10-22T17:48:30.000Z"
+  },
+  {
+   "id": 914516,
+   "user_id": 315,
+   "nickname": "梦倩",
+   "broadcast_type": "ascend",
+   "content": "克纯克纯，无地非天，常真真常，玄之又玄。\n绵绵密密，道无不圆，功造其极，我即佛仙。\n恭喜【梦倩】修为更上一层，晋升天仙！ 等级:1",
+   "extra_data": {
+    "level": 1,
+    "new_realm": "天仙",
+    "old_realm": "地仙"
+   },
+   "week_number": 30,
+   "created_at": "2026-10-22T17:48:31.000Z"
+  }
+ ]
+}
